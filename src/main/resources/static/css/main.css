@@ -1,0 +1,39 @@
+#react {
+  margin-left: auto;
+  margin-right: auto; }
+
+.container {
+  background-color: white; }
+
+.card {
+  margin-bottom: 20px; }
+
+#regnskab-header {
+  background-color: #e0eeff; }
+
+.cvr-input {
+  margin-top: 30px;
+  margin-bottom: 30px; }
+
+#virkr-header {
+  font-family: 'Lobster', cursive;
+  color: #4e22a5;
+  font-weight: bold;
+  font-size: 72px;
+  text-align: center; }
+
+#virkr-tagline {
+  color: #4e22a5;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center; }
+
+table tr td:last-child {
+  text-align: right; }
+
+.virksomhed {
+  margin-top: 30px; }
+
+.canvasjs-chart-container {
+  width: 300px;
+  height: 300px; }
