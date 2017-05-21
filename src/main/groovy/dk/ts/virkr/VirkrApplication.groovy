@@ -1,4 +1,4 @@
-package dk.ts.virkr.main
+package dk.ts.virkr
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication

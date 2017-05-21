@@ -1,0 +1,12 @@
+server:
+  port: 9092
+
+virkr:
+  aarsrapporter:
+    url: http://distribution.virk.dk/offentliggoerelser/_search
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
