@@ -1,59 +1,47 @@
-#react {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .container {
-  background-color: white;
-}
+  background-color: white; }
 
 .card {
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 #regnskab-header {
-  background-color: #e0eeff;
-}
+  background-color: #e0eeff; }
 
 .cvr-input {
   margin-top: 30px;
-  margin-bottom: 30px;
-}
+  margin-bottom: 30px; }
 
 #virkr-header {
   font-family: 'Lobster', cursive;
   color: #4e22a5;
   font-weight: bold;
   font-size: 72px;
-  text-align: center;
-}
+  text-align: center; }
 
 #virk-header-a {
   color: #4e22a5;
-  text-decoration: none; /* no underline */
-}
+  text-decoration: none;
+  /* no underline */ }
 
 #virk-header-a:hover {
   color: #4e22a5;
-  text-decoration: none; /* no underline */
-}
+  text-decoration: none;
+  /* no underline */ }
 
 #virk-header-a:visited {
   color: #4e22a5;
-  text-decoration: none; /* no underline */
-}
+  text-decoration: none;
+  /* no underline */ }
 
 #virkr-tagline {
   color: #4e22a5;
   font-weight: bold;
   font-size: 12px;
-  text-align: center;
-}
+  text-align: center; }
 
 table tr td:last-child {
-  text-align: right;
-}
+  text-align: right; }
 
 .virksomhed {
-  margin-top: 30px;
-}
+  margin-top: 30px; }
+

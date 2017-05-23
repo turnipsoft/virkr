@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import jQuery from 'jquery';
 //import { LineChart, Line, CartesianGrid, YAxis, XAxis, Tooltip, Legend} from 'recharts';
 import {Line} from 'react-chartjs-2';
+import './main.css';
 
 class Virksomhed extends React.Component {
 
@@ -53,8 +54,8 @@ class Virksomhed extends React.Component {
 
     _hentNoegletal(cvrnummer) {
         jQuery.ajax({
-            method: 'GET',
-            url: '/regnskab/'+cvrnummer,
+            url: 'http://localhost:9092/regnskab/'+cvrnummer,
+            crossDomain: true,
             success : (rs) => {
                 this.setState({
                     regnskaber : rs.regnskabsdata
