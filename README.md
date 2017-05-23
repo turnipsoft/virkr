@@ -15,7 +15,9 @@ Bygger backend og frontend projektet. Distributables i backend/libs/virk-0.01.ja
 For at starte frontend og backend:
 
 I et vindue: `./gradlew backend:start`
-I et andet vindue: `./gradlew frontend:start`        
+I et andet vindue: `./gradlew frontend:start`      
+
+Hvis frontend ikke starter første gang så kør `npm install` i frontend  
 
 Hvis vi kan kunne finde ud af at få gradle til at afvikle to tasks parallelt kunne man nøjes med `./gradlew start` 
 
