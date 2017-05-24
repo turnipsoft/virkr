@@ -1,12 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import CvrSoegebox from './cvrsoegebox';
 import CvrVisning from './cvrvisning';
-import 'whatwg-fetch';
+
+import APIHelper from './apihelper.js';
 
 export default class Virksomhed extends Component {
 
   constructor() {
     super();
+
+    this._opdaterCvrNummer = this._opdaterCvrNummer.bind(this);
 
     this.state = {
       cvrnummer: '',
@@ -14,7 +17,17 @@ export default class Virksomhed extends Component {
     };
   }
 
+  _opdaterCvrNummer(cvrnr) {
+    APIHelper.hentNoegletal(cvrnr).then((data) => {
+      this.setState({ cvrnummer: cvrnr, regnskaber: data.regnskabsdata })
+    }, (fejl) => {
+      alert(fejl);
+    })
+  }
+
   render() {
+    const { cvrnummer, regnskaber } = this.state;
+
     return (<div className="virksomhed">
       <div className="row">
         <div className="col">
@@ -24,43 +37,15 @@ export default class Virksomhed extends Component {
       </div>
       <div className="row">
         <div className="col">
-          <CvrSoegebox opdaterCvr={this._opdaterCvrNummer.bind(this)} />
+          <CvrSoegebox opdaterCvr={this._opdaterCvrNummer} />
         </div>
       </div>
       <div className="row">
         <div className="col">
-          <CvrVisning cvrnummer={this.state.cvrnummer}
-            regnskaber={this.state.regnskaber} />
+          <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} />
         </div>
       </div>
     </div>);
   }
 
-  _opdaterCvrNummer(cvrnr) {
-    this.setState({
-      cvrnummer: cvrnr
-    });
-
-    if (cvrnr && cvrnr.length == 8) {
-      this._hentNoegletal(cvrnr);
-    } else {
-      this.setState({
-        regnskaber: []
-      })
-    }
-  }
-
-  _hentNoegletal(cvrnummer) {
-    fetch('http://localhost:9092/regnskab/' + cvrnummer, { mode: 'cors' })
-      .then((response) => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          console.error(response);
-          throw new Error("Kan ikke hente data");
-        }
-      })
-      .then((json) => this.setState({ regnskaber: json.regnskabsdata }))
-      .catch((error) => alert(error))
-  }
 }
