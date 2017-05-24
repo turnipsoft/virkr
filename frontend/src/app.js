@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Line } from 'react-chartjs-2';
 import 'whatwg-fetch';
 import './main.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'font-awesome-webpack'
 
 class Virksomhed extends React.Component {
 
