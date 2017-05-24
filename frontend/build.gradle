@@ -1,0 +1,14 @@
+plugins {
+	id "com.moowork.node" version "1.1.1"
+}
+
+task clean {}
+clean.dependsOn(npm_run_clean)
+
+task build {}
+build.dependsOn(npm_install)
+build.dependsOn(npm_run_build)
+
+task start {}
+start.dependsOn(npm_start)
+

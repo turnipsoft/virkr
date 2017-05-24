@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 /**
  * Created by sorenhartvig on 19/05/2017.
  */
-@CrossOrigin(origins = "http://localhost:8001")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/regnskab")
 class RegnskabService {
