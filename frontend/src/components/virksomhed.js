@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CvrSoegebox from './cvrsoegebox';
 import CvrVisning from './cvrvisning';
 
-import APIHelper from './apihelper.js';
+import APIHelper from '../utils/apihelper.js';
 
 export default class Virksomhed extends Component {
 

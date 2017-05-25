@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Virksomhed from './virksomhed';
+import Virksomhed from './components/virksomhed';
 
 import './main.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
