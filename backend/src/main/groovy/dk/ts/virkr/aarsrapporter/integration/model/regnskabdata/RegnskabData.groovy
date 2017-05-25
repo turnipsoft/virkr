@@ -20,4 +20,9 @@ class RegnskabData {
   Long gaeldsforpligtelser
   Long egenkapital
   Long finansielleOmkostninger
+  Long finansielleIndtaegter
+  Long omsaetning
+  Long medarbejderOmkostninger
+  Long goodwill
+
 }
