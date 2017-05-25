@@ -1,3 +1,5 @@
+var debug = process.env.NODE_ENV !== "production";
+
 var HTMLWebpackPlugin = require('html-webpack-plugin');
 
 var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
@@ -7,7 +9,11 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 });
 
 module.exports = {
-  entry: __dirname + '/src/app.js',
+  context: __dirname,
+
+  devtool: debug ? "inline-sourcemap" : null,
+
+  entry: './src/app.js',
 
   module: {
     loaders: [
