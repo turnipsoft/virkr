@@ -6,11 +6,11 @@ export default class Regnskabstal extends Component {
   render() {
     return (
 
-      <div className="panel panel-primary">
-        <div className="panel-heading" id="regnskab-header">
+      <div className="card">
+        <div className="card-header" id="regnskab-header">
           <b>{this.props.regnskab.aar}</b> <span className="small">({this.props.regnskab.startDato} - {this.props.regnskab.slutDato})</span>
         </div>
-        <div className="panel-body">
+        <div className="card-block">
 
           <Noegletal noegletal={this.props.regnskab.omsaetning} text="Omsætning"/>
           <Noegletal noegletal={this.props.regnskab.bruttofortjeneste} text="Bruttofortjeneste" b={true} />
