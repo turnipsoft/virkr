@@ -21,7 +21,6 @@ CREATE TABLE regnskabsdata
     finansielleindtaegter bigint,
     finansielleomkostninger bigint,
     medarbejderomkostninger bigint,
-    egenkapital bigint,
     omsaetning bigint,
     id bigserial NOT NULL,
     CONSTRAINT regnskabsdata_pkey PRIMARY KEY (id)
