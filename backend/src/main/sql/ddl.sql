@@ -18,6 +18,11 @@ CREATE TABLE regnskabsdata
     skatafaaretsresultat bigint,
     gaeldsforpligtelser bigint,
     egenkapital bigint,
+    finansielleindtaegter bigint,
+    finansielleomkostninger bigint,
+    medarbejderomkostninger bigint,
+    egenkapital bigint,
+    omsaetning bigint,
     id bigserial NOT NULL,
     CONSTRAINT regnskabsdata_pkey PRIMARY KEY (id)
 )

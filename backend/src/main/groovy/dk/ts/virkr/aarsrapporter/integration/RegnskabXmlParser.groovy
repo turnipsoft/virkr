@@ -84,7 +84,7 @@ class RegnskabXmlParser {
     if (!data.resultatfoerskat && data.driftsresultat) {
       long finans = 0
       finans = (data.finansielleIndtaegter?data.finansielleIndtaegter:0) - (data.finansielleOmkostninger?data.finansielleOmkostninger:0)
-      data.resultatfoerskat = data.driftsresultat - finans
+      data.resultatfoerskat = data.driftsresultat + finans
     }
 
     // hvis der ikke er noget bruttoresultat kan man tilsyneladende bruge goodwill i sit regnskab.. hmmm

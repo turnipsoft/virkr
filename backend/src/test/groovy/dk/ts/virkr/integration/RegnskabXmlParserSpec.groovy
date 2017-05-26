@@ -70,9 +70,10 @@ class RegnskabXmlParserSpec extends Specification {
     regnskabData.egenkapital == 61554000l
 
   }
+
   void "test parse systematic"() {
     given:
-    String xml = TestUtil.load('/capgemini.xml')
+    String xml = TestUtil.load('/systematic.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
 
@@ -80,15 +81,15 @@ class RegnskabXmlParserSpec extends Specification {
     regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
 
     then:
-    regnskabData.omsaetning == 91909395l
+    regnskabData.omsaetning == 91909396l
     regnskabData.bruttofortjeneste == 53929716l
     regnskabData.driftsresultat == 9033698l
     regnskabData.resultatfoerskat == 9776870l
-    regnskabData.finansielleOmkostninger == 37380l
-    regnskabData.skatafaaretsresultat == 2074356l
+    regnskabData.finansielleOmkostninger == null
+    regnskabData.skatafaaretsresultat == 2014356l
     regnskabData.aaretsresultat == 7762514l
-    regnskabData.gaeldsforpligtelser == 80864000l
-    regnskabData.egenkapital == 33723425l
+    regnskabData.gaeldsforpligtelser == 29839752l
+    regnskabData.egenkapital == 25742073l
 
   }
 
@@ -116,9 +117,9 @@ class RegnskabXmlParserSpec extends Specification {
     regnskabData.egenkapital == 1164600000l
   }
 
-  void "test parse NC it"() {
+  void "test parse nine"() {
     given:
-    String xml = TestUtil.load('/nc-itbusiness.xml')
+    String xml = TestUtil.load('/nine.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
 
@@ -126,17 +127,16 @@ class RegnskabXmlParserSpec extends Specification {
     regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
 
     then:
-    regnskabData.omsaetning == 887878000l
-    regnskabData.bruttofortjeneste == 666101000l
-    regnskabData.medarbejderOmkostninger == 475902000l
-    regnskabData.driftsresultat == 184923000l
-    regnskabData.finansielleIndtaegter == 616000l
-    regnskabData.finansielleOmkostninger == 3936000l
-    regnskabData.resultatfoerskat == 200894000l
-    regnskabData.skatafaaretsresultat == 31008000l
-    regnskabData.aaretsresultat == 169886000l
-    regnskabData.gaeldsforpligtelser == 212880000l
-    regnskabData.egenkapital == 224488000l
+    regnskabData.bruttofortjeneste == 87883765l
+    regnskabData.driftsresultat == 19658442l
+    regnskabData.resultatfoerskat == 19704409l
+    regnskabData.finansielleIndtaegter == 63203l
+    regnskabData.finansielleOmkostninger == 17236l
+    regnskabData.skatafaaretsresultat == 4189184l
+    regnskabData.aaretsresultat == 15515225l
+    regnskabData.gaeldsforpligtelser == 19030055l
+    regnskabData.egenkapital == 31210704l
+
   }
 
 

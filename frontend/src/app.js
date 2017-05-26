@@ -72,18 +72,25 @@ class CvrSoegebox extends React.Component {
 
   render() {
     return (<div className="cvr-input">
-      <form onSubmit={this._opdaterCvrNummer.bind(this)}>
-        <div className="input-group">
-          <input type="text" ref={c => this._cvr = c}
-            className="form-control" placeholder="Indtast CVR-Nummer"
-            maxLength="8" id="txtSearch" />
-          <div className="input-group-btn">
-            <button className="btn btn-primary" type="submit">
-              <span className="fa fa-search"></span>
-            </button>
-          </div>
+      <div className="row">
+        <div className="col-xs-4"/>
+        <div className="col-xs-4">
+          <form onSubmit={this._opdaterCvrNummer.bind(this)}>
+            <div className="input-group">
+              <input type="text" ref={c => this._cvr = c}
+                className="form-control" placeholder="Indtast CVR-Nummer"
+                maxLength="8" id="txtSearch" />
+              <div className="input-group-btn">
+                <button className="btn btn-primary" type="submit">
+                  <span className="fa fa-search"></span>
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+        <div className="col-xs-4" />
+
+      </div>
     </div>);
   }
 
@@ -124,17 +131,7 @@ class CvrVisning extends React.Component {
     return this.props.regnskaber.slice().reverse().map((regnskab) => {
       return <Regnskabstal
         id={regnskab.id}
-        aar={regnskab.aar}
-        startDato={regnskab.startDato}
-        slutDato={regnskab.slutDato}
-        bruttofortjeneste={regnskab.bruttofortjeneste}
-        driftsresultat={regnskab.driftsresultat}
-        egenkapital={regnskab.egenkapital}
-        aaretsresultat={regnskab.aaretsresultat}
-        resultatfoerskat={regnskab.resultatfoerskat}
-        skatafaaretsresultat={regnskab.skatafaaretsresultat}
-        gaeldsforpligtelser={regnskab.gaeldsforpligtelser}
-        pdfUrl={regnskab.pdfUrl}
+        regnskab={regnskab}
         key={regnskab.startDato} />
     });
   }
@@ -272,41 +269,104 @@ class CvrVisning extends React.Component {
 
 }
 
+class Noegletal extends React.Component {
+
+  render() {
+    if (this.props.noegletal) {
+      let text = this.props.text;
+      let tal = this.props.noegletal;
+
+      if (this.props.negative) {
+        tal = -tal;
+      }
+
+      tal = this._komma(tal);
+      if (this.props.b) {
+        text = <b>{text}</b>
+        tal = <b>{tal}</b>
+      }
+
+      if (this.props.h) {
+        text = <h4>{text}</h4>
+        tal = <h4>{tal}</h4>
+      }
+
+      let bottomClass = "col-xs-2";
+      if (this.props.underline) {
+        bottomClass += " bottom";
+      }
+
+      return (
+        <div className="row">
+          <div className="col-xs-2"></div>
+          <div className="col-xs-6">
+            {text}
+          </div>
+          <div className={bottomClass}>
+            <u><span className="pull-right">{tal} </span></u>
+          </div>
+          <div className="col-xs-2"></div>
+        </div>
+      );
+
+    }
+
+    return(null);
+  }
+
+  _komma(vaerdi) {
+    if (vaerdi) {
+      const v = vaerdi.toLocaleString();
+      return v.replace(/,/g, ".");
+    }
+
+    return vaerdi;
+  }
+}
+
 class Regnskabstal extends React.Component {
 
   render() {
     return (
-      <div className="card">
-        <div className="card-header" id="regnskab-header">
-          <b>{this.props.aar}</b> <span className="small">({this.props.startDato} - {this.props.slutDato})</span>
+
+      <div className="panel panel-primary">
+        <div className="panel-heading" id="regnskab-header">
+          <b>{this.props.regnskab.aar}</b> <span className="small">({this.props.regnskab.startDato} - {this.props.regnskab.slutDato})</span>
         </div>
-        <div className="card-block">
-          <table className="table table-striped">
-            <tbody>
-              <tr scope="row">
-                <td>Bruttofortjeneste </td><td className="beloeb">{this._komma(this.props.bruttofortjeneste)}</td>
-              </tr>
-              <tr scope="row">
-                <td>Driftsresultat </td><td>{this._komma(this.props.driftsresultat)}</td>
-              </tr>
-              <tr scope="row">
-                <td>Resultat før skat </td><td>{this._komma(this.props.resultatfoerskat)}</td>
-              </tr>
-              <tr scope="row">
-                <td>Skat af årets resultat </td><td>{this._komma(this.props.skatafaaretsresultat)}</td>
-              </tr>
-              <tr scope="row">
-                <td>Årets resultat </td><td>{this._komma(this.props.aaretsresultat)}</td>
-              </tr>
-              <tr scope="row">
-                <td>Gældsforpligtelser </td><td>{this._komma(this.props.gaeldsforpligtelser)}</td>
-              </tr>
-              <tr scope="row">
-                <td>Egenkapital </td><td>{this._komma(this.props.egenkapital)}</td>
-              </tr>
-            </tbody>
-          </table>
-          <a href={this.props.pdfUrl} target="_blank" className="btn btn-primary">Hent regnskab som PDF</a>
+        <div className="panel-body">
+
+          <Noegletal noegletal={this.props.regnskab.omsaetning} text="Omsætning"/>
+          <Noegletal noegletal={this.props.regnskab.bruttofortjeneste} text="Bruttofortjeneste" b={true} />
+          <br/>
+          <Noegletal noegletal={this.props.regnskab.driftsresultat} text="Driftsresultat" b={true} />
+          <br/>
+
+          <Noegletal noegletal={this.props.regnskab.finansielleIndtaegter} text="Andre finansielle indtægter" />
+          <Noegletal noegletal={this.props.regnskab.finansielleOmkostninger} text="Andre finansielle omkostninger"
+                     negative={true} underline={true}/>
+          <Noegletal noegletal={this.props.regnskab.resultatfoerskat} text="Årets resultat før skat" b={true} />
+
+          <br/>
+          <Noegletal noegletal={this.props.regnskab.skatafaaretsresultat} text="Skat af årets resultat" negative={true}
+                     underline={true}/>
+
+          <br/>
+          <Noegletal noegletal={this.props.regnskab.aaretsresultat} text="Årets resultat" h={true} />
+
+          <br/>
+          <Noegletal noegletal={this.props.regnskab.egenkapital} text="Egenkapital" b={true} />
+
+          <br/>
+          <Noegletal noegletal={this.props.regnskab.gaeldsforpligtelser} text="Gældsforpligtelser" b={true} />
+
+          <br/>
+
+          <div className="row">
+            <div className="col-xs-2" />
+            <div className="col-xs-10" >
+              <a href={this.props.regnskab.pdfUrl} target="_blank" className="btn btn-primary">Hent regnskab som PDF</a>
+            </div>
+          </div>
         </div>
       </div>
     );
