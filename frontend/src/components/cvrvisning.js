@@ -16,7 +16,7 @@ export default class CvrVisning extends Component {
         {(regnskaber.length > 0) ? <Graf regnskaber={regnskaber} /> : null}
         <br />
         <br />
-        {regnskaber.reverse().map((regnskab) => {
+        {regnskaber.slice().reverse().map((regnskab) => {
           return <Regnskabstal key={regnskab.id} regnskab={regnskab} />
         })}
       </div>);
