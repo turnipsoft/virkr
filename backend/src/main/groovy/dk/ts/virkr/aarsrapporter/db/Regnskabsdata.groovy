@@ -76,6 +76,27 @@ class Regnskabsdata {
   @Column
   Long omsaetning
 
+  @Column
+  String navn
+
+  @Column
+  String vejnavn
+
+  @Column
+  String husnr
+
+  @Column
+  String postnr
+
+  @Column
+  String bynavn
+
+  @Column
+  String lat
+
+  @Column
+  String lon
+
   public static Regnskabsdata from(RegnskabData rd) {
     Regnskabsdata regnskabsdata = new Regnskabsdata()
     regnskabsdata.cvrnummer = rd.cvrNummer
@@ -96,6 +117,13 @@ class Regnskabsdata {
     regnskabsdata.finansielleindtaegter = rd.finansielleIndtaegter
     regnskabsdata.finansielleomkostninger = rd.finansielleOmkostninger
     regnskabsdata.medarbejderomkostninger = rd.medarbejderOmkostninger
+    regnskabsdata.navn = rd.virksomhedsdata.navn
+    regnskabsdata.vejnavn = rd.virksomhedsdata.vejnavn
+    regnskabsdata.husnr = rd.virksomhedsdata.husnr
+    regnskabsdata.postnr = rd.virksomhedsdata.postnr
+    regnskabsdata.bynavn = rd.virksomhedsdata.bynavn
+    regnskabsdata.lat = rd.virksomhedsdata.lat
+    regnskabsdata.lon = rd.virksomhedsdata.lon
     return regnskabsdata
   }
 
@@ -122,6 +150,15 @@ class Regnskabsdata {
     regnskabsdata.finansielleOmkostninger = this.finansielleomkostninger
     regnskabsdata.finansielleIndtaegter = this.finansielleindtaegter
     regnskabsdata.omsaetning = this.omsaetning
+    regnskabsdata.virksomhedsdata = new dk.ts.virkr.aarsrapporter.integration.model.virksomhedsdata.Virksomhedsdata()
+    regnskabsdata.virksomhedsdata.cvrnummer = this.cvrnummer
+    regnskabsdata.virksomhedsdata.bynavn = this.bynavn
+    regnskabsdata.virksomhedsdata.husnr = this.husnr
+    regnskabsdata.virksomhedsdata.lat = this.lat
+    regnskabsdata.virksomhedsdata.lon = this.lon
+    regnskabsdata.virksomhedsdata.navn = this.navn
+    regnskabsdata.virksomhedsdata.postnr = this.postnr
+    regnskabsdata.virksomhedsdata.vejnavn = this.vejnavn
     return regnskabsdata
   }
 }

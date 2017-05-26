@@ -1,6 +1,7 @@
 package dk.ts.virkr.aarsrapporter.integration
 
 import dk.ts.virkr.aarsrapporter.integration.model.regnskabdata.RegnskabData
+import dk.ts.virkr.aarsrapporter.integration.model.virksomhedsdata.Virksomhedsdata
 import groovy.xml.Namespace
 
 
@@ -8,20 +9,34 @@ import groovy.xml.Namespace
  * Created by sorenhartvig on 22/06/16.
  */
 class RegnskabXmlParser {
+
+  Virksomhedsdata hentVirksomhedsdataFraRegnskab(String xml) {
+    XmlParser parser = new XmlParser(false, false)
+    Node result = parser.parseText(xml)
+    String contextRef = hentContextRef(result)
+    // hent de relevante felter for dette regnskabsår fra contexten.
+    NodeList nl = result.findAll {
+      it.attribute('contextRef') == contextRef
+    }
+
+    String gsdNamespace = getGSDNamespace(xml)
+    Namespace ns = new Namespace("http://xbrl.dcca.dk/gsd", gsdNamespace)
+
+    Virksomhedsdata virksomhedsdata = new Virksomhedsdata()
+    virksomhedsdata.cvrnummer = getStringValue(nl, ns, "IdentificationNumberCvrOfReportingEntity" )
+    virksomhedsdata.navn = getStringValue(nl, ns, "NameOfReportingEntity")
+    virksomhedsdata.vejnavn = getStringValue(nl, ns, "AddressOfReportingEntityStreetName")
+    virksomhedsdata.husnr = getStringValue(nl, ns, "AddressOfReportingEntityStreetBuildingIdentifier")
+    virksomhedsdata.postnr = getStringValue(nl, ns, "AddressOfReportingEntityPostCodeIdentifier")
+    virksomhedsdata.bynavn = getStringValue(nl, ns, "AddressOfReportingEntityDistrictName")
+
+    return virksomhedsdata
+  }
   RegnskabData parseOgBerig(RegnskabData data, String xml) {
     XmlParser parser = new XmlParser(false, false)
 
     Node result = parser.parseText(xml)
-    String namespace = getFSANamespace(xml)
-    Namespace ns = null
-
-    if (namespace) {
-      ns = new Namespace("http://xbrl.dcca.dk/fsa", namespace)
-    } else {
-      // prøv ifrs
-      namespace = getIFRSNamespace(xml)
-      ns = new Namespace("http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full", namespace)
-    }
+    Namespace ns = hentNamespace(xml)
 
     String contextRef = hentContextRef(result)
 
@@ -96,6 +111,20 @@ class RegnskabXmlParser {
     return data
   }
 
+  private Namespace hentNamespace(String xml) {
+    String namespace = getFSANamespace(xml)
+    Namespace ns = null
+
+    if (namespace) {
+      ns = new Namespace("http://xbrl.dcca.dk/fsa", namespace)
+    } else {
+      // prøv ifrs
+      namespace = getIFRSNamespace(xml)
+      ns = new Namespace("http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full", namespace)
+    }
+    ns
+  }
+
   RegnskabData haandterIFRS(Namespace ns, Node xmlRoot, NodeList nl, RegnskabData data) {
     data.bruttofortjeneste = getLongValue(nl, ns, "ProfitLossFromOperatingActivities")
     data.resultatfoerskat = getLongValue(nl, ns, "ProfitLossBeforeTax")
@@ -116,6 +145,21 @@ class RegnskabXmlParser {
       return getAmount(n)
     } else if (altNodename) {
       return getLongValue(nodeList, ns, altNodename)
+    }
+
+    return null
+  }
+
+  String getStringValue(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null){
+    nodeName = "$ns.prefix:$nodeName"
+    Node n = nodeList.find {
+      it.name() == nodeName
+    }
+
+    if (n!=null) {
+      return n.text()
+    } else if (altNodename) {
+      return getStringValue(nodeList, ns, altNodename)
     }
 
     return null
@@ -147,6 +191,10 @@ class RegnskabXmlParser {
 
     return null
 
+  }
+
+  String getGSDNamespace(String xml) {
+    return getNamespace(xml, "http://xbrl.dcca.dk/gsd")
   }
 
   String getFSANamespace(String xml) {

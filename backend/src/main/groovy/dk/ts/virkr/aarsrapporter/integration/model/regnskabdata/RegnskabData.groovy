@@ -1,4 +1,7 @@
 package dk.ts.virkr.aarsrapporter.integration.model.regnskabdata
+
+import dk.ts.virkr.aarsrapporter.integration.model.virksomhedsdata.Virksomhedsdata
+
 /**
  * Created by sorenhartvig on 22/06/16.
  */
@@ -25,4 +28,5 @@ class RegnskabData {
   Long medarbejderOmkostninger
   Long goodwill
 
+  Virksomhedsdata virksomhedsdata
 }

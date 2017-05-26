@@ -2,6 +2,7 @@ package dk.ts.virkr.integration
 
 import dk.ts.virkr.aarsrapporter.integration.RegnskabXmlParser
 import dk.ts.virkr.aarsrapporter.integration.model.regnskabdata.RegnskabData
+import dk.ts.virkr.aarsrapporter.integration.model.virksomhedsdata.Virksomhedsdata
 import spock.lang.Specification
 
 /**
@@ -91,6 +92,18 @@ class RegnskabXmlParserSpec extends Specification {
     regnskabData.gaeldsforpligtelser == 29839752l
     regnskabData.egenkapital == 25742073l
 
+    when:
+    Virksomhedsdata virksomhedsdata = regnskabXmlParser.hentVirksomhedsdataFraRegnskab(xml)
+
+    then:
+    virksomhedsdata
+    virksomhedsdata.cvrnummer == '78834412'
+    virksomhedsdata.navn == 'Systematic A/S'
+    virksomhedsdata.vejnavn == 'Søren Frichs Vej'
+    virksomhedsdata.husnr == '39'
+    virksomhedsdata.postnr == '8000'
+    virksomhedsdata.bynavn == 'Aarhus C'
+
   }
 
   void "test parse kmd"() {
@@ -136,6 +149,18 @@ class RegnskabXmlParserSpec extends Specification {
     regnskabData.aaretsresultat == 15515225l
     regnskabData.gaeldsforpligtelser == 19030055l
     regnskabData.egenkapital == 31210704l
+
+    when:
+    Virksomhedsdata virksomhedsdata = regnskabXmlParser.hentVirksomhedsdataFraRegnskab(xml)
+
+    then:
+    virksomhedsdata
+    virksomhedsdata.cvrnummer == '30714024'
+    virksomhedsdata.navn == 'NineConsult A/S'
+    virksomhedsdata.vejnavn == 'Kongens Nytorv'
+    virksomhedsdata.husnr == '3-5'
+    virksomhedsdata.postnr == '1050'
+    virksomhedsdata.bynavn == 'København K'
 
   }
 

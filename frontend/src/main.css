@@ -7,6 +7,16 @@
 #regnskab-header {
   background-color: #e0eeff; }
 
+.noegletal {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.graf {
+  text-align: center;
+}
+
 .cvr-input {
   margin-top: 30px;
   margin-bottom: 30px; }

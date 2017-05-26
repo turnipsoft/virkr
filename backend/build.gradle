@@ -29,7 +29,7 @@ dependencies {
   compile "org.springframework.boot:spring-boot-starter-web"
   compile "org.springframework.boot:spring-boot-starter-data-jpa"
   compile "org.hibernate:hibernate-java8:5.1.0.Final"
-  //compile "org.postgresql:postgresql:9.4-1206-jdbc42"
+  compile "org.postgresql:postgresql:9.4-1206-jdbc42"
 
   compile "org.hsqldb:hsqldb"
   compile "com.google.code.gson:gson:2.7"
