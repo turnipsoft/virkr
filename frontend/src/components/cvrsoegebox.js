@@ -8,18 +8,25 @@ export default class CvrSoegebox extends Component {
 
   render() {
     return (<div className="cvr-input">
-      <form onSubmit={this._opdaterCvrNummer.bind(this)}>
-        <div className="input-group">
-          <input type="text" ref={c => this._cvr = c}
-            className="form-control" placeholder="Indtast CVR-Nummer"
-            maxLength="8" id="txtSearch" />
-          <div className="input-group-btn">
-            <button className="btn btn-primary" type="submit">
-              <span className="fa fa-search"></span>
-            </button>
-          </div>
+      <div className="row">
+        <div className="col-xs-4"/>
+        <div className="col-xs-4">
+          <form onSubmit={this._opdaterCvrNummer.bind(this)}>
+            <div className="input-group">
+              <input type="text" ref={c => this._cvr = c}
+                     className="form-control" placeholder="Indtast CVR-Nummer"
+                     maxLength="8" id="txtSearch" />
+              <div className="input-group-btn">
+                <button className="btn btn-primary" type="submit">
+                  <span className="fa fa-search"></span>
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+        <div className="col-xs-4" />
+
+      </div>
     </div>);
   }
 
