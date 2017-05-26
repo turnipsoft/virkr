@@ -38,9 +38,10 @@ class RegnskabXmlParser {
       it.attribute('contextRef') == contextRef
     }
 
+    /*
     nl.each {
       println(it.name())
-    }
+    }*/
 
     if (ns.prefix == 'ifrs-full') {
       return haandterIFRS(ns, result, nl, data)
