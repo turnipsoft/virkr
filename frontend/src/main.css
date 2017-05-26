@@ -1,11 +1,11 @@
 .container {
   background-color: white; }
 
-.panel {
-  margin-bottom: 20px; }
-
 .card {
   margin-bottom: 20px; }
+
+#regnskab-header {
+  background-color: #e0eeff; }
 
 .cvr-input {
   margin-top: 30px;
@@ -44,7 +44,3 @@ table tr td:last-child {
 
 .virksomhed {
   margin-top: 30px; }
-
-.bottom {
-  border-bottom: 1px solid #ccc;
-}
