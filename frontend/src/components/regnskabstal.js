@@ -39,8 +39,8 @@ export default class Regnskabstal extends Component {
           <br/>
 
           <div className="row">
-            <div className="col-xs-2" />
-            <div className="col-xs-10" >
+            <div className="col col-2" />
+            <div className="col col-10" >
               <a href={this.props.regnskab.pdfUrl} target="_blank" className="btn btn-primary">Hent regnskab som PDF</a>
             </div>
           </div>

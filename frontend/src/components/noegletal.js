@@ -21,21 +21,21 @@ export default class Noegletal extends React.Component {
         tal = <h4>{tal}</h4>
       }
 
-      let bottomClass = "col-xs-2";
+      let bottomClass = "col col-2";
       if (this.props.underline) {
         bottomClass += " bottom";
       }
 
       return (
         <div className="row">
-          <div className="col-xs-2"></div>
-          <div className="col-xs-6">
+          <div className="col col-2"></div>
+          <div className="col col-6">
             {text}
           </div>
           <div className={bottomClass}>
             <u><span className="pull-right">{tal} </span></u>
           </div>
-          <div className="col-xs-2"></div>
+          <div className="col col-2"></div>
         </div>
       );
 

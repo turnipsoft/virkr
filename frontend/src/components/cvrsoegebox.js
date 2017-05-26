@@ -9,8 +9,8 @@ export default class CvrSoegebox extends Component {
   render() {
     return (<div className="cvr-input">
       <div className="row">
-        <div className="col-xs-4"/>
-        <div className="col-xs-4">
+        <div className="col col-4"/>
+        <div className="col col-4">
           <form onSubmit={this._opdaterCvrNummer.bind(this)}>
             <div className="input-group">
               <input type="text" ref={c => this._cvr = c}
@@ -24,7 +24,7 @@ export default class CvrSoegebox extends Component {
             </div>
           </form>
         </div>
-        <div className="col-xs-4" />
+        <div className="col col-4" />
 
       </div>
     </div>);
