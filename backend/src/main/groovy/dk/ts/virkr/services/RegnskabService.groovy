@@ -1,5 +1,6 @@
 package dk.ts.virkr.services
 
+import dk.ts.virkr.batch.AarsrapportOpdatering
 import dk.ts.virkr.services.internal.RegnskabInternalService
 import dk.ts.virkr.services.model.RegnskaberHentResponse
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,11 +18,20 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/regnskab")
 class RegnskabService {
 
-    @Autowired
-    RegnskabInternalService regnskabInternalService
+  @Autowired
+  RegnskabInternalService regnskabInternalService
 
-    @RequestMapping(value = "/{cvrnummer}", method = RequestMethod.GET)
-    public RegnskaberHentResponse regnskab(@PathVariable String cvrnummer) {
-        return regnskabInternalService.hentRegnskaber(cvrnummer)
-    }
+  @Autowired
+  AarsrapportOpdatering aarsrapportOpdatering
+
+  @RequestMapping(value = "/{cvrnummer}", method = RequestMethod.GET)
+  public RegnskaberHentResponse regnskab(@PathVariable String cvrnummer) {
+    return regnskabInternalService.hentRegnskaber(cvrnummer)
+  }
+
+  @RequestMapping("/opdater")
+  public String opdater() {
+    int antal = aarsrapportOpdatering.opdaterRegnskaber()
+    return "$antal opdateret"
+  }
 }

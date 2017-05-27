@@ -11,13 +11,14 @@ import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Offentliggoerelse
 import dk.ts.virkr.services.model.RegnskaberHentResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-
-import java.time.LocalDate
+import org.springframework.transaction.annotation.Propagation
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * Created by sorenhartvig on 19/05/2017.
  */
 @Service
+@Transactional
 class RegnskabInternalService {
 
   @Autowired
@@ -37,6 +38,8 @@ class RegnskabInternalService {
     return null;
   }
 
+
+  @Transactional(propagation = Propagation.REQUIRED)
   void store(List<RegnskabData> rd) {
     rd.each {
       regnskabsdataRepository.saveAndFlush(Regnskabsdata.from(it))

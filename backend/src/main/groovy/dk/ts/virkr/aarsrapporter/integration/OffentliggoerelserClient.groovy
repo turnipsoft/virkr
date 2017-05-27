@@ -13,28 +13,25 @@ import org.slf4j.Logger
  */
 class OffentliggoerelserClient {
 
-    static final Logger log = org.slf4j.LoggerFactory.getLogger(OffentliggoerelserClient.class)
+  static final Logger log = org.slf4j.LoggerFactory.getLogger(OffentliggoerelserClient.class)
 
-    List<Offentliggoerelse> hentOffentliggoerelserForCvrNummer(String cvrNummer) {
-        String url = "$Config.REGNSKABER_ENDPOINT?q=cvrNummer:$cvrNummer"
+  List<Offentliggoerelse> hentOffentliggoerelserForCvrNummer(String cvrNummer) {
+    String url = "$Config.REGNSKABER_ENDPOINT?q=cvrNummer:$cvrNummer"
 
-        log.debug("Invoking URL: $url")
-        String jsonResult = new URL(url).getText()
+    log.debug("Invoking URL: $url")
+    String jsonResult = new URL(url).getText()
 
-        log.debug("Got result size ${jsonResult.size()}")
-        JsonSlurper jsonSlurper = new JsonSlurper()
-        Map<String, Object> jsonObject = jsonSlurper.parseText(jsonResult)
+    log.debug("Got result size ${jsonResult.size()}")
+    JsonSlurper jsonSlurper = new JsonSlurper()
+    Map<String, Object> jsonObject = jsonSlurper.parseText(jsonResult)
 
-        List<Offentliggoerelse> resultat = []
-        JsonMarshaller marshaller = new JsonMarshaller(true)
-        ElasticResult elasticResult = marshaller.toObject(jsonResult, ElasticResult.class)
-        elasticResult.hits.hits.each {hit->
-            resultat << OffentliggoerelseBeriger.berig(hit._source)
-        }
-
-        System.out.println(resultat)
-
-        resultat << new Offentliggoerelse()
-
+    List<Offentliggoerelse> resultat = []
+    JsonMarshaller marshaller = new JsonMarshaller(true)
+    ElasticResult elasticResult = marshaller.toObject(jsonResult, ElasticResult.class)
+    elasticResult.hits.hits.each { hit ->
+      resultat << OffentliggoerelseBeriger.berig(hit._source)
     }
+
+    resultat << new Offentliggoerelse()
+  }
 }

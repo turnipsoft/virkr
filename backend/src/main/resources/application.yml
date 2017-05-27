@@ -9,8 +9,8 @@ virkr:
     username: Søren_Hartvig_CVR_I_SKYEN
     password: aa2d9502-86b1-4b08-b874-fd10960df469
 
-#spring:
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/postgres
-#    username: postgres
-#    password: postgres
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
