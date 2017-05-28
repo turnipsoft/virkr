@@ -22,3 +22,15 @@ Hvis frontend ikke starter første gang så kør `npm install` i frontend
 Hvis vi kan kunne finde ud af at få gradle til at afvikle to tasks parallelt kunne man nøjes med `./gradlew start` 
 
 
+## Postgresql og Docker
+Postgresql kan startes med Docker ved i roden af projektet skrive:
+
+    build -t virkr/postgres .
+
+efterfulgt af:
+
+    docker run --name virkrdb -d -p 5432:5432 virkr/postgres
+
+Postgresql er herefter oppe på localhost:5432.
+
+Databasen bliver automatisk opsat med indholdet af `backend/src/main/sql/ddl.sql`        

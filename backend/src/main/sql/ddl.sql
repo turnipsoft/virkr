@@ -1,6 +1,6 @@
 ﻿-- Table: public.regnskabsdata
 
-DROP TABLE public.regnskabsdata;
+DROP TABLE IF EXISTS public.regnskabsdata;
 
 CREATE TABLE regnskabsdata
 (
@@ -39,6 +39,8 @@ TABLESPACE pg_default;
 
 ALTER TABLE regnskabsdata
     OWNER to postgres;
+
+DROP TABLE IF EXISTS public.virksomhedsdata;
 
 CREATE TABLE virksomhedsdata
 (
