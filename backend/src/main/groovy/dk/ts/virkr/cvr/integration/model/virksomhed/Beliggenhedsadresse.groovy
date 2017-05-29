@@ -22,6 +22,8 @@ class Beliggenhedsadresse {
   String postdistrikt
   Periode periode
   String sidstOpdateret
+  String lat
+  String lng
 
   public String getVejadresselinie() {
     return vejnavn + (husnummerFra?" "+ husnummerFra:"") + (husnummerTil?"-"+husnummerTil:"") +
