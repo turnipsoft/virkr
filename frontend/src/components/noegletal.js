@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-export default class Noegletal extends React.Component {
+export default class Noegletal extends Component {
 
   render() {
     if (this.props.noegletal) {

@@ -131,8 +131,6 @@ export default class Graf extends Component {
       ]
     };
 
-    const virksomhedsdata = regnskaber[regnskaber.length-1].virksomhedsdata;
-
     return (
       <div className="graf">
         <Line data={data} options={options} />
