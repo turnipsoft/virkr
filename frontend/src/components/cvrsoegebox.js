@@ -4,43 +4,59 @@ export default class CvrSoegebox extends Component {
 
   constructor(props) {
     super(props)
+    this.state = { cvrnummer: '', fejl: false };
+
+    this.changeCvrNummer = this.changeCvrNummer.bind(this);
+    this.submitCvrNummer = this.submitCvrNummer.bind(this);
+  }
+
+  changeCvrNummer(event) {
+    this.setState({ cvrnummer: event.target.value });
+  }
+
+  submitCvrNummer(e) {
+    e.preventDefault();
+
+    const { cvrnummer } = this.state;
+
+    const harFejl = (!Number.isInteger(parseInt(cvrnummer)) || cvrnummer.length != 8);
+
+    if (harFejl) {
+      this.setState({ fejl: true });
+    } else {
+      this.setState({ fejl: false }, this.props.opdaterCvr(cvrnummer));
+    }
   }
 
   render() {
-    return (<div className="cvr-input">
-      <div className="row">
-        <div className="col col-4"/>
-        <div className="col col-4">
-          <form onSubmit={this._opdaterCvrNummer.bind(this)}>
-            <div className="input-group">
-              <input type="text" ref={c => this._cvr = c}
-                     className="form-control" placeholder="Indtast CVR-Nummer"
-                     maxLength="8" id="txtSearch" />
-              <div className="input-group-btn">
-                <button className="btn btn-primary" type="submit">
-                  <span className="fa fa-search"></span>
-                </button>
+    return (
+      <div className="cvr-input">
+        <div className="row">
+          <div className="col col-4 offset-4">
+            <form onSubmit={this.submitCvrNummer} className={this.state.fejl ? 'has-warning' : null}>
+              <div className="input-group">
+                <input type="text"
+                  value={this.state.cvrnummer}
+                  onChange={this.changeCvrNummer}
+                  className="form-control"
+                  placeholder="Indtast CVR-Nummer"
+                  maxLength="8"
+                  id="txtSearch" />
+
+                {this.state.fejl ? <div className="form-control-feedback">Et CVR nummer skal bestå af 8 cifre</div> : null}
+
+                <div className="input-group-btn">
+                  <button className="btn btn-primary" type="submit">
+                    <span className="fa fa-search"></span>
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
+          <div className="col col-4" />
+
         </div>
-        <div className="col col-4" />
-
-      </div>
-    </div>);
+      </div>);
   }
 
-  _opdaterCvrNummer(e) {
-    e.preventDefault();
-    const iv = parseInt(this._cvr.value);
-    if (!Number.isInteger(iv)) {
-      alert(this._cvr.value + " er ikke et CVR-Nummer")
-      return;
-    }
-    if (this._cvr.value && this._cvr.value.length != 8) {
-      alert("Et CVR-Nummer består altid af 8 cifre");
-      return;
-    }
-    this.props.opdaterCvr(this._cvr.value);
-  }
 }

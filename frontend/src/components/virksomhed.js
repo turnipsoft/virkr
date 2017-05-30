@@ -42,7 +42,7 @@ export default class Virksomhed extends Component {
       </div>
       <div className="row">
         <div className="col">
-          <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} />
+          {(cvrnummer !== '') ? <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} /> : null}
         </div>
       </div>
     </div>);

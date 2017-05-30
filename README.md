@@ -25,7 +25,7 @@ Hvis vi kan kunne finde ud af at få gradle til at afvikle to tasks parallelt ku
 ## Postgresql og Docker
 Postgresql kan startes med Docker ved i roden af projektet skrive:
 
-    build -t virkr/postgres .
+    docker build -t virkr/postgres .
 
 efterfulgt af:
 
