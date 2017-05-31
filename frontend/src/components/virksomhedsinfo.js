@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class VirksomhedsInfo extends Component {
+const VirksomhedsInfo = (props) => {
+  const {
+    navn,
+    vejnavn,
+    husnr,
+    postnr,
+    bynavn
+  } = props.data;
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { navn, vejnavn, husnr, postnr, bynavn } = this.props.data;
-
-    return (
-      <div className="row">
-        <div className="col">
-          <div style={{ textAlign: 'center' }}>
-            <h4>{navn}</h4>
+  return (
+    <div className="row">
+      <div className="col">
+        <div style={{ textAlign: 'center' }}>
+          <h4>{navn}</h4>
             <p>
               {vejnavn} {husnr}
               <br />
@@ -22,7 +22,7 @@ export default class VirksomhedsInfo extends Component {
           </div>
         </div>
       </div >
-    );
-  }
-
+  );
 }
+
+export default VirksomhedsInfo;
