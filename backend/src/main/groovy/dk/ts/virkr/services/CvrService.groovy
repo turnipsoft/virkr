@@ -28,6 +28,7 @@ class CvrService {
 
   @RequestMapping(value = "/{cvrnummer}", method = RequestMethod.GET)
   public Vrvirksomhed regnskab(@PathVariable String cvrnummer) {
+    long start = System.currentTimeMillis()
     Vrvirksomhed vrvirksomhed =  cvrClient.hentVirksomhed(cvrnummer)
     String adresse = (vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse.vejadresselinie + ", "
       + vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse.byLinje)
@@ -36,6 +37,8 @@ class CvrService {
     vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse.lat = geoResult.geometry.location.lat
     vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse.lng = geoResult.geometry.location.lng
 
+    long elapsed = System.currentTimeMillis() - start
+    println(" Elapsed "+elapsed)
     return vrvirksomhed
   }
 
