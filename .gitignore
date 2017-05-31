@@ -13,7 +13,7 @@
 out
 
 # Package Files #
-*.jar
+/backend/**/*.jar
 *.war
 *.ear
 *.zip
