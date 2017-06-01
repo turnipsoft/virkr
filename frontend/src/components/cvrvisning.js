@@ -10,7 +10,17 @@ export default class CvrVisning extends Component {
   }
 
   render() {
-    const { regnskaber } = this.props;
+    const { regnskaber, spinner } = this.props;
+
+    if (spinner) {
+      return (
+        <div className="virksomhed-spinner">
+
+          <span className="fa fa-spinner fa-spin fa-3x fa-fw"></span>
+          <span className="sr-only">Loading...</span>
+        </div>
+      )
+    }
 
     if (regnskaber.some(() => true)) {
       // seneste virksomhedsdata
