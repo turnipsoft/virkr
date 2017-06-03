@@ -14,21 +14,28 @@ export default class Virksomhed extends Component {
     this.state = {
       henterNoegletal: false,
       cvrnummer: '',
-      regnskaber: []
+      regnskaber: [],
+      cvrdata: null
     };
   }
 
   _opdaterCvrNummer(cvrnr) {
     this.setState({henterNoegletal: true})
     APIHelper.hentNoegletal(cvrnr).then((data) => {
-      this.setState({ cvrnummer: cvrnr, regnskaber: data.regnskabsdata, henterNoegletal:false })
+      this.setState({ cvrnummer: cvrnr, regnskaber: data.regnskabsdata })
+    }, (fejl) => {
+      alert(fejl);
+    })
+
+    APIHelper.hentVirksomhedsdata(cvrnr).then((data) => {
+      this.setState({ cvrdata:data, henterNoegletal:false })
     }, (fejl) => {
       alert(fejl);
     })
   }
 
   render() {
-    const { cvrnummer, regnskaber, henterNoegletal} = this.state;
+    const { cvrnummer, regnskaber, henterNoegletal, cvrdata} = this.state;
 
     return (<div className="virksomhed">
       <div className="row">
@@ -44,7 +51,8 @@ export default class Virksomhed extends Component {
       </div>
       <div className="row">
         <div className="col">
-          {(cvrnummer !== '') ? <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} spinner={henterNoegletal}/> : null}
+          {(cvrnummer !== '') ? <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} spinner={henterNoegletal}
+                                            cvrdata={cvrdata} /> : null}
         </div>
       </div>
     </div>);

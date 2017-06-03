@@ -1,16 +1,35 @@
 .container {
   background-color: white; }
 
+body {
+  background-image : url(images/regnskab-baggrund.png);
+  background-repeat : repeat-x;
+}
+
 .card {
   margin-bottom: 20px; }
+
+.container {
+  background-color: transparent;
+}
 
 #regnskab-header {
   background-color: #e0eeff; }
 
 .noegletal {
-  width: 70%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.virksomhedsdetaljer {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.map {
+  alignment: right;
 }
 
 .graf {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Regnskabstal from './regnskabstal';
 import Graf from './graf';
 import VirksomhedsInfo from './virksomhedsinfo';
+import VirksomhedsDetaljer from './virksomhedsdetaljer';
 
 export default class CvrVisning extends Component {
 
@@ -10,7 +11,7 @@ export default class CvrVisning extends Component {
   }
 
   render() {
-    const { regnskaber, spinner } = this.props;
+    const { regnskaber, spinner, cvrdata } = this.props;
 
     if (spinner) {
       return (
@@ -37,6 +38,9 @@ export default class CvrVisning extends Component {
           {regnskaber.slice().reverse().map((regnskab) => {
             return <Regnskabstal key={regnskab.id} regnskab={regnskab} />
           })}
+          <VirksomhedsDetaljer cvrdata={cvrdata}/>
+          <br/>
+
         </div>
       );
     } else {

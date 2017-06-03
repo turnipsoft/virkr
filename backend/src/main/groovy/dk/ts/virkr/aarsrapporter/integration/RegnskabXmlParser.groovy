@@ -32,13 +32,14 @@ class RegnskabXmlParser {
 
     return virksomhedsdata
   }
+
   RegnskabData parseOgBerig(RegnskabData data, String xml) {
     XmlParser parser = new XmlParser(false, false)
 
     Node result = parser.parseText(xml)
     Namespace ns = hentNamespace(xml)
 
-    String contextRef = hentContextRef(result)
+    String contextRef = hentContextRef(result, ns)
 
     // IFRS regnskaber vil have contexten som duration_CY_C_only hvor C'et står for consolidated og altså en context
     // der dækker en hel gruppe, men vi er ikke interesserede i hele gruppens nøgle tal eller måsker er man
@@ -53,10 +54,10 @@ class RegnskabXmlParser {
       it.attribute('contextRef') == contextRef
     }
 
-    /*
+
     nl.each {
       println(it.name())
-    }*/
+    }
 
     if (ns.prefix == 'ifrs-full') {
       return haandterIFRS(ns, result, nl, data)
@@ -165,7 +166,17 @@ class RegnskabXmlParser {
     return null
   }
 
-  String hentContextRef(Node xmlDokument) {
+  String hentContextRef(Node xmlDokument, Namespace ns) {
+    if (ns.prefix=='fsa') {
+      // så er det noget tricky at finde contexten forsøger med revenue
+      NodeList n = xmlDokument[ns.Revenue]
+
+      if (n.size()>0) {
+        Node node = n.get(0)
+        return node.attribute("contextRef")
+      }
+    }
+
     Namespace c = new Namespace("http://xbrl.dcca.dk/gsd", "c")
     Namespace gsd = new Namespace("http://xbrl.dcca.dk/gsd", "gsd")
 

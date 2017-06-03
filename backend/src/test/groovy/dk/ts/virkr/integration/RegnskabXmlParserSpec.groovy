@@ -164,5 +164,40 @@ class RegnskabXmlParserSpec extends Specification {
 
   }
 
+  void "test parse dagrofa"() {
+    given:
+    String xml = TestUtil.load('/dagrofa.xml')
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+
+    when:
+    regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
+
+    then:
+    regnskabData.bruttofortjeneste == 87883765l
+    regnskabData.driftsresultat == 19658442l
+    regnskabData.resultatfoerskat == 19704409l
+    regnskabData.finansielleIndtaegter == 63203l
+    regnskabData.finansielleOmkostninger == 17236l
+    regnskabData.skatafaaretsresultat == 4189184l
+    regnskabData.aaretsresultat == 15515225l
+    regnskabData.gaeldsforpligtelser == 19030055l
+    regnskabData.egenkapital == 31210704l
+
+    when:
+    Virksomhedsdata virksomhedsdata = regnskabXmlParser.hentVirksomhedsdataFraRegnskab(xml)
+
+    then:
+    virksomhedsdata
+    virksomhedsdata.cvrnummer == '30714024'
+    virksomhedsdata.navn == 'NineConsult A/S'
+    virksomhedsdata.vejnavn == 'Kongens Nytorv'
+    virksomhedsdata.husnr == '3-5'
+    virksomhedsdata.postnr == '1050'
+    virksomhedsdata.bynavn == 'København K'
+
+  }
+
+
 
 }

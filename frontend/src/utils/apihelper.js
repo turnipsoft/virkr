@@ -18,5 +18,23 @@ export default class APIHelper {
       )
     })
   }
+
+  static hentVirksomhedsdata(cvrnummer) {
+    const url = 'http://localhost:9092/cvr/' + cvrnummer;
+
+    return new Promise((resolve, reject) => {
+      fetch(url, { code: 'cors' }).then(response => {
+          if (response.ok) {
+            resolve(response.json())
+          } else {
+            reject(Error(response.statusText))
+          }
+        }, error => {
+          reject(Error(error.message))
+        }
+      )
+    })
+  }
+
 }
 
