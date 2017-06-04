@@ -57,9 +57,9 @@ class RegnskabXmlParser {
     }
 
 
-    nl.each {
+    /*nl.each {
       println(it.name())
-    }
+    }*/
 
     if (ns.prefix == 'ifrs-full') {
       return haandterIFRS(ns, result, nl, data)
