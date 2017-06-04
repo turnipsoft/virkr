@@ -22,7 +22,7 @@ class RegnskabXmlParser {
     }
 
     String gsdNamespace = getGSDNamespace(xml)
-    //Namespace ns = new Namespace("http://xbrl.dcca.dk/gsd", gsdNamespace)
+    ns = new Namespace("http://xbrl.dcca.dk/gsd", gsdNamespace)
 
     Virksomhedsdata virksomhedsdata = new Virksomhedsdata()
     virksomhedsdata.cvrnummer = getStringValue(nl, ns, "IdentificationNumberCvrOfReportingEntity" )

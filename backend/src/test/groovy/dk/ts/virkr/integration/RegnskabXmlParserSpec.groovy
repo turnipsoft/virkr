@@ -83,27 +83,15 @@ class RegnskabXmlParserSpec extends Specification {
     regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
 
     then:
-    regnskabData.omsaetning == 91909396l
-    regnskabData.bruttofortjeneste == 53929716l
-    regnskabData.driftsresultat == 9033698l
-    regnskabData.resultatfoerskat == 9776870l
-    regnskabData.finansielleOmkostninger == null
-    regnskabData.skatafaaretsresultat == 2014356l
+    regnskabData.omsaetning == 80939231l
+    regnskabData.bruttofortjeneste == 46606836l
+    regnskabData.driftsresultat == 7903187l
+    regnskabData.resultatfoerskat == 10353271l
+    regnskabData.finansielleOmkostninger == 35386l
+    regnskabData.skatafaaretsresultat == 2590757l
     regnskabData.aaretsresultat == 7762514l
     regnskabData.gaeldsforpligtelser == 29839752l
     regnskabData.egenkapital == 25742073l
-
-    when:
-    Virksomhedsdata virksomhedsdata = regnskabXmlParser.hentVirksomhedsdataFraRegnskab(xml)
-
-    then:
-    virksomhedsdata
-    virksomhedsdata.cvrnummer == '78834412'
-    virksomhedsdata.navn == 'Systematic A/S'
-    virksomhedsdata.vejnavn == 'Søren Frichs Vej'
-    virksomhedsdata.husnr == '39'
-    virksomhedsdata.postnr == '8000'
-    virksomhedsdata.bynavn == 'Aarhus C'
 
   }
 
