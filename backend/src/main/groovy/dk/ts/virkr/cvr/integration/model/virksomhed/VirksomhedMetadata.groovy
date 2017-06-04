@@ -7,5 +7,7 @@ class VirksomhedMetadata {
   Branche nyesteHovedbranche
   Beliggenhedsadresse nyesteBeliggenhedsadresse
   Navn nyesteNavn
+  List<String> nyesteKontaktoplysninger
   String sammensatStatus
+  Beskaeftigelse nyesteAarsbeskaeftigelse
 }

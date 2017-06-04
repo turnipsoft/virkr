@@ -16,6 +16,26 @@ class Vrvirksomhed {
   VirksomhedMetadata virksomhedMetadata
   String sidstIndlaest
   String sidstOpdateret
-  List<Attribut> attibutter
+  List<Attribut> attributter
+
+  String getKapital() {
+    return getAttributVaerdi('KAPITAL')
+  }
+
+  String getTegningsregel() {
+    return getAttributVaerdi('TEGNINGSREGEL')
+  }
+
+  String getFormaal() {
+    return getAttributVaerdi('FORMÅL')
+  }
+
+  String getAttributVaerdi(String type) {
+    Attribut attribut = attributter.find { it.type == type }
+    if (attribut) {
+      return attribut.vaerdier[0].vaerdi
+    }
+    return null
+  }
 
 }

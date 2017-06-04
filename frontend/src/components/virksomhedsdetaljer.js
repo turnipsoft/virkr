@@ -4,7 +4,9 @@ export default class VirksomhedsDetaljer extends Component {
 
   render() {
 
-    const vdata = this.props.cvrdata.virksomhedMetadata;
+    const cvrdata = this.props.cvrdata;
+
+    const vdata = cvrdata.virksomhedMetadata;
 
     const navn = vdata.nyesteNavn.navn;
 
@@ -16,18 +18,18 @@ export default class VirksomhedsDetaljer extends Component {
     const branche = vdata.nyesteHovedbranche.branchetekst;
 
     var email = "";
-    if (this.props.cvrdata.elektroniskPost && this.props.cvrdata.elektroniskPost.length>0) {
-      email = this.props.cvrdata.elektroniskPost[0].kontaktoplysning;
+    if (cvrdata.elektroniskPost && cvrdata.elektroniskPost.length>0) {
+      email = cvrdata.elektroniskPost[0].kontaktoplysning;
     }
 
     var www = "";
-    if (this.props.cvrdata.hjemmeside && this.props.cvrdata.hjemmeside.length>0) {
-      www = this.props.cvrdata.hjemmeside[0].kontaktoplysning;
+    if (cvrdata.hjemmeside && cvrdata.hjemmeside.length>0) {
+      www = cvrdata.hjemmeside[0].kontaktoplysning;
     }
 
     var telefon = "";
-    if (this.props.cvrdata.telefonNummer && this.props.cvrdata.telefonNummer.length>0) {
-      telefon = this.props.cvrdata.telefonNummer[0].kontaktoplysning;
+    if (cvrdata.telefonNummer && cvrdata.telefonNummer.length>0) {
+      telefon = cvrdata.telefonNummer[0].kontaktoplysning;
     }
 
     const apikey = "AIzaSyCkZhz21v6u43m7qMUZiFe6obxHoTLhvgE";
@@ -61,6 +63,9 @@ export default class VirksomhedsDetaljer extends Component {
                 <DetaljeLinie text="Email" value={email} />
                 <DetaljeLinie text="Hjemmeside" value={www} />
                 <DetaljeLinie text="Branche" value={branche} />
+                <DetaljeLinie text="Kapital" value={cvrdata.kapital} />
+                <DetaljeLinie text="Tegningsregel" value={cvrdata.tegningsregel} />
+                <DetaljeLinie text="Formål" value={cvrdata.formaal} />
               </div>
               <div className="col col-6 map">
                 <span className="pull-right">
