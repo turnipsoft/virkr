@@ -8,8 +8,6 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.Temporal
-import javax.persistence.TemporalType
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -77,6 +75,19 @@ class Regnskabsdata {
   Long omsaetning
 
   @Column
+  Long vareforbrug  // CostOfSales
+
+  @Column
+  Long driftsindtaegter // OtherOperatingIncome
+
+  @Column
+  Long andreeksterneomkostninger //OtherExternalExpenses
+
+  @Column
+  Long regnskabsmaessigeafskrivninger
+  //DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
+
+  @Column
   String navn
 
   @Column
@@ -124,6 +135,11 @@ class Regnskabsdata {
     regnskabsdata.bynavn = rd.virksomhedsdata.bynavn
     regnskabsdata.lat = rd.virksomhedsdata.lat
     regnskabsdata.lon = rd.virksomhedsdata.lon
+    regnskabsdata.vareforbrug = rd.vareforbrug
+    regnskabsdata.regnskabsmaessigeafskrivninger = rd.regnskabsmaessigeAfskrivninger
+    regnskabsdata.driftsindtaegter = rd.driftsindtaegter
+    regnskabsdata.andreeksterneomkostninger = rd.andreEksterneOmkostninger
+
     return regnskabsdata
   }
 
@@ -159,6 +175,10 @@ class Regnskabsdata {
     regnskabsdata.virksomhedsdata.navn = this.navn
     regnskabsdata.virksomhedsdata.postnr = this.postnr
     regnskabsdata.virksomhedsdata.vejnavn = this.vejnavn
+    regnskabsdata.vareforbrug = this.vareforbrug
+    regnskabsdata.regnskabsmaessigeAfskrivninger = this.regnskabsmaessigeafskrivninger
+    regnskabsdata.driftsindtaegter = this.driftsindtaegter
+    regnskabsdata.andreEksterneOmkostninger = this.andreeksterneomkostninger
     return regnskabsdata
   }
 }

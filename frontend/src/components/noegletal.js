@@ -23,7 +23,7 @@ export default class Noegletal extends Component {
 
       let bottomClass = "col col-4";
       if (this.props.underline) {
-        bottomClass += " bottom";
+        bottomClass += " bottom-border";
       }
 
       return (

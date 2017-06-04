@@ -13,14 +13,16 @@ class RegnskabXmlParser {
   Virksomhedsdata hentVirksomhedsdataFraRegnskab(String xml) {
     XmlParser parser = new XmlParser(false, false)
     Node result = parser.parseText(xml)
-    String contextRef = hentContextRef(result)
+    Namespace ns = hentNamespace(xml)
+
+    String contextRef = hentContextRef(result, ns)
     // hent de relevante felter for dette regnskabsår fra contexten.
     NodeList nl = result.findAll {
       it.attribute('contextRef') == contextRef
     }
 
     String gsdNamespace = getGSDNamespace(xml)
-    Namespace ns = new Namespace("http://xbrl.dcca.dk/gsd", gsdNamespace)
+    //Namespace ns = new Namespace("http://xbrl.dcca.dk/gsd", gsdNamespace)
 
     Virksomhedsdata virksomhedsdata = new Virksomhedsdata()
     virksomhedsdata.cvrnummer = getStringValue(nl, ns, "IdentificationNumberCvrOfReportingEntity" )
@@ -86,6 +88,19 @@ class RegnskabXmlParser {
       data.skatafaaretsresultat = getLongValue(nl, ns, "IncomeTaxExpenseContinuingOperations")
     }
 
+    // vareforbrug
+    data.vareforbrug = getLongValue(nl, ns, "CostOfSales")
+
+    // driftsindtæger
+    data.driftsindtaegter = getLongValue(nl, ns, "OtherOperatingIncome")
+
+    // andre eksterne omkostninger
+    data.andreEksterneOmkostninger = getLongValue(nl, ns, "OtherExternalExpenses")
+
+    // regnskabsmæssige afskrivninger
+    data.regnskabsmaessigeAfskrivninger = getLongValue(nl, ns,
+      "DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss")
+
     // findes i hele dokumentet denne har en anden context ref som er slutdato på perioden, skal evt. refactores til at
     // finde gennem denne
     data.gaeldsforpligtelser = getValue(result,ns.LiabilitiesOtherThanProvisions, ns.CurrentLiabilities)
@@ -96,6 +111,13 @@ class RegnskabXmlParser {
 
     data.egenkapital = getValue(result, ns.Equity)
 
+    berigRegnskabdataMedManglendeNoegletal(data)
+
+    return data
+  }
+
+  void berigRegnskabdataMedManglendeNoegletal(RegnskabData data) {
+
     // fix up evt. manglende data med lidt matematik
     // resultat før skat mangler og kan udregnes ved at trække finansielle omkostning fra driftsresultatet
     if (!data.resultatfoerskat && data.driftsresultat) {
@@ -104,12 +126,22 @@ class RegnskabXmlParser {
       data.resultatfoerskat = data.driftsresultat + finans
     }
 
-    // hvis der ikke er noget bruttoresultat kan man tilsyneladende bruge goodwill i sit regnskab.. hmmm
-    if (!data.bruttofortjeneste && data.driftsresultat && data.goodwill) {
-      data.bruttofortjeneste = data.driftsresultat + data.goodwill
+    if (!data.bruttofortjeneste) {
+      if (data.andreEksterneOmkostninger && data.vareforbrug && data.driftsindtaegter && data.omsaetning) {
+        data.bruttofortjeneste = data.omsaetning - data.andreEksterneOmkostninger - data.vareforbrug +
+          data.driftsindtaegter
+      }
     }
 
-    return data
+    if (!data.driftsresultat && data.medarbejderOmkostninger && data.regnskabsmaessigeAfskrivninger) {
+      data.driftsresultat = data.bruttofortjeneste - data.medarbejderOmkostninger - data.regnskabsmaessigeAfskrivninger
+    }
+
+    // hvis der ikke er noget bruttoresultat kan man tilsyneladende bruge goodwill i sit regnskab.. hmmm
+    //if (!data.bruttofortjeneste && data.driftsresultat && data.goodwill) {
+    //  data.bruttofortjeneste = data.driftsresultat + data.goodwill
+    //}
+
   }
 
   private Namespace hentNamespace(String xml) {
@@ -171,7 +203,7 @@ class RegnskabXmlParser {
       // så er det noget tricky at finde contexten forsøger med revenue
       NodeList n = xmlDokument[ns.Revenue]
 
-      if (n.size()>0) {
+      if (n!=null && n.size()>0) {
         Node node = n.get(0)
         return node.attribute("contextRef")
       }

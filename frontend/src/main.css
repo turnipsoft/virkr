@@ -32,6 +32,10 @@ body {
   alignment: right;
 }
 
+.bottom-border {
+  border-bottom: 1px solid #ccc;
+}
+
 .graf {
   text-align: center;
 }

@@ -15,7 +15,7 @@ export default class VirksomhedsDetaljer extends Component {
       byLinje
     } = vdata.nyesteBeliggenhedsadresse;
 
-    const branche = vdata.nyesteHovedbranche.branchetekst;
+    const branche = vdata.nyesteHovedbranche.branchetekst + " (" + vdata.nyesteHovedbranche.branchekode + ")";
 
     var email = "";
     if (cvrdata.elektroniskPost && cvrdata.elektroniskPost.length>0) {
@@ -42,7 +42,7 @@ export default class VirksomhedsDetaljer extends Component {
           <div className="card-block">
 
             <div className="row">
-              <div className="col col-6 virksomhedsinfo">
+              <div className="col col-7 virksomhedsinfo">
                 <div className="row">
                   <div className="col col-12">
                     <b>{navn}</b>
@@ -67,7 +67,7 @@ export default class VirksomhedsDetaljer extends Component {
                 <DetaljeLinie text="Tegningsregel" value={cvrdata.tegningsregel} />
                 <DetaljeLinie text="Formål" value={cvrdata.formaal} />
               </div>
-              <div className="col col-6 map">
+              <div className="col col-5 map">
                 <span className="pull-right">
                   <iframe height={300}
                     frameBorder="0" style={{border:1}}

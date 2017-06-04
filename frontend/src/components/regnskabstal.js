@@ -13,18 +13,24 @@ export default class Regnskabstal extends Component {
         <div className="card-block">
 
           <div className="noegletal">
-            <Noegletal noegletal={this.props.regnskab.omsaetning} text="Omsætning"/>
+            <Noegletal noegletal={this.props.regnskab.omsaetning} text="Omsætning" b={true} />
+            <Noegletal noegletal={this.props.regnskab.vareforbrug} text="Vareforbrug" negative={true} />
+            <Noegletal noegletal={this.props.regnskab.driftsindtaegter} text="Andre driftsindtægter"/>
+            <Noegletal noegletal={this.props.regnskab.andreEksterneOmkostninger} text="Andre eksterne omkostninger"
+                       negative={true} underline={true} />
+
+            <br/>
             <Noegletal noegletal={this.props.regnskab.bruttofortjeneste} text="Bruttofortjeneste" b={true} />
+            <Noegletal noegletal={this.props.regnskab.medarbejderOmkostninger} text="Kapacitetsomkostninger" negative={true} />
+            <Noegletal noegletal={this.props.regnskab.regnskabsmaessigeAfskrivninger} text="Regnskabsmæssige afskrivninger"
+                       negative={true} underline={true} />
             <br/>
             <Noegletal noegletal={this.props.regnskab.driftsresultat} text="Driftsresultat" b={true} />
-            <br/>
-
             <Noegletal noegletal={this.props.regnskab.finansielleIndtaegter} text="Andre finansielle indtægter" />
             <Noegletal noegletal={this.props.regnskab.finansielleOmkostninger} text="Andre finansielle omkostninger"
                        negative={true} underline={true}/>
-            <Noegletal noegletal={this.props.regnskab.resultatfoerskat} text="Årets resultat før skat" b={true} />
-
             <br/>
+            <Noegletal noegletal={this.props.regnskab.resultatfoerskat} text="Årets resultat før skat" b={true} />
             <Noegletal noegletal={this.props.regnskab.skatafaaretsresultat} text="Skat af årets resultat" negative={true}
                        underline={true}/>
 
