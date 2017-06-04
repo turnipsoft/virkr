@@ -67,10 +67,7 @@ class RegnskabXmlParser {
 
     data.omsaetning = getLongValue(nl, ns, "Revenue")
     data.goodwill = getLongValue(nl, ns, "Goodwill")
-    data.bruttofortjeneste = getLongValue(nl, ns, "GrossProfitLoss", "GrossResult")
-    if (!data.bruttofortjeneste) {
-      data.bruttofortjeneste = getLongValue(nl, ns, "GrossProfit")
-    }
+    data.bruttofortjeneste = getLongValue(nl, ns, "GrossProfitLoss", "GrossResult", "GrossProfit")
 
     data.medarbejderOmkostninger = getLongValue(nl, ns, "EmployeeBenefitsExpense")
     data.driftsresultat = getLongValue(nl, ns, "ProfitLossFromOrdinaryOperatingActivities",
@@ -80,13 +77,13 @@ class RegnskabXmlParser {
 
     data.aaretsresultat = getLongValue(nl, ns, "ProfitLoss")
 
-    data.finansielleOmkostninger = getLongValue(nl, ns, "OtherFinanceExpenses", "FinanceCosts")
+    data.finansielleOmkostninger = getLongValue(nl, ns, "OtherFinanceExpenses", "FinanceCosts",
+      "RestOfOtherFinanceExpenses")
+
     data.finansielleIndtaegter = getLongValue(nl, ns, "OtherFinanceIncome", "FinanceIncome")
 
-    data.skatafaaretsresultat = getLongValue(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense")
-    if (!data.skatafaaretsresultat) {
-      data.skatafaaretsresultat = getLongValue(nl, ns, "IncomeTaxExpenseContinuingOperations")
-    }
+    data.skatafaaretsresultat = getLongValue(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense",
+      "IncomeTaxExpenseContinuingOperations")
 
     // vareforbrug
     data.vareforbrug = getLongValue(nl, ns, "CostOfSales")
@@ -100,6 +97,11 @@ class RegnskabXmlParser {
     // regnskabsmæssige afskrivninger
     data.regnskabsmaessigeAfskrivninger = getLongValue(nl, ns,
       "DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss")
+
+    data.variableOmkostninger = getLongValue(nl, ns, "RawMaterialsAndConsumablesUsed")
+
+    // FIXME: den ligger ikke i det namespace. den har sit eget, kig på scenarios
+    data.udbytte = getLongValue(nl, ns, "ProposedDividend")
 
     // findes i hele dokumentet denne har en anden context ref som er slutdato på perioden, skal evt. refactores til at
     // finde gennem denne
@@ -168,7 +170,8 @@ class RegnskabXmlParser {
     return data
   }
 
-  Long getLongValue(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null){
+  Long getLongValue(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null,
+                    String altNodeName2 =  null){
     nodeName = "$ns.prefix:$nodeName"
     Node n = nodeList.find {
       it.name() == nodeName
@@ -177,7 +180,11 @@ class RegnskabXmlParser {
     if (n!=null) {
       return getAmount(n)
     } else if (altNodename) {
-      return getLongValue(nodeList, ns, altNodename)
+      Long val = getLongValue(nodeList, ns, altNodename)
+      if (!val) {
+        return getLongValue(nodeList, ns, altNodeName2)
+      }
+      return val
     }
 
     return null

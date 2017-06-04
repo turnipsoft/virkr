@@ -26,6 +26,8 @@ CREATE TABLE regnskabsdata
     regnskabsmaessigeafskrivninger bigint,
     driftsindtaegter bigint,
     andreeksterneomkostninger bigint,
+    udbytte bigint,
+    variableomkostninger bigint,
     navn character varying(255) COLLATE pg_catalog."default",
     vejnavn character varying(512) COLLATE pg_catalog."default",
     husnr character varying(20) COLLATE pg_catalog."default",

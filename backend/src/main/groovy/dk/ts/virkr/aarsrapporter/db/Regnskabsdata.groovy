@@ -88,6 +88,12 @@ class Regnskabsdata {
   //DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
 
   @Column
+  Long udbytte
+
+  @Column
+  Long variableomkostninger
+
+  @Column
   String navn
 
   @Column
@@ -139,6 +145,8 @@ class Regnskabsdata {
     regnskabsdata.regnskabsmaessigeafskrivninger = rd.regnskabsmaessigeAfskrivninger
     regnskabsdata.driftsindtaegter = rd.driftsindtaegter
     regnskabsdata.andreeksterneomkostninger = rd.andreEksterneOmkostninger
+    regnskabsdata.udbytte = rd.udbytte
+    regnskabsdata.variableomkostninger = rd.variableOmkostninger
 
     return regnskabsdata
   }
@@ -179,6 +187,9 @@ class Regnskabsdata {
     regnskabsdata.regnskabsmaessigeAfskrivninger = this.regnskabsmaessigeafskrivninger
     regnskabsdata.driftsindtaegter = this.driftsindtaegter
     regnskabsdata.andreEksterneOmkostninger = this.andreeksterneomkostninger
+    regnskabsdata.udbytte = this.udbytte
+    regnskabsdata.variableOmkostninger = this.variableomkostninger
+
     return regnskabsdata
   }
 }

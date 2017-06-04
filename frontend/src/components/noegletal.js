@@ -7,7 +7,9 @@ export default class Noegletal extends Component {
       let tal = this.props.noegletal;
 
       if (this.props.negative) {
-        tal = -tal;
+        if (tal>=0) {
+          tal = -tal;
+        }
       }
 
       tal = this._komma(tal);

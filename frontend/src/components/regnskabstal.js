@@ -18,16 +18,18 @@ export default class Regnskabstal extends Component {
             <Noegletal noegletal={this.props.regnskab.driftsindtaegter} text="Andre driftsindtægter"/>
             <Noegletal noegletal={this.props.regnskab.andreEksterneOmkostninger} text="Andre eksterne omkostninger"
                        negative={true} underline={true} />
+            <Noegletal noegletal={this.props.regnskab.variableOmkostninger} text="Variable omkostninger"
+                       negative={true} underline={true} />
 
             <br/>
             <Noegletal noegletal={this.props.regnskab.bruttofortjeneste} text="Bruttofortjeneste" b={true} />
             <Noegletal noegletal={this.props.regnskab.medarbejderOmkostninger} text="Kapacitetsomkostninger" negative={true} />
-            <Noegletal noegletal={this.props.regnskab.regnskabsmaessigeAfskrivninger} text="Regnskabsmæssige afskrivninger"
+            <Noegletal noegletal={this.props.regnskab.regnskabsmaessigeAfskrivninger} text="Afskrivninger"
                        negative={true} underline={true} />
             <br/>
-            <Noegletal noegletal={this.props.regnskab.driftsresultat} text="Driftsresultat" b={true} />
-            <Noegletal noegletal={this.props.regnskab.finansielleIndtaegter} text="Andre finansielle indtægter" />
-            <Noegletal noegletal={this.props.regnskab.finansielleOmkostninger} text="Andre finansielle omkostninger"
+            <Noegletal noegletal={this.props.regnskab.driftsresultat} text="Resultat før finansielle poster" b={true} />
+            <Noegletal noegletal={this.props.regnskab.finansielleIndtaegter} text="Finansielle indtægter" />
+            <Noegletal noegletal={this.props.regnskab.finansielleOmkostninger} text="Finansielle omkostninger"
                        negative={true} underline={true}/>
             <br/>
             <Noegletal noegletal={this.props.regnskab.resultatfoerskat} text="Årets resultat før skat" b={true} />
@@ -36,6 +38,9 @@ export default class Regnskabstal extends Component {
 
             <br/>
             <Noegletal noegletal={this.props.regnskab.aaretsresultat} text="Årets resultat" h={true} />
+
+            <br/>
+            <Noegletal noegletal={this.props.regnskab.udbytte} text="Foreslået udbytte" />
 
             <br/>
             <Noegletal noegletal={this.props.regnskab.egenkapital} text="Egenkapital" b={true} />

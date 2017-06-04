@@ -27,11 +27,11 @@ class RegnskabData {
   Long omsaetning
   Long medarbejderOmkostninger
   Long goodwill
-
   Long vareforbrug  // CostOfSales
   Long driftsindtaegter // OtherOperatingIncome
   Long andreEksterneOmkostninger //OtherExternalExpenses
   Long regnskabsmaessigeAfskrivninger //DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
-
+  Long udbytte // g:ProposedDividend
+  Long variableOmkostninger // RawMaterialsAndConsumablesUsed
   Virksomhedsdata virksomhedsdata
 }
