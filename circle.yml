@@ -5,3 +5,8 @@ machine:
 dependencies:
   pre:
     - npm install frontend
+
+test:
+  post:
+    - cp backend/build/libs/virkr* $CIRCLE_ARTIFACTS/
+    - tar cvf $CIRCLE_ARTIFACTS/frontend.tar frontend/build/*
