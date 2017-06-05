@@ -1,0 +1,4 @@
+dependencies:
+  pre:
+    - cd frontend
+    - npm install
