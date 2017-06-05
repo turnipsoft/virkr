@@ -27,7 +27,9 @@
     "react-chartjs-2": "^2.1.0",
     "react-dom": "^15.5.4",
     "webpack": "^2.5.1",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.3",
+    "jest": "^20.0.4",
+    "react-addons-test-utils": "^15.5.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
