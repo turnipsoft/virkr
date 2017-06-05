@@ -8,7 +8,7 @@ dependencies:
 
 test:
   pre:
-    - ./gradlew assemble
+    - ./gradlew build
   post:
     - cp ./backend/build/libs/virkr* $CIRCLE_ARTIFACTS/
     - tar cvf $CIRCLE_ARTIFACTS/frontend.tar ./frontend/build/*
