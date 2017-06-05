@@ -1,4 +1,3 @@
 dependencies:
   pre:
-    - cd frontend
-    - npm install
+    - npm install frontend
