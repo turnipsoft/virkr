@@ -1,10 +1,14 @@
 machine:
   node:
     version: 6.1.0
+  python:
+    version: 2.7.10
 
 dependencies:
   pre:
     - npm install frontend
+    - pip install ansible
+    - pip install --upgrade setuptools
 
 test:
   pre:
