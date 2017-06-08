@@ -12,7 +12,7 @@ export default class APIHelper {
 
   static _call(url) {
     return new Promise((resolve, reject) => {
-      fetch(url, { code: 'cors' }).then(response => {
+      fetch(url).then(response => {
         if (response.ok) {
           resolve(response.json())
         } else {
