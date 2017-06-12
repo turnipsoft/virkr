@@ -3,16 +3,16 @@ import 'whatwg-fetch';
 export default class APIHelper {
 
   static hentNoegletal(cvrnummer) {
-    const localhost  = "localhost";
+    return this._call('http://virkr.dk:9092/regnskab/' + cvrnummer)
+  }
 
-    console.log(localhost)
+  static hentVirksomhedsdata(cvrnummer) {
+    return this._call('http://virkr.dk:9092/cvr/' + cvrnummer)
+  }
 
-    const host = __APIHOST__;
-
-    const url = 'http://'+host+':9092/regnskab/' + cvrnummer;
-
+  static _call(url) {
     return new Promise((resolve, reject) => {
-      fetch(url, { code: 'cors' }).then(response => {
+      fetch(url).then(response => {
         if (response.ok) {
           resolve(response.json())
         } else {
@@ -21,23 +21,6 @@ export default class APIHelper {
       }, error => {
         reject(Error(error.message))
       }
-      )
-    })
-  }
-
-  static hentVirksomhedsdata(cvrnummer) {
-    const url = 'http://virkr.dk:9092/cvr/' + cvrnummer;
-
-    return new Promise((resolve, reject) => {
-      fetch(url, { code: 'cors' }).then(response => {
-          if (response.ok) {
-            resolve(response.json())
-          } else {
-            reject(Error(response.statusText))
-          }
-        }, error => {
-          reject(Error(error.message))
-        }
       )
     })
   }
