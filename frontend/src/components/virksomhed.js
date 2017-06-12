@@ -19,7 +19,7 @@ export default class Virksomhed extends Component {
     };
   }
 
-_opdaterCvrNummer(cvrnr) {
+  _opdaterCvrNummer(cvrnr) {
     let _regnskabsdata;
 
     this.setState({ henterNoegletal: true }, () => {
@@ -32,7 +32,7 @@ _opdaterCvrNummer(cvrnr) {
           this.setState({ henterNoegletal: false, cvrnummer: cvrnr, regnskaber: _regnskabsdata, cvrdata: _cvrdata })
         })
         .catch((err) => {
-          alert(err)
+          this.setState({ henterNoegletal: false }, () => alert(err))
         })
     })
   }
