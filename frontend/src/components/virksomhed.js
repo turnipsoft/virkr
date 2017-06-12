@@ -20,22 +20,28 @@ export default class Virksomhed extends Component {
   }
 
   _opdaterCvrNummer(cvrnr) {
-    this.setState({henterNoegletal: true})
-    APIHelper.hentNoegletal(cvrnr).then((data) => {
-      this.setState({ cvrnummer: cvrnr, regnskaber: data.regnskabsdata })
-    }, (fejl) => {
-      alert(fejl);
-    })
+    let _regnskabsdata;
 
-    APIHelper.hentVirksomhedsdata(cvrnr).then((data) => {
-      this.setState({ cvrdata:data, henterNoegletal:false })
-    }, (fejl) => {
-      alert(fejl);
+    this.setState({ henterNoegletal: true }, () => {
+      console.log("setState callback");
+      APIHelper.hentNoegletal(cvrnr)
+        .then((data) => {
+          console.log("1. API callback", data);
+          _regnskabsdata = data.regnskabsdata
+          return APIHelper.hentVirksomhedsdata(cvrnr);
+        })
+        .then((_cvrdata) => {
+          console.log("2. API callback", _cvrdata);
+          this.setState({ henterNoegletal: false, cvrnummer: cvrnr, regnskaber: _regnskabsdata, cvrdata: _cvrdata })
+        })
+        .catch((err) => {
+          alert(err)
+        })
     })
   }
 
   render() {
-    const { cvrnummer, regnskaber, henterNoegletal, cvrdata} = this.state;
+    const { cvrnummer, regnskaber, henterNoegletal, cvrdata } = this.state;
 
     return (<div className="virksomhed">
       <div className="row">
@@ -52,7 +58,7 @@ export default class Virksomhed extends Component {
       <div className="row">
         <div className="col">
           {(cvrnummer !== '') ? <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} spinner={henterNoegletal}
-                                            cvrdata={cvrdata} /> : null}
+            cvrdata={cvrdata} /> : null}
         </div>
       </div>
     </div>);
