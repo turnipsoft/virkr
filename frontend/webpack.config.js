@@ -1,6 +1,19 @@
 var debug = process.env.NODE_ENV !== "production";
 
 var HTMLWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
+
+var apiHost;
+
+var setupApiHost = function() {
+  if (process.env.NODE_ENV === 'production') {
+    apiHost = "virkr.dk"
+  } else {
+    apiHost = "localhost"
+  }
+}
+
+setupApiHost();
 
 var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
   template: __dirname + '/src/index.html',
@@ -46,6 +59,11 @@ module.exports = {
     path: __dirname + '/build'
   },
 
-  plugins: [HTMLWebpackPluginConfig]
+  plugins: [
+    HTMLWebpackPluginConfig,
+    new webpack.DefinePlugin({
+      __APIHOST__: apiHost
+    })
+  ]
 
 }

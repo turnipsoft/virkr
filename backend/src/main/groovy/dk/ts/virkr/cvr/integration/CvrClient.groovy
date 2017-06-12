@@ -32,6 +32,7 @@ class CvrClient {
 
     URLConnection uc = u.openConnection()
     String userpass = username + ":" + password
+    println("prøver med :"+userpass)
     String basicAuth = "Basic " + new String(Base64.encoder.encode(userpass.bytes))
     uc.setRequestProperty ("Authorization", basicAuth)
     InputStream i = uc.getInputStream()
