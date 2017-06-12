@@ -19,7 +19,7 @@ export default class Virksomhed extends Component {
     };
   }
 
-  _opdaterCvrNummer(cvrnr) {
+_opdaterCvrNummer(cvrnr) {
     let _regnskabsdata;
 
     this.setState({ henterNoegletal: true }, () => {
