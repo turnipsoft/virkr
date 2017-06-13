@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CvrSoegebox from './cvrsoegebox';
 import CvrVisning from './cvrvisning';
+import Soegeresultat from './soegeresultat';
 
 import APIHelper from '../utils/apihelper.js';
 
@@ -10,17 +11,28 @@ export default class Virksomhed extends Component {
     super();
 
     this._opdaterCvrNummer = this._opdaterCvrNummer.bind(this);
+    this._visSoegeresultat = this._visSoegeresultat.bind(this);
 
     this.state = {
-      henterNoegletal: false,
+      visSpinner: false,
       cvrnummer: '',
       regnskaber: [],
-      cvrdata: null
+      cvrdata: null,
+      soegeresultat: null
     };
   }
 
+  _visSoegeresultat(soegning) {
+    this.setState({visSpinner: true})
+    APIHelper.soeg(soegning).then((data) => {
+      this.setState({ soegeresultat: data, visSpinner: false })
+    }, (fejl) => {
+      alert(fejl);
+    })
+  }
+
   _opdaterCvrNummer(cvrnr) {
-    this.setState({henterNoegletal: true})
+    this.setState({visSpinner: true})
     APIHelper.hentNoegletal(cvrnr).then((data) => {
       this.setState({ cvrnummer: cvrnr, regnskaber: data.regnskabsdata })
     }, (fejl) => {
@@ -28,14 +40,14 @@ export default class Virksomhed extends Component {
     })
 
     APIHelper.hentVirksomhedsdata(cvrnr).then((data) => {
-      this.setState({ cvrdata:data, henterNoegletal:false })
+      this.setState({ cvrdata:data, visSpinner:false })
     }, (fejl) => {
       alert(fejl);
     })
   }
 
   render() {
-    const { cvrnummer, regnskaber, henterNoegletal, cvrdata} = this.state;
+    const { cvrnummer, regnskaber, henterNoegletal, cvrdata, soegeresultat} = this.state;
 
     return (<div className="virksomhed">
       <div className="row">
@@ -46,13 +58,15 @@ export default class Virksomhed extends Component {
       </div>
       <div className="row">
         <div className="col">
-          <CvrSoegebox opdaterCvr={this._opdaterCvrNummer} />
+          <CvrSoegebox opdaterCvr={this._visSoegeresultat} />
         </div>
       </div>
       <div className="row">
         <div className="col">
           {(cvrnummer !== '') ? <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} spinner={henterNoegletal}
                                             cvrdata={cvrdata} /> : null}
+
+          {(soegeresultat !== null) ? <Soegeresultat soegeresultat={soegeresultat} /> : null }
         </div>
       </div>
     </div>);

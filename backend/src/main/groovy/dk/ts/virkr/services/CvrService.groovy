@@ -29,14 +29,16 @@ class CvrService {
   @RequestMapping(value = "/{cvrnummer}", method = RequestMethod.GET)
   public Vrvirksomhed regnskab(@PathVariable String cvrnummer) {
     Vrvirksomhed vrvirksomhed =  cvrClient.hentVirksomhed(cvrnummer)
-    //String adresse = (vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse.vejadresselinie + ", "
-    //  + vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse.byLinje)
-    //GeoResponse response = mapService.hentGeoInformationer(adresse)
-    //GeoResult geoResult = response.results[0]
-    //vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse.lat = geoResult.geometry.location.lat
-    //vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse.lng = geoResult.geometry.location.lng
-
     return vrvirksomhed
+  }
+
+  @RequestMapping(value = "/search/{navn}", method = RequestMethod.GET)
+  public List<Vrvirksomhed> search(@PathVariable String navn) {
+    long start = System.currentTimeMillis()
+    List<Vrvirksomhed> vrvirksomheder =  cvrClient.soeg(navn)
+    long elapsed = System.currentTimeMillis() - start
+    println(" Elapsed soeg "+elapsed)
+    return vrvirksomheder
   }
 
 }
