@@ -34,10 +34,7 @@ class CvrService {
 
   @RequestMapping(value = "/search/{navn}", method = RequestMethod.GET)
   public List<Vrvirksomhed> search(@PathVariable String navn) {
-    long start = System.currentTimeMillis()
     List<Vrvirksomhed> vrvirksomheder =  cvrClient.soeg(navn)
-    long elapsed = System.currentTimeMillis() - start
-    println(" Elapsed soeg "+elapsed)
     return vrvirksomheder
   }
 
