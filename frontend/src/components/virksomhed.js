@@ -23,7 +23,7 @@ export default class Virksomhed extends Component {
   }
 
   _visSoegeresultat(soegning) {
-    this.setState({visSpinner: true})
+    this.setState({visSpinner: true, cvrnummer: '', regnskaber: []})
     APIHelper.soeg(soegning).then((data) => {
       this.setState({ soegeresultat: data, visSpinner: false })
     }, (fejl) => {
@@ -32,26 +32,28 @@ export default class Virksomhed extends Component {
   }
 
   _opdaterCvrNummer(cvrnr) {
+    this.setState({cvrnummer: cvrnr, soegeresultat: null});
+
     let _regnskabsdata;
 
-    this.setState({ henterNoegletal: true }, () => {
+    this.setState({ visSpinner: true }, () => {
       APIHelper.hentNoegletal(cvrnr)
         .then((data) => {
           _regnskabsdata = data.regnskabsdata
           return APIHelper.hentVirksomhedsdata(cvrnr);
         })
         .then((_cvrdata) => {
-          this.setState({ henterNoegletal: false, cvrnummer: cvrnr, regnskaber: _regnskabsdata, cvrdata: _cvrdata })
+          this.setState({ visSpinner: false, cvrnummer: cvrnr, regnskaber: _regnskabsdata, cvrdata: _cvrdata })
         })
         .catch((err) => {
-          this.setState({ henterNoegletal: false }, () => alert(err))
+          this.setState({ visSpinner: false }, () => alert(err))
         })
     })
   }
 
   render() {
 
-    const { cvrnummer, regnskaber, henterNoegletal, cvrdata, soegeresultat} = this.state;
+    const { cvrnummer, regnskaber, visSpinner, cvrdata, soegeresultat} = this.state;
 
     return (<div className="virksomhed">
       <div className="row">
@@ -67,9 +69,9 @@ export default class Virksomhed extends Component {
       </div>
       <div className="row">
         <div className="col">
-          {(cvrnummer !== '') ? <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} spinner={henterNoegletal}
+          {(cvrnummer !== '') ? <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} spinner={visSpinner}
                                             cvrdata={cvrdata} /> : null}
-          {(soegeresultat !== null) ? <Soegeresultat soegeresultat={soegeresultat} /> : null }
+          {(soegeresultat !== null) ? <Soegeresultat soegeresultat={soegeresultat} opdaterCvrNummer={this._opdaterCvrNummer}/> : null }
         </div>
       </div>
     </div>);

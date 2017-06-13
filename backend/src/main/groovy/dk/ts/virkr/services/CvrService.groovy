@@ -34,6 +34,7 @@ class CvrService {
 
   @RequestMapping(value = "/search/{navn}", method = RequestMethod.GET)
   public List<Vrvirksomhed> search(@PathVariable String navn) {
+    navn = navn.replace(" ","%20")
     List<Vrvirksomhed> vrvirksomheder =  cvrClient.soeg(navn)
     return vrvirksomheder
   }

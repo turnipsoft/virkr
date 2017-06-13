@@ -1,11 +1,6 @@
 .container {
   background-color: white; }
 
-body {
-  background-image : url(images/regnskab-baggrund.png);
-  background-repeat : repeat-x;
-}
-
 .card {
   margin-bottom: 20px; }
 
@@ -30,6 +25,19 @@ body {
 
 .map {
   alignment: right;
+}
+
+.btn {
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.btn-virksomhedsnavn {
+  font-size: small;
+}
+
+.btn-cvrnummer {
+  font-size: x-small;
 }
 
 .bottom-border {
