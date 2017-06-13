@@ -24,14 +24,14 @@ export default class Soegeresultat extends Component {
           </div>
         </div>
 
-    {soegeresultat.map((soegeresultat) => {
+    {soegeresultat.map((s) => {
       return (
-        <div key={soegeresultat.cvrNummer} className="row">
+        <div key={s.cvrNummer} className="row">
           <div className="col col-6 offset-3">
             <button type="button" className="btn btn-secondary btn-lg btn-block" onClick={this._visVirksomhed}
-            value={soegeresultat.cvrNummer}>
-              <span className="pull-left btn-virksomhedsnavn">{soegeresultat.virksomhedMetadata.nyesteNavn.navn}</span>
-              <span className="pull-right btn-cvrnummer">{soegeresultat.cvrNummer}</span>
+            value={s.cvrNummer}>
+              <span className="pull-left btn-virksomhedsnavn">{s.virksomhedMetadata.nyesteNavn.navn}</span>
+              <span className="pull-right btn-cvrnummer">{s.cvrNummer}</span>
             </button>
           </div>
 

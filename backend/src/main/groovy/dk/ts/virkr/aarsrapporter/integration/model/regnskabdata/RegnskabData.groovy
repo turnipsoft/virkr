@@ -33,5 +33,8 @@ class RegnskabData {
   Long regnskabsmaessigeAfskrivninger //DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
   Long udbytte // g:ProposedDividend
   Long variableOmkostninger // RawMaterialsAndConsumablesUsed
+  Long lokalomkostninger
+  Long administrationsomkostninger
+  Long eksterneomkostninger
   Virksomhedsdata virksomhedsdata
 }

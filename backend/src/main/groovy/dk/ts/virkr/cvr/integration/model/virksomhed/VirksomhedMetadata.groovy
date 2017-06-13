@@ -10,4 +10,5 @@ class VirksomhedMetadata {
   List<String> nyesteKontaktoplysninger
   String sammensatStatus
   Beskaeftigelse nyesteAarsbeskaeftigelse
+  Virksomhedsform nyesteVirksomhedsform
 }

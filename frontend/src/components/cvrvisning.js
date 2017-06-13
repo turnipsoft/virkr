@@ -23,33 +23,39 @@ export default class CvrVisning extends Component {
       )
     }
 
-    if (regnskaber.some(() => true)) {
-      // seneste virksomhedsdata
-      const { virksomhedsdata } = regnskaber.slice(-1)[0];
+    const renderedRegnskaber = regnskaber.length>0 ? this._renderRegnskaber(regnskaber) : this._renderIngenRegnskaber();
 
-      return (
-        <div className="virksomhedsdata">
-          <VirksomhedsInfo data={virksomhedsdata}/>
+    return (
+      <div className="virksomhedsdata">
+        <VirksomhedsInfo data={cvrdata}/>
+        {renderedRegnskaber}
+        <VirksomhedsDetaljer cvrdata={cvrdata}/>
+        <br/>
 
-          {(regnskaber.length > 0) ? <Graf regnskaber={regnskaber} /> : null}
-          <br />
-          <br />
-          <h5>Regnskaber</h5>
-          {regnskaber.slice().reverse().map((regnskab) => {
-            return <Regnskabstal key={regnskab.id} regnskab={regnskab} />
-          })}
-          <VirksomhedsDetaljer cvrdata={cvrdata}/>
-          <br/>
+      </div>
+    );
+  }
 
-        </div>
-      );
-    } else {
-      return (
-        <div className="alert alert-warning">
-          Ingen regnskaber med det CVR nummer!
-        </div>
-      )
-    }
+  _renderIngenRegnskaber() {
+    return (
+      <div className="alert alert-warning">
+        Der er ikke registreret nogen digitale regnskaber for denne virksomhed
+      </div>
+    )
+  }
+
+  _renderRegnskaber(regnskaber) {
+    return (
+      <div>
+      <Graf regnskaber={regnskaber} />
+        <br />
+        <br />
+        <h5>Regnskaber</h5>
+        {regnskaber.slice().reverse().map((regnskab) => {
+        return <Regnskabstal key={regnskab.id} regnskab={regnskab} />
+        })}
+      </div>
+    );
   }
 
 }

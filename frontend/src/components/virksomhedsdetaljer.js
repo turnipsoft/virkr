@@ -32,6 +32,8 @@ export default class VirksomhedsDetaljer extends Component {
       telefon = cvrdata.telefonNummer[0].kontaktoplysning;
     }
 
+    var virksomhedsform = vdata.nyesteVirksomhedsform.virksomhedsformkode + " - "+ vdata.nyesteVirksomhedsform.langBeskrivelse;
+
     const apikey = "AIzaSyCkZhz21v6u43m7qMUZiFe6obxHoTLhvgE";
     const q = vejadresselinie+", "+byLinje
     const mapsurl =  "https://www.google.com/maps/embed/v1/place?q="+q+"&key="+apikey;
@@ -59,6 +61,8 @@ export default class VirksomhedsDetaljer extends Component {
                   </div>
                 </div>
                 <br/>
+                <DetaljeLinie text="CVR-Nummer" value={cvrdata.cvrNummer} />
+                <DetaljeLinie text="Virksomhedsform" value={virksomhedsform} />
                 <DetaljeLinie text="Telefon" value={telefon} />
                 <DetaljeLinie text="Email" value={email} />
                 <DetaljeLinie text="Hjemmeside" value={www} />

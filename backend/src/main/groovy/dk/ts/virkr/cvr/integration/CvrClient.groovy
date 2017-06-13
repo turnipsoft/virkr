@@ -41,7 +41,12 @@ class CvrClient {
   }
 
   List<Vrvirksomhed> soeg(String navn) {
-    String url = "$url?q=Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn:$navn%20OR%20cvrNummer:$navn&_source_include=Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn,Vrvirksomhed.cvrNummer&_source_exclude=entities"
+    //String virksomhedsformquery = '(Vrvirksomhed.virksomhedMetadata.nyesteVirksomhedsform.virksomhedsformkode:(40 OR 45 OR 60 OR 70 OR 80))'
+    String statusquery = '(Vrvirksomhed.virksomhedMetadata.sammensatStatus:(NORMAL OR Normal OR Aktiv))'
+    String include = 'Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn,Vrvirksomhed.cvrNummer'
+    String query = "(Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn:$navn OR cvrNummer:$navn) AND $statusquery";
+    query = URLEncoder.encode(query,'UTF-8');
+    String url = "$url?q=$query&_source_include=$include&_source_exclude=entities"
 
     String jsonResult = kaldCvr(url)
 
@@ -50,7 +55,9 @@ class CvrClient {
     JsonMarshaller marshaller = new JsonMarshaller(true)
     ElasticResult elasticResult = marshaller.toObject(jsonResult, ElasticResult.class)
     elasticResult.hits.hits.each { hit ->
-      resultat << hit._source.vrvirksomhed
+      if (hit._source.vrvirksomhed) {
+        resultat << hit._source.vrvirksomhed
+      }
     }
 
     return resultat

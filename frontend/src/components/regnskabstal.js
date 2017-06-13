@@ -16,6 +16,8 @@ export default class Regnskabstal extends Component {
             <Noegletal noegletal={this.props.regnskab.omsaetning} text="Omsætning" b={true} />
             <Noegletal noegletal={this.props.regnskab.vareforbrug} text="Vareforbrug" negative={true} />
             <Noegletal noegletal={this.props.regnskab.driftsindtaegter} text="Andre driftsindtægter"/>
+            <Noegletal noegletal={this.props.regnskab.eksterneomkostninger} text="Eksterne omkostninger"
+                       negative={true} underline={true} />
             <Noegletal noegletal={this.props.regnskab.andreEksterneOmkostninger} text="Andre eksterne omkostninger"
                        negative={true} underline={true} />
             <Noegletal noegletal={this.props.regnskab.variableOmkostninger} text="Variable omkostninger"
@@ -25,6 +27,10 @@ export default class Regnskabstal extends Component {
             <Noegletal noegletal={this.props.regnskab.bruttofortjeneste} text="Bruttofortjeneste" b={true} />
             <Noegletal noegletal={this.props.regnskab.medarbejderOmkostninger} text="Kapacitetsomkostninger" negative={true} />
             <Noegletal noegletal={this.props.regnskab.regnskabsmaessigeAfskrivninger} text="Afskrivninger"
+                       negative={true} underline={true} />
+            <Noegletal noegletal={this.props.regnskab.lokalomkostninger} text="Ejendomsomkostninger"
+                       negative={true} />
+            <Noegletal noegletal={this.props.regnskab.administrationsomkostninger} text="Administrative omkostninger"
                        negative={true} underline={true} />
             <br/>
             <Noegletal noegletal={this.props.regnskab.driftsresultat} text="Resultat før finansielle poster" b={true} />

@@ -94,6 +94,15 @@ class Regnskabsdata {
   Long variableomkostninger
 
   @Column
+  Long lokalomkostninger
+
+  @Column
+  Long administrationsomkostninger
+
+  @Column
+  Long eksterneomkostninger
+
+  @Column
   String navn
 
   @Column
@@ -147,6 +156,9 @@ class Regnskabsdata {
     regnskabsdata.andreeksterneomkostninger = rd.andreEksterneOmkostninger
     regnskabsdata.udbytte = rd.udbytte
     regnskabsdata.variableomkostninger = rd.variableOmkostninger
+    regnskabsdata.lokalomkostninger = rd.lokalomkostninger
+    regnskabsdata.administrationsomkostninger = rd.administrationsomkostninger
+    regnskabsdata.eksterneomkostninger = rd.eksterneomkostninger
 
     return regnskabsdata
   }
@@ -189,6 +201,9 @@ class Regnskabsdata {
     regnskabsdata.andreEksterneOmkostninger = this.andreeksterneomkostninger
     regnskabsdata.udbytte = this.udbytte
     regnskabsdata.variableOmkostninger = this.variableomkostninger
+    regnskabsdata.lokalomkostninger = this.lokalomkostninger
+    regnskabsdata.administrationsomkostninger = this.administrationsomkostninger
+    regnskabsdata.eksterneomkostninger = this.eksterneomkostninger
 
     return regnskabsdata
   }

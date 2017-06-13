@@ -100,6 +100,12 @@ class RegnskabXmlParser {
 
     data.variableOmkostninger = getLongValue(nl, ns, "RawMaterialsAndConsumablesUsed")
 
+    data.lokalomkostninger = getLongValue(nl, ns, "PropertyCost")
+
+    data.administrationsomkostninger = getLongValue(nl, ns, "AdministrativeExpenses")
+
+    data.eksterneomkostninger = getLongValue(nl,ns, "ExternalExpenses")
+
     // FIXME: den ligger ikke i det namespace. den har sit eget, kig på scenarios
     data.udbytte = getLongValue(nl, ns, "ProposedDividend")
 
@@ -139,10 +145,15 @@ class RegnskabXmlParser {
       data.driftsresultat = data.bruttofortjeneste - data.medarbejderOmkostninger - data.regnskabsmaessigeAfskrivninger
     }
 
-    // hvis der ikke er noget bruttoresultat kan man tilsyneladende bruge goodwill i sit regnskab.. hmmm
-    //if (!data.bruttofortjeneste && data.driftsresultat && data.goodwill) {
-    //  data.bruttofortjeneste = data.driftsresultat + data.goodwill
-    //}
+    // hvis bruttoresultatet ikke stemmer, så kan der mangle variable omkostninger. dette kan regnes ud hvis man også har omsætnignen
+    if (( (data.andreEksterneOmkostninger?:0) + (data.variableOmkostninger?:0) + (data.eksterneomkostninger?:0)) != data.omsaetning ) {
+      if (!data.variableOmkostninger && data.omsaetning) {
+        data.variableOmkostninger = data.omsaetning-
+          (data.andreEksterneOmkostninger?data.andreEksterneOmkostninger:0)-
+          (data.eksterneomkostninger?data.eksterneomkostninger:0);
+      }
+    }
+
 
   }
 
@@ -280,6 +291,6 @@ class RegnskabXmlParser {
 
   Long getAmount(Node n) {
     String amount = n.text()
-    return Long.valueOf(amount)
+    return Double.valueOf(amount).longValue()
   }
 }

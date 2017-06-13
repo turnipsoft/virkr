@@ -1,13 +1,15 @@
 import React from 'react';
 
 const VirksomhedsInfo = (props) => {
+
+  const vdata = props.data.virksomhedMetadata;
+
+  const navn = vdata.nyesteNavn.navn;
+
   const {
-    navn,
-    vejnavn,
-    husnr,
-    postnr,
-    bynavn
-  } = props.data;
+    vejadresselinie,
+    byLinje
+  } = vdata.nyesteBeliggenhedsadresse;
 
   return (
     <div className="row">
@@ -15,9 +17,9 @@ const VirksomhedsInfo = (props) => {
         <div style={{ textAlign: 'center' }}>
           <h4>{navn}</h4>
             <p>
-              {vejnavn} {husnr}
+              {vejadresselinie}
               <br />
-              {postnr} {bynavn}
+              {byLinje}
             </p>
           </div>
         </div>
