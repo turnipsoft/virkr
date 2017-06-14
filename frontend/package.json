@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "build": "npm install && webpack",
-    "build:dev" : "NODE_ENV=develop npm run build",
-    "build:production" : "NODE_ENV=productionx   npm run build",
+    "build:dev": "NODE_ENV=develop npm run build",
+    "build:production": "NODE_ENV=productionx   npm run build",
     "start": "webpack-dev-server --hot --port 8080 --watch --open",
     "rimraf": "rimraf",
     "clean": "npm cache clean && npm run rimraf -- node_modules build"
@@ -21,6 +21,7 @@
     "babel-preset-react": "^6.24.1",
     "bootstrap": "^4.0.0-alpha.6",
     "chart.js": "^2.3.0",
+    "flux": "^3.1.2",
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "0.0.5-beta.2",
     "less": "^2.7.2",

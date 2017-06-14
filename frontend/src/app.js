@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Virksomhed from './components/virksomhed';
+import Virksomhed from './containers/virksomhed';
 
 import './images/regnskab-baggrund.png'
 import './main.css';
