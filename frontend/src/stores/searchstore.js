@@ -36,7 +36,7 @@ class SearchStore extends EventEmitter {
       case 'SEARCH_DATA':
         this.searchData(action.response);
         break;
-      case 'CLEAR_SEARCH':
+      case 'GET_CVR':
         this.clear();
         break;
     }

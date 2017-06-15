@@ -37,7 +37,7 @@ class NoegletalStore extends EventEmitter {
       case 'NOEGLETAL':
         this.noegletal(action.response);
         break;
-      case 'CLEAR_NOEGLETAL':
+      case 'SEARCH':
         this.clear();
         break;
     }

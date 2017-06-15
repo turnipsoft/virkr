@@ -37,7 +37,7 @@ class CVRStore extends EventEmitter {
       case 'CVR':
         this.cvrData(action.response);
         break;
-      case 'CLEAR_CVR':
+      case 'SEARCH':
         this.clearData();
         break;
     }
