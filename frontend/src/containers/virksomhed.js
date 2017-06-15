@@ -6,6 +6,7 @@ import Soegeresultat from '../views/soegeresultat';
 import cvrstore from '../stores/cvrstore';
 import searchstore from '../stores/searchstore';
 import noegletalstore from '../stores/noegletalstore';
+import spinnerstore from '../stores/spinnerstore';
 import * as actions from '../actions';
 
 export default class Virksomhed extends Component {
@@ -17,7 +18,7 @@ export default class Virksomhed extends Component {
     this._visSoegeresultat = this._visSoegeresultat.bind(this);
 
     this.state = {
-      visSpinner: false,
+      visSpinner: spinnerstore.getState(),
       cvrnummer: '',
       regnskaber: noegletalstore.getState(),
       cvrdata: cvrstore.getState(),
@@ -36,6 +37,10 @@ export default class Virksomhed extends Component {
 
     cvrstore.on('change', () => {
       this.setState({ cvrdata: cvrstore.getState() })
+    });
+
+    spinnerstore.on('change', () => {
+      this.setState({ visSpinner: spinnerstore.getState() })
     });
   }
 
