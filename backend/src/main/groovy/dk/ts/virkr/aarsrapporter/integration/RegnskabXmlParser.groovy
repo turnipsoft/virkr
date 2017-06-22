@@ -141,7 +141,7 @@ class RegnskabXmlParser {
       }
     }
 
-    if (!data.driftsresultat && data.medarbejderOmkostninger && data.regnskabsmaessigeAfskrivninger) {
+    if (!data.driftsresultat && data.bruttofortjeneste && data.medarbejderOmkostninger && data.regnskabsmaessigeAfskrivninger) {
       data.driftsresultat = data.bruttofortjeneste - data.medarbejderOmkostninger - data.regnskabsmaessigeAfskrivninger
     }
 
@@ -154,7 +154,29 @@ class RegnskabXmlParser {
       }
     }
 
+    berigMedDriftsresultat(data)
+    berigMedBruttofortjeneste(data)
 
+    println(data.bruttofortjeneste)
+  }
+
+  void berigMedDriftsresultat(RegnskabData data) {
+    // forsøger at regne baglæns for at få driftsresultatet
+    if (!data.driftsresultat) {
+      if (data.aaretsresultat) {
+        data.driftsresultat = (data.aaretsresultat + data.finansielleOmkostninger ?: 0) - data.finansielleIndtaegter ?: 0
+      }
+    }
+  }
+
+  void berigMedBruttofortjeneste(RegnskabData data) {
+    if (!data.bruttofortjeneste) {
+      if (data.driftsresultat) {
+        data.bruttofortjeneste = data.driftsresultat + data.regnskabsmaessigeAfskrivninger?:0
+        data.bruttofortjeneste = data.bruttofortjeneste + data.medarbejderOmkostninger?:0
+        data.bruttofortjeneste
+      }
+    }
   }
 
   private Namespace hentNamespace(String xml) {
