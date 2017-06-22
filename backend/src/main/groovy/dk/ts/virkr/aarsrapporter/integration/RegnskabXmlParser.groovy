@@ -145,15 +145,7 @@ class RegnskabXmlParser {
       data.driftsresultat = data.bruttofortjeneste - data.medarbejderOmkostninger - data.regnskabsmaessigeAfskrivninger
     }
 
-    // hvis bruttoresultatet ikke stemmer, så kan der mangle variable omkostninger. dette kan regnes ud hvis man også har omsætnignen
-    if (( (data.andreEksterneOmkostninger?:0) + (data.variableOmkostninger?:0) + (data.eksterneomkostninger?:0)) != data.omsaetning ) {
-      if (!data.variableOmkostninger && data.omsaetning) {
-        data.variableOmkostninger = data.omsaetning-
-          (data.andreEksterneOmkostninger?data.andreEksterneOmkostninger:0)-
-          (data.eksterneomkostninger?data.eksterneomkostninger:0);
-      }
-    }
-
+    forsoegBruttofortjeneste(data)
     berigMedDriftsresultat(data)
     berigMedBruttofortjeneste(data)
 
@@ -179,6 +171,22 @@ class RegnskabXmlParser {
     }
   }
 
+  void forsoegBruttofortjeneste(RegnskabData data) {
+    if (!data.omsaetning || !data.bruttofortjeneste) {
+      return
+    }
+    // hvis bruttoresultatet ikke stemmer, så kan der mangle variable omkostninger. dette kan regnes ud hvis man også har omsætnignen
+    long kalkuleretOmsaetning = (data.andreEksterneOmkostninger?:0) + (data.variableOmkostninger?:0) + (data.eksterneomkostninger?:0) +
+      (data.vareforbrug?:0) + data.bruttofortjeneste
+
+    if (kalkuleretOmsaetning != data.omsaetning ) {
+      if (!data.variableOmkostninger && data.omsaetning) {
+        data.variableOmkostninger = data.omsaetning-
+          (data.andreEksterneOmkostninger?data.andreEksterneOmkostninger:0)-
+          (data.eksterneomkostninger?data.eksterneomkostninger:0);
+      }
+    }
+  }
   private Namespace hentNamespace(String xml) {
     String namespace = getFSANamespace(xml)
     Namespace ns = null
