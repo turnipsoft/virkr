@@ -1,7 +1,7 @@
 import React from 'react';
 import Virksomhed from './virksomhed';
-import CvrSoegebox from './cvrsoegebox';
-import CvrVisning from './cvrvisning';
+import CvrSoegebox from '../views/cvrsoegebox';
+import CvrVisning from '../views/cvrvisning';
 import { shallow } from 'enzyme';
 
 describe("Komponenten Virksomhed", () => {
