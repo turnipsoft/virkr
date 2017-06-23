@@ -107,7 +107,7 @@ class RegnskabXmlParserSpec extends Specification {
     then:
     regnskabData.omsaetning == 5073800000l
     // FIXME: hmmm ingen bruttofortjeneste og f.eks. proff.dk siger at det er samme brutto fortjeneste som omsætning
-    regnskabData.bruttofortjeneste == null
+    regnskabData.bruttofortjeneste == 2638900000
     regnskabData.driftsresultat == 340800000l
     regnskabData.resultatfoerskat == 325800000l
     regnskabData.finansielleIndtaegter == 11900000l
