@@ -42,6 +42,7 @@ export default class Regnskabstal extends Component {
               <Noegletal noegletal={brutto.administrationsomkostninger} text="Administrative omkostninger"
                          negative={true} />
             </div>
+
             <br/>
 
             <div className="regnskabsgruppe">
@@ -71,9 +72,9 @@ export default class Regnskabstal extends Component {
             <div className="row">
               <div className="col col-12">
                 <span className="pull-right">
-                  <a href={this.props.regnskab.xbrlUrl} target="_blank" className="btn btn-primary">XBRL</a>
+                  <a href={this.props.regnskab.xbrlurl} target="_blank" className="btn btn-primary">XBRL</a>
                   &nbsp;
-                  <a href={this.props.regnskab.pdfUrl} target="_blank" className="btn btn-primary ">PDF</a>
+                  <a href={this.props.regnskab.pdfurl} target="_blank" className="btn btn-primary ">PDF</a>
                 </span>
               </div>
             </div>

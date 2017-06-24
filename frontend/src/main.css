@@ -17,8 +17,8 @@
   margin-right: auto;
 }
 
-.regnskabsgruppe .col:last-of-type {
-  bottom-border: true;
+.regnskabsgruppe .row:last-of-type .col:last-of-type {
+  border-bottom: 1px solid lightgrey;
 }
 
 .virksomhedsdetaljer {
