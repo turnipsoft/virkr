@@ -17,7 +17,9 @@ export default class CvrSoegebox extends Component {
   submitSoegning(e) {
     e.preventDefault();
 
-    const { soegning } = this.state;
+    let { soegning } = this.state;
+
+    soegning = soegning.replace("/","{SLASH}");
 
     this.setState({ fejl: false }, this.props.opdaterCvr(soegning));
   }

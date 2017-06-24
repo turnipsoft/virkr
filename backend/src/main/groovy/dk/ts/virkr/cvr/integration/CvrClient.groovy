@@ -41,7 +41,7 @@ class CvrClient {
   }
 
   List<Vrvirksomhed> soeg(String navn) {
-    //String virksomhedsformquery = '(Vrvirksomhed.virksomhedMetadata.nyesteVirksomhedsform.virksomhedsformkode:(40 OR 45 OR 60 OR 70 OR 80))'
+    navn = navn.replace("{SLASH}","/")
     String statusquery = '(Vrvirksomhed.virksomhedMetadata.sammensatStatus:(NORMAL OR Normal OR Aktiv))'
     String include = 'Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn,Vrvirksomhed.cvrNummer'
     String query = "(Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn:$navn OR cvrNummer:$navn) AND $statusquery";
