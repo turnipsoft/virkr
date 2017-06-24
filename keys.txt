@@ -1,0 +1,4 @@
+CVR: aa2d9502-86b1-4b08-b874-fd10960df469
+GoogleMaps-APIKEY: AIzaSyCFIFw8X7OTSOJ5lh-Z-HUxzNzbD2TYl-w
+
+--virkr.maps.apikey=AIzaSyCFIFw8X7OTSOJ5lh-Z-HUxzNzbD2TYl-w --virkr.cvr.password=aa2d9502-86b1-4b08-b874-fd10960df469

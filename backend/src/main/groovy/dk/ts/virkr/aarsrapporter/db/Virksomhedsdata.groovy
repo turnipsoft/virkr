@@ -2,8 +2,6 @@ package dk.ts.virkr.aarsrapporter.db
 
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
 import javax.persistence.Id
 
 /**
@@ -36,7 +34,7 @@ class Virksomhedsdata {
   @Column
   String lon
 
-  static Virksomhedsdata from(dk.ts.virkr.aarsrapporter.integration.model.virksomhedsdata.Virksomhedsdata vd) {
+  static Virksomhedsdata from(dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata vd) {
     Virksomhedsdata v = new Virksomhedsdata()
     v.cvrnummer = vd.cvrnummer
     v.navn = vd.navn
@@ -50,9 +48,9 @@ class Virksomhedsdata {
     return v;
   }
 
-  dk.ts.virkr.aarsrapporter.integration.model.virksomhedsdata.Virksomhedsdata tilVirksomhedsdata() {
-    dk.ts.virkr.aarsrapporter.integration.model.virksomhedsdata.Virksomhedsdata v =
-      new dk.ts.virkr.aarsrapporter.integration.model.virksomhedsdata.Virksomhedsdata()
+  dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata tilVirksomhedsdata() {
+    dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata v =
+      new dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata()
 
     v.cvrnummer = this.cvrnummer
     v.navn = this.navn

@@ -1,9 +1,6 @@
 package dk.ts.virkr.aarsrapporter.integration
 
-import aarsrapporter.aarsrapporter.integration.model.regnskabdata.RegnskabData
-import aarsrapporter.aarsrapporter.integration.model.regnskaber.Dokument
-import aarsrapporter.aarsrapporter.integration.model.regnskaber.Offentliggoerelse
-import dk.ts.virkr.aarsrapporter.integration.model.regnskabdata.RegnskabData
+import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Dokument
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Offentliggoerelse
 
@@ -32,17 +29,17 @@ class RegnskabXmlClient {
           GZIPInputStream gzipInputStream = new GZIPInputStream(new ByteArrayInputStream(bytes))
           String unzippedData = new String(gzipInputStream.bytes, 'UTF-8')
           RegnskabData data = new RegnskabData()
-          data.cvrNummer = offentliggoerelse.cvrNummer
+          data.cvrnummer = offentliggoerelse.cvrNummer
           data.omgoerelse = offentliggoerelse.omgoerelse
-          data.pdfUrl = offentliggoerelse.dokumenter.find {
+          data.pdfurl = offentliggoerelse.dokumenter.find {
             it.dokumentMimeType == 'application/pdf' && it.dokumentType == 'AARSRAPPORT'
           }?.dokumentUrl
-          data.xbrlUrl = offentliggoerelse.dokumenter.find {
+          data.xbrlurl = offentliggoerelse.dokumenter.find {
             it.dokumentMimeType == 'application/xml' && it.dokumentType == 'AARSRAPPORT'
           }?.dokumentUrl
-          data.startDato = offentliggoerelse.regnskab.regnskabsperiode.startDato
-          data.slutDato = offentliggoerelse.regnskab.regnskabsperiode.slutDato
-          data.sidsteOpdatering = sdf.format(offentliggoerelse.sidstOpdateret)
+          data.startdato = offentliggoerelse.regnskab.regnskabsperiode.startDato
+          data.slutdato = offentliggoerelse.regnskab.regnskabsperiode.slutDato
+          data.sidsteopdatering = sdf.format(offentliggoerelse.sidstOpdateret)
           data = parser.parseOgBerig(data, unzippedData)
           data.virksomhedsdata = parser.hentVirksomhedsdataFraRegnskab(unzippedData)
           regnskabdata << data

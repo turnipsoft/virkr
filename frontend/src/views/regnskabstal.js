@@ -5,54 +5,66 @@ export default class Regnskabstal extends Component {
 
   render() {
 
+    const omsaetning = this.props.regnskab.resultatopgoerelse.omsaetningTal
+    const brutto = this.props.regnskab.resultatopgoerelse.bruttoresultatTal
+    const netto = this.props.regnskab.resultatopgoerelse.nettoresultatTal
+    const aaretsresultat = this.props.regnskab.resultatopgoerelse.aaretsresultatTal
+    const passiver = this.props.regnskab.balance.passiver
+
     return (
       <div className="card">
         <div className="card-header" id="regnskab-header">
-          <b>{this.props.regnskab.aar}</b> <span className="small">({this.props.regnskab.startDato} - {this.props.regnskab.slutDato})</span>
+          <b>{this.props.regnskab.aar}</b> <span className="small">({this.props.regnskab.startdato} - {this.props.regnskab.slutdato})</span>
         </div>
         <div className="card-block">
 
           <div className="noegletal">
-            <Noegletal noegletal={this.props.regnskab.omsaetning} text="Omsætning" b={true} />
-            <Noegletal noegletal={this.props.regnskab.vareforbrug} text="Vareforbrug" negative={true} />
-            <Noegletal noegletal={this.props.regnskab.driftsindtaegter} text="Andre driftsindtægter"/>
-            <Noegletal noegletal={this.props.regnskab.eksterneomkostninger} text="Eksterne omkostninger"
-                       negative={true} underline={true} />
-            <Noegletal noegletal={this.props.regnskab.andreEksterneOmkostninger} text="Andre eksterne omkostninger"
-                       negative={true} underline={true} />
-            <Noegletal noegletal={this.props.regnskab.variableOmkostninger} text="Variable omkostninger"
-                       negative={true} underline={true} />
+            <div className="regnskabsgruppe">
+              <Noegletal noegletal={omsaetning.omsaetning} text="Omsætning" b={true} />
+              <Noegletal noegletal={omsaetning.vareforbrug} text="Vareforbrug" negative={true} />
+              <Noegletal noegletal={omsaetning.driftsindtaegter} text="Andre driftsindtægter"/>
+              <Noegletal noegletal={omsaetning.eksterneomkostninger} text="Eksterne omkostninger"
+                         negative={true}  />
+              <Noegletal noegletal={omsaetning.andreeksterneOmkostninger} text="Andre eksterne omkostninger"
+                         negative={true} />
+              <Noegletal noegletal={omsaetning.variableomkostninger} text="Variable omkostninger"
+                         negative={true}  />
+            </div>
 
             <br/>
-            <Noegletal noegletal={this.props.regnskab.bruttofortjeneste} text="Bruttofortjeneste" b={true} />
-            <Noegletal noegletal={this.props.regnskab.medarbejderOmkostninger} text="Kapacitetsomkostninger" negative={true} />
-            <Noegletal noegletal={this.props.regnskab.regnskabsmaessigeAfskrivninger} text="Afskrivninger"
-                       negative={true} underline={true} />
-            <Noegletal noegletal={this.props.regnskab.lokalomkostninger} text="Ejendomsomkostninger"
-                       negative={true} />
-            <Noegletal noegletal={this.props.regnskab.administrationsomkostninger} text="Administrative omkostninger"
-                       negative={true} underline={true} />
+            <div className="regnskabsgruppe">
+              <Noegletal noegletal={brutto.bruttofortjeneste} text="Bruttofortjeneste" b={true} />
+              <Noegletal noegletal={brutto.medarbejderomkostninger} text="Kapacitetsomkostninger" negative={true} />
+              <Noegletal noegletal={brutto.regnskabsmaessigeafskrivninger} text="Afskrivninger"
+                         negative={true}  />
+              <Noegletal noegletal={brutto.lokalomkostninger} text="Ejendomsomkostninger"
+                         negative={true} />
+              <Noegletal noegletal={brutto.administrationsomkostninger} text="Administrative omkostninger"
+                         negative={true} />
+            </div>
             <br/>
-            <Noegletal noegletal={this.props.regnskab.driftsresultat} text="Resultat før finansielle poster" b={true} />
-            <Noegletal noegletal={this.props.regnskab.finansielleIndtaegter} text="Finansielle indtægter" />
-            <Noegletal noegletal={this.props.regnskab.finansielleOmkostninger} text="Finansielle omkostninger"
-                       negative={true} underline={true}/>
-            <br/>
-            <Noegletal noegletal={this.props.regnskab.resultatfoerskat} text="Årets resultat før skat" b={true} />
-            <Noegletal noegletal={this.props.regnskab.skatafaaretsresultat} text="Skat af årets resultat" negative={true}
-                       underline={true}/>
+
+            <div className="regnskabsgruppe">
+              <Noegletal noegletal={netto.driftsresultat} text="Resultat før finansielle poster" b={true} />
+              <Noegletal noegletal={netto.finansielleindtaegter} text="Finansielle indtægter" />
+              <Noegletal noegletal={netto.finansielloOmkostninger} text="Finansielle omkostninger"
+                         negative={true} />
+            </div>
+              <br/>
+            <div className="regnskabsgruppe">
+              <Noegletal noegletal={aaretsresultat.resultatfoerskat} text="Årets resultat før skat" b={true} />
+              <Noegletal noegletal={aaretsresultat.skatafaaretsresultat} text="Skat af årets resultat" negative={true} />
+            </div>
 
             <br/>
-            <Noegletal noegletal={this.props.regnskab.aaretsresultat} text="Årets resultat" h={true} />
+            <Noegletal noegletal={aaretsresultat.aaretsresultat} text="Årets resultat" h={true} />
+
 
             <br/>
-            <Noegletal noegletal={this.props.regnskab.udbytte} text="Foreslået udbytte" />
+            <Noegletal noegletal={passiver.egenkapital} text="Egenkapital" b={true} />
 
             <br/>
-            <Noegletal noegletal={this.props.regnskab.egenkapital} text="Egenkapital" b={true} />
-
-            <br/>
-            <Noegletal noegletal={this.props.regnskab.gaeldsforpligtelser} text="Gældsforpligtelser" b={true} />
+            <Noegletal noegletal={passiver.gaeldsforpligtelser} text="Gældsforpligtelser" b={true} />
 
             <br/>
 

@@ -1,7 +1,8 @@
 package dk.ts.virkr.aarsrapporter.integration
 
-import dk.ts.virkr.aarsrapporter.integration.model.regnskabdata.RegnskabData
-import dk.ts.virkr.aarsrapporter.integration.model.virksomhedsdata.Virksomhedsdata
+import dk.ts.virkr.aarsrapporter.model.RegnskabData
+import dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata
+import dk.ts.virkr.aarsrapporter.model.Resultatopgoerelse
 import groovy.xml.Namespace
 
 
@@ -65,59 +66,52 @@ class RegnskabXmlParser {
       return haandterIFRS(ns, result, nl, data)
     }
 
-    data.omsaetning = getLongValue(nl, ns, "Revenue")
-    data.goodwill = getLongValue(nl, ns, "Goodwill")
-    data.bruttofortjeneste = getLongValue(nl, ns, "GrossProfitLoss", "GrossResult", "GrossProfit")
+    /** Resultatopgørelsen **/
+    Resultatopgoerelse r = data.resultatopgoerelse
 
-    data.medarbejderOmkostninger = getLongValue(nl, ns, "EmployeeBenefitsExpense")
-    data.driftsresultat = getLongValue(nl, ns, "ProfitLossFromOrdinaryOperatingActivities",
-      "ProfitLossFromOperatingActivities")
+    //Omsætning
+    r.omsaetning.omsaetning = getLongValue(nl, ns, "Revenue")
+    r.omsaetning.vareforbrug = getLongValue(nl, ns, "CostOfSales")
+    // driftsindtæger
+    r.omsaetning.driftsindtaegter = getLongValue(nl, ns, "OtherOperatingIncome")
+    // andre eksterne omkostninger
+    r.omsaetning.andreeksterneOmkostninger = getLongValue(nl, ns, "OtherExternalExpenses")
+    r.omsaetning.variableomkostninger = getLongValue(nl, ns, "RawMaterialsAndConsumablesUsed")
+    r.omsaetning.lokalomkostninger = getLongValue(nl, ns, "PropertyCost")
+    r.omsaetning.eksterneomkostninger = getLongValue(nl,ns, "ExternalExpenses")
 
-    data.resultatfoerskat = getLongValue(nl, ns, "ProfitLossFromOrdinaryActivitiesBeforeTax", "ProfitLossBeforeTax")
+    //BruttoresultatTal
+    r.bruttoresultat.bruttofortjeneste = getLongValue(nl, ns, "GrossProfitLoss", "GrossResult", "GrossProfit")
+    r.bruttoresultat.medarbejderomkostninger = getLongValue(nl, ns, "EmployeeBenefitsExpense")
+    // regnskabsmæssige afskrivninger
+    r.bruttoresultat.regnskabsmaessigeafskrivninger = getLongValue(nl, ns,
+      "DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss")
+    r.bruttoresultat.administrationsomkostninger = getLongValue(nl, ns, "AdministrativeExpenses")
 
-    data.aaretsresultat = getLongValue(nl, ns, "ProfitLoss")
-
-    data.finansielleOmkostninger = getLongValue(nl, ns, "OtherFinanceExpenses", "FinanceCosts",
+    // NettoresultatTal
+    r.nettoresultat.finansielleomkostninger = getLongValue(nl, ns, "OtherFinanceExpenses", "FinanceCosts",
       "RestOfOtherFinanceExpenses")
+    r.nettoresultat.driftsresultat = getLongValue(nl, ns, "ProfitLossFromOrdinaryOperatingActivities",
+      "ProfitLossFromOperatingActivities")
+    r.nettoresultat.finansielleindtaegter = getLongValue(nl, ns, "OtherFinanceIncome", "FinanceIncome")
 
-    data.finansielleIndtaegter = getLongValue(nl, ns, "OtherFinanceIncome", "FinanceIncome")
-
-    data.skatafaaretsresultat = getLongValue(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense",
+    // Årets resultat
+    r.aaretsresultat.aaretsresultat = getLongValue(nl, ns, "ProfitLoss")
+    r.aaretsresultat.resultatfoerskat = getLongValue(nl, ns, "ProfitLossFromOrdinaryActivitiesBeforeTax", "ProfitLossBeforeTax")
+    r.aaretsresultat.skatafaaretsresultat = getLongValue(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense",
       "IncomeTaxExpenseContinuingOperations")
 
-    // vareforbrug
-    data.vareforbrug = getLongValue(nl, ns, "CostOfSales")
 
-    // driftsindtæger
-    data.driftsindtaegter = getLongValue(nl, ns, "OtherOperatingIncome")
-
-    // andre eksterne omkostninger
-    data.andreEksterneOmkostninger = getLongValue(nl, ns, "OtherExternalExpenses")
-
-    // regnskabsmæssige afskrivninger
-    data.regnskabsmaessigeAfskrivninger = getLongValue(nl, ns,
-      "DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss")
-
-    data.variableOmkostninger = getLongValue(nl, ns, "RawMaterialsAndConsumablesUsed")
-
-    data.lokalomkostninger = getLongValue(nl, ns, "PropertyCost")
-
-    data.administrationsomkostninger = getLongValue(nl, ns, "AdministrativeExpenses")
-
-    data.eksterneomkostninger = getLongValue(nl,ns, "ExternalExpenses")
-
-    // FIXME: den ligger ikke i det namespace. den har sit eget, kig på scenarios
-    data.udbytte = getLongValue(nl, ns, "ProposedDividend")
-
+    // passiver
     // findes i hele dokumentet denne har en anden context ref som er slutdato på perioden, skal evt. refactores til at
     // finde gennem denne
-    data.gaeldsforpligtelser = getValue(result,ns.LiabilitiesOtherThanProvisions, ns.CurrentLiabilities)
+    data.balance.passiver.gaeldsforpligtelser = getValue(result,ns.LiabilitiesOtherThanProvisions, ns.CurrentLiabilities)
 
-    if (!data.gaeldsforpligtelser) {
-      data.gaeldsforpligtelser = getValue(result, ns.ShorttermLiabilitiesOtherThanProvisions)
+    if (!data.balance.passiver.gaeldsforpligtelser) {
+      data.balance.passiver.gaeldsforpligtelser = getValue(result, ns.ShorttermLiabilitiesOtherThanProvisions)
     }
 
-    data.egenkapital = getValue(result, ns.Equity)
+    data.balance.passiver.egenkapital = getValue(result, ns.Equity)
 
     berigRegnskabdataMedManglendeNoegletal(data)
 
@@ -126,67 +120,8 @@ class RegnskabXmlParser {
 
   void berigRegnskabdataMedManglendeNoegletal(RegnskabData data) {
 
-    // fix up evt. manglende data med lidt matematik
-    // resultat før skat mangler og kan udregnes ved at trække finansielle omkostning fra driftsresultatet
-    if (!data.resultatfoerskat && data.driftsresultat) {
-      long finans = 0
-      finans = (data.finansielleIndtaegter?data.finansielleIndtaegter:0) - (data.finansielleOmkostninger?data.finansielleOmkostninger:0)
-      data.resultatfoerskat = data.driftsresultat + finans
-    }
-
-    if (!data.bruttofortjeneste) {
-      if (data.andreEksterneOmkostninger && data.vareforbrug && data.driftsindtaegter && data.omsaetning) {
-        data.bruttofortjeneste = data.omsaetning - data.andreEksterneOmkostninger - data.vareforbrug +
-          data.driftsindtaegter
-      }
-    }
-
-    if (!data.driftsresultat && data.bruttofortjeneste && data.medarbejderOmkostninger && data.regnskabsmaessigeAfskrivninger) {
-      data.driftsresultat = data.bruttofortjeneste - data.medarbejderOmkostninger - data.regnskabsmaessigeAfskrivninger
-    }
-
-    forsoegBruttofortjeneste(data)
-    berigMedDriftsresultat(data)
-    berigMedBruttofortjeneste(data)
-
-    println(data.bruttofortjeneste)
   }
 
-  void berigMedDriftsresultat(RegnskabData data) {
-    // forsøger at regne baglæns for at få driftsresultatet
-    if (!data.driftsresultat) {
-      if (data.aaretsresultat) {
-        data.driftsresultat = (data.aaretsresultat + data.finansielleOmkostninger ?: 0) - data.finansielleIndtaegter ?: 0
-      }
-    }
-  }
-
-  void berigMedBruttofortjeneste(RegnskabData data) {
-    if (!data.bruttofortjeneste) {
-      if (data.driftsresultat) {
-        data.bruttofortjeneste = data.driftsresultat + data.regnskabsmaessigeAfskrivninger?:0
-        data.bruttofortjeneste = data.bruttofortjeneste + data.medarbejderOmkostninger?:0
-        data.bruttofortjeneste
-      }
-    }
-  }
-
-  void forsoegBruttofortjeneste(RegnskabData data) {
-    if (!data.omsaetning || !data.bruttofortjeneste) {
-      return
-    }
-    // hvis bruttoresultatet ikke stemmer, så kan der mangle variable omkostninger. dette kan regnes ud hvis man også har omsætnignen
-    long kalkuleretOmsaetning = (data.andreEksterneOmkostninger?:0) + (data.variableOmkostninger?:0) + (data.eksterneomkostninger?:0) +
-      (data.vareforbrug?:0) + data.bruttofortjeneste
-
-    if (kalkuleretOmsaetning != data.omsaetning ) {
-      if (!data.variableOmkostninger && data.omsaetning) {
-        data.variableOmkostninger = data.omsaetning-
-          (data.andreEksterneOmkostninger?data.andreEksterneOmkostninger:0)-
-          (data.eksterneomkostninger?data.eksterneomkostninger:0);
-      }
-    }
-  }
   private Namespace hentNamespace(String xml) {
     String namespace = getFSANamespace(xml)
     Namespace ns = null
@@ -202,12 +137,7 @@ class RegnskabXmlParser {
   }
 
   RegnskabData haandterIFRS(Namespace ns, Node xmlRoot, NodeList nl, RegnskabData data) {
-    data.bruttofortjeneste = getLongValue(nl, ns, "ProfitLossFromOperatingActivities")
-    data.resultatfoerskat = getLongValue(nl, ns, "ProfitLossBeforeTax")
-    data.aaretsresultat = getLongValue(nl, ns, "ProfitLoss")
-    data.finansielleIndtaegter = getLongValue(nl, ns, "FinanceIncome")
-    data.finansielleOmkostninger = getLongValue(nl, ns, "FinanceCosts")
-
+    // TBD
     return data
   }
 

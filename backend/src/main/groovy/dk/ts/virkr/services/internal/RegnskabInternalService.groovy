@@ -6,7 +6,7 @@ import dk.ts.virkr.aarsrapporter.db.Virksomhedsdata
 import dk.ts.virkr.aarsrapporter.db.VirksomhedsdataRepository
 import dk.ts.virkr.aarsrapporter.integration.OffentliggoerelserClient
 import dk.ts.virkr.aarsrapporter.integration.RegnskabXmlClient
-import dk.ts.virkr.aarsrapporter.integration.model.regnskabdata.RegnskabData
+import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Offentliggoerelse
 import dk.ts.virkr.services.model.RegnskaberHentResponse
 import org.springframework.beans.factory.annotation.Autowired

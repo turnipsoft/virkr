@@ -2,7 +2,7 @@ package dk.ts.virkr.batch
 
 import dk.ts.virkr.aarsrapporter.db.Regnskabsdata
 import dk.ts.virkr.aarsrapporter.db.RegnskabsdataRepository
-import dk.ts.virkr.aarsrapporter.integration.model.regnskabdata.RegnskabData
+import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.util.Utils
 import dk.ts.virkr.services.internal.RegnskabInternalService
 import org.slf4j.Logger

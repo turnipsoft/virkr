@@ -1,8 +1,8 @@
 package dk.ts.virkr.integration
 
 import dk.ts.virkr.aarsrapporter.integration.RegnskabXmlParser
-import dk.ts.virkr.aarsrapporter.integration.model.regnskabdata.RegnskabData
-import dk.ts.virkr.aarsrapporter.integration.model.virksomhedsdata.Virksomhedsdata
+import dk.ts.virkr.aarsrapporter.model.RegnskabData
+import dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata
 import spock.lang.Ignore
 import spock.lang.Specification
 

@@ -26,15 +26,15 @@ export default class Graf extends Component {
     });
 
     const bruttofortjenester = regnskaber.map((regnskab) => {
-      return regnskab.bruttofortjeneste
+      return regnskab.resultatopgoerelse.bruttoresultatTal.bruttofortjeneste
     });
 
     const egenkapitaler = regnskaber.map((regnskab) => {
-      return regnskab.egenkapital;
+      return regnskab.balance.passiver.egenkapital;
     });
 
     const aaretsresultater = regnskaber.map((regnskab) => {
-      return regnskab.aaretsresultat;
+      return regnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat;
     });
 
     const options = {

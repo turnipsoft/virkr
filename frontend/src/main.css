@@ -17,6 +17,10 @@
   margin-right: auto;
 }
 
+.regnskabsgruppe .col:last-of-type {
+  bottom-border: true;
+}
+
 .virksomhedsdetaljer {
   width: 80%;
   margin-left: auto;
