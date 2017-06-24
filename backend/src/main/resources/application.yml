@@ -7,10 +7,10 @@ virkr:
   cvr:
     url: http://distribution.virk.dk/cvr-permanent/_search
     username: Søren_Hartvig_CVR_I_SKYEN
-    password: aa2d9502-86b1-4b08-b874-fd10960df469
+    password: PASSWD_TIL_SKYEN
   maps:
     url: https://maps.googleapis.com/maps/api/geocode/json
-    apikey: AIzaSyCFIFw8X7OTSOJ5lh-Z-HUxzNzbD2TYl-w
+    apikey: APIKEY_TIL_GOOGLE
 
 spring:
   datasource:
