@@ -42,9 +42,18 @@ class CvrClient {
 
   List<Vrvirksomhed> soeg(String navn) {
     navn = navn.replace("{SLASH}","/")
+    String navnequery = navn
+    //FIXME : bliver ikke rigtigt
+    /**
+    navn.split('%20').each {
+      if (navnequery.length()>0) {
+        navnequery += " AND "
+      }
+      navnequery+="Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn:$it"
+    }**/
     String statusquery = '(Vrvirksomhed.virksomhedMetadata.sammensatStatus:(NORMAL OR Normal OR Aktiv))'
     String include = 'Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn,Vrvirksomhed.cvrNummer'
-    String query = "(Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn:$navn OR cvrNummer:$navn) AND $statusquery";
+    String query = "($navnequery OR cvrNummer:$navn) AND $statusquery";
     query = URLEncoder.encode(query,'UTF-8');
     String url = "$url?q=$query&_source_include=$include&_source_exclude=entities"
 

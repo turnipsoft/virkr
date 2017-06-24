@@ -70,35 +70,35 @@ class RegnskabXmlParser {
     Resultatopgoerelse r = data.resultatopgoerelse
 
     //Omsætning
-    r.omsaetning.omsaetning = getLongValue(nl, ns, "Revenue")
-    r.omsaetning.vareforbrug = getLongValue(nl, ns, "CostOfSales")
+    r.omsaetningTal.omsaetning = getLongValue(nl, ns, "Revenue")
+    r.omsaetningTal.vareforbrug = getLongValue(nl, ns, "CostOfSales")
     // driftsindtæger
-    r.omsaetning.driftsindtaegter = getLongValue(nl, ns, "OtherOperatingIncome")
+    r.omsaetningTal.driftsindtaegter = getLongValue(nl, ns, "OtherOperatingIncome")
     // andre eksterne omkostninger
-    r.omsaetning.andreeksterneOmkostninger = getLongValue(nl, ns, "OtherExternalExpenses")
-    r.omsaetning.variableomkostninger = getLongValue(nl, ns, "RawMaterialsAndConsumablesUsed")
-    r.omsaetning.lokalomkostninger = getLongValue(nl, ns, "PropertyCost")
-    r.omsaetning.eksterneomkostninger = getLongValue(nl,ns, "ExternalExpenses")
+    r.omsaetningTal.andreeksterneOmkostninger = getLongValue(nl, ns, "OtherExternalExpenses")
+    r.omsaetningTal.variableomkostninger = getLongValue(nl, ns, "RawMaterialsAndConsumablesUsed")
+    r.omsaetningTal.lokalomkostninger = getLongValue(nl, ns, "PropertyCost")
+    r.omsaetningTal.eksterneomkostninger = getLongValue(nl,ns, "ExternalExpenses")
 
     //BruttoresultatTal
-    r.bruttoresultat.bruttofortjeneste = getLongValue(nl, ns, "GrossProfitLoss", "GrossResult", "GrossProfit")
-    r.bruttoresultat.medarbejderomkostninger = getLongValue(nl, ns, "EmployeeBenefitsExpense")
+    r.bruttoresultatTal.bruttofortjeneste = getLongValue(nl, ns, "GrossProfitLoss", "GrossResult", "GrossProfit")
+    r.bruttoresultatTal.medarbejderomkostninger = getLongValue(nl, ns, "EmployeeBenefitsExpense")
     // regnskabsmæssige afskrivninger
-    r.bruttoresultat.regnskabsmaessigeafskrivninger = getLongValue(nl, ns,
+    r.bruttoresultatTal.regnskabsmaessigeafskrivninger = getLongValue(nl, ns,
       "DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss")
-    r.bruttoresultat.administrationsomkostninger = getLongValue(nl, ns, "AdministrativeExpenses")
+    r.bruttoresultatTal.administrationsomkostninger = getLongValue(nl, ns, "AdministrativeExpenses")
 
     // NettoresultatTal
-    r.nettoresultat.finansielleomkostninger = getLongValue(nl, ns, "OtherFinanceExpenses", "FinanceCosts",
+    r.nettoresultatTal.finansielleomkostninger = getLongValue(nl, ns, "OtherFinanceExpenses", "FinanceCosts",
       "RestOfOtherFinanceExpenses")
-    r.nettoresultat.driftsresultat = getLongValue(nl, ns, "ProfitLossFromOrdinaryOperatingActivities",
+    r.nettoresultatTal.driftsresultat = getLongValue(nl, ns, "ProfitLossFromOrdinaryOperatingActivities",
       "ProfitLossFromOperatingActivities")
-    r.nettoresultat.finansielleindtaegter = getLongValue(nl, ns, "OtherFinanceIncome", "FinanceIncome")
+    r.nettoresultatTal.finansielleindtaegter = getLongValue(nl, ns, "OtherFinanceIncome", "FinanceIncome")
 
     // Årets resultat
-    r.aaretsresultat.aaretsresultat = getLongValue(nl, ns, "ProfitLoss")
-    r.aaretsresultat.resultatfoerskat = getLongValue(nl, ns, "ProfitLossFromOrdinaryActivitiesBeforeTax", "ProfitLossBeforeTax")
-    r.aaretsresultat.skatafaaretsresultat = getLongValue(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense",
+    r.aaretsresultatTal.aaretsresultat = getLongValue(nl, ns, "ProfitLoss")
+    r.aaretsresultatTal.resultatfoerskat = getLongValue(nl, ns, "ProfitLossFromOrdinaryActivitiesBeforeTax", "ProfitLossBeforeTax")
+    r.aaretsresultatTal.skatafaaretsresultat = getLongValue(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense",
       "IncomeTaxExpenseContinuingOperations")
 
 
