@@ -1,5 +1,6 @@
 package dk.ts.virkr.aarsrapporter.model
 
+import dk.ts.virkr.aarsrapporter.db.Regnskabsdata
 import org.springframework.beans.BeanUtils
 
 /**
@@ -7,7 +8,7 @@ import org.springframework.beans.BeanUtils
  */
 class ModelBase {
 
-  public void berig(RegnskabData rd) {
+  public void berig(Regnskabsdata rd) {
     BeanUtils.copyProperties(this, rd)
   }
 }

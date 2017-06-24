@@ -60,7 +60,7 @@ class RegnskabInternalService {
       // vi havde dem ikke så vi gemmer dem lige lokalt
       store(response.regnskabsdata)
       response.regnskabsdata.each {
-        it.aar = it.slutDato.substring(0, 4)
+        it.aar = it.slutdato.substring(0, 4)
         it.id = "regnskab_${it.aar}"
       }
 
