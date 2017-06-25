@@ -5,9 +5,6 @@ buildscript {
       url "https://plugins.gradle.org/m2/"
     }
   }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
-  }
 }
 
 apply plugin: 'groovy'
@@ -15,10 +12,6 @@ apply plugin: 'groovy'
 jar {
   baseName = 'virkr'
   version = '0.0.1'
-}
-
-springBoot {
-  executable = true
 }
 
 repositories {
