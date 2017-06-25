@@ -2,7 +2,7 @@
 Simpel virksomhedsinfo portal
 
 ## Projektstruktur
-Projektet er opdelt i to dele: frontend og backend. Der er gradle tasks, som virker i begge projekter:
+Projektet er opdelt i tre dele: frontend, backend og test. Der er gradle tasks, som virker i begge projekter:
 
     ./gradlew clean
 
@@ -19,10 +19,46 @@ I et andet vindue: `./gradlew frontend:start`
 
 Hvis frontend ikke starter første gang så kør `npm install` i frontend  
 
-Hvis vi kan kunne finde ud af at få gradle til at afvikle to tasks parallelt kunne man nøjes med `./gradlew start` 
+## Komponenter i løsningen
 
+### Backend
+Backenden består af en Spring Boot applikation som varetager kommunikation med eksterne services herunder: 
+- ERST Offentliggørelsesindeks, herfra hentes xbrl regnskaber som er hele baggrunden for løsningen
+- ERST CVR indeks, herfra hentes stamoplysninger om virksomheden ligesom indekset anvendes til søgning på virksomhedsnavne
+- Google MAPS API, anvendes til geokodning af adresser. Dette anvendes dog p.t. ikke.
 
-## Postgresql og Docker
+Backenden henter regnskaber ved forespørgsel på en virksomheds regnskaber, parser disse for at finde nøgletal og 
+persisterer dernæst nøgletallene til næste gang nogle forespørger på nøgletal for denne virksomhed
+Dette er lavet af performance hensyn, da det er relativt dyrt at parse regnskaberne on the fly. Det er acceptabelt
+men det giver en langt bedre brugeroplevelser når de bare kommer med det samme.
+
+Det betyder også at regnskabernes nøgletal forsøges at blive opdateret af et batchjob, når det er sandsynligt der er kommet et nyt regnskab.
+
+Når regnskaber parses, findes først alle de nøgletal programmet kender og ud fra disse nøgletal forsøges der at finde nøgletal
+som ikke nødvendigvis står i XBRL'en men som kan udregnes ud fra andre nøgletal.
+
+Data persisteres p.t. i en postgres database, men det er subject to change, det er muligvis mere optimalt med en dokument
+database.
+
+#### Start af backend
+Backenden bygges som en executable jar og kan derfor startes helt simpelt med ./virkr.jar eller man kan lægge den ind /etc/init.d 
+og dermed have den som service. 
+Backenden skal dog have passwords og apikey som parametre da disse ikke står i config filen,
+Det kan enten gøres ved : 
+
+./virkr.jar --virkr.maps.apikey=MAPS-APIKEY --virkr.cvr.password=CVR-PASS
+
+Eller man kan give en ekstern config file location .
+
+./virkr.jar --spring.config.localtion=file://stitilkonfiguration
+
+#### JSON REST Endpoints
+Backenden udstiller 3 restendpoints :
+- /regnskab/<cvrnr> : Henter regnskabsnøgletal for den pågædende virksomhed
+- /cvr/<cvrnr> : Henter virksomheds stamoplysninger for den pågældende virksomhed
+- /cvr/search/<soegning> : Foretager en søgning på virksomhedr i CVR Indeks
+
+#### Postgresql og Docker
 Postgresql kan startes med Docker ved i roden af projektet skrive:
 
     docker build -t virkr/postgres .
@@ -34,3 +70,17 @@ efterfulgt af:
 Postgresql er herefter oppe på localhost:5432.
 
 Databasen bliver automatisk opsat med indholdet af `backend/src/main/sql/ddl.sql`        
+
+### Frontenden
+Frontenden er lavet som en REACT applikation og er en SPA, udover REACT anvendes FLUX som design pattern for kommunikation
+mellem komponenten. Fetch anvendes som AJAX api.
+
+Applikationen er konfigureret med webpack og installeres lokalt med npm install
+
+Applikationen er struktureret i forhold til FLUX , så alle React komponenter bor i hhv:
+- containers/
+- stores/
+- views/
+- actions.js
+- dispatcher.js
+
