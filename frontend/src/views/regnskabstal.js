@@ -41,6 +41,7 @@ export default class Regnskabstal extends Component {
                          negative={true} />
               <Noegletal noegletal={brutto.administrationsomkostninger} text="Administrative omkostninger"
                          negative={true} />
+              <Noegletal noegletal={brutto.kapitalandeleiassocieredevirksomheder} text="Indtægter af kapitalandele" />
             </div>
 
             <br/>

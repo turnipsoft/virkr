@@ -3,6 +3,7 @@ package dk.ts.virkr.aarsrapporter.integration
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Dokument
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Offentliggoerelse
+import dk.ts.virkr.aarsrapporter.parser.RegnskabXmlParser
 
 import java.text.SimpleDateFormat
 import java.util.zip.GZIPInputStream

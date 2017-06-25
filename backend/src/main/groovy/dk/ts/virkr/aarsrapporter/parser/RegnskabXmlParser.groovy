@@ -88,6 +88,8 @@ class RegnskabXmlParser {
     r.bruttoresultatTal.regnskabsmaessigeafskrivninger = getLongValue(nl, ns,
       "DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss")
     r.bruttoresultatTal.administrationsomkostninger = getLongValue(nl, ns, "AdministrativeExpenses")
+    r.bruttoresultatTal.kapitalandeleiassocieredevirksomheder = getLongValue(nl, ns, "IncomeFromInvestmentsInAssociates",
+      "IncomeFromInvestmentsInGroupEnterprises")
 
     // NettoresultatTal
     r.nettoresultatTal.finansielleomkostninger = getLongValue(nl, ns, "OtherFinanceExpenses", "FinanceCosts",

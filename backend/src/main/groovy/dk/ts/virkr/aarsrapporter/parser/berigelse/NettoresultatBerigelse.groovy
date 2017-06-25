@@ -5,7 +5,7 @@ import dk.ts.virkr.aarsrapporter.model.RegnskabData
 /**
  * Created by sorenhartvig on 25/06/2017.
  */
-class NettoresultatBerigelse {
+class NettoresultatBerigelse extends Berigelse {
 
   boolean berigNoegletal(RegnskabData rd) {
     boolean harBeriget = false
@@ -24,8 +24,10 @@ class NettoresultatBerigelse {
     if (!regnskabData.resultatopgoerelse.nettoresultatTal.driftsresultat &&
         regnskabData.resultatopgoerelse.aaretsresultatTal.resultatfoerskat) {
       long resultat = regnskabData.resultatopgoerelse.aaretsresultatTal.resultatfoerskat +
-        (regnskabData.resultatopgoerelse.nettoresultatTal.finansielleomkostninger?:0)
-      resultat-=(regnskabData.resultatopgoerelse.nettoresultatTal.finansielleindtaegter?:0)
+        val(regnskabData.resultatopgoerelse.nettoresultatTal.finansielleomkostninger)
+
+      resultat-=val(regnskabData.resultatopgoerelse.nettoresultatTal.finansielleindtaegter)
+
       regnskabData.resultatopgoerelse.nettoresultatTal.driftsresultat = resultat
       return true
     }

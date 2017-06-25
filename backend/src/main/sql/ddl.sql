@@ -31,6 +31,7 @@ CREATE TABLE regnskabsdata
     lokalomkostninger bigint,
     administrationsomkostninger bigint,
     eksterneomkostninger bigint,
+    kapitalandeleiassocieredevirksomheder bigint,
     navn character varying(255) COLLATE pg_catalog."default",
     vejnavn character varying(512) COLLATE pg_catalog."default",
     husnr character varying(20) COLLATE pg_catalog."default",

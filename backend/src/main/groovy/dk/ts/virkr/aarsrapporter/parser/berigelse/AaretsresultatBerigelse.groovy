@@ -7,7 +7,7 @@ import dk.ts.virkr.aarsrapporter.model.RegnskabData
 /**
  * Created by sorenhartvig on 25/06/2017.
  */
-class AaretsresultatBerigelse {
+class AaretsresultatBerigelse extends Berigelse {
 
   boolean berigNoegletal(RegnskabData rd) {
     boolean harBeriget = false
@@ -24,7 +24,8 @@ class AaretsresultatBerigelse {
     if (!aaretsresultatTal.resultatfoerskat &&
          aaretsresultatTal.skatafaaretsresultat &&
          aaretsresultatTal.aaretsresultat) {
-      aaretsresultatTal.resultatfoerskat = aaretsresultatTal.aaretsresultat + aaretsresultatTal.skatafaaretsresultat
+      aaretsresultatTal.resultatfoerskat = val(aaretsresultatTal.aaretsresultat) +
+        val(aaretsresultatTal.skatafaaretsresultat)
       return true
     }
 

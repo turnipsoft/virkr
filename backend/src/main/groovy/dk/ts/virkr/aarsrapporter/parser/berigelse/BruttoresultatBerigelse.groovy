@@ -6,7 +6,7 @@ import dk.ts.virkr.aarsrapporter.model.Resultatopgoerelse
 /**
  * Created by sorenhartvig on 25/06/2017.
  */
-class BruttoresultatBerigelse {
+class BruttoresultatBerigelse extends Berigelse {
 
   boolean berigNoegletal(RegnskabData rd) {
     boolean harBeriget = false
@@ -23,10 +23,11 @@ class BruttoresultatBerigelse {
 
     if (!ro.bruttoresultatTal.bruttofortjeneste &&
          ro.nettoresultatTal.driftsresultat) {
-      long resultat = ro.nettoresultatTal.driftsresultat + (ro.bruttoresultatTal.administrationsomkostninger?:0)
-      resultat += (ro.bruttoresultatTal.ejendomsomkostninger?:0)
-      resultat += (ro.bruttoresultatTal.medarbejderomkostninger?:0)
-      resultat += (ro.bruttoresultatTal.regnskabsmaessigeafskrivninger?:0)
+      long resultat = ro.nettoresultatTal.driftsresultat + val(ro.bruttoresultatTal.administrationsomkostninger)
+      resultat += val(ro.bruttoresultatTal.ejendomsomkostninger)
+      resultat += val(ro.bruttoresultatTal.medarbejderomkostninger)
+      resultat += val(ro.bruttoresultatTal.regnskabsmaessigeafskrivninger)
+      resultat -= val(ro.bruttoresultatTal.kapitalandeleiassocieredevirksomheder)
 
       ro.bruttoresultatTal.bruttofortjeneste = resultat
 

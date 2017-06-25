@@ -12,6 +12,7 @@ class BruttoresultatTal extends ModelBase {
   Long administrationsomkostninger
   Long ejendomsomkostninger
   Long regnskabsmaessigeafskrivninger //DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
+  Long kapitalandeleiassocieredevirksomheder
 
   public static BruttoresultatTal from(Regnskabsdata rd) {
     BruttoresultatTal br = new BruttoresultatTal()
