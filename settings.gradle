@@ -1,1 +1,1 @@
-include 'frontend','backend'
+include 'frontend','backend','test'
