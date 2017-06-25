@@ -15,6 +15,16 @@ class ResultatopgoerelseBerigelse {
       harBeriget = true
     }
 
+    NettoresultatBerigelse nettoresultatBerigelse = new NettoresultatBerigelse()
+    if (nettoresultatBerigelse.berigNoegletal(rd)) {
+      harBeriget = true
+    }
+
+    BruttoresultatBerigelse bruttoresultatBerigelse = new BruttoresultatBerigelse()
+    if (bruttoresultatBerigelse.berigNoegletal(rd)) {
+      harBeriget = true
+    }
+
     return harBeriget
   }
 }

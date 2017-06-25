@@ -48,7 +48,7 @@ export default class Regnskabstal extends Component {
             <div className="regnskabsgruppe">
               <Noegletal noegletal={netto.driftsresultat} text="Resultat før finansielle poster" b={true} />
               <Noegletal noegletal={netto.finansielleindtaegter} text="Finansielle indtægter" />
-              <Noegletal noegletal={netto.finansielloOmkostninger} text="Finansielle omkostninger"
+              <Noegletal noegletal={netto.finansielleomkostninger} text="Finansielle omkostninger"
                          negative={true} />
             </div>
               <br/>

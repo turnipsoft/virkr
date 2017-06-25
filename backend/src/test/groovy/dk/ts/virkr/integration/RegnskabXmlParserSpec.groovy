@@ -129,11 +129,11 @@ class RegnskabXmlParserSpec extends Specification {
 
     then:
     ro.omsaetningTal.omsaetning == 552449000l
-    //ro.bruttoresultatTal.bruttofortjeneste == 292764000l
+    ro.bruttoresultatTal.bruttofortjeneste == 292764000l
     ro.bruttoresultatTal.regnskabsmaessigeafskrivninger == 28137000l
     ro.bruttoresultatTal.medarbejderomkostninger == 213730000l
 
-    //ro.nettoresultatTal.driftsresultat == 50897000l
+    ro.nettoresultatTal.driftsresultat == 50897000l
     ro.nettoresultatTal.finansielleindtaegter == 795000
 
     ro.aaretsresultatTal.resultatfoerskat == 47316000l
