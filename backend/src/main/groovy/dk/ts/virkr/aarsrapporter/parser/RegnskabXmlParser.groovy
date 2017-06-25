@@ -1,8 +1,9 @@
-package dk.ts.virkr.aarsrapporter.integration
+package dk.ts.virkr.aarsrapporter.parser
 
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata
 import dk.ts.virkr.aarsrapporter.model.Resultatopgoerelse
+import dk.ts.virkr.aarsrapporter.parser.berigelse.RegnskabBerigelse
 import groovy.xml.Namespace
 
 
@@ -118,8 +119,16 @@ class RegnskabXmlParser {
     return data
   }
 
+  /**
+   * Beriger nøgletal rekursivt indtil der ikke er flere nøgletal at berige
+   * @param data
+   */
   void berigRegnskabdataMedManglendeNoegletal(RegnskabData data) {
-
+    RegnskabBerigelse regnskabBerigelse = new RegnskabBerigelse()
+    boolean harBeriget = regnskabBerigelse.berigNoegletal(data)
+    while (harBeriget) {
+      harBeriget = regnskabBerigelse.berigNoegletal(data)
+    }
   }
 
   private Namespace hentNamespace(String xml) {

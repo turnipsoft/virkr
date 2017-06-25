@@ -1,6 +1,6 @@
 package dk.ts.virkr.integration
 
-import dk.ts.virkr.aarsrapporter.integration.RegnskabXmlParser
+import dk.ts.virkr.aarsrapporter.parser.RegnskabXmlParser
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.model.Resultatopgoerelse
 import dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata
@@ -27,7 +27,7 @@ class RegnskabXmlParserSpec extends Specification {
     ro.bruttoresultatTal.bruttofortjeneste == 4100142l
     ro.aaretsresultatTal.aaretsresultat == 541316l
     ro.nettoresultatTal.driftsresultat == 727959l
-    //ro.aaretsresultatTal.resultatfoerskat == 722363l
+    ro.aaretsresultatTal.resultatfoerskat == 722363l
     ro.aaretsresultatTal.skatafaaretsresultat == 181047l
 
     regnskabData.balance.passiver.gaeldsforpligtelser == 1258900l
