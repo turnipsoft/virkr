@@ -59,9 +59,9 @@ class RegnskabData extends ModelBase {
     regnskabsdata.slutdato = Utils.toDate(this.slutdato)
     regnskabsdata.sidsteopdatering = Utils.toDateTime(this.sidsteopdatering)
     regnskabsdata.omgoerelse = this.omgoerelse
+    this.virksomhedsdata.berig(regnskabsdata)
 
     this.resultatopgoerelse.berig(regnskabsdata)
     this.balance.berig(regnskabsdata)
-    this.virksomhedsdata.berig(regnskabsdata)
   }
 }

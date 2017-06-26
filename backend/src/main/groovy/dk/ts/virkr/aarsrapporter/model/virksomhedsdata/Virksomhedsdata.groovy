@@ -22,4 +22,14 @@ class Virksomhedsdata extends ModelBase {
     BeanUtils.copyProperties(regnskabsdata, virksomhedsdata)
     return virksomhedsdata
   }
+
+  public void berig(Regnskabsdata regnskabsdata) {
+    regnskabsdata.vejnavn = this.vejnavn
+    regnskabsdata.husnr = this.husnr
+    regnskabsdata.postnr = this.postnr
+    regnskabsdata.bynavn = this.bynavn
+    regnskabsdata.lat = this.lat
+    regnskabsdata.lon = this.lon
+    regnskabsdata.navn = this.navn
+  }
 }

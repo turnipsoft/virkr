@@ -22,107 +22,107 @@ class Regnskabsdata {
   long id
 
   @Column(nullable = false)
-  String cvrnummer
+  public String cvrnummer
 
   @Column(nullable = false)
-  LocalDate startdato
+  public LocalDate startdato
 
   @Column(nullable = false)
-  LocalDate slutdato
+  public LocalDate slutdato
 
   @Column(nullable = false)
-  LocalDateTime sidsteopdatering
+  public LocalDateTime sidsteopdatering
 
   @Column
-  boolean omgoerelse
+  public boolean omgoerelse
 
   @Column
-  String pdfurl
+  public String pdfurl
 
   @Column
-  String xbrlurl
+  public String xbrlurl
 
   @Column
-  Long bruttofortjeneste
+  public Long bruttofortjeneste
 
   @Column
-  Long driftsresultat
+  public Long driftsresultat
 
   @Column
-  Long aaretsresultat
+  public Long aaretsresultat
 
   @Column
-  Long resultatfoerskat
+  public Long resultatfoerskat
 
   @Column
-  Long skatafaaretsresultat
+  public Long skatafaaretsresultat
 
   @Column
-  Long gaeldsforpligtelser
+  public Long gaeldsforpligtelser
 
   @Column
-  Long egenkapital
+  public Long egenkapital
 
   @Column
-  Long finansielleindtaegter
+  public Long finansielleindtaegter
 
   @Column
-  Long finansielleomkostninger
+  public Long finansielleomkostninger
 
   @Column
-  Long medarbejderomkostninger
+  public Long medarbejderomkostninger
 
   @Column
-  Long omsaetning
+  public Long omsaetning
 
   @Column
-  Long vareforbrug  // CostOfSales
+  public Long vareforbrug  // CostOfSales
 
   @Column
-  Long driftsindtaegter // OtherOperatingIncome
+  public Long driftsindtaegter // OtherOperatingIncome
 
   @Column
-  Long andreeksterneomkostninger //OtherExternalExpenses
+  public Long andreeksterneomkostninger //OtherExternalExpenses
 
   @Column
-  Long regnskabsmaessigeafskrivninger
+  public Long regnskabsmaessigeafskrivninger
   //DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
 
   @Column
-  Long udbytte
+  public Long udbytte
 
   @Column
-  Long variableomkostninger
+  public Long variableomkostninger
 
   @Column
-  Long lokalomkostninger
+  public Long lokalomkostninger
 
   @Column
-  Long administrationsomkostninger
+  public Long administrationsomkostninger
 
   @Column
-  Long eksterneomkostninger
+  public Long eksterneomkostninger
 
   @Column
-  String navn
+  public String navn
 
   @Column
-  String vejnavn
+  public String vejnavn
 
   @Column
-  String husnr
+  public String husnr
 
   @Column
-  String postnr
+  public String postnr
 
   @Column
-  String bynavn
+  public String bynavn
 
   @Column
-  String lat
+  public String lat
 
   @Column
-  String lon
+  public String lon
 
   public static Regnskabsdata from(RegnskabData rd) {
     Regnskabsdata regnskabsdata = new Regnskabsdata()

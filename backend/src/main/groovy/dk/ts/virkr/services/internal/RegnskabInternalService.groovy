@@ -42,7 +42,8 @@ class RegnskabInternalService {
   @Transactional(propagation = Propagation.REQUIRED)
   void store(List<RegnskabData> rd) {
     rd.each {
-      regnskabsdataRepository.saveAndFlush(Regnskabsdata.from(it))
+      Regnskabsdata regnskabsdata = Regnskabsdata.from(it)
+      regnskabsdataRepository.saveAndFlush(regnskabsdata)
     }
   }
 
