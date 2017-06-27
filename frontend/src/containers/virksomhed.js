@@ -85,7 +85,7 @@ export default class Virksomhed extends Component {
         </div>
 
         <div className="row">
-          <div className="col justify-content-center top-margin">
+          <div className="col col-sm-6 offset-sm-3 justify-content-center top-margin">
             <CvrSoegebox opdaterCvr={this._visSoegeresultat} />
           </div>
         </div>
