@@ -12,18 +12,17 @@ const VirksomhedsInfo = (props) => {
   } = vdata.nyesteBeliggenhedsadresse;
 
   return (
-    <div className="row">
+    <div className="row justify-content-center">
       <div className="col">
-        <div style={{ textAlign: 'center' }}>
-          <h4>{navn}</h4>
-            <p>
-              {vejadresselinie}
-              <br />
-              {byLinje}
-            </p>
-          </div>
-        </div>
-      </div >
+        <p>
+          <strong>{navn}</strong>
+          <br/>
+          {vejadresselinie}
+          <br />
+          {byLinje}
+        </p>
+      </div>
+    </div>
   );
 }
 

@@ -12,10 +12,10 @@ describe("Komponenten Virksomhed", () => {
     expect(wrapper.find(CvrSoegebox).length).toBe(1);
   })
 
-  it("Indeholder visning af en virksomhed", () => {
+  it("Indeholder initielt ikke visning af en virksomhed", () => {
     const wrapper = shallow(<Virksomhed />);
 
-    expect(wrapper.find(CvrVisning).length).toBe(1);
+    expect(wrapper.find(CvrVisning).length).toBe(0);
   })
 })
 

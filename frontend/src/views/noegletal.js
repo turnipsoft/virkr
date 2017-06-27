@@ -23,14 +23,14 @@ export default class Noegletal extends Component {
         tal = <h4>{tal}</h4>
       }
 
-      let bottomClass = "col col-4";
+      let bottomClass = "col-4";
       if (this.props.underline) {
         bottomClass += " bottom-border";
       }
 
       return (
         <div className="row">
-          <div className="col col-8">
+          <div className="col-8">
             {text}
           </div>
           <div className={bottomClass}>

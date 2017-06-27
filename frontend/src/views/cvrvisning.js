@@ -11,31 +11,16 @@ export default class CvrVisning extends Component {
   }
 
   render() {
-    const { regnskaber, spinner, cvrdata } = this.props;
+    const { regnskaber, cvrdata } = this.props;
 
-    if (spinner) {
-      return (
-        <div className="virksomhed-spinner">
-
-          <span className="fa fa-spinner fa-spin fa-3x fa-fw"></span>
-          <span className="sr-only">Loading...</span>
-        </div>
-      )
-    }
-
-    if (cvrdata !== null || regnskaber !== null) {
-      return (
-        <div className="virksomhedsdata">
-          {this._renderVirksomhedsInfo(cvrdata)}
-          {this._renderRegnskaber(regnskaber)}
-          {this._renderCvrData(cvrdata)}
-          <br />
-
-        </div>
-      )
-    } else {
-      return null
-    }
+    return (
+      <div className="top-margin">
+        {this._renderVirksomhedsInfo(cvrdata)}
+        {this._renderRegnskaber(regnskaber)}
+        {this._renderCvrData(cvrdata)}
+        <br />
+      </div>
+    )
   }
 
   _renderVirksomhedsInfo(cvrdata) {
@@ -57,7 +42,6 @@ export default class CvrVisning extends Component {
           <Graf regnskaber={regnskaber} />
           <br />
           <br />
-          <h5>Regnskaber</h5>
           {regnskaber.slice().reverse().map((regnskab) => {
             return <Regnskabstal key={regnskab.id} regnskab={regnskab} />
           })}
