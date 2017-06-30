@@ -54,7 +54,7 @@
   background-color: #e0eeff;
 }
 
-.regnskabsgruppe .row:last-of-type .col:last-of-type {
+.regnskabsgruppe .row:last-of-type .col-4:last-of-type {
   border-bottom: 1px solid lightgrey;
 }
 
