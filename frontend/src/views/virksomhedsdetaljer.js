@@ -44,7 +44,7 @@ export default class VirksomhedsDetaljer extends Component {
           <div className="card-block">
 
             <div className="row">
-              <div className="col col-7 virksomhedsinfo">
+              <div className="col col-12 virksomhedsinfo">
                 <div className="row">
                   <div className="col col-12">
                     <b>{navn}</b>
@@ -71,9 +71,14 @@ export default class VirksomhedsDetaljer extends Component {
                 <DetaljeLinie text="Tegningsregel" value={cvrdata.tegningsregel} />
                 <DetaljeLinie text="Formål" value={cvrdata.formaal} />
               </div>
-              <div className="col col-5 map">
-                <span className="pull-right">
-                  <iframe height={300}
+            </div>
+            <br/>
+            <hr/>
+
+            <div className="row">
+              <div className="col col-12 map">
+                <span>
+                  <iframe height="100%" width="100%"
                     frameBorder="0" style={{border:1}}
                     src={mapsurl} allowFullScreen>
                   </iframe>

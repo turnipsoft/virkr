@@ -12,7 +12,13 @@ class Passiver extends ModelBase {
 
   public static Passiver from(Regnskabsdata rd) {
     Passiver p = new Passiver()
-    BeanUtils.copyProperties(rd, p)
+    p.gaeldsforpligtelser = rd.gaeldsforpligtelser
+    p.egenkapital = rd.egenkapital
     return p
+  }
+
+  void berig(Regnskabsdata rd) {
+    rd.egenkapital = this.egenkapital
+    rd.gaeldsforpligtelser = this.gaeldsforpligtelser
   }
 }

@@ -101,6 +101,9 @@ class Regnskabsdata {
   public Long administrationsomkostninger
 
   @Column
+  public Long kapitalandeleiassocieredevirksomheder
+
+  @Column
   public Long eksterneomkostninger
 
   @Column

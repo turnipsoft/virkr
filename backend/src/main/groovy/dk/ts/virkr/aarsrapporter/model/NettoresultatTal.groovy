@@ -11,9 +11,17 @@ class NettoresultatTal extends ModelBase {
   Long finansielleomkostninger
   Long finansielleindtaegter
 
-  public static NettoresultatTal from(Regnskabsdata rd) {
+  static NettoresultatTal from(Regnskabsdata rd) {
     NettoresultatTal nettoresultat = new NettoresultatTal()
-    BeanUtils.copyProperties(rd, nettoresultat)
+    nettoresultat.driftsresultat = rd.driftsresultat
+    nettoresultat.finansielleindtaegter = rd.finansielleindtaegter
+    nettoresultat.finansielleomkostninger = rd.finansielleomkostninger
     return nettoresultat
+  }
+
+  void berig(Regnskabsdata rd) {
+    rd.driftsresultat = this.driftsresultat
+    rd.finansielleindtaegter = this.finansielleindtaegter
+    rd.finansielleomkostninger = this.finansielleomkostninger
   }
 }

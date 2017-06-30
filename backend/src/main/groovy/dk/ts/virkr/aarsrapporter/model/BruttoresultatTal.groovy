@@ -14,10 +14,25 @@ class BruttoresultatTal extends ModelBase {
   Long regnskabsmaessigeafskrivninger //DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
   Long kapitalandeleiassocieredevirksomheder
 
-  public static BruttoresultatTal from(Regnskabsdata rd) {
+  static BruttoresultatTal from(Regnskabsdata rd) {
     BruttoresultatTal br = new BruttoresultatTal()
-    BeanUtils.copyProperties(rd, br)
+
+    br.bruttofortjeneste = rd.bruttofortjeneste
+    br.medarbejderomkostninger = rd.medarbejderomkostninger
+    br.administrationsomkostninger = rd.administrationsomkostninger
+    br.ejendomsomkostninger = rd.lokalomkostninger
+    br.regnskabsmaessigeafskrivninger = rd.regnskabsmaessigeafskrivninger
+    br.kapitalandeleiassocieredevirksomheder = rd.kapitalandeleiassocieredevirksomheder
     return br
+  }
+
+  void berig(Regnskabsdata br) {
+    br.bruttofortjeneste = this.bruttofortjeneste
+    br.medarbejderomkostninger = this.medarbejderomkostninger
+    br.administrationsomkostninger = this.administrationsomkostninger
+    br.lokalomkostninger = this.ejendomsomkostninger
+    br.regnskabsmaessigeafskrivninger = this.regnskabsmaessigeafskrivninger
+    br.kapitalandeleiassocieredevirksomheder = this.kapitalandeleiassocieredevirksomheder
   }
 
 }

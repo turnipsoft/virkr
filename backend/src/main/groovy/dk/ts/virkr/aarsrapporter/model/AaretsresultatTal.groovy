@@ -11,10 +11,18 @@ class AaretsresultatTal extends ModelBase {
   Long resultatfoerskat
   Long skatafaaretsresultat
 
-  public static AaretsresultatTal from(Regnskabsdata rd) {
+  static AaretsresultatTal from(Regnskabsdata rd) {
     AaretsresultatTal aar = new AaretsresultatTal()
-    BeanUtils.copyProperties(rd, aar)
+    aar.aaretsresultat = rd.aaretsresultat
+    aar.resultatfoerskat = rd.resultatfoerskat
+    aar.skatafaaretsresultat = rd.skatafaaretsresultat
     return aar
+  }
+
+  void berig(Regnskabsdata rd) {
+    rd.aaretsresultat = this.aaretsresultat
+    rd.skatafaaretsresultat = this.skatafaaretsresultat
+    rd.resultatfoerskat = this.skatafaaretsresultat
   }
 
 }

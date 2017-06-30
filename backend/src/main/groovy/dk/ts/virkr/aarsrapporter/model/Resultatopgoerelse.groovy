@@ -13,14 +13,14 @@ class Resultatopgoerelse extends ModelBase {
   public NettoresultatTal nettoresultatTal
   public AaretsresultatTal aaretsresultatTal
 
-  public Resultatopgoerelse() {
+  Resultatopgoerelse() {
     this.omsaetningTal = new OmsaetningTal()
     this.bruttoresultatTal = new BruttoresultatTal()
     this.nettoresultatTal = new NettoresultatTal()
     this.aaretsresultatTal = new AaretsresultatTal()
   }
 
-  public static Resultatopgoerelse from(Regnskabsdata rd) {
+  static Resultatopgoerelse from(Regnskabsdata rd) {
     Resultatopgoerelse ro = new Resultatopgoerelse()
     OmsaetningTal oms = OmsaetningTal.from(rd)
     ro.omsaetningTal = oms
@@ -30,7 +30,7 @@ class Resultatopgoerelse extends ModelBase {
     return ro
   }
 
-  public void berig(Regnskabsdata regnskabsdata) {
+  void berig(Regnskabsdata regnskabsdata) {
     this.omsaetningTal.berig(regnskabsdata)
     this.bruttoresultatTal.berig(regnskabsdata)
     this.nettoresultatTal.berig(regnskabsdata)

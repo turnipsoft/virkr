@@ -8,7 +8,4 @@ import org.springframework.beans.BeanUtils
  */
 class ModelBase {
 
-  public void berig(Regnskabsdata rd) {
-    BeanUtils.copyProperties(this, rd)
-  }
 }

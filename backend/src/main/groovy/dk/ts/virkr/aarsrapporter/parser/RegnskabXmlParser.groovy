@@ -76,7 +76,7 @@ class RegnskabXmlParser {
     // driftsindtæger
     r.omsaetningTal.driftsindtaegter = getLongValue(nl, ns, "OtherOperatingIncome")
     // andre eksterne omkostninger
-    r.omsaetningTal.andreeksterneOmkostninger = getLongValue(nl, ns, "OtherExternalExpenses")
+    r.omsaetningTal.andreeksterneomkostninger = getLongValue(nl, ns, "OtherExternalExpenses")
     r.omsaetningTal.variableomkostninger = getLongValue(nl, ns, "RawMaterialsAndConsumablesUsed")
     r.omsaetningTal.lokalomkostninger = getLongValue(nl, ns, "PropertyCost")
     r.omsaetningTal.eksterneomkostninger = getLongValue(nl,ns, "ExternalExpenses")

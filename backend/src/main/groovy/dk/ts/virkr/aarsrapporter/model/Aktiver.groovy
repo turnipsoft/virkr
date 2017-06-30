@@ -7,8 +7,12 @@ import dk.ts.virkr.aarsrapporter.db.Regnskabsdata
  */
 class Aktiver extends ModelBase {
 
-  public static Aktiver from(Regnskabsdata rd) {
+  static Aktiver from(Regnskabsdata rd) {
     Aktiver aktiver = new Aktiver()
     return aktiver
+  }
+
+  void berig(Regnskabsdata rd) {
+
   }
 }
