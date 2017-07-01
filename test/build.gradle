@@ -1,29 +1,76 @@
-buildscript {
-  repositories {
-    mavenCentral()
-    maven {
-      url "https://plugins.gradle.org/m2/"
-    }
+import org.apache.tools.ant.taskdefs.condition.Os
+
+ext {
+  // The drivers we want to use
+  drivers = ["firefox", "chrome"]
+
+  ext {
+    groovyVersion = '2.4.8'
+    gebVersion = '1.1.1'
+    seleniumVersion = '3.4.0'
+    chromeDriverVersion = '2.29'
+    geckoDriverVersion = '0.16.1'
   }
 }
 
-apply plugin: 'groovy'
-
-jar {
-  baseName = 'virkr'
-  version = '0.0.1'
-}
+apply plugin: "groovy"
+apply plugin: "idea"
+apply from: "gradle/osSpecificDownloads.gradle"
 
 repositories {
   mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
 dependencies {
-  compile "org.codehaus.groovy:groovy-all"
+  // If using Spock, need to depend on geb-spock
+  testCompile "org.gebish:geb-spock:$gebVersion"
+  testCompile("org.spockframework:spock-core:1.0-groovy-2.4") {
+    exclude group: "org.codehaus.groovy"
+  }
+  testCompile "org.codehaus.groovy:groovy-all:$groovyVersion"
 
-  testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+  // If using JUnit, need to depend on geb-junit (3 or 4)
+  testCompile "org.gebish:geb-junit4:$gebVersion"
+
+  // Drivers
+  testCompile "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
+  testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
 }
 
+drivers.each { driver ->
+  task "${driver}Test"(type: Test) {
+    reports {
+      html.destination = reporting.file("$name/tests")
+      junitXml.destination = file("$buildDir/test-results/$name")
+    }
+
+    outputs.upToDateWhen { false }  // Always run tests
+
+    systemProperty "geb.build.reportsDir", reporting.file("$name/geb")
+    systemProperty "geb.env", driver
+
+    // If you wanted to set the baseUrl in your build…
+    // systemProperty "geb.build.baseUrl", "http://myapp.com"
+  }
+}
+
+firefoxTest {
+  dependsOn unzipGeckoDriver
+  def geckodriverFilename = Os.isFamily(Os.FAMILY_WINDOWS) ? "geckodriver.exe" : "geckodriver"
+  def geckodriverFile = new File(unzipGeckoDriver.outputs.files.singleFile, geckodriverFilename)
+  systemProperty "webdriver.gecko.driver", geckodriverFile.absolutePath
+}
+
+chromeTest {
+  dependsOn unzipChromeDriver
+
+  def chromedriverFilename = Os.isFamily(Os.FAMILY_WINDOWS) ? "chromedriver.exe" : "chromedriver"
+  systemProperty "webdriver.chrome.driver", new File(unzipChromeDriver.outputs.files.singleFile, chromedriverFilename).absolutePath
+}
+
+test {
+  dependsOn drivers.collect { tasks["${it}Test"] }
+  enabled = false
+}
+
+apply from: "gradle/ci.gradle"
