@@ -41,7 +41,7 @@ export default class VirksomhedsDetaljer extends Component {
     return (
       <div className="card">
         <div className="virksomhedsdetaljer">
-          <div className="card-block">
+          <div className="card-block resizable-block">
 
             <div className="row">
               <div className="col col-12 virksomhedsinfo">

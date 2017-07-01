@@ -26,7 +26,7 @@ export default class Regnskabstal extends Component {
         </div>
 
         {/* Fra sm og op kan vise noget mere */}
-        <div className="card-block hidden-xs-down">
+        <div className="card-block hidden-xs-down resizable-block">
           <div className="regnskabsgruppe">
             <Noegletal noegletal={omsaetning.omsaetning} text="Omsætning" b={true} />
             <Noegletal noegletal={omsaetning.vareforbrug} text="Vareforbrug" negative={true} />
