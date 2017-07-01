@@ -1,3 +1,12 @@
 task wrapper(type: Wrapper) {
   gradleVersion = '3.4'
 }
+
+// ignorer test projektet i build, det bygges for sig selv
+gradle.taskGraph.whenReady {
+  gradle.taskGraph.allTasks.each {
+    if(it.project.name == 'test') {
+      it.onlyIf { false }
+    }
+  }
+}
