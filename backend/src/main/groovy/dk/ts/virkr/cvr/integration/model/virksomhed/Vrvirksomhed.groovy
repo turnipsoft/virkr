@@ -17,6 +17,8 @@ class Vrvirksomhed {
   String sidstIndlaest
   String sidstOpdateret
   List<Attribut> attributter
+  List<DeltagerRelation> deltagerRelation
+  List<Produktionsenhed> penheder
 
   String getKapital() {
     return getAttributVaerdi('KAPITAL')
@@ -38,4 +40,23 @@ class Vrvirksomhed {
     return null
   }
 
+  List<Ejer> getEjere() {
+    List<Ejer> ejere = []
+    if (this.deltagerRelation) {
+      this.deltagerRelation.each {
+        Organisation organisation = it.organisationer.find {it.hovedtype=='REGISTER'}
+        if (organisation) {
+          OrganisationsNavn on = organisation.organisationsNavn.find{it.navn=='EJERREGISTER' && it.periode.gyldigTil==null}
+          if (on) {
+            Medlemsdata medlemsdata = Ejer.findAktuelleMedlemsdata(it)
+            if (medlemsdata) {
+              ejere << Ejer.from(it)
+            }
+          }
+        }
+      }
+    }
+
+    return ejere
+  }
 }
