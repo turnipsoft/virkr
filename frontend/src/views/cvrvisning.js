@@ -3,6 +3,7 @@ import Regnskabstal from './regnskabstal';
 import Graf from './graf';
 import VirksomhedsInfo from './virksomhedsinfo';
 import VirksomhedsDetaljer from './virksomhedsdetaljer';
+import Ejere from './ejere'
 
 export default class CvrVisning extends Component {
 
@@ -17,6 +18,7 @@ export default class CvrVisning extends Component {
       <div className="top-margin">
         {this._renderVirksomhedsInfo(cvrdata)}
         {this._renderRegnskaber(regnskaber)}
+        {this._renderEjere(cvrdata)}
         {this._renderCvrData(cvrdata)}
         <br />
       </div>
@@ -25,6 +27,10 @@ export default class CvrVisning extends Component {
 
   _renderVirksomhedsInfo(cvrdata) {
     return (cvrdata !== null) ? <VirksomhedsInfo data={cvrdata} /> : null
+  }
+
+  _renderEjere(cvrdata) {
+    return (cvrdata!==null && cvrdata.ejere!==null) ? <Ejere cvrdata={cvrdata} opdaterCvrNummer={this.props.opdaterCvrNummer} /> : null
   }
 
   _renderCvrData(cvrdata) {

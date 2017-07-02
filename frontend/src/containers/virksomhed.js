@@ -45,10 +45,16 @@ export default class Virksomhed extends Component {
   }
 
   _visSoegeresultat(soegning) {
+    if (!soegning || soegning.length!=8) {
+      return
+    }
     actions.search(soegning);
   }
 
   _opdaterCvrNummer(cvrnr) {
+    if (!cvrnr) {
+      return
+    }
     actions.getVirksomhed(cvrnr);
   }
 
@@ -118,7 +124,7 @@ export default class Virksomhed extends Component {
     return (
       <div className="row">
         <div className="col">
-          <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} cvrdata={cvrdata} />
+          <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} cvrdata={cvrdata} opdaterCvrNummer={this._opdaterCvrNummer}/>
         </div>
       </div>
     )

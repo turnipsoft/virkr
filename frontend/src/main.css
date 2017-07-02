@@ -40,6 +40,10 @@
   margin-bottom: 20px;
 }
 
+.ejercard {
+  margin-bottom: 20px;
+}
+
 @media(max-width: 576px) {
   .soegeresultatcard .card-header {
     font-size: .75rem;

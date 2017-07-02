@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DetaljeLinie from './detaljelinie';
 
 export default class VirksomhedsDetaljer extends Component {
 
@@ -92,24 +93,4 @@ export default class VirksomhedsDetaljer extends Component {
     );
   }
 
-}
-
-class DetaljeLinie extends Component {
-
-  render() {
-
-    if (this.props.value) {
-      return (
-        <div className="row">
-          <div className="col col-4">
-            {this.props.text}:
-          </div>
-          <div className="col col-8">
-            {this.props.value}
-          </div>
-        </div> );
-    }
-
-    return(null);
-  }
 }

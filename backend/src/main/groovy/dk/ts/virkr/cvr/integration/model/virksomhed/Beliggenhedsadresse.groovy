@@ -26,11 +26,17 @@ class Beliggenhedsadresse {
   String lng
 
   public String getVejadresselinie() {
-    return vejnavn + (husnummerFra?" "+ husnummerFra:"") + (husnummerTil?"-"+husnummerTil:"") +
-      (etage?", "+etage:"") + (sidedoer?". "+sidedoer:"")
+    if (vejnavn) {
+      return vejnavn + (husnummerFra ? " " + husnummerFra : "") + (husnummerTil ? "-" + husnummerTil : "") +
+        (etage ? ", " + etage : "") + (sidedoer ? ". " + sidedoer : "")
+    }
+
+    return null
   }
 
   public String getByLinje() {
-    return postnummer + " " + postdistrikt
+    if (postnummer) {
+      return postnummer + " " + postdistrikt
+    }
   }
 }
