@@ -45,14 +45,14 @@ export default class Virksomhed extends Component {
   }
 
   _visSoegeresultat(soegning) {
-    if (!soegning || soegning.length!=8) {
+    if (!soegning) {
       return
     }
     actions.search(soegning);
   }
 
   _opdaterCvrNummer(cvrnr) {
-    if (!cvrnr) {
+    if (!cvrnr || cvrnr.length!=8) {
       return
     }
     actions.getVirksomhed(cvrnr);
