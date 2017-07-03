@@ -1,10 +1,12 @@
 package dk.ts.virkr.services
 
 import dk.ts.virkr.cvr.integration.CvrClient
+import dk.ts.virkr.cvr.integration.model.virksomhed.EjerGraf
 import dk.ts.virkr.cvr.integration.model.virksomhed.Vrvirksomhed
 import dk.ts.virkr.maps.integration.MapService
 import dk.ts.virkr.maps.model.GeoResponse
 import dk.ts.virkr.maps.model.GeoResult
+import dk.ts.virkr.services.internal.CvrInternalService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.PathVariable
@@ -26,6 +28,9 @@ class CvrService {
   @Autowired
   MapService mapService
 
+  @Autowired
+  CvrInternalService cvrInternalService
+
   @RequestMapping(value = "/{cvrnummer}", method = RequestMethod.GET)
   public Vrvirksomhed regnskab(@PathVariable String cvrnummer) {
     Vrvirksomhed vrvirksomhed =  cvrClient.hentVirksomhed(cvrnummer)
@@ -37,6 +42,12 @@ class CvrService {
     navn = navn.replace(" ","%20")
     List<Vrvirksomhed> vrvirksomheder =  cvrClient.soeg(navn)
     return vrvirksomheder
+  }
+
+  @RequestMapping(value = "/graf/{cvrnummer}", method = RequestMethod.GET)
+  public EjerGraf graf(@PathVariable String cvrnummer) {
+    EjerGraf ejerGraf = cvrInternalService.hentEjergraf(cvrnummer)
+    return ejerGraf
   }
 
 }
