@@ -13,7 +13,7 @@ export default class Ejere extends React.Component {
             <div className="col-12"><h2>Ejere</h2></div>
           </div>
           {ejere.map((ejer) => {
-            return (<Ejer key={ejer.forretningsnoegle} ejer={ejer} opdaterCvrNummer={this.props.opdaterCvrNummer} />)
+            return (<Ejer key={ejer.enhedsnummer} ejer={ejer} opdaterCvrNummer={this.props.opdaterCvrNummer} />)
           })}
         </div>
       )
