@@ -92,7 +92,7 @@ export default class EjerGraf extends React.Component {
 
     var events = {
       click: function(event) {
-        var { nodes, edges } = event;
+        var { nodes } = event;
 
         if (nodes.length==1) {
           vv(nodes[0]);
@@ -106,17 +106,13 @@ export default class EjerGraf extends React.Component {
 
     return(
       <div className="ejergraf">
+        <br/>
         <div className="row">
           <div className="col-12 section-header">
             <span className="fa fa-sitemap" /> &nbsp; Ejergraf
           </div>
         </div>
         <br/>
-        <div className="row">
-          <div className="col">
-            <h2>Ejergraf</h2>
-          </div>
-        </div>
         <div className="row">
           <div className="col ejergrafcol">
             <Graph graph={graph} options={options} events={events} style={styles}/>

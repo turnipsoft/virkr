@@ -32,15 +32,15 @@ export default class Virksomhed extends Component {
 
   componentDidMount() {
     searchstore.on('change', () => {
-      this.setState({ soegeresultat: searchstore.getState() })
+      this.setState({ soegeresultat: searchstore.getState(), ejergraf: null })
     });
 
     noegletalstore.on('change', () => {
-      this.setState({ regnskaber: noegletalstore.getState() })
+      this.setState({ regnskaber: noegletalstore.getState(), ejergraf: null })
     });
 
     cvrstore.on('change', () => {
-      this.setState({ cvrdata: cvrstore.getState() })
+      this.setState({ cvrdata: cvrstore.getState(), ejergraf: null })
     });
 
     spinnerstore.on('change', () => {
