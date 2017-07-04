@@ -1,6 +1,7 @@
 package dk.ts.virkr.services.internal
 
 import dk.ts.virkr.cvr.integration.CvrClient
+import dk.ts.virkr.cvr.integration.model.virksomhed.Ejer
 import dk.ts.virkr.cvr.integration.model.virksomhed.EjerAfVirksomhed
 import dk.ts.virkr.cvr.integration.model.virksomhed.EjerGraf
 import dk.ts.virkr.cvr.integration.model.virksomhed.EjerRelation
@@ -21,9 +22,20 @@ class CvrInternalService {
   EjerGraf hentEjergraf(String cvrnummer) {
     EjerGraf ejerGraf = new EjerGraf()
     Vrvirksomhed vrvirksomhed = cvrClient.hentVirksomhed(cvrnummer)
+
     EjerAfVirksomhed ejerAfVirksomhed = new EjerAfVirksomhed()
     ejerAfVirksomhed.cvrnummer = vrvirksomhed.cvrNummer
     ejerAfVirksomhed.virksomhedsnavn = vrvirksomhed.virksomhedMetadata.nyesteNavn.navn
+    ejerAfVirksomhed.ejer = new Ejer()
+
+    // Pseudo ejer for at have øverste niveau med ud, blive muligvis recactored så man mere eksplicit sætter roden
+    ejerAfVirksomhed.ejer.navn = ejerAfVirksomhed.virksomhedsnavn
+    ejerAfVirksomhed.ejer.forretningsnoegle = ejerAfVirksomhed.cvrnummer
+    ejerAfVirksomhed.ejer.enhedsnummer = vrvirksomhed.enhedsNummer
+    ejerAfVirksomhed.ejer.ejertype = EjerType.ROD
+
+    ejerGraf.ejere << ejerAfVirksomhed
+
     berigEjergraf(vrvirksomhed, ejerGraf, ejerAfVirksomhed)
 
     return ejerGraf

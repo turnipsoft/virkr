@@ -21,4 +21,11 @@ export function noegletalResponse(response) {
   dispatcher.dispatch({type: 'NOEGLETAL', response });
 }
 
+export function getEjerGraf(cvr) {
+  dispatcher.dispatch({ type: 'GET_EJERGRAF', cvr });
+}
+
+export function ejerGrafResponse(response) {
+  dispatcher.dispatch({ type: 'EJERGRAF', response });
+}
 

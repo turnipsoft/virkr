@@ -10,6 +10,10 @@ export default class APIHelper {
     return this._call('http://virkr.dk:9092/cvr/' + cvrnummer)
   }
 
+  static hentEjerGraf(cvrnummer) {
+    return this._call('http://virkr.dk:9092/cvr/graf/' + cvrnummer)
+  }
+
   static soeg(soegning) {
     return this._call('http://virkr.dk:9092/cvr/search/' + soegning)
   }

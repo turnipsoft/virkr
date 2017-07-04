@@ -5,6 +5,7 @@ package dk.ts.virkr.cvr.integration.model.virksomhed
 class Vrvirksomhed {
 
   String cvrNummer
+  String enhedsNummer
   boolean reklamebeskyttet
   List<Navn> navne
   List<Beliggenhedsadresse> beliggenhedsadresse

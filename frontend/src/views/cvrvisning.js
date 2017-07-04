@@ -30,7 +30,7 @@ export default class CvrVisning extends Component {
   }
 
   _renderEjere(cvrdata) {
-    return (cvrdata!==null && cvrdata.ejere!==null) ? <Ejere cvrdata={cvrdata} opdaterCvrNummer={this.props.opdaterCvrNummer} /> : null
+    return (cvrdata!==null && cvrdata.ejere!==null) ? <Ejere cvrdata={cvrdata} opdaterCvrNummer={this.props.opdaterCvrNummer} visEjerGraf={this.props.visEjerGraf}/> : null
   }
 
   _renderCvrData(cvrdata) {
@@ -45,6 +45,12 @@ export default class CvrVisning extends Component {
     if (regnskaber.length > 0) {
       return (
         <div>
+          <div className="row">
+            <div className="col-12 section-header">
+              <span className="fa fa-file-pdf-o" /> &nbsp; Regnskaber
+            </div>
+          </div>
+          <br/>
           <Graf regnskaber={regnskaber} />
           <br />
           <br />

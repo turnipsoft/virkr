@@ -13,7 +13,7 @@ const VirksomhedsInfo = (props) => {
 
   return (
     <div className="row justify-content-center">
-      <div className="col">
+      <div className="col justify-content-center">
         <p>
           <strong>{navn}</strong>
           <br/>

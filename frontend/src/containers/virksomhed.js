@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import CvrSoegebox from '../views/cvrsoegebox';
 import CvrVisning from '../views/cvrvisning';
 import Soegeresultat from '../views/soegeresultat';
+import EjerGraf from '../views/ejergraf'
 
 import cvrstore from '../stores/cvrstore';
 import searchstore from '../stores/searchstore';
 import noegletalstore from '../stores/noegletalstore';
 import spinnerstore from '../stores/spinnerstore';
+import ejergrafstore from '../stores/ejergrafstore';
 import * as actions from '../actions';
 
 export default class Virksomhed extends Component {
@@ -16,13 +18,15 @@ export default class Virksomhed extends Component {
 
     this._opdaterCvrNummer = this._opdaterCvrNummer.bind(this);
     this._visSoegeresultat = this._visSoegeresultat.bind(this);
+    this._visEjerGraf = this._visEjerGraf.bind(this);
 
     this.state = {
       visSpinner: spinnerstore.getState(),
       cvrnummer: '',
       regnskaber: noegletalstore.getState(),
       cvrdata: cvrstore.getState(),
-      soegeresultat: searchstore.getState()
+      soegeresultat: searchstore.getState(),
+      ejergraf: ejergrafstore.getState()
     };
   }
 
@@ -42,6 +46,10 @@ export default class Virksomhed extends Component {
     spinnerstore.on('change', () => {
       this.setState({ visSpinner: spinnerstore.getState() })
     });
+
+    ejergrafstore.on('change', () => {
+      this.setState( { ejergraf: ejergrafstore.getState(), cvrdata: null, regnskaber: null, soegeresultat: null })
+    })
   }
 
   _visSoegeresultat(soegning) {
@@ -58,8 +66,15 @@ export default class Virksomhed extends Component {
     actions.getVirksomhed(cvrnr);
   }
 
+  _visEjerGraf(cvrnr) {
+    if (!cvrnr || cvrnr.length!=8) {
+      return
+    }
+    actions.getEjerGraf(cvrnr);
+  }
+
   render() {
-    const { cvrnummer, regnskaber, visSpinner, cvrdata, soegeresultat } = this.state;
+    const { cvrnummer, regnskaber, visSpinner, cvrdata, soegeresultat, ejergraf } = this.state;
 
     if (visSpinner) {
       return (
@@ -98,6 +113,7 @@ export default class Virksomhed extends Component {
 
         {this._renderCvrVisning(cvrnummer, cvrdata, regnskaber)}
         {this._renderSoegeresultat(soegeresultat)}
+        {this._renderEjerGraf(cvrnummer, ejergraf)}
 
       </div>);
   }
@@ -124,7 +140,22 @@ export default class Virksomhed extends Component {
     return (
       <div className="row">
         <div className="col">
-          <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} cvrdata={cvrdata} opdaterCvrNummer={this._opdaterCvrNummer}/>
+          <CvrVisning cvrnummer={cvrnummer} regnskaber={regnskaber} cvrdata={cvrdata}
+                      opdaterCvrNummer={this._opdaterCvrNummer} visEjerGraf={this._visEjerGraf}/>
+        </div>
+      </div>
+    )
+  }
+
+  _renderEjerGraf(cvrnummer, ejergraf) {
+    if (ejergraf==null) {
+      return null;
+    }
+
+    return (
+      <div className="row">
+        <div className="col">
+          <EjerGraf cvrnummer={cvrnummer} ejergraf={ejergraf} opdaterCvrNummer={this._opdaterCvrNummer} />
         </div>
       </div>
     )

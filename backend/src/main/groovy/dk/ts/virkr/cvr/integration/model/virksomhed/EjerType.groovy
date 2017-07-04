@@ -6,5 +6,6 @@ package dk.ts.virkr.cvr.integration.model.virksomhed
 enum EjerType {
   VIRKSOMHED,
   PERSON,
-  ANDEN_DELTAGER
+  ANDEN_DELTAGER,
+  ROD
 }

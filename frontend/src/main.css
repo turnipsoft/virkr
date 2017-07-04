@@ -36,6 +36,18 @@
   text-align: center;
 }
 
+.section-header a {
+  text-decoration: none;
+}
+
+.section-header a:hover {
+  text-decoration: none;
+}
+
+.section-header a:visited {
+  text-decoration: none;
+}
+
 .soegeresultatcard {
   margin-bottom: 20px;
 }
@@ -52,6 +64,18 @@
   .virksomhedsdetaljer {
     font-size: .75rem;
   }
+
+  .ejergrafcol {
+    height: 300px;
+  }
+}
+
+.section-header {
+  background-color: azure;
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  border: 1px solid lightgrey;
 }
 
 @media(min-width: 1000px) {
@@ -59,6 +83,12 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .ejergrafcol {
+    width: 100%;
+    height: 800px;
+    border: 1px;
   }
 }
 
@@ -110,4 +140,8 @@ table tr td:last-child {
 
 .virksomhed {
   margin-top: 30px;
+}
+
+.justify-content-center {
+  text-align: center;
 }
