@@ -54,7 +54,7 @@ export default class EjerGraf extends React.Component {
       edges: {
         color: "#000000"
       },
-      height: '800px',
+      height: '100%',
       width: '100%',
       autoResize: true,
       groups: {
