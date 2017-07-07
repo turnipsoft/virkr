@@ -7,6 +7,8 @@ import dk.ts.virkr.cvr.integration.model.virksomhed.EjerGraf
 import dk.ts.virkr.cvr.integration.model.virksomhed.EjerRelation
 import dk.ts.virkr.cvr.integration.model.virksomhed.EjerType
 import dk.ts.virkr.cvr.integration.model.virksomhed.Vrvirksomhed
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Service
  */
 @Service
 class CvrInternalService {
+
+  Logger logger = LoggerFactory.getLogger(CvrInternalService.class)
 
   @Autowired
   CvrClient cvrClient
@@ -43,7 +47,9 @@ class CvrInternalService {
 
   void berigEjergraf(Vrvirksomhed vrvirksomhed, EjerGraf ejerGraf, EjerAfVirksomhed virksomhed) {
 
+    logger.info("Beriger ejergraf med virksomheden : $vrvirksomhed.virksomhedMetadata.nyesteNavn.navn")
     vrvirksomhed.ejere.each { ejer->
+      logger.info("Tilføjer ejer : $ejer.navn")
       EjerAfVirksomhed ejerAfVirksomhed = new EjerAfVirksomhed()
       ejerAfVirksomhed.cvrnummer = vrvirksomhed.cvrNummer
       ejerAfVirksomhed.virksomhedsnavn = vrvirksomhed.virksomhedMetadata.nyesteNavn.navn
@@ -55,7 +61,7 @@ class CvrInternalService {
       ejerGraf.ejerRelationer << ejerRelation
       if (ejer.ejertype != EjerType.PERSON) {
         Vrvirksomhed v = cvrClient.hentVirksomhed(ejer.forretningsnoegle)
-        if (v) {
+        if (v && v.cvrNummer != vrvirksomhed.cvrNummer) {
           berigEjergraf(v, ejerGraf, ejerAfVirksomhed)
         }
       }
