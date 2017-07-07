@@ -12,12 +12,12 @@ import groovy.xml.Namespace
  */
 class RegnskabXmlParser {
 
-  Virksomhedsdata hentVirksomhedsdataFraRegnskab(String xml) {
+  Virksomhedsdata hentVirksomhedsdataFraRegnskab(String xml, RegnskabData regnskabData) {
     XmlParser parser = new XmlParser(false, false)
     Node result = parser.parseText(xml)
     Namespace ns = hentNamespace(xml)
 
-    String contextRef = hentContextRef(result, ns)
+    String contextRef = hentContextRef(result, ns, regnskabData)
     // hent de relevante felter for dette regnskabsår fra contexten.
     NodeList nl = result.findAll {
       it.attribute('contextRef') == contextRef
@@ -43,7 +43,9 @@ class RegnskabXmlParser {
     Node result = parser.parseText(xml)
     Namespace ns = hentNamespace(xml)
 
-    String contextRef = hentContextRef(result, ns)
+    String contextRef = hentContextRef(result, ns, data)
+
+    String assetsRef = null
 
     // IFRS regnskaber vil have contexten som duration_CY_C_only hvor C'et står for consolidated og altså en context
     // der dækker en hel gruppe, men vi er ikke interesserede i hele gruppens nøgle tal eller måsker er man
@@ -187,13 +189,30 @@ class RegnskabXmlParser {
     return null
   }
 
-  String hentContextRef(Node xmlDokument, Namespace ns) {
+  Integer extractInteger(String s) {
+    String i = ""
+    s.chars.each {
+      if (it.toString().isNumber()) {
+        i+=it.toString()
+      }
+
+    }
+
+    if (i.length()==0) {
+      return 0
+    }
+
+    return i.toInteger()
+  }
+
+  String hentContextRef(Node xmlDokument, Namespace ns, RegnskabData regnskabData) {
     if (ns.prefix=='fsa') {
-      // så er det noget tricky at finde contexten forsøger med revenue
-      NodeList n = xmlDokument[ns.Revenue]
+      // så er det noget tricky at finde contexten forsøger med ProfitLoss da den altid er til stede og entydigt svarer til Årets resultat som er krævet i et regnskab
+      NodeList n = xmlDokument[ns.ProfitLoss]
 
       if (n!=null && n.size()>0) {
-        Node node = n.get(0)
+        // som regel altid den mindste contextRef
+        Node node = n.min {extractInteger(it.attribute("contextRef"))}
         return node.attribute("contextRef")
       }
     }
