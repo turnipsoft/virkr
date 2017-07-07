@@ -80,7 +80,7 @@ class RegnskabXmlParserSpec extends Specification {
     regnskabData.balance.passiver.egenkapital == 31210704l
 
     when:
-    Virksomhedsdata virksomhedsdata = regnskabXmlParser.hentVirksomhedsdataFraRegnskab(xml)
+    Virksomhedsdata virksomhedsdata = regnskabXmlParser.hentVirksomhedsdataFraRegnskab(xml, regnskabData)
 
     then:
     virksomhedsdata
