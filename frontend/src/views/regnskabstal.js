@@ -33,7 +33,7 @@ export default class Regnskabstal extends Component {
             <Noegletal noegletal={omsaetning.driftsindtaegter} text="Andre driftsindtægter" />
             <Noegletal noegletal={omsaetning.eksterneomkostninger} text="Eksterne omkostninger"
               negative={true} />
-            <Noegletal noegletal={omsaetning.andreeksterneOmkostninger} text="Andre eksterne omkostninger"
+            <Noegletal noegletal={omsaetning.andreeksterneomkostninger} text="Andre eksterne omkostninger"
               negative={true} />
             <Noegletal noegletal={omsaetning.variableomkostninger} text="Variable omkostninger"
               negative={true} />
