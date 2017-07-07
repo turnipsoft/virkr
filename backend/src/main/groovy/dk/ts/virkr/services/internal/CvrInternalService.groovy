@@ -49,6 +49,10 @@ class CvrInternalService {
 
     logger.info("Beriger ejergraf med virksomheden : $vrvirksomhed.virksomhedMetadata.nyesteNavn.navn")
     vrvirksomhed.ejere.each { ejer->
+      if (ejer.forretningsnoegle && ejer.forretningsnoegle == vrvirksomhed.cvrNummer) {
+        // skip den findes jo givetvis allerede
+        return
+      }
       logger.info("Tilføjer ejer : $ejer.navn")
       EjerAfVirksomhed ejerAfVirksomhed = new EjerAfVirksomhed()
       ejerAfVirksomhed.cvrnummer = vrvirksomhed.cvrNummer
