@@ -52,15 +52,40 @@
   margin-bottom: 20px;
 }
 
+/*
+  I det følgende låner vi lidt ideer fra Material Design: Cards får en dropshadow for at indikere at man
+  kan interagere med dem.
+
+  På desktop (>=992px) sætter vi en dropshadow på ved hover
+  På mobile (<992px) understøttes hover ikke, så der har alle cards dropshadow
+
+  Når et kort vælges fjerner vi skyggen og forskyder kortet tilsvarende for at give en slags klik effekt
+*/
+.soegeresultatcard:active {
+  box-shadow: none;
+  position:relative;
+  left: 8px;
+  top: 8px;
+}
+
+@media(min-width: 992px) {
+  .soegeresultatcard:hover {
+    box-shadow: 8px 8px 3px lightgray;
+  }
+}
+
+@media(max-width: 991px) {
+  .soegeresultatcard {
+    margin-bottom: 20px;
+    box-shadow: 8px 8px 3px lightgray;
+  }
+}
+
 .ejercard {
   margin-bottom: 20px;
 }
 
 @media(max-width: 576px) {
-  .soegeresultatcard .card-header {
-    font-size: .75rem;
-  }
-
   .virksomhedsdetaljer {
     font-size: .75rem;
   }
