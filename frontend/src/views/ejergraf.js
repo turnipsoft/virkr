@@ -1,27 +1,40 @@
 import React, { Component } from 'react';
-import Graph from 'react-graph-vis'
+import Graph from 'react-graph-vis';
+import Modal from './modal.js';
+import EjerVisning from './ejervisning';
 
 export default class EjerGraf extends React.Component {
+
+  openModal() {
+    this.setState({ isModalOpen: true })
+  }
+
+  closeModal() {
+    this.setState({ isModalOpen: false, specifikEjer:null})
+  }
 
   constructor(props) {
     super(props);
     this.state = {};
 
     var map = new Map();
+    var allMap = new Map();
 
     this.props.ejergraf.ejere.forEach((ejer) =>{
       map.set(ejer.ejer.enhedsnummer, ejer.ejer.forretningsnoegle);
+      allMap.set(ejer.ejer.enhedsnummer, ejer);
     });
 
-    this.state = {ejerMap: map};
+    this.state = {ejerMap: map, ejerAllMap: allMap, isModalOpen: false};
     this._visVirksomhed = this._visVirksomhed.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   _visVirksomhed(enhedsnr) {
-    const cvrnummer = this.state.ejerMap.get(enhedsnr);
-    if (cvrnummer) {
-      this.props.opdaterCvrNummer(cvrnummer);
-    }
+    const ejer = this.state.ejerAllMap.get(enhedsnr).ejer;
+    this.setState({specifikEjer: ejer});
+    this.openModal();
   }
 
   render() {
@@ -57,6 +70,9 @@ export default class EjerGraf extends React.Component {
       height: '100%',
       width: '100%',
       autoResize: true,
+      interaction: {
+        hover:true
+      },
       groups: {
         virksomheder: {
           shape: 'icon',
@@ -114,10 +130,22 @@ export default class EjerGraf extends React.Component {
         </div>
         <br/>
         <div className="row">
+          <div className="col-2" />
+          <div className="col-8">
+            Klik på ejerne herunder for at se detaljer om ejeren og dennes direkte og indirekte andele i virksomhederne
+          </div>
+          <div className="col-2" />
+
+        </div>
+        <br/>
+        <div className="row">
           <div className="col ejergrafcol">
             <Graph graph={graph} options={options} events={events} style={styles}/>
           </div>
         </div>
+        <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} className="card ejercard" width="70%">
+          <EjerVisning ejer={this.state.specifikEjer} opdaterCvrNummer={this.props.opdaterCvrNummer}/>
+        </Modal>
       </div>
     );
   }

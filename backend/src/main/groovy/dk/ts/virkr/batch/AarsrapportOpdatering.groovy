@@ -38,7 +38,7 @@ class AarsrapportOpdatering {
     regnskaber.each { regnskab ->
       String cvrnummer = regnskab.cvrnummer
       // hent regnskab fra offentliggoerelse
-      List<RegnskabData> regnskaberFraOffentliggoerelsen = regnskabInternalService.hentRegskaberFraOffentliggoerlse(cvrnummer)
+      List<RegnskabData> regnskaberFraOffentliggoerelsen = regnskabInternalService.hentRegnskaberFraOffentliggoerelse(cvrnummer)
       // find alle hvis sidsteopdatering er nyere end dette regnskabs sidsteopdatering
       List<RegnskabData> nyere = regnskaberFraOffentliggoerelsen.findAll {
         Utils.toDateTime(it.sidsteOpdatering).isAfter(regnskab.sidsteopdatering)

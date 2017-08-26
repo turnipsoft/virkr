@@ -15,6 +15,8 @@ class Ejer {
   String stemmeprocentInterval
   String kapitalklasse
 
+  List<ReelEjerandel> reelleEjerandele = []
+
   static Ejer from(DeltagerRelation deltagerRelation) {
     Ejer ejer = new Ejer()
     ejer.navn = deltagerRelation.deltager.navne.find {it.periode.gyldigTil==null}?.navn
@@ -99,4 +101,6 @@ class Ejer {
 
     return "100%"
   }
+
+
 }

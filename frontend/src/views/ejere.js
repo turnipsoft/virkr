@@ -14,7 +14,7 @@ export default class Ejere extends React.Component {
         <div className="ejere">
           <div className="row">
             <div className="col-12 section-header">
-              <a href="#" title="Vis komplet ejergraf"><span className="fa fa-sitemap" onClick={ () => visEjerGraf(cvrdata.cvrNummer)} /></a> &nbsp; Ejere
+              <a href="#" title="Vis komplet ejergraf"><span className="fa fa-sitemap" onClick={ () => visEjerGraf(cvrdata.cvrNummer)} /></a> &nbsp; Ejere <a href="#" title="Vis komplet ejergraf" onClick={ () => visEjerGraf(cvrdata.cvrNummer)} >(Se komplet ejergraf)</a>
             </div>
           </div>
           <br/>

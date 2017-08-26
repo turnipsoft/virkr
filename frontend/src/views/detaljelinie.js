@@ -6,6 +6,14 @@ export default class DetaljeLinie extends Component {
 
     const detalje = this.props.detalje? " ("+this.props.detalje.toLowerCase()+")" : ""
 
+    var val;
+
+    if (this.props.link) {
+      val = <a href="#" onClick={ () => this.props.link(this.props.linkKey)}>{this.props.value}</a>
+    } else {
+      val = this.props.value;
+    }
+
     if (this.props.value) {
       return (
         <div className="row">
@@ -13,7 +21,8 @@ export default class DetaljeLinie extends Component {
             {this.props.text}:
           </div>
           <div className="col col-8">
-            {this.props.value} <i>{detalje}</i>
+            {val}
+            <i>{detalje}</i>
           </div>
         </div> );
     }

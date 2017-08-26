@@ -57,7 +57,7 @@ class RegnskabInternalService {
     if (rd) {
       response.regnskabsdata = rd
     } else {
-      response.regnskabsdata = hentRegskaberFraOffentliggoerlse(cvrnummer)
+      response.regnskabsdata = hentRegnskaberFraOffentliggoerelse(cvrnummer)
       // vi havde dem ikke så vi gemmer dem lige lokalt
       store(response.regnskabsdata)
       response.regnskabsdata.each {
@@ -82,7 +82,7 @@ class RegnskabInternalService {
     return response
   }
 
-  List<RegnskabData> hentRegskaberFraOffentliggoerlse(String cvrnummer) {
+  List<RegnskabData> hentRegnskaberFraOffentliggoerelse(String cvrnummer) {
     OffentliggoerelserClient oc = new OffentliggoerelserClient()
     RegnskabXmlClient rc = new RegnskabXmlClient()
 

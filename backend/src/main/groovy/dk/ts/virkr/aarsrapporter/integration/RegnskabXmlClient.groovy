@@ -42,7 +42,7 @@ class RegnskabXmlClient {
           data.slutdato = offentliggoerelse.regnskab.regnskabsperiode.slutDato
           data.sidsteopdatering = sdf.format(offentliggoerelse.sidstOpdateret)
           data = parser.parseOgBerig(data, unzippedData)
-          data.virksomhedsdata = parser.hentVirksomhedsdataFraRegnskab(unzippedData)
+          data.virksomhedsdata = parser.hentVirksomhedsdataFraRegnskab(unzippedData, data)
           regnskabdata << data
         }
       }
