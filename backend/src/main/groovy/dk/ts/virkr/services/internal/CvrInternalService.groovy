@@ -3,6 +3,9 @@ package dk.ts.virkr.services.internal
 import dk.ts.virkr.cvr.integration.CvrClient
 import dk.ts.virkr.cvr.integration.model.deltager.VirksomhedSummariskRelation
 import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
+import dk.ts.virkr.cvr.integration.model.virksomhed.DeltagerRelation
+import dk.ts.virkr.cvr.integration.model.virksomhed.Medlemsdata
+import dk.ts.virkr.cvr.integration.model.virksomhed.Organisation
 import dk.ts.virkr.services.model.Ejer
 import dk.ts.virkr.services.model.EjerAfVirksomhed
 import dk.ts.virkr.services.model.EjerGraf
@@ -189,6 +192,16 @@ class CvrInternalService {
 
     deltagerVirksomhed.roller = roller.join(", ")
 
+    // ejerandele
+    List<Medlemsdata> ejerdata = findAktuelleEjerMedlemsdata(virksomhedSummariskRelation.organisationer)
+    if (ejerdata) {
+      Medlemsdata e = ejerdata[0]
+      deltagerVirksomhed.ejerandel = Ejer.findAktuelVaerdi(e, "EJERANDEL_PROCENT")
+      deltagerVirksomhed.stemmeret = Ejer.findAktuelVaerdi(e, "EJERANDEL_STEMMERET_PROCENT")
+      deltagerVirksomhed.ejerandeliprocent = Ejer.interval(deltagerVirksomhed.ejerandel)
+      deltagerVirksomhed.stemmeretiprocent = Ejer.interval(deltagerVirksomhed.stemmeret)
+    }
+
     return deltagerVirksomhed
 
   }
@@ -206,4 +219,12 @@ class CvrInternalService {
     }.findAll {it != 'Reelle ejere'}
   }
 
+  List<Medlemsdata> findAktuelleEjerMedlemsdata(List<Organisation> organisationer) {
+    Organisation ejerOrganisation = organisationer.find {it.organisationsNavn.find{it.periode.gyldigTil==null}.navn.toLowerCase() == 'reelle ejere'}
+    if (ejerOrganisation) {
+      return ejerOrganisation.medlemsData
+    }
+
+    return null
+  }
 }

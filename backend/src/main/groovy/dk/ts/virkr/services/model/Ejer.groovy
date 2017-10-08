@@ -48,9 +48,13 @@ class Ejer {
 
   }
 
-  public static Medlemsdata findAktuelleMedlemsdata(DeltagerRelation deltagerRelation) {
+  static Medlemsdata findAktuelleMedlemsdata(DeltagerRelation deltagerRelation) {
     Organisation ejerOrganisation = deltagerRelation.organisationer.find {it.organisationsNavn.find{it.periode.gyldigTil==null}.navn == 'EJERREGISTER'}
-    Medlemsdata medlemsdata = ejerOrganisation.medlemsData.find{ it.attributter.find{it.type == 'EJERANDEL_MEDDELELSE_DATO'}.vaerdier.find{it.periode.gyldigTil==null}}
+    return findAktuelMedlemsdataFraOrganisation(ejerOrganisation);
+  }
+
+  static Medlemsdata findAktuelMedlemsdataFraOrganisation(Organisation organisation) {
+    Medlemsdata medlemsdata = organisation.medlemsData.find{ it.attributter.find{it.type == 'EJERANDEL_MEDDELELSE_DATO'}.vaerdier.find{it.periode.gyldigTil==null}}
     return  medlemsdata
   }
 

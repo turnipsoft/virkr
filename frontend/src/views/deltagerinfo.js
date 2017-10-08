@@ -6,7 +6,7 @@ const DeltagerInfo = (props) => {
   const navn = deltager.navn;
 
   const {
-    vejadresselinie,
+    adresselinie,
     bylinie,
     postnr
   } = deltager;
@@ -16,7 +16,7 @@ const DeltagerInfo = (props) => {
       <div className="col justify-content-center">
 
         <p><strong>{navn}</strong></p>
-          {vejadresselinie?<div>{vejadresselinie}</div>:null}
+          {adresselinie?<div>{adresselinie}</div>:null}
           {postnr && postnr!='0'?<div>{bylinie}</div>:null}
 
       </div>

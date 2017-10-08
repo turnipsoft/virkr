@@ -8,4 +8,8 @@ class DeltagerVirksomhed {
   String enhedsNummer
   String navn
   String roller
+  String ejerandel
+  String ejerandeliprocent
+  String stemmeret
+  String stemmeretiprocent
 }

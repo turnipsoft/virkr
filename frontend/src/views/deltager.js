@@ -14,6 +14,7 @@ export default class DeltagerVisning extends Component {
     return (
       <div className="top-margin">
         {this._renderDeltagerInfo(deltager)}
+        <br/>
         {this._renderAssocieredeVirksomheder(deltager)}
       </div>
     )

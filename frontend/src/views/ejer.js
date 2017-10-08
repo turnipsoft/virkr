@@ -3,11 +3,15 @@ import DetaljeLinie from './detaljelinie';
 
 export default class Ejer extends React.Component {
 
+  constructor(props) {
+    super(props)
+  }
+
   render() {
-    const {ejer, opdaterCvrNummer} = this.props;
+    const {ejer} = this.props;
 
     return(
-      <div className="card ejercard" onClick={ () => opdaterCvrNummer(this.props.ejer.forretningsnoegle) }>
+      <div className="card ejercard" onClick={ () => this._opdater(this.props.ejer) }>
         <div className="card-block resizable-block">
           <DetaljeLinie text="Navn" value={ejer.navn} detalje={ejer.ejertype} />
           <DetaljeLinie text="CVR-Nummer" value={ejer.forretningsnoegle} />
@@ -18,6 +22,14 @@ export default class Ejer extends React.Component {
       </div>
     )
 
+  }
+
+  _opdater(ejer) {
+    if (ejer.ejertype==="PERSON") {
+      this.props.opdaterDeltager(ejer.enhedsnummer);
+    } else {
+      this.props.opdaterCvrNummer(ejer.forretningsnoegle);
+    }
   }
 
 }

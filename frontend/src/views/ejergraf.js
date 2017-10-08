@@ -144,7 +144,8 @@ export default class EjerGraf extends React.Component {
           </div>
         </div>
         <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} className="card ejercard" width="70%">
-          <EjerVisning ejer={this.state.specifikEjer} opdaterCvrNummer={this.props.opdaterCvrNummer}/>
+          <EjerVisning ejer={this.state.specifikEjer} opdaterCvrNummer={this.props.opdaterCvrNummer}
+                       opdaterDeltager={this.props.opdaterDeltager} />
         </Modal>
       </div>
     );

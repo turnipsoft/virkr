@@ -30,7 +30,9 @@ export default class CvrVisning extends Component {
   }
 
   _renderEjere(cvrdata) {
-    return (cvrdata!==null && cvrdata.ejere!==null) ? <Ejere cvrdata={cvrdata} opdaterCvrNummer={this.props.opdaterCvrNummer} visEjerGraf={this.props.visEjerGraf}/> : null
+    return (cvrdata!==null && cvrdata.ejere!==null) ? <Ejere cvrdata={cvrdata} opdaterCvrNummer={this.props.opdaterCvrNummer}
+                                                             opdaterDeltager={this.props.opdaterDeltager}
+                                                             visEjerGraf={this.props.visEjerGraf}/> : null
   }
 
   _renderCvrData(cvrdata) {
