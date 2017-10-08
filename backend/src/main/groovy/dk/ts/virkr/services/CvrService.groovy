@@ -40,9 +40,10 @@ class CvrService {
   }
 
   @RequestMapping(value ="/deltager/{enhedsnummer}", method = RequestMethod.GET)
-  public Vrdeltagerperson hentDeltager(@PathVariable enhedsnummer) {
+  public DeltagerSoegeresultat hentDeltager(@PathVariable enhedsnummer) {
     Vrdeltagerperson vrdeltagerperson = cvrClient.hentDeltager(enhedsnummer)
-    return vrdeltagerperson
+    DeltagerSoegeresultat deltagerSoegeresultat = cvrInternalService.tilDeltager(vrdeltagerperson)
+    return deltagerSoegeresultat
   }
 
   @RequestMapping(value = "/search/{navn}", method = RequestMethod.GET)

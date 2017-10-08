@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CvrSoegebox from '../views/cvrsoegebox';
 import CvrVisning from '../views/cvrvisning';
+import DeltagerVisning from '../views/deltager';
 import Soegeresultat from '../views/soegeresultat';
 import EjerGraf from '../views/ejergraf'
 
@@ -9,6 +10,7 @@ import searchstore from '../stores/searchstore';
 import noegletalstore from '../stores/noegletalstore';
 import spinnerstore from '../stores/spinnerstore';
 import ejergrafstore from '../stores/ejergrafstore';
+import deltagerstore from '../stores/deltagerstore';
 import * as actions from '../actions';
 
 export default class Virksomhed extends Component {
@@ -19,12 +21,14 @@ export default class Virksomhed extends Component {
     this._opdaterCvrNummer = this._opdaterCvrNummer.bind(this);
     this._visSoegeresultat = this._visSoegeresultat.bind(this);
     this._visEjerGraf = this._visEjerGraf.bind(this);
+    this._opdaterDeltager = this._opdaterDeltager.bind(this);
 
     this.state = {
       visSpinner: spinnerstore.getState(),
       cvrnummer: '',
       regnskaber: noegletalstore.getState(),
       cvrdata: cvrstore.getState(),
+      deltager: deltagerstore.getState(),
       soegeresultat: searchstore.getState(),
       ejergraf: ejergrafstore.getState()
     };
@@ -40,7 +44,7 @@ export default class Virksomhed extends Component {
     });
 
     cvrstore.on('change', () => {
-      this.setState({ cvrdata: cvrstore.getState(), ejergraf: null })
+      this.setState({ cvrdata: cvrstore.getState(), ejergraf: null , deltager: null})
     });
 
     spinnerstore.on('change', () => {
@@ -48,12 +52,16 @@ export default class Virksomhed extends Component {
     });
 
     ejergrafstore.on('change', () => {
-      this.setState( { ejergraf: ejergrafstore.getState(), cvrdata: null, regnskaber: null, soegeresultat: null })
+      this.setState( { ejergraf: null, cvrdata: null, regnskaber: null, soegeresultat: null })
+    })
+
+    deltagerstore.on('change', () => {
+      this.setState( { ejergraf: null, cvrdata: null, deltager: deltagerstore.getState() , soegeresultat: null})
     })
   }
 
   _visSoegeresultat(soegning) {
-    if (!soegning) {
+    if (soegning === null) {
       return
     }
     actions.search(soegning);
@@ -66,6 +74,14 @@ export default class Virksomhed extends Component {
     actions.getVirksomhed(cvrnr);
   }
 
+  _opdaterDeltager(enhedsnummer) {
+    if (!enhedsnummer || enhedsnummer.length!=10) {
+      return
+    }
+
+    actions.getDeltager(enhedsnummer)
+  }
+
   _visEjerGraf(cvrnr) {
     if (!cvrnr || cvrnr.length!=8) {
       return
@@ -74,7 +90,7 @@ export default class Virksomhed extends Component {
   }
 
   render() {
-    const { cvrnummer, regnskaber, visSpinner, cvrdata, soegeresultat, ejergraf } = this.state;
+    const { cvrnummer, regnskaber, visSpinner, cvrdata, soegeresultat, ejergraf, deltager } = this.state;
 
     if (visSpinner) {
       return (
@@ -112,6 +128,7 @@ export default class Virksomhed extends Component {
         </div>
 
         {this._renderCvrVisning(cvrnummer, cvrdata, regnskaber)}
+        {this._renderDeltagerVisning(deltager)}
         {this._renderSoegeresultat(soegeresultat)}
         {this._renderEjerGraf(cvrnummer, ejergraf)}
 
@@ -126,7 +143,7 @@ export default class Virksomhed extends Component {
     return (
       <div className="row">
         <div className="col">
-          <Soegeresultat soegeresultat={soegeresultat} opdaterCvrNummer={this._opdaterCvrNummer} />
+          <Soegeresultat soegeresultat={soegeresultat} opdaterCvrNummer={this._opdaterCvrNummer} opdaterDeltager={this._opdaterDeltager} />
         </div>
       </div>
     );
@@ -146,6 +163,20 @@ export default class Virksomhed extends Component {
       </div>
     )
   }
+
+  _renderDeltagerVisning(deltager) {
+    if (deltager===null) {
+      return null;
+    }
+
+    return (
+      <div className="row">
+        <div className="col">
+          <DeltagerVisning deltager={deltager} opdaterCvrNummer={this._opdaterCvrNummer}/>
+        </div>
+      </div>);
+  }
+
 
   _renderEjerGraf(cvrnummer, ejergraf) {
     if (ejergraf==null) {

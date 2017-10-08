@@ -2,20 +2,36 @@ import 'whatwg-fetch';
 
 export default class APIHelper {
 
+  static host() {
+    return 'http://localhost:9092'
+  }
+
+  static url(path) {
+    return this.host()+path;
+  }
+
   static hentNoegletal(cvrnummer) {
-    return this._call('http://virkr.dk:9092/regnskab/' + cvrnummer)
+    return this._call(this.url('/regnskab/' + cvrnummer))
   }
 
   static hentVirksomhedsdata(cvrnummer) {
-    return this._call('http://virkr.dk:9092/cvr/' + cvrnummer)
+    return this._call(this.url('/cvr/' + cvrnummer))
   }
 
   static hentEjerGraf(cvrnummer) {
-    return this._call('http://virkr.dk:9092/cvr/graf/' + cvrnummer)
+    return this._call(this.url('/cvr/graf/' + cvrnummer))
   }
 
   static soeg(soegning) {
-    return this._call('http://virkr.dk:9092/cvr/search/' + soegning)
+    return this._call(this.url('/cvr/search/' + soegning))
+  }
+
+  static soegVirkr(soegning) {
+    return this._call(this.url('/cvr/searchVirkr/' + soegning))
+  }
+
+  static hentDeltager(enhedsnummer) {
+    return this._call(this.url('/cvr/deltager/'+enhedsnummer))
   }
 
   static _call(url) {

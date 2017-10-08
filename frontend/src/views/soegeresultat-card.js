@@ -3,8 +3,8 @@ import React from 'react';
 const SoegeresultatCard = (props) => {
   const { virksomhed, callback } = props;
 
-  const navn = virksomhed.virksomhedMetadata.nyesteNavn.navn;
-  const cvr = virksomhed.cvrNummer;
+  const navn = virksomhed.navn;
+  const cvr = virksomhed.cvrnr;
 
   return (
     <div className="card soegeresultatcard" onClick={() => callback(cvr)}>

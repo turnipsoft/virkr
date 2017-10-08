@@ -3,7 +3,7 @@ import dispatcher from '../dispatcher';
 import api from '../utils/apihelper';
 import * as actions from '../actions';
 
-class SearchStore extends EventEmitter {
+class DeltagerStore extends EventEmitter {
 
   constructor() {
     super();
@@ -14,40 +14,38 @@ class SearchStore extends EventEmitter {
     return this.state;
   }
 
-  search(term) {
-    api.soegVirkr(term).then((data) => actions.searchResponse(data));
+  getDeltagerData(enhedsnummer) {
+    api.hentDeltager(enhedsnummer)
+      .then((data) => actions.deltagerResponse(data));
   }
 
-  searchData(response) {
+  deltagerData(response) {
     this.state = response;
     this.emit("change");
   }
 
-  clear() {
+  clearData() {
     this.state = null;
     this.emit("change");
   }
 
   handleActions(action) {
     switch (action.type) {
+      case 'GET_DELTAGER':
+        this.getDeltagerData(action.enhedsnummer);
+        break;
+      case 'DELTAGER':
+        this.deltagerData(action.response);
+        break;
       case 'SEARCH':
-        this.search(action.term);
-        break;
-      case 'SEARCH_DATA':
-        this.searchData(action.response);
-        break;
-      case 'GET_CVR':
-        this.clear();
+        this.clearData();
         break;
     }
   }
 
 }
 
-const store = new SearchStore;
+const store = new DeltagerStore();
 dispatcher.register(store.handleActions.bind(store));
-
-// Nice for realtime hacking...
-window.searchStore = store;
 
 export default store;
