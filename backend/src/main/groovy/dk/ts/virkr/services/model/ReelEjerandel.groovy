@@ -1,4 +1,4 @@
-package dk.ts.virkr.cvr.integration.model.virksomhed
+package dk.ts.virkr.services.model
 
 /**
  * Created by sorenhartvig on 25/08/2017.

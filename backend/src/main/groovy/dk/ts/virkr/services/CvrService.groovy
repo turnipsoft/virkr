@@ -1,12 +1,14 @@
 package dk.ts.virkr.services
 
 import dk.ts.virkr.cvr.integration.CvrClient
-import dk.ts.virkr.cvr.integration.model.virksomhed.EjerGraf
+import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
+import dk.ts.virkr.services.model.EjerGraf
 import dk.ts.virkr.cvr.integration.model.virksomhed.Vrvirksomhed
 import dk.ts.virkr.maps.integration.MapService
-import dk.ts.virkr.maps.model.GeoResponse
-import dk.ts.virkr.maps.model.GeoResult
 import dk.ts.virkr.services.internal.CvrInternalService
+import dk.ts.virkr.services.model.DeltagerSoegeresultat
+import dk.ts.virkr.services.model.VirkrSoegeresultat
+import dk.ts.virkr.services.model.VirksomhedSoegeresultat
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.PathVariable
@@ -37,11 +39,44 @@ class CvrService {
     return vrvirksomhed
   }
 
+  @RequestMapping(value ="/deltager/{enhedsnummer}", method = RequestMethod.GET)
+  public Vrdeltagerperson hentDeltager(@PathVariable enhedsnummer) {
+    Vrdeltagerperson vrdeltagerperson = cvrClient.hentDeltager(enhedsnummer)
+    return vrdeltagerperson
+  }
+
   @RequestMapping(value = "/search/{navn}", method = RequestMethod.GET)
   public List<Vrvirksomhed> search(@PathVariable String navn) {
     navn = navn.replace(" ","%20")
     List<Vrvirksomhed> vrvirksomheder =  cvrClient.soeg(navn)
     return vrvirksomheder
+  }
+
+  @RequestMapping(value = "/searchDeltager/{navn}", method = RequestMethod.GET)
+  public List<DeltagerSoegeresultat> searchDeltager(@PathVariable String navn) {
+    navn = navn.replace(" ","%20")
+    List<Vrdeltagerperson> vrdeltagerpersoner =  cvrClient.soegDeltagere(navn)
+    return vrdeltagerpersoner.collect {it->
+      DeltagerSoegeresultat deltagerSoegeresultat = cvrInternalService.tilDeltager(it)
+      return deltagerSoegeresultat
+    }
+  }
+
+  @RequestMapping(value = "/searchVirkr/{navn}", method= RequestMethod.GET)
+  public VirkrSoegeresultat searchVirkr(@PathVariable String navn) {
+    List<Vrvirksomhed> virksomheder = search(navn)
+    List<DeltagerSoegeresultat> deltagerSoegeresultater = searchDeltager(navn)
+    VirkrSoegeresultat virkrSoegeresultat = new VirkrSoegeresultat()
+    virkrSoegeresultat.virksomheder = virksomheder.collect {
+      VirksomhedSoegeresultat virksomhedSoegeresultat = new VirksomhedSoegeresultat()
+      virksomhedSoegeresultat.cvrnr = it.cvrNummer
+      virksomhedSoegeresultat.navn = it.virksomhedMetadata.nyesteNavn.navn
+      virksomhedSoegeresultat.enhedsNummer = it.enhedsNummer
+      return virksomhedSoegeresultat
+    }
+    virkrSoegeresultat.deltagere = deltagerSoegeresultater
+
+    return virkrSoegeresultat
   }
 
   @RequestMapping(value = "/graf/{cvrnummer}", method = RequestMethod.GET)

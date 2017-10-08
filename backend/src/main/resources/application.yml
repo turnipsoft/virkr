@@ -6,6 +6,7 @@ virkr:
     url: http://distribution.virk.dk/offentliggoerelser/_search
   cvr:
     url: http://distribution.virk.dk/cvr-permanent/_search
+    deltagerurl: http://distribution.virk.dk/cvr-permanent/deltager
     username: Søren_Hartvig_CVR_I_SKYEN
     password: PASSWD_TIL_SKYEN
   maps:

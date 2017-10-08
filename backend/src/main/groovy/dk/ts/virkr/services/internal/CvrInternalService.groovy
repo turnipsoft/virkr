@@ -1,13 +1,18 @@
 package dk.ts.virkr.services.internal
 
 import dk.ts.virkr.cvr.integration.CvrClient
-import dk.ts.virkr.cvr.integration.model.virksomhed.Ejer
-import dk.ts.virkr.cvr.integration.model.virksomhed.EjerAfVirksomhed
-import dk.ts.virkr.cvr.integration.model.virksomhed.EjerGraf
-import dk.ts.virkr.cvr.integration.model.virksomhed.EjerRelation
-import dk.ts.virkr.cvr.integration.model.virksomhed.EjerType
-import dk.ts.virkr.cvr.integration.model.virksomhed.ReelEjerandel
+import dk.ts.virkr.cvr.integration.model.deltager.VirksomhedSummariskRelation
+import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
+import dk.ts.virkr.services.model.Ejer
+import dk.ts.virkr.services.model.EjerAfVirksomhed
+import dk.ts.virkr.services.model.EjerGraf
+import dk.ts.virkr.services.model.EjerRelation
+import dk.ts.virkr.services.model.EjerType
+import dk.ts.virkr.cvr.integration.model.virksomhed.Navn
+import dk.ts.virkr.services.model.ReelEjerandel
 import dk.ts.virkr.cvr.integration.model.virksomhed.Vrvirksomhed
+import dk.ts.virkr.services.model.DeltagerSoegeresultat
+import dk.ts.virkr.services.model.DeltagerVirksomhed
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -133,5 +138,72 @@ class CvrInternalService {
     return String.valueOf(resultat)
   }
 
+  /**
+   * Omdanner en deltager til en kortere deltagere søgeresultat form hvor man direkte se relevante oplysninger om deltageren
+   * @param vrdeltagerperson
+   * @return
+   */
+  DeltagerSoegeresultat tilDeltager(Vrdeltagerperson vrdeltagerperson) {
+    DeltagerSoegeresultat deltagerSoegeresultat = new DeltagerSoegeresultat()
+    deltagerSoegeresultat.navn = vrdeltagerperson.navne[0].navn
+    deltagerSoegeresultat.adresselinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.vejadresselinie
+    deltagerSoegeresultat.bylinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.byLinje
+    deltagerSoegeresultat.postnr = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.postnummer
+    deltagerSoegeresultat.bynavn = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bynavn
+    deltagerSoegeresultat.enhedsNummer = vrdeltagerperson.enhedsNummer
+    deltagerSoegeresultat.enhedstype = vrdeltagerperson.enhedstype
+    deltagerSoegeresultat.virksomheder = []
+    vrdeltagerperson.virksomhedSummariskRelation.each {vsr->
+      // arbejder p.t. kun med aktuelle data, så der skal være et livsforløb hvor gyldigtil er null
+      if (vsr.virksomhed.livsforloeb.find{ !it.periode.gyldigTil}) {
+        deltagerSoegeresultat.virksomheder << lavDeltagerVirksomhed(vsr)
+      }
+    }
+    return deltagerSoegeresultat
+  }
+
+  /**
+   * Samler basis informationer om en virksomheds relation
+   * @param virksomhedSummariskRelation
+   * @return
+   */
+  DeltagerVirksomhed lavDeltagerVirksomhed(VirksomhedSummariskRelation virksomhedSummariskRelation) {
+    DeltagerVirksomhed deltagerVirksomhed = new DeltagerVirksomhed()
+
+    deltagerVirksomhed.cvrnr = virksomhedSummariskRelation.virksomhed.cvrNummer
+    deltagerVirksomhed.enhedsNummer = virksomhedSummariskRelation.virksomhed.enhedsNummer
+
+    Navn virksomhedsnavn = virksomhedSummariskRelation.virksomhed.navne.find { it->
+      it.periode.gyldigTil == null
+    }
+
+    if (virksomhedsnavn) {
+      deltagerVirksomhed.navn = virksomhedsnavn.navn
+    }
+
+    List<String> roller = virksomhedSummariskRelation.organisationer.collect {it->
+      return it.organisationsNavn.find { !it.periode.gyldigTil }?.navn
+    }
+
+    roller = konverterRoller(roller)
+
+    deltagerVirksomhed.roller = roller.join(", ")
+
+    return deltagerVirksomhed
+
+  }
+
+  List<String> konverterRoller(List<String> roller) {
+    return roller.collect { it->
+      if (it.endsWith("er")) {
+        return it.substring(0,it.length()-2)
+      }
+      if (it == 'EJERREGISTER') {
+        return 'Ejer'
+      }
+
+      return it
+    }.findAll {it != 'Reelle ejere'}
+  }
 
 }

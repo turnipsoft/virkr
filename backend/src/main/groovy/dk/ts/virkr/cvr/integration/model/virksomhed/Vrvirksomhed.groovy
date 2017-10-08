@@ -1,4 +1,7 @@
 package dk.ts.virkr.cvr.integration.model.virksomhed
+
+import dk.ts.virkr.services.model.Ejer
+
 /**
  * Created by sorenhartvig on 29/05/2017.
  */
@@ -21,6 +24,7 @@ class Vrvirksomhed {
   List<DeltagerRelation> deltagerRelation
   List<Produktionsenhed> penheder
 
+  List<Livsforloeb> livsforloeb
   String getKapital() {
     return getAttributVaerdi('KAPITAL')
   }

@@ -1,4 +1,4 @@
-package dk.ts.virkr.cvr.integration.model.elasticsearch
+package dk.ts.virkr.cvr.integration.model.virksomhed.elasticsearch
 
 import dk.ts.virkr.cvr.integration.model.virksomhed.VrvirksomhedWrapper
 

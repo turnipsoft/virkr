@@ -1,4 +1,11 @@
-package dk.ts.virkr.cvr.integration.model.virksomhed
+package dk.ts.virkr.services.model
+
+import dk.ts.virkr.cvr.integration.model.virksomhed.Attribut
+import dk.ts.virkr.cvr.integration.model.virksomhed.Beliggenhedsadresse
+import dk.ts.virkr.cvr.integration.model.virksomhed.DeltagerRelation
+import dk.ts.virkr.cvr.integration.model.virksomhed.Medlemsdata
+import dk.ts.virkr.cvr.integration.model.virksomhed.Organisation
+import dk.ts.virkr.cvr.integration.model.virksomhed.Vaerdi
 
 /**
  * Created by sorenhartvig on 01/07/2017.
