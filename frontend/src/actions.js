@@ -29,6 +29,14 @@ export function ejerGrafResponse(response) {
   dispatcher.dispatch({ type: 'EJERGRAF', response });
 }
 
+export function getDeltagerGraf(enhedsnummer) {
+  dispatcher.dispatch({ type: 'GET_DELTAGERGRAF', enhedsnummer });
+}
+
+export function deltagerGrafResponse(response) {
+  dispatcher.dispatch({ type: 'DELTAGERGRAF', response });
+}
+
 export function getDeltager(enhedsnummer) {
   dispatcher.dispatch( {type: 'GET_DELTAGER', enhedsnummer});
 }

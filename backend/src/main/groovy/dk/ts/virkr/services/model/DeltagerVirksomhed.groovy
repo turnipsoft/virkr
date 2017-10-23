@@ -12,4 +12,5 @@ class DeltagerVirksomhed {
   String ejerandeliprocent
   String stemmeret
   String stemmeretiprocent
+  String status
 }

@@ -54,6 +54,55 @@ class CvrClient {
     return elasticGetDeltagerResult._source.vrdeltagerperson
   }
 
+
+  static String virksomhedsdeltagerSoegning = '''{
+\t"_source" : ["Vrvirksomhed.cvrNummer","Vrvirksomhed.enhedsNummer","Vrvirksomhed.virksomhedMetadata.nyesteNavn", "Vrvirksomhed.deltagerRelation.deltager", "Vrvirksomhed.deltagerRelation.organisationer"],
+    "size" : 50,
+    "query" : {
+    \t"bool" : {
+    \t\t"must" : [
+    \t\t\t{"term": {"Vrvirksomhed.deltagerRelation.deltager.enhedsNummer":"${enhedsnummer}"}},
+    \t\t\t{
+        \t\t\t"nested": {
+            \t\t\t"path": "Vrvirksomhed.deltagerRelation", 
+            \t\t\t"query": {
+            \t\t\t"bool": {
+                \t\t\t"must": [ 
+                \t\t\t\t{
+                    \t\t\t\t"match": {
+                    \t\t\t\t\t"Vrvirksomhed.deltagerRelation.organisationer.hovedtype": "REGISTER"
+                    \t\t\t\t}
+\t               \t\t\t\t}
+                \t\t\t]
+            \t\t\t}
+            \t\t}
+        \t\t}
+        \t}
+    \t\t]
+    \t}
+    }
+}
+'''
+
+  List<Vrvirksomhed> hentVirksomhedsDeltagere(String enhedsnummer) {
+    String soegning = virksomhedsdeltagerSoegning.replace('${enhedsnummer}', enhedsnummer)
+    String jsonResult = kaldCvr(url, soegning)
+    return marshallVirksomheder(jsonResult)
+  }
+
+  private ArrayList<Vrvirksomhed> marshallVirksomheder(String jsonResult) {
+    List<Vrvirksomhed> resultat = new ArrayList<>()
+
+    JsonMarshaller marshaller = new JsonMarshaller(true)
+    ElasticResult elasticResult = marshaller.toObject(jsonResult, ElasticResult.class)
+    elasticResult.hits.hits.each { hit ->
+      if (hit._source.vrvirksomhed) {
+        resultat << hit._source.vrvirksomhed
+      }
+    }
+    resultat
+  }
+
   String prepareNavneQuery(String navn) {
     navn = navn.replace("{SLASH}","/")
     String navnequery=''
@@ -84,17 +133,7 @@ class CvrClient {
 
     String jsonResult = kaldCvr(url)
 
-    List<Vrvirksomhed> resultat = new ArrayList<>()
-
-    JsonMarshaller marshaller = new JsonMarshaller(true)
-    ElasticResult elasticResult = marshaller.toObject(jsonResult, ElasticResult.class)
-    elasticResult.hits.hits.each { hit ->
-      if (hit._source.vrvirksomhed) {
-        resultat << hit._source.vrvirksomhed
-      }
-    }
-
-    return resultat
+    return marshallVirksomheder(jsonResult)
   }
 
   List<Vrdeltagerperson> soegDeltagere(String navn) {
@@ -121,20 +160,30 @@ class CvrClient {
     return resultat
   }
 
-  private String kaldCvr(String url) {
+  private String kaldCvr(String url, String body=null) {
     log.debug("Invoking URL: $url")
     URL u = new URL(url)
 
-    URLConnection uc = u.openConnection()
+    HttpURLConnection uc = (HttpURLConnection) u.openConnection()
     String userpass = username + ":" + password
     String basicAuth = "Basic " + new String(Base64.encoder.encode(userpass.bytes))
     uc.setRequestProperty("Authorization", basicAuth)
-    InputStream i = uc.getInputStream()
-    String jsonResult = i.getText()
+    if (body) {
+      uc.doOutput = true
+      uc.requestMethod = 'POST'
+      uc.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+      uc.outputStream.write(body.bytes)
+      uc.outputStream.flush()
+    }
+    try {
+      InputStream i = uc.getInputStream()
+      String jsonResult = i.getText()
 
-    log.debug("Got result size ${jsonResult.size()}")
-    jsonResult
+      log.debug("Got result size ${jsonResult.size()}")
+      jsonResult
+    } catch (IOException ioe) {
+      throw ioe
+    }
   }
-
 
 }

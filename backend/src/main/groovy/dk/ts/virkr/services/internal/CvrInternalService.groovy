@@ -3,13 +3,15 @@ package dk.ts.virkr.services.internal
 import dk.ts.virkr.cvr.integration.CvrClient
 import dk.ts.virkr.cvr.integration.model.deltager.VirksomhedSummariskRelation
 import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
-import dk.ts.virkr.cvr.integration.model.virksomhed.DeltagerRelation
 import dk.ts.virkr.cvr.integration.model.virksomhed.Medlemsdata
 import dk.ts.virkr.cvr.integration.model.virksomhed.Organisation
+import dk.ts.virkr.cvr.integration.model.virksomhed.Virksomhedsstatus
 import dk.ts.virkr.services.model.Ejer
-import dk.ts.virkr.services.model.EjerAfVirksomhed
-import dk.ts.virkr.services.model.EjerGraf
-import dk.ts.virkr.services.model.EjerRelation
+import dk.ts.virkr.services.model.graf.DeltagerGraf
+import dk.ts.virkr.services.model.graf.DeltagerRelation
+import dk.ts.virkr.services.model.graf.EjerAfVirksomhed
+import dk.ts.virkr.services.model.graf.EjerGraf
+import dk.ts.virkr.services.model.graf.EjerRelation
 import dk.ts.virkr.services.model.EjerType
 import dk.ts.virkr.cvr.integration.model.virksomhed.Navn
 import dk.ts.virkr.services.model.ReelEjerandel
@@ -54,11 +56,49 @@ class CvrInternalService {
     return ejerGraf
   }
 
-  EjerGraf berigEjergrafMedReelleEjerAndele(Vrvirksomhed vrvirksomhed, EjerGraf ejerGraf) {
-    List<List<Ejer>> ejergrene =[]
+  DeltagerGraf hentEjergrafForPerson(String enhedsnummer) {
+    DeltagerGraf deltagerGraf = new DeltagerGraf()
+    Vrdeltagerperson vrdeltagerperson = cvrClient.hentDeltager(enhedsnummer);
 
-    vrvirksomhed.ejere.each { ejer->
-      List
+    // hent alle virksomheder som personen ejer
+    List<Vrvirksomhed> virksomheder = cvrClient.hentVirksomhedsDeltagere(enhedsnummer)
+
+    virksomheder.each { virksomhed->
+      // tager den kun med såfremt deltager faktisk er ejer af virksomheden, hvilket man kan se ved at virksomhedens ejere inkluderer personen
+      if (virksomhed.ejere && virksomhed.ejere.find { it.enhedsnummer == enhedsnummer}) {
+        berigDeltagersVirksomhed(vrdeltagerperson.enhedsNummer, virksomhed, deltagerGraf)
+      }
+    }
+
+    return deltagerGraf
+  }
+
+  EjerAfVirksomhed bygEjerAfVirksomhed(Vrvirksomhed virksomhed, String enhedsnummer){
+    EjerAfVirksomhed ejerAfVirksomhed = new EjerAfVirksomhed()
+    ejerAfVirksomhed.cvrnummer = virksomhed.cvrNummer
+    ejerAfVirksomhed.enhedsnummer = virksomhed.enhedsNummer
+    ejerAfVirksomhed.virksomhedsnavn = virksomhed.virksomhedMetadata.nyesteNavn.navn
+    ejerAfVirksomhed.ejer = virksomhed.ejere.find { it.enhedsnummer == enhedsnummer }
+
+    return ejerAfVirksomhed
+
+  }
+  void berigDeltagersVirksomhed(String deltagerEnhedsnummer, Vrvirksomhed virksomhed, DeltagerGraf deltagerGraf) {
+    EjerAfVirksomhed ejerAfVirksomhed = bygEjerAfVirksomhed(virksomhed, deltagerEnhedsnummer)
+
+    deltagerGraf.ejere << ejerAfVirksomhed
+    deltagerGraf.relationer << new DeltagerRelation(deltagerEnhedsnummer, virksomhed.enhedsNummer)
+
+    // Der skal findes alle de virksomheder som har virkomsheden som deltage relation og dernæst findes de virksomheder som faktisk har
+    // en ejerrelation til virksomheden  ved at kigge i hver virksomheds ejere og holde det op i mod enhedsnummeret på virksomheden.
+    // elastic search er jo altid komplette, så man kan ikke bare få de "relevante" deltagere ud altså ejerne
+    // det betyder også at denne graf kunne laves om til at køre rent på relationer og ikke forholde sig til ejerskab og på den måde kunne man danne sig et
+    // komplet overblik over en person engagement
+    List<Vrvirksomhed> virksomhederDerEjesAfVirksomhed = cvrClient.hentVirksomhedsDeltagere(virksomhed.enhedsNummer)?.
+      findAll {it.ejere?.find { it.enhedsnummer == virksomhed.enhedsNummer}}
+
+    virksomhederDerEjesAfVirksomhed.each { ejetVirksomhed->
+      berigDeltagersVirksomhed(virksomhed.enhedsNummer, ejetVirksomhed, deltagerGraf)
     }
   }
 
@@ -178,6 +218,13 @@ class CvrInternalService {
 
     Navn virksomhedsnavn = virksomhedSummariskRelation.virksomhed.navne.find { it->
       it.periode.gyldigTil == null
+    }
+
+    Virksomhedsstatus virksomhedsstatus = virksomhedSummariskRelation.virksomhed.virksomhedsstatus.find {!it.periode.gyldigTil}
+    if (virksomhedsstatus) {
+      deltagerVirksomhed.status = virksomhedsstatus.status
+    } else {
+      deltagerVirksomhed.status = 'AKTIV'
     }
 
     if (virksomhedsnavn) {

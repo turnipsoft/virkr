@@ -2,7 +2,8 @@ package dk.ts.virkr.services
 
 import dk.ts.virkr.cvr.integration.CvrClient
 import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
-import dk.ts.virkr.services.model.EjerGraf
+import dk.ts.virkr.services.model.graf.DeltagerGraf
+import dk.ts.virkr.services.model.graf.EjerGraf
 import dk.ts.virkr.cvr.integration.model.virksomhed.Vrvirksomhed
 import dk.ts.virkr.maps.integration.MapService
 import dk.ts.virkr.services.internal.CvrInternalService
@@ -34,27 +35,33 @@ class CvrService {
   CvrInternalService cvrInternalService
 
   @RequestMapping(value = "/{cvrnummer}", method = RequestMethod.GET)
-  public Vrvirksomhed regnskab(@PathVariable String cvrnummer) {
+  Vrvirksomhed regnskab(@PathVariable String cvrnummer) {
     Vrvirksomhed vrvirksomhed =  cvrClient.hentVirksomhed(cvrnummer)
     return vrvirksomhed
   }
 
   @RequestMapping(value ="/deltager/{enhedsnummer}", method = RequestMethod.GET)
-  public DeltagerSoegeresultat hentDeltager(@PathVariable enhedsnummer) {
+  DeltagerSoegeresultat hentDeltager(@PathVariable enhedsnummer) {
     Vrdeltagerperson vrdeltagerperson = cvrClient.hentDeltager(enhedsnummer)
     DeltagerSoegeresultat deltagerSoegeresultat = cvrInternalService.tilDeltager(vrdeltagerperson)
     return deltagerSoegeresultat
   }
 
+  @RequestMapping(value="/deltager/virksomheder/{enhedsnummer}", method = RequestMethod.GET)
+  List<Vrvirksomhed> deltagerVirksomheder(@PathVariable String enhedsnummer) {
+    List<Vrvirksomhed> resultat = cvrClient.hentVirksomhedsDeltagere(enhedsnummer)
+    return resultat
+  }
+
   @RequestMapping(value = "/search/{navn}", method = RequestMethod.GET)
-  public List<Vrvirksomhed> search(@PathVariable String navn) {
+  List<Vrvirksomhed> search(@PathVariable String navn) {
     navn = navn.replace(" ","%20")
     List<Vrvirksomhed> vrvirksomheder =  cvrClient.soeg(navn)
     return vrvirksomheder
   }
 
   @RequestMapping(value = "/searchDeltager/{navn}", method = RequestMethod.GET)
-  public List<DeltagerSoegeresultat> searchDeltager(@PathVariable String navn) {
+  List<DeltagerSoegeresultat> searchDeltager(@PathVariable String navn) {
     navn = navn.replace(" ","%20")
     List<Vrdeltagerperson> vrdeltagerpersoner =  cvrClient.soegDeltagere(navn)
     return vrdeltagerpersoner.collect {it->
@@ -64,7 +71,7 @@ class CvrService {
   }
 
   @RequestMapping(value = "/searchVirkr/{navn}", method= RequestMethod.GET)
-  public VirkrSoegeresultat searchVirkr(@PathVariable String navn) {
+  VirkrSoegeresultat searchVirkr(@PathVariable String navn) {
     List<Vrvirksomhed> virksomheder = search(navn)
     List<DeltagerSoegeresultat> deltagerSoegeresultater = searchDeltager(navn)
     VirkrSoegeresultat virkrSoegeresultat = new VirkrSoegeresultat()
@@ -81,9 +88,14 @@ class CvrService {
   }
 
   @RequestMapping(value = "/graf/{cvrnummer}", method = RequestMethod.GET)
-  public EjerGraf graf(@PathVariable String cvrnummer) {
+  EjerGraf graf(@PathVariable String cvrnummer) {
     EjerGraf ejerGraf = cvrInternalService.hentEjergraf(cvrnummer)
     return ejerGraf
   }
 
+  @RequestMapping(value = "/deltagergraf/{enhedsnummer}", method = RequestMethod.GET)
+  public DeltagerGraf deltagergraf(@PathVariable String enhedsnummer) {
+    DeltagerGraf deltagerGraf = cvrInternalService.hentEjergrafForPerson(enhedsnummer)
+    return deltagerGraf
+  }
 }

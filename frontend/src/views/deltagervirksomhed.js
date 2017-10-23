@@ -10,6 +10,7 @@ export default class DeltagerVirksomhed extends Component {
       <div className="card virksomhedcard" onClick={ () => opdaterCvrNummer(virksomhed.cvrnr) }>
         <div className="card-block resizable-block">
           <DetaljeLinie text="Navn" value={virksomhed.navn} detalje={virksomhed.cvrnr} />
+          <DetaljeLinie text="Virksomhedsstatus" value={virksomhed.status} />
           <DetaljeLinie text="Roller" value={virksomhed.roller} />
 
           {virksomhed.ejerandeliprocent?

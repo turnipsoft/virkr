@@ -23,6 +23,7 @@ class Vrvirksomhed {
   List<Attribut> attributter
   List<DeltagerRelation> deltagerRelation
   List<Produktionsenhed> penheder
+  List<Virksomhedsstatus> virksomhedsstatus
 
   List<Livsforloeb> livsforloeb
   String getKapital() {

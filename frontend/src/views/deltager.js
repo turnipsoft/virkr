@@ -26,7 +26,7 @@ export default class DeltagerVisning extends Component {
 
   _renderAssocieredeVirksomheder(deltager) {
     return (
-      <DeltagerVirsomheder virksomheder={deltager.virksomheder} opdaterCvrNummer={this.props.opdaterCvrNummer}/>
+      <DeltagerVirsomheder deltager={deltager} opdaterCvrNummer={this.props.opdaterCvrNummer} visDeltagerGraf={this.props.visDeltagerGraf} />
     )
   }
 }

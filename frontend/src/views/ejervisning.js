@@ -16,22 +16,38 @@ export default class EjerVisning extends React.Component {
             (<div>
               <DetaljeLinie text="Navn" value={ejer.navn} detalje={ejer.ejertype} />
               <DetaljeLinie text="CVR-Nummer" value={ejer.forretningsnoegle} link={opdaterCvrNummer} linkKey={ejer.forretningsnoegle} />
-
+              <DetaljeLinie text="CVR-Nummer" value={ejer.cvrnummer} link={opdaterCvrNummer} linkKey={ejer.cvrnummer} />
             </div>)
           }
           <DetaljeLinie text="Adresse" value={ejer.adresse} />
           <br/>
-          <h5>Ejerandele i virksomheder ( direkte og indirekte )</h5>
-          <hr/>
-          {ejer.reelleEjerandele.map((re) => {
-            return (
+          {ejer.ejedeVirksomheder? (
+            <div>
+              {ejer.ejedeVirksomheder.length>0?(<div><h5>Ejerandele i virksomheder</h5><hr/></div>):null}
+              {ejer.ejedeVirksomheder.map((re) => {
+                return (
+                  <div>
+                    <DetaljeLinie text="Virksomhed" value={re.virksomhedsnavn} detalje={re.cvrnummer} key={re.virksomhedsnavn} link={opdaterCvrNummer} linkKey={re.cvrnummer}  />
+                    <DetaljeLinie text="Ejerandel" value={re.ejer.andelInterval} key={re.cvrnummer} />
+                    <hr/>
+                  </div>
+                )
+              })}
+            </div>) :
+            (
               <div>
-                <DetaljeLinie text="Virksomhed" value={re.virksomhedsnavn} detalje={re.cvrnummer} key={re.virksomhedsnavn} link={opdaterCvrNummer} linkKey={re.cvrnummer}  />
-                <DetaljeLinie text="Ejerandel" value={re.andelInterval} key={re.cvrnummer} />
-                <hr/>
-              </div>
-            )
-          })}
+                {ejer.reelleEjerandele.length>0?(<div><h5>Ejerandele i virksomheder</h5><hr/></div>):null}
+                {ejer.reelleEjerandele.map((re) => {
+                  return (
+                    <div>
+                      <DetaljeLinie text="Virksomhed" value={re.virksomhedsnavn} detalje={re.cvrnummer} key={re.virksomhedsnavn} link={opdaterCvrNummer} linkKey={re.cvrnummer}  />
+                      <DetaljeLinie text="Ejerandel" value={re.andelInterval} key={re.cvrnummer} />
+                      <hr/>
+                    </div>
+                  )
+                })}
+              </div>)}
+
         </div>
 
     )

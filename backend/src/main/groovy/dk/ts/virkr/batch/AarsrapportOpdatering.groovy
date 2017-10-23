@@ -41,15 +41,15 @@ class AarsrapportOpdatering {
       List<RegnskabData> regnskaberFraOffentliggoerelsen = regnskabInternalService.hentRegnskaberFraOffentliggoerelse(cvrnummer)
       // find alle hvis sidsteopdatering er nyere end dette regnskabs sidsteopdatering
       List<RegnskabData> nyere = regnskaberFraOffentliggoerelsen.findAll {
-        Utils.toDateTime(it.sidsteOpdatering).isAfter(regnskab.sidsteopdatering)
+        Utils.toDateTime(it.sidsteopdatering).isAfter(regnskab.sidsteopdatering)
       }
 
       nyere.each { ny ->
         // check om den findes
         List<Regnskabsdata> eksisterende = regnskabsdataRepository.findAllByCvrnummerAndStartdatoAndSlutdato(cvrnummer,
-          Utils.toDate(ny.startDato), Utils.toDate(ny.slutDato))
+          Utils.toDate(ny.startdato), Utils.toDate(ny.slutdato))
         if (!eksisterende || eksisterende.size()==0) {
-          logger.info("Gemmer årsrapport for ${ny.cvrNummer} : ${ny.startDato} - ${ny.slutDato}")
+          logger.info("Gemmer årsrapport for ${ny.cvrnummer} : ${ny.startdato} - ${ny.slutdato}")
           count++
           regnskabsdataRepository.saveAndFlush(Regnskabsdata.from(ny))
         }

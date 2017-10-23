@@ -54,7 +54,7 @@ class Ejer {
   }
 
   static Medlemsdata findAktuelMedlemsdataFraOrganisation(Organisation organisation) {
-    Medlemsdata medlemsdata = organisation.medlemsData.find{ it.attributter.find{it.type == 'EJERANDEL_MEDDELELSE_DATO'}.vaerdier.find{it.periode.gyldigTil==null}}
+    Medlemsdata medlemsdata = organisation.medlemsData.find{ it.attributter.find{it.type == 'EJERANDEL_PROCENT'}.vaerdier.find{it.periode.gyldigTil==null}}
     return  medlemsdata
   }
 

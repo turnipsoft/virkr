@@ -4,6 +4,7 @@ import CvrVisning from '../views/cvrvisning';
 import DeltagerVisning from '../views/deltager';
 import Soegeresultat from '../views/soegeresultat';
 import EjerGraf from '../views/ejergraf'
+import DeltagerGraf from '../views/deltagergraf';
 
 import cvrstore from '../stores/cvrstore';
 import searchstore from '../stores/searchstore';
@@ -11,6 +12,7 @@ import noegletalstore from '../stores/noegletalstore';
 import spinnerstore from '../stores/spinnerstore';
 import ejergrafstore from '../stores/ejergrafstore';
 import deltagerstore from '../stores/deltagerstore';
+import deltagergrafstore from '../stores/deltagergrafstore';
 import * as actions from '../actions';
 
 export default class Virksomhed extends Component {
@@ -21,6 +23,7 @@ export default class Virksomhed extends Component {
     this._opdaterCvrNummer = this._opdaterCvrNummer.bind(this);
     this._visSoegeresultat = this._visSoegeresultat.bind(this);
     this._visEjerGraf = this._visEjerGraf.bind(this);
+    this._visDeltagerGraf = this._visDeltagerGraf.bind(this);
     this._opdaterDeltager = this._opdaterDeltager.bind(this);
 
     this.state = {
@@ -30,25 +33,26 @@ export default class Virksomhed extends Component {
       cvrdata: cvrstore.getState(),
       deltager: deltagerstore.getState(),
       soegeresultat: searchstore.getState(),
-      ejergraf: ejergrafstore.getState()
+      ejergraf: ejergrafstore.getState(),
+      deltagergraf : deltagergrafstore.getState()
     };
   }
 
   reset() {
-    this.setState({soegeresultat:null, regnskaber: null, cvrdata: null, ejergraf:null, deltager:null});
+    this.setState({soegeresultat:null, regnskaber: null, cvrdata: null, ejergraf:null, deltager:null, deltagergraf:null});
   }
 
   componentDidMount() {
     searchstore.on('change', () => {
-      this.setState({ soegeresultat: searchstore.getState(), ejergraf: null })
+      this.setState({ soegeresultat: searchstore.getState(), ejergraf: null, deltagergraf:null })
     });
 
     noegletalstore.on('change', () => {
-      this.setState({ regnskaber: noegletalstore.getState(), ejergraf: null })
+      this.setState({ regnskaber: noegletalstore.getState(), ejergraf: null, deltagergraf:null })
     });
 
     cvrstore.on('change', () => {
-      this.setState({ cvrdata: cvrstore.getState(), ejergraf: null , deltager: null})
+      this.setState({ cvrdata: cvrstore.getState(), ejergraf: null , deltager: null, deltagergraf:null})
     });
 
     spinnerstore.on('change', () => {
@@ -64,6 +68,12 @@ export default class Virksomhed extends Component {
       this.reset();
       this.setState( {deltager: deltagerstore.getState() });
     })
+
+    deltagergrafstore.on('change', () => {
+      this.reset();
+      this.setState( {deltagergraf: deltagergrafstore.getState()});
+    })
+
   }
 
   _visSoegeresultat(soegning) {
@@ -95,8 +105,16 @@ export default class Virksomhed extends Component {
     actions.getEjerGraf(cvrnr);
   }
 
+  _visDeltagerGraf(enhedsnummer) {
+    if (!enhedsnummer) {
+      return
+    }
+
+    actions.getDeltagerGraf(enhedsnummer)
+  }
+
   render() {
-    const { cvrnummer, regnskaber, visSpinner, cvrdata, soegeresultat, ejergraf, deltager } = this.state;
+    const { cvrnummer, regnskaber, visSpinner, cvrdata, soegeresultat, ejergraf, deltager, deltagergraf } = this.state;
 
     if (visSpinner) {
       return (
@@ -137,6 +155,7 @@ export default class Virksomhed extends Component {
         {this._renderDeltagerVisning(deltager)}
         {this._renderSoegeresultat(soegeresultat)}
         {this._renderEjerGraf(cvrnummer, ejergraf)}
+        {this._renderDeltagerGraf(deltagergraf)}
 
       </div>);
   }
@@ -179,7 +198,7 @@ export default class Virksomhed extends Component {
     return (
       <div className="row">
         <div className="col">
-          <DeltagerVisning deltager={deltager} opdaterCvrNummer={this._opdaterCvrNummer}/>
+          <DeltagerVisning deltager={deltager} opdaterCvrNummer={this._opdaterCvrNummer} visDeltagerGraf={this._visDeltagerGraf} />
         </div>
       </div>);
   }
@@ -194,6 +213,21 @@ export default class Virksomhed extends Component {
       <div className="row">
         <div className="col">
           <EjerGraf cvrnummer={cvrnummer} ejergraf={ejergraf} opdaterCvrNummer={this._opdaterCvrNummer}
+                    opdaterDeltager={this._opdaterDeltager} />
+        </div>
+      </div>
+    )
+  }
+
+  _renderDeltagerGraf(deltagergraf) {
+    if (deltagergraf==null) {
+      return null;
+    }
+
+    return (
+      <div className="row">
+        <div className="col">
+          <DeltagerGraf deltagerGraf={deltagergraf} opdaterCvrNummer={this._opdaterCvrNummer}
                     opdaterDeltager={this._opdaterDeltager} />
         </div>
       </div>
