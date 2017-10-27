@@ -78,6 +78,7 @@ class CvrInternalService {
     ejerAfVirksomhed.cvrnummer = virksomhed.cvrNummer
     ejerAfVirksomhed.enhedsnummer = virksomhed.enhedsNummer
     ejerAfVirksomhed.virksomhedsnavn = virksomhed.virksomhedMetadata.nyesteNavn.navn
+    ejerAfVirksomhed.adresse = virksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse?.adresselinie
     ejerAfVirksomhed.ejer = virksomhed.ejere.find { it.enhedsnummer == enhedsnummer }
 
     return ejerAfVirksomhed

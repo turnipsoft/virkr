@@ -25,7 +25,7 @@ class Beliggenhedsadresse {
   String lat
   String lng
 
-  public String getVejadresselinie() {
+  String getVejadresselinie() {
     if (vejnavn) {
       return vejnavn + (husnummerFra ? " " + husnummerFra : "") + (husnummerTil ? "-" + husnummerTil : "") +
         (etage ? ", " + etage : "") + (sidedoer ? ". " + sidedoer : "")
@@ -34,9 +34,19 @@ class Beliggenhedsadresse {
     return null
   }
 
-  public String getByLinje() {
+  String getByLinje() {
     if (postnummer) {
       return postnummer + " " + postdistrikt
     }
+  }
+
+  String getAdresselinie() {
+    if (vejadresselinie && byLinje) {
+      return vejadresselinie+", "+byLinje
+    } else if (fritekst) {
+      return fritekst
+    }
+
+    return null
   }
 }

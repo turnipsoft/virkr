@@ -56,7 +56,7 @@ class CvrClient {
 
 
   static String virksomhedsdeltagerSoegning = '''{
-\t"_source" : ["Vrvirksomhed.cvrNummer","Vrvirksomhed.enhedsNummer","Vrvirksomhed.virksomhedMetadata.nyesteNavn", "Vrvirksomhed.deltagerRelation.deltager", "Vrvirksomhed.deltagerRelation.organisationer"],
+\t"_source" : ["Vrvirksomhed.cvrNummer","Vrvirksomhed.enhedsNummer","Vrvirksomhed.virksomhedMetadata.nyesteNavn", "Vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse", "Vrvirksomhed.deltagerRelation.deltager", "Vrvirksomhed.deltagerRelation.organisationer"],
     "size" : 50,
     "query" : {
     \t"bool" : {

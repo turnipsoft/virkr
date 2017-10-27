@@ -10,4 +10,5 @@ class EjerAfVirksomhed {
   String virksomhedsnavn
   String cvrnummer
   String enhedsnummer
+  String adresse
 }

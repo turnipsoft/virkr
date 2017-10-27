@@ -30,8 +30,8 @@ class Ejer {
     ejer.ejertype = deltagerRelation.deltager.enhedstype == 'PERSON'?EjerType.PERSON : EjerType.VIRKSOMHED
 
     Beliggenhedsadresse aktuelAdresse = deltagerRelation.deltager.beliggenhedsadresse.find{ it.periode.gyldigTil==null }
-    if (aktuelAdresse && aktuelAdresse.vejadresselinie && aktuelAdresse.byLinje){
-      ejer.adresse = aktuelAdresse.vejadresselinie + ", " +aktuelAdresse.byLinje
+    if (aktuelAdresse ) {
+      ejer.adresse = aktuelAdresse.adresselinie
     }
 
     ejer.enhedsnummer = deltagerRelation.deltager.enhedsNummer

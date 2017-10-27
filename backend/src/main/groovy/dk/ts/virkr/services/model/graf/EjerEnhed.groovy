@@ -9,6 +9,7 @@ class EjerEnhed {
   String cvrnummer
   String enhedsnummer
   String navn
+  String adresse
   EjerType ejertype
 
   List<EjerAfVirksomhed> ejedeVirksomheder = []

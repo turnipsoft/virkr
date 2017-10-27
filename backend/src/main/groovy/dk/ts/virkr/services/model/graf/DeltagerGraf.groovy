@@ -21,6 +21,7 @@ class DeltagerGraf {
       ejerEnhed.cvrnummer = ejer.ejer.forretningsnoegle
       ejerEnhed.enhedsnummer = ejer.ejer.enhedsnummer
       ejerEnhed.ejertype = ejer.ejer.ejertype
+      ejerEnhed.adresse = ejer.ejer.adresse
 
       // skal også have leaf enheden med uagtet at denne ikke har nogle ejerskaber
       if (!unikkeEjere.containsKey(ejer.enhedsnummer)) {
@@ -29,6 +30,7 @@ class DeltagerGraf {
         leafEnhed.cvrnummer = ejer.cvrnummer
         leafEnhed.navn = ejer.virksomhedsnavn
         leafEnhed.ejertype = EjerType.VIRKSOMHED
+        leafEnhed.adresse = ejer.adresse
         unikkeEjere.put(ejer.enhedsnummer, leafEnhed)
       }
       unikkeEjere.put(ejer.ejer.enhedsnummer, ejerEnhed)
@@ -59,6 +61,7 @@ class DeltagerGraf {
         enhed.cvrnummer = ejer.cvrnummer
         enhed.enhedsType = enhed.cvrnummer ? EnhedsType.VIRKSOMHED : EnhedsType.PERSON
         enhed.navn = ejer.virksomhedsnavn
+        enhed.adresse = ejer.ejer.adresse
         unikkeEnheder.put(ejer.enhedsnummer, enhed)
       }
     }
