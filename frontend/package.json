@@ -25,10 +25,11 @@
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "0.0.5-beta.2",
     "less": "^2.7.2",
+    "prop-types": "^15.6.0",
     "react": "^15.5.4",
-    "react-chartjs-2": "^2.1.0",
+    "react-chartjs-2": "^2.6.4",
     "react-dom": "^15.5.4",
-    "react-graph-vis": "^0.1.2",
+    "react-graph-vis": "^1.0.2",
     "webpack": "^2.5.1",
     "whatwg-fetch": "^2.0.3"
   },
