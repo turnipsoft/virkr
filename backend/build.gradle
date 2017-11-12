@@ -12,8 +12,9 @@ buildscript {
 
 apply plugin: 'org.springframework.boot'
 apply plugin: 'groovy'
+apply plugin: 'war'
 
-jar {
+war {
   baseName = 'virkr'
   version = '0.0.1'
 }
@@ -42,6 +43,8 @@ dependencies {
   compile "org.springframework.boot:spring-boot-starter-actuator"
 
   testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+
+  providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
 }
 
 task start {}
