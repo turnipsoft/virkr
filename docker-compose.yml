@@ -1,0 +1,17 @@
+version: "3"
+services:
+  database:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgresl
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.tomcat
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
+    links:
+      - database
+    ports:
+      - 8080:8080
