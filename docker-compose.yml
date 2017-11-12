@@ -1,17 +1,17 @@
 version: "3"
 services:
-  database:
+  virkrdb:
     build:
       context: .
-      dockerfile: Dockerfile.postgresl
+      dockerfile: Dockerfile.postgres
 
-  app:
+  virkr:
     build:
       context: .
       dockerfile: Dockerfile.tomcat
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://virkrdb:5432/postgres
     links:
-      - database
+      - virkrdb
     ports:
       - 8080:8080
