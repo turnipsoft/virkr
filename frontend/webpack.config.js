@@ -1,39 +1,43 @@
-var debug = process.env.NODE_ENV !== "production";
+const path = require('path');
 
-var HTMLWebpackPlugin = require('html-webpack-plugin');
-var webpack = require('webpack');
+const debug = process.env.NODE_ENV !== "production";
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
-var apiHost;
-
-var setupApiHost = function() {
-  if (process.env.NODE_ENV === 'production') {
-    apiHost = "virkr.dk"
-  } else {
-    apiHost = "localhost"
-  }
-}
-
-setupApiHost();
-
-var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
-  template: __dirname + '/src/index.html',
-  filename: 'index.html',
-  inject: 'body'
-});
+const apiHost = debug ? 'slamhost' : 'virkr.dk';
 
 module.exports = {
-  context: __dirname,
-
   devtool: debug ? "inline-sourcemap" : null,
 
   entry: './src/app.js',
+
+  output: {
+    filename: "bundle.js",
+    path: path.join(__dirname, 'build')
+  },
+
+  plugins: [
+    new HTMLWebpackPlugin(
+      {
+        inject: true,
+        template: './src/index.html'
+      }
+    ),
+    new webpack.DefinePlugin({
+      __APIHOST__: apiHost
+    })
+  ],
+
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
 
   module: {
     loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ["eslint-loader","react-hot-loader", "babel-loader"],
+        loaders: ["eslint-loader", "react-hot-loader", "babel-loader"],
       },
       {
         test: /\.css$/,
@@ -54,16 +58,5 @@ module.exports = {
     ]
   },
 
-  output: {
-    filename: "bundle.js",
-    path: __dirname + '/build'
-  },
-
-  plugins: [
-    HTMLWebpackPluginConfig,
-    new webpack.DefinePlugin({
-      __APIHOST__: apiHost
-    })
-  ]
 
 }

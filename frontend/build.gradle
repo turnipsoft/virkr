@@ -1,17 +1,20 @@
 plugins {
-	id "com.moowork.node" version "1.1.1"
+  id "com.moowork.node" version "1.2.0"
 }
 
-task test {}
-test.dependsOn(npm_test)
+apply plugin: 'base'
+version '0.0.1'
 
-task clean {}
-clean.dependsOn(npm_run_clean)
+buildDir = 'dist'
 
-task build {}
-build.dependsOn(npm_install)
-build.dependsOn(npm_run_build)
+node {
+  version = '8.9.0'
+  download = true
+}
 
-task start {}
-start.dependsOn(npm_start)
+yarn_run_build.dependsOn(yarn_install)
+assemble.dependsOn(yarn_run_build)
+clean.dependsOn(yarn_run_clean)
+
+
 

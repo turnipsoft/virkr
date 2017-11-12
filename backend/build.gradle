@@ -6,14 +6,15 @@ buildscript {
     }
   }
   dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
   }
 }
 
 apply plugin: 'org.springframework.boot'
 apply plugin: 'groovy'
+apply plugin: 'war'
 
-jar {
+war {
   baseName = 'virkr'
   version = '0.0.1'
 }
@@ -26,8 +27,7 @@ repositories {
   mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
   compile "org.springframework.boot:spring-boot-starter-web"
@@ -41,8 +41,15 @@ dependencies {
   compile "org.codehaus.groovy:groovy-all"
   compile "org.springframework.boot:spring-boot-starter-actuator"
 
+  providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
+
   testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
 }
 
-task start {}
-start.dependsOn(bootRun)
+war {
+  from('../frontend/build') {
+    into 'WEB-INF/classes/static'
+  }
+}
+
+compileGroovy.dependsOn(':frontend:assemble')
