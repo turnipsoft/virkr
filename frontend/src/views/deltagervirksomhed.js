@@ -16,7 +16,7 @@ export default class DeltagerVirksomhed extends Component {
           {virksomhed.ejerandeliprocent?
             <div>
               <br/>
-              <h6>Reelle ejerandele</h6>
+              <h6>Legale ejerandele</h6>
               <DetaljeLinie text="Ejerandel" value={virksomhed.ejerandeliprocent} />
               <DetaljeLinie text="Stemmeret" value={virksomhed.stemmeretiprocent} />
 
