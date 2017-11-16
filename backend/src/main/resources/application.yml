@@ -4,6 +4,8 @@ server:
 virkr:
   aarsrapporter:
     url: http://distribution.virk.dk/offentliggoerelser/_search
+    caching: true
+    cachefactory: memorymap
   cvr:
     url: http://distribution.virk.dk/cvr-permanent/_search
     deltagerurl: http://distribution.virk.dk/cvr-permanent/deltager

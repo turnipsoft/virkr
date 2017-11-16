@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EnableScheduling
 class VirkrApplication {
 
-    public static void main(String []args) {
+    static void main(String []args) {
         SpringApplication.run(VirkrApplication.class, args)
     }
 }

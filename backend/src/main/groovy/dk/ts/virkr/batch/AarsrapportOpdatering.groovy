@@ -1,5 +1,6 @@
 package dk.ts.virkr.batch
 
+import dk.ts.virkr.aarsrapporter.cache.RegnskabsdataCacheFactory
 import dk.ts.virkr.aarsrapporter.db.Regnskabsdata
 import dk.ts.virkr.aarsrapporter.db.RegnskabsdataRepository
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
@@ -8,6 +9,7 @@ import dk.ts.virkr.services.internal.RegnskabInternalService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -22,40 +24,21 @@ class AarsrapportOpdatering {
   Logger logger = LoggerFactory.getLogger(AarsrapportOpdatering.class)
 
   @Autowired
-  RegnskabsdataRepository regnskabsdataRepository
+  RegnskabsdataCacheFactory regnskabsdataCacheFactory
 
   @Autowired
   RegnskabInternalService regnskabInternalService
 
+  @Value('${virkr.aarsrapporter.caching}')
+  Boolean useCaching;
+
   @Transactional
   int opdaterRegnskaber() {
-    LocalDateTime sidsteAar = LocalDateTime.now().minusYears(1).minusMonths(1)
-
-    List<Regnskabsdata> regnskaber = regnskabsdataRepository.hentSenesteRegnskabstal(sidsteAar)
-
-    int count = 0
-
-    regnskaber.each { regnskab ->
-      String cvrnummer = regnskab.cvrnummer
-      // hent regnskab fra offentliggoerelse
-      List<RegnskabData> regnskaberFraOffentliggoerelsen = regnskabInternalService.hentRegnskaberFraOffentliggoerelse(cvrnummer)
-      // find alle hvis sidsteopdatering er nyere end dette regnskabs sidsteopdatering
-      List<RegnskabData> nyere = regnskaberFraOffentliggoerelsen.findAll {
-        Utils.toDateTime(it.sidsteopdatering).isAfter(regnskab.sidsteopdatering)
-      }
-
-      nyere.each { ny ->
-        // check om den findes
-        List<Regnskabsdata> eksisterende = regnskabsdataRepository.findAllByCvrnummerAndStartdatoAndSlutdato(cvrnummer,
-          Utils.toDate(ny.startdato), Utils.toDate(ny.slutdato))
-        if (!eksisterende || eksisterende.size()==0) {
-          logger.info("Gemmer årsrapport for ${ny.cvrnummer} : ${ny.startdato} - ${ny.slutdato}")
-          count++
-          regnskabsdataRepository.saveAndFlush(Regnskabsdata.from(ny))
-        }
-      }
+    if (!useCaching) {
+      logger.info("Caching is disabled and reports won't get updated then")
+      return 0
     }
 
-    return count
+    return regnskabsdataCacheFactory.getRegnskabsdataCache().opdaterCacheMedNyeRegnskaber()
   }
 }

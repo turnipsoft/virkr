@@ -1,17 +1,16 @@
 package dk.ts.virkr.services.internal
 
-import dk.ts.virkr.aarsrapporter.db.Regnskabsdata
-import dk.ts.virkr.aarsrapporter.db.RegnskabsdataRepository
-import dk.ts.virkr.aarsrapporter.db.Virksomhedsdata
-import dk.ts.virkr.aarsrapporter.db.VirksomhedsdataRepository
+import dk.ts.virkr.aarsrapporter.cache.RegnskabsdataCacheFactory
 import dk.ts.virkr.aarsrapporter.integration.OffentliggoerelserClient
 import dk.ts.virkr.aarsrapporter.integration.RegnskabXmlClient
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Offentliggoerelse
 import dk.ts.virkr.services.model.RegnskaberHentResponse
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 
 /**
@@ -21,45 +20,33 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class RegnskabInternalService {
 
-  @Autowired
-  RegnskabsdataRepository regnskabsdataRepository
+  Logger logger = LoggerFactory.getLogger(RegnskabInternalService.class)
 
   @Autowired
-  VirksomhedsdataRepository virksomhedsdataRepository
+  RegnskabsdataCacheFactory regnskabsdataCacheFactory
 
-  List<RegnskabData> hentRegnskaberFraDb(String cvrnummer) {
-    List<Regnskabsdata> resultat = this.regnskabsdataRepository.findAllByCvrnummerOrderByStartdato(cvrnummer)
-    if (resultat && resultat.size() > 0) {
-      return resultat.collect {
-        it.toJsonModel()
-      }
-    }
+  @Value('${virkr.aarsrapporter.caching}')
+  Boolean useCaching;
 
-    return null;
-  }
-
-
-  @Transactional(propagation = Propagation.REQUIRED)
-  void store(List<RegnskabData> rd) {
-    rd.each {
-      Regnskabsdata regnskabsdata = Regnskabsdata.from(it)
-      regnskabsdataRepository.saveAndFlush(regnskabsdata)
-    }
-  }
+  @Value('${virkr.aarsrapporter.url}')
+  String aarsrapporterUrl
 
   RegnskaberHentResponse hentRegnskaber(String cvrnummer) {
 
     RegnskaberHentResponse response = new RegnskaberHentResponse()
     response.cvrNummer = cvrnummer
 
-    List<RegnskabData> rd = hentRegnskaberFraDb(cvrnummer)
+    List<RegnskabData> rd = (useCaching? regnskabsdataCacheFactory.getRegnskabsdataCache().hentRegnskaber(cvrnummer) : null)
 
     if (rd) {
       response.regnskabsdata = rd
     } else {
       response.regnskabsdata = hentRegnskaberFraOffentliggoerelse(cvrnummer)
-      // vi havde dem ikke så vi gemmer dem lige lokalt
-      store(response.regnskabsdata)
+      // Der fandtes ikke regnskabsdata i forvejen så de gemmes i databasen, med mindre caching er slået fra
+      if (useCaching) {
+        logger.info("Using cache to store regnskaber for ${cvrnummer}")
+        regnskabsdataCacheFactory.getRegnskabsdataCache().gemRegnskabsdata(response.regnskabsdata)
+      }
       response.regnskabsdata.each {
         it.aar = it.slutdato.substring(0, 4)
         it.id = "regnskab_${it.aar}"
@@ -69,21 +56,13 @@ class RegnskabInternalService {
 
     }
 
-    Virksomhedsdata vd = virksomhedsdataRepository.findByCvrnummer(cvrnummer)
-
-    if (!vd) {
-      // hent nyeste regnskab
-      RegnskabData nyesteRegnskab = response.regnskabsdata.max { it.aar }
-
-    }
-
     response.regnskabsdata = response.regnskabsdata.unique { it.aar }.sort { it.aar }
 
     return response
   }
 
   List<RegnskabData> hentRegnskaberFraOffentliggoerelse(String cvrnummer) {
-    OffentliggoerelserClient oc = new OffentliggoerelserClient()
+    OffentliggoerelserClient oc = new OffentliggoerelserClient(aarsrapporterUrl)
     RegnskabXmlClient rc = new RegnskabXmlClient()
 
     List<Offentliggoerelse> offentliggoerelser = oc.hentOffentliggoerelserForCvrNummer(cvrnummer)
