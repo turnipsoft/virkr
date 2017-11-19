@@ -15,7 +15,7 @@ import deltagerstore from '../stores/deltagerstore';
 import deltagergrafstore from '../stores/deltagergrafstore';
 import * as actions from '../actions';
 
-export default class Virksomhed extends Component {
+export default class App extends Component {
 
   constructor() {
     super();
