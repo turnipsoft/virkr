@@ -1,5 +1,5 @@
 import api from '../utils/apihelper';
-
+import { push } from 'react-router-redux';
 
 // Soegning
 function henterSoegeresultat(text) {
@@ -19,7 +19,8 @@ function soegeresultat(soegning, soegeresultat) {
 
 export function soeg(text) {
   return dispatch => {
-    dispatch(henterSoegeresultat(text))
+    dispatch(henterSoegeresultat(text));
+    dispatch(push(`/soegeresultat/${text}`));
     return api.soegVirkr(text)
       .then(data => dispatch(soegeresultat(text, data)))
   }
@@ -44,6 +45,7 @@ function deltagerResultat(enhedsnummer, deltager) {
 export function visDeltager(enhedsnummer) {
   return dispatch => {
     dispatch(henterDeltager(enhedsnummer))
+    dispatch(push(`/deltager/${enhedsnummer}`));
     return api.hentDeltager(enhedsnummer)
       .then(data => dispatch(deltagerResultat(enhedsnummer, data)))
   }

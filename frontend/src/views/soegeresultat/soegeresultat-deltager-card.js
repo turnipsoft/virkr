@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { visDeltager } from '../../actions/';
 
 const DeltagerCard = (props) => {
-  const { deltager } = props;
+  const { deltager, dispatch } = props;
 
   const navn = deltager.navn;
-  //const enhedsnummer = deltager.enhedsNummer;
   var adresse = ""
   if (deltager.adresselinie) {
     adresse = deltager.adresselinie;
@@ -17,20 +17,20 @@ const DeltagerCard = (props) => {
 
   const virksomheder = deltager.virksomhedsliste;
 
-  const link = `/deltager/${deltager.enhedsNummer}`;
   return (
-    <Link to={link} >
-      <div className="card soegeresultatcard">
-        <div className="card-block">
-          <h5 className="card-title">{navn}</h5>
-          <div className="card-text">
-            {adresse? <p>{adresse}</p>:null}
-            {virksomheder?<p><b>Associerede virksomheder:</b> {virksomheder}</p>:null}
-          </div>
+    <div className="card soegeresultatcard" onClick={() => dispatch(visDeltager(deltager.enhedsNummer))} >
+      <div className="card-block">
+        <h5 className="card-title">{navn}</h5>
+        <div className="card-text">
+          {adresse? <p>{adresse}</p>:null}
+          {virksomheder?<p><b>Associerede virksomheder:</b> {virksomheder}</p>:null}
         </div>
       </div>
-    </Link>
+    </div>
   )
 }
+const mapStateToProps = (state, ownProps) => {
+  return ownProps
+}
 
-export default DeltagerCard;
+export default connect(mapStateToProps)(DeltagerCard);

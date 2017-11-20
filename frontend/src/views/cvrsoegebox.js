@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router'
+//import { Redirect } from 'react-router'
+import { connect } from 'react-redux'
+import { soeg } from '../actions/';
 
-export default class CvrSoegebox extends Component {
+class CvrSoegebox extends Component {
 
   constructor(props) {
     super(props)
@@ -17,21 +19,19 @@ export default class CvrSoegebox extends Component {
 
   submitSoegning(e) {
     e.preventDefault();
-
     let { soegning } = this.state;
     soegning = soegning.replace("/","{SLASH}");
-
-    const soegningUrl = `/soegeresultat/${soegning}`;
-
-    this.setState({ fejl: false, soegningUrl: soegningUrl });
+    //const soegningUrl = `/soegeresultat/${soegning}`;
+    this.props.dispatch(soeg(soegning));
+    //this.setState({ fejl: false, soegningUrl: soegningUrl });
   }
 
   render() {
-    if (this.state.soegningUrl) {
+    /*if (this.state.soegningUrl) {
       return (
         <Redirect to={this.state.soegningUrl} />
       );
-    }
+    }*/
 
     return (
       <form onSubmit={this.submitSoegning} className={this.state.fejl ? 'has-warning' : null}>
@@ -54,3 +54,9 @@ export default class CvrSoegebox extends Component {
   }
 
 }
+
+const mapStateToProps = (state) => {
+  return state
+}
+
+export default connect(mapStateToProps)(CvrSoegebox);

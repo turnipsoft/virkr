@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { HashRouter } from 'react-router-dom';
+//import { HashRouter } from 'react-router-dom';
 import thunkMiddleware from 'redux-thunk';
+import { routerMiddleware, ConnectedRouter } from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
 import Main from './containers/main';
 import Header from './views/common/header';
 import './images/regnskab-baggrund.png'
@@ -12,16 +14,23 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome-webpack'
 import virkrReducers from './reducers';
 
-const store = createStore(virkrReducers, {}, applyMiddleware(thunkMiddleware));
+export const history = createHistory();
+
+const middleware = [
+  thunkMiddleware,
+  routerMiddleware(history)
+]
+
+const store = createStore(virkrReducers, {}, applyMiddleware(...middleware));
 
 ReactDOM.render(
   <Provider store={store}>
-    <HashRouter>
+    <ConnectedRouter history={history} >
       <div>
         <Header />
         <Main />
       </div>
-    </HashRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('react')
 );

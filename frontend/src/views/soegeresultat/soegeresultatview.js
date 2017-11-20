@@ -2,16 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PageHeader from '../common/pageheader';
 import Spinner from '../common/spinner';
-import { soeg } from '../../actions/';
 import Soegeresultat from './soegeresultat';
 
 class SoegeresultatView extends Component {
-
-  componentDidMount() {
-    if (!this.state) {
-      this.props.dispatch(soeg(this.props.match.params.soegning));
-    }
-  }
 
   render() {
     return(
