@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import CvrSoegebox from '../views/cvrsoegebox';
 import CvrVisning from '../views/cvrvisning';
-import DeltagerVisning from '../views/deltager';
-import Soegeresultat from '../views/soegeresultat';
+import DeltagerVisning from '../views/deltager/deltager';
+import Soegeresultat from '../views/soegeresultat/soegeresultat';
 import EjerGraf from '../views/ejergraf'
 import DeltagerGraf from '../views/deltagergraf';
 
@@ -15,7 +15,7 @@ import deltagerstore from '../stores/deltagerstore';
 import deltagergrafstore from '../stores/deltagergrafstore';
 import * as actions from '../actions';
 
-export default class Virksomhed extends Component {
+export default class App extends Component {
 
   constructor() {
     super();

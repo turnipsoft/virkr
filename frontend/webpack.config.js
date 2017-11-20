@@ -26,7 +26,7 @@ module.exports = {
 
   devtool: debug ? "inline-sourcemap" : null,
 
-  entry: './src/app.js',
+  entry: './src/index.js',
 
   module: {
     loaders: [

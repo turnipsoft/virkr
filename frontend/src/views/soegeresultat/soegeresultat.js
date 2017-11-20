@@ -13,9 +13,7 @@ export default class Soegeresultat extends Component {
     return (
       <div className="top-margin">
         {this._renderVirksomheder(this.props.soegeresultat.virksomheder)}
-
         {this._renderPersoner(this.props.soegeresultat.deltagere)}
-
       </div>
     );
   }
@@ -26,7 +24,7 @@ export default class Soegeresultat extends Component {
         <h3>Virksomheder</h3>
         {virksomheder.map((s) => {
           return (
-            <Card virksomhed={s} callback={this.props.opdaterCvrNummer} key={s.cvrNummer} />
+            <Card virksomhed={s} key={s.cvrnr} />
           );
         })}
       </div> : null;
@@ -38,7 +36,7 @@ export default class Soegeresultat extends Component {
         <h3>Personer</h3>
         {personer.map((s) => {
           return (
-            <DeltagerCard deltager={s} callback={this.props.opdaterDeltager} key={s.enhedsNummer} />
+            <DeltagerCard deltager={s} key={s.enhedsNummer} />
           );
         })}
       </div> : null;

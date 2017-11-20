@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DetaljeLinie from './detaljelinie';
+import DetaljeLinie from './common/detaljelinie';
 
 export default class VirksomhedsDetaljer extends Component {
 

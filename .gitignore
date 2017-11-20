@@ -25,6 +25,12 @@ build
 .gradle
 .idea
 
+**/.settings
+**/.project
+**/.classpath
+**/bin
+
+
 node_modules/
 npm-debug.log*
 

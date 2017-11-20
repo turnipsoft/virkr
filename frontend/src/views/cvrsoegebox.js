@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router'
 
 export default class CvrSoegebox extends Component {
 
@@ -18,13 +19,20 @@ export default class CvrSoegebox extends Component {
     e.preventDefault();
 
     let { soegning } = this.state;
-
     soegning = soegning.replace("/","{SLASH}");
 
-    this.setState({ fejl: false }, this.props.opdaterCvr(soegning));
+    const soegningUrl = `/soegeresultat/${soegning}`;
+
+    this.setState({ fejl: false, soegningUrl: soegningUrl });
   }
 
   render() {
+    if (this.state.soegningUrl) {
+      return (
+        <Redirect to={this.state.soegningUrl} />
+      );
+    }
+
     return (
       <form onSubmit={this.submitSoegning} className={this.state.fejl ? 'has-warning' : null}>
         <div className="input-group">
