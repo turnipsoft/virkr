@@ -6,7 +6,6 @@ import { HashRouter } from 'react-router-dom';
 import thunkMiddleware from 'redux-thunk';
 import Main from './containers/main';
 import Header from './views/common/header';
-import App from './containers/app';
 import './images/regnskab-baggrund.png'
 import './main.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -24,6 +23,5 @@ ReactDOM.render(
       </div>
     </HashRouter>
   </Provider>,
-  <App />,
   document.getElementById('react')
 );
