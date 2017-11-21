@@ -42,10 +42,12 @@ function deltagerResultat(enhedsnummer, deltager) {
   }
 }
 
-export function visDeltager(enhedsnummer) {
+export function visDeltager(enhedsnummer, navigate) {
   return dispatch => {
     dispatch(henterDeltager(enhedsnummer))
-    dispatch(push(`/deltager/${enhedsnummer}`));
+    if (navigate) {
+      dispatch(push(`/deltager/${enhedsnummer}`));
+    }
     return api.hentDeltager(enhedsnummer)
       .then(data => dispatch(deltagerResultat(enhedsnummer, data)))
   }

@@ -14,7 +14,7 @@ const DeltagerCard = ({ deltager, onClick }) => {
   const virksomheder = deltager.virksomhedsliste;
 
   return (
-    <div className="card soegeresultatcard" onClick={() => onClick(deltager.enhedsNummer) } >
+    <div className="card soegeresultatcard" onClick={() => onClick(deltager.enhedsNummer, true) } >
       <div className="card-block">
         <h5 className="card-title">{navn}</h5>
         <div className="card-text">

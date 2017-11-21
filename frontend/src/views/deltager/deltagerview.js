@@ -3,11 +3,18 @@ import { connect } from 'react-redux'
 import PageHeader from '../common/pageheader';
 import Spinner from '../common/spinner';
 import DeltagerVisning from './deltager';
+import { visDeltager } from '../../actions/'
 
 class DeltagerView extends Component {
 
+  componentWillMount() {
+    if (this.state===null && this.props.enhedsnummerParam) {
+      this.props.dispatch(visDeltager(this.props.enhedsnummerParam, false));
+    }
+  }
+
   render() {
-  const { showSpinner, deltager } = this.props;
+    const { showSpinner, deltager } = this.props;
 
     return(
       <div>
@@ -20,12 +27,9 @@ class DeltagerView extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("DeltagerView")
-  console.log(state);
-  console.log(ownProps);
   return {
     showSpinner: state.deltager.isFetching,
-    enhedsnummer: ownProps.match.params.enhedsnummer,
+    enhedsnummerParam: ownProps.match.params.enhedsnummer,
     deltager : state.deltager.deltager
   }
 }
