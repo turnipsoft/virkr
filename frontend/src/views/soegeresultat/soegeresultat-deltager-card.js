@@ -1,8 +1,6 @@
 import React from 'react';
 
-const DeltagerCard = (props) => {
-  const { deltager, onDeltagerClick } = props;
-
+const DeltagerCard = ({ deltager, onClick }) => {
   const navn = deltager.navn;
   var adresse = '';
   if (deltager.adresselinie) {
@@ -16,7 +14,7 @@ const DeltagerCard = (props) => {
   const virksomheder = deltager.virksomhedsliste;
 
   return (
-    <div className="card soegeresultatcard" onClick={() => onDeltagerClick(deltager.enhedsNummer) } >
+    <div className="card soegeresultatcard" onClick={() => onClick(deltager.enhedsNummer) } >
       <div className="card-block">
         <h5 className="card-title">{navn}</h5>
         <div className="card-text">

@@ -1,16 +1,14 @@
 import React from 'react';
 
-const SoegeresultatCard = (props) => {
-  const { virksomhed } = props;
-
+const SoegeresultatCard = ({ virksomhed, onClick } ) => {
   const navn = virksomhed.navn;
-  const cvr = virksomhed.cvrnr;
+  const cvrnummer = virksomhed.cvrnr;
 
   return (
-    <div className="card soegeresultatcard">
+    <div className="card soegeresultatcard" onClick={() => onClick(cvrnummer)}>
       <div className="card-block">
         <h5 className="card-title">{navn}</h5>
-        <div className="card-text">CVR {cvr}</div>
+        <div className="card-text">CVR {cvrnummer}</div>
       </div>
     </div>
   )

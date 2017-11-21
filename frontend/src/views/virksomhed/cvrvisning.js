@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Regnskabstal from '../regnskabstal';
 import VirksomhedsInfo from './virksomhedsinfo';
 import VirksomhedsDetaljer from './virksomhedsdetaljer';
-import Ejere from './ejere'
+import Ejere from './ejere';
+import Graf from './graf';
 
 export default class CvrVisning extends Component {
 
@@ -16,7 +17,7 @@ export default class CvrVisning extends Component {
     return (
       <div className="top-margin">
         {this._renderVirksomhedsInfo(cvrdata)}
-        {this._renderRegnskaber(regnskaber)}
+        {this._renderRegnskaber(regnskaber.regnskabsdata)}
         {this._renderEjere(cvrdata)}
         {this._renderCvrData(cvrdata)}
         <br />

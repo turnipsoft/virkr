@@ -24,7 +24,7 @@ export default class Soegeresultat extends Component {
         <h3>Virksomheder</h3>
         {virksomheder.map((s) => {
           return (
-            <Card virksomhed={s} key={s.cvrnr} />
+            <Card virksomhed={s} key={s.cvrnr} onClick={this.props.onVirksomhedClick} />
           );
         })}
       </div> : null;
@@ -36,7 +36,7 @@ export default class Soegeresultat extends Component {
         <h3>Personer</h3>
         {personer.map((s) => {
           return (
-            <DeltagerCard deltager={s} key={s.enhedsNummer} onDeltagerClick={this.props.onDeltagerClick} />
+            <DeltagerCard deltager={s} key={s.enhedsNummer} onClick={this.props.onDeltagerClick} />
           );
         })}
       </div> : null;

@@ -50,3 +50,33 @@ export function visDeltager(enhedsnummer) {
       .then(data => dispatch(deltagerResultat(enhedsnummer, data)))
   }
 }
+
+// Virksomhed
+function henterVirksomhed(cvrnummer) {
+  return {
+    type: 'GET_VIRKSOMHED',
+    cvrnummer
+  }
+}
+
+function virksomhedResultat(cvrnummer, cvrdata, regnskaber) {
+  return {
+    type: 'VIRKSOMHED_RESULT',
+    cvrnummer,
+    cvrdata,
+    regnskaber
+  }
+}
+
+export function visVirksomhed(cvrnummer) {
+  return dispatch => {
+    dispatch(henterVirksomhed(cvrnummer))
+    dispatch(push(`/virksomhed/${cvrnummer}`));
+    return api.hentVirksomhedsdata(cvrnummer)
+      .then(data => {
+        api.hentNoegletal(cvrnummer)
+          .then(noegletal=> dispatch(virksomhedResultat(cvrnummer, data, noegletal))
+        )
+      })
+  }
+}

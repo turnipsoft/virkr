@@ -8,23 +8,22 @@ class VirksomhedView extends Component {
   render() {
     const { regnskaber, cvrdata, showSpinner } = this.props;
 
-    const header = cvrdata? cvrdata.virksomhedsnavn : 'Virksomhed';
-
     return (
       <div>
-        <PageHeader headerText={header} />
+        <PageHeader headerText='Virksomhedsinformationer' />
         {showSpinner && <Spinner/>}
-        {cvrdata &&<CvrVisning cvrdata={cvrdata} regnskaber={regnskaber} />}
+        {cvrdata && <CvrVisning cvrdata={cvrdata} regnskaber={regnskaber} />}
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
+  const { virksomhed } = state;
   return {
-    showSpinner: state.isFetching,
-    regnskaber: state.regnskaber,
-    cvrdata: state.cvrdata
+    showSpinner: virksomhed.isFetching,
+    regnskaber: virksomhed.regnskaber,
+    cvrdata: virksomhed.cvrdata
   }
 }
 
