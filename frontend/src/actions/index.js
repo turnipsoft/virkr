@@ -68,10 +68,12 @@ function virksomhedResultat(cvrnummer, cvrdata, regnskaber) {
   }
 }
 
-export function visVirksomhed(cvrnummer) {
+export function visVirksomhed(cvrnummer, navigate) {
   return dispatch => {
     dispatch(henterVirksomhed(cvrnummer))
-    dispatch(push(`/virksomhed/${cvrnummer}`));
+    if (navigate) {
+      dispatch(push(`/virksomhed/${cvrnummer}`));
+    }
     return api.hentVirksomhedsdata(cvrnummer)
       .then(data => {
         api.hentNoegletal(cvrnummer)

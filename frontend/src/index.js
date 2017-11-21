@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-//import { HashRouter } from 'react-router-dom';
 import thunkMiddleware from 'redux-thunk';
 import { routerMiddleware, ConnectedRouter } from 'react-router-redux'
-import createHistory from 'history/createBrowserHistory'
+import createHistory from 'history/createHashHistory'
 import Main from './containers/main';
 import Header from './views/common/header';
 import './images/regnskab-baggrund.png'

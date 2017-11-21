@@ -6,14 +6,14 @@ import DeltagerView from '../views/deltager/deltagerview';
 import VirksomhedView from '../views/virksomhed/virksomhedview';
 
 const Main = () => (
-  <main>
+  <div>
     <Switch>
-      <Route exact path='/' component={HomeView}/>
+      <Route exact path='/' component={HomeView} />
       <Route path='/soegeresultat/:soegning' component={SoegeresultatView} />
       <Route path='/deltager/:enhedsnummer' component={DeltagerView} />
       <Route path='/virksomhed/:cvrnummer' component={VirksomhedView} />
     </Switch>
-  </main>
+  </div>
 );
 
 export default Main;
