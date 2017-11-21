@@ -1,7 +1,7 @@
 import React from 'react';
 import App from './app';
-import CvrSoegebox from '../views/cvrsoegebox';
-import CvrVisning from '../views/cvrvisning';
+import CvrSoegebox from '../views/home/cvrsoegebox';
+import CvrVisning from '../views/virksomhed/cvrvisning';
 import { shallow } from 'enzyme';
 
 describe("Komponenten App", () => {

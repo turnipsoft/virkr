@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PageHeader from '../common/pageheader';
 import Spinner from '../common/spinner';
+import { visDeltager } from '../../actions/';
 import Soegeresultat from './soegeresultat';
 
 class SoegeresultatView extends Component {
@@ -11,20 +12,23 @@ class SoegeresultatView extends Component {
       <div>
         <PageHeader headerText="Søgeresultat" />
         {this.props.showSpinner && <Spinner />}
-        {this.props.soegeresultat && <Soegeresultat soegeresultat={this.props.soegeresultat} />}
+        {this.props.soegeresultat && <Soegeresultat soegeresultat={this.props.soegeresultat}
+                                                    onDeltagerClick={this.props.visDeltager}/>}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  console.log(state);
-  console.log(ownProps);
+const mapStateToProps = (state) => {
   return {
     showSpinner: state.soegning.isFetching,
-    soegning: ownProps.match.params.soegning,
+    soegning: state.soegning.soegning,
     soegeresultat : state.soegning.soegeresultat
   }
 }
 
-export default connect(mapStateToProps)(SoegeresultatView);
+const mapDispatchToProps = {
+  visDeltager
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SoegeresultatView);

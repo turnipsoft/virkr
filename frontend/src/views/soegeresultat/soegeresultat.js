@@ -36,7 +36,7 @@ export default class Soegeresultat extends Component {
         <h3>Personer</h3>
         {personer.map((s) => {
           return (
-            <DeltagerCard deltager={s} key={s.enhedsNummer} />
+            <DeltagerCard deltager={s} key={s.enhedsNummer} onDeltagerClick={this.props.onDeltagerClick} />
           );
         })}
       </div> : null;

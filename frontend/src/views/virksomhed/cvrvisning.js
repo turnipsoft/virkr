@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Regnskabstal from './regnskabstal';
-import Graf from './graf';
+import Regnskabstal from '../regnskabstal';
 import VirksomhedsInfo from './virksomhedsinfo';
 import VirksomhedsDetaljer from './virksomhedsdetaljer';
 import Ejere from './ejere'

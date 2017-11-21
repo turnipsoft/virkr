@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Ejer from './ejer';
+import Ejer from '../ejer';
 
 export default class Ejere extends React.Component {
 

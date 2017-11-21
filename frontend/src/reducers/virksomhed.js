@@ -9,7 +9,8 @@ const virksomhed = (state = {}, action) => {
     case 'VIRKSOMHED_RESULT':
       return {
         isFetching: false,
-        virksomhed: action.virksomhed
+        cvrdata: action.cvrdata,
+        regnskaber: action.regnskaber
       }
     default:
       return state

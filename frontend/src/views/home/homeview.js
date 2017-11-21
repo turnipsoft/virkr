@@ -1,5 +1,5 @@
 import React from 'react';
-import PageHeader from './common/pageheader';
+import PageHeader from '../common/pageheader';
 
 import CvrSoegebox from './cvrsoegebox';
 

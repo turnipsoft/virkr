@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-//import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
-import { soeg } from '../actions/';
+import { soeg } from '../../actions/';
 
 class CvrSoegebox extends Component {
 
@@ -21,18 +20,10 @@ class CvrSoegebox extends Component {
     e.preventDefault();
     let { soegning } = this.state;
     soegning = soegning.replace("/","{SLASH}");
-    //const soegningUrl = `/soegeresultat/${soegning}`;
     this.props.dispatch(soeg(soegning));
-    //this.setState({ fejl: false, soegningUrl: soegningUrl });
   }
 
   render() {
-    /*if (this.state.soegningUrl) {
-      return (
-        <Redirect to={this.state.soegningUrl} />
-      );
-    }*/
-
     return (
       <form onSubmit={this.submitSoegning} className={this.state.fejl ? 'has-warning' : null}>
         <div className="input-group">

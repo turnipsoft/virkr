@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CvrSoegebox from '../views/cvrsoegebox';
-import CvrVisning from '../views/cvrvisning';
+import CvrSoegebox from '../views/home/cvrsoegebox';
+import CvrVisning from '../views/virksomhed/cvrvisning';
 import DeltagerVisning from '../views/deltager/deltager';
 import Soegeresultat from '../views/soegeresultat/soegeresultat';
 import EjerGraf from '../views/ejergraf'
