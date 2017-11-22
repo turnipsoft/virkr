@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import PageHeader from '../common/pageheader';
 import Spinner from '../common/spinner';
 import DeltagerVisning from './deltager';
-import { visDeltager } from '../../actions/'
+import { visDeltager, visVirksomhed } from '../../actions/'
 
 class DeltagerView extends Component {
 
   componentWillMount() {
     if (this.state===null && this.props.enhedsnummerParam) {
-      this.props.dispatch(visDeltager(this.props.enhedsnummerParam, false));
+      this.props.visDeltager(this.props.enhedsnummerParam, false);
     }
   }
 
@@ -20,7 +20,7 @@ class DeltagerView extends Component {
       <div>
         <PageHeader headerText="Deltager" />
         {showSpinner && <Spinner />}
-        {deltager && <DeltagerVisning deltager={deltager} />}
+        {deltager && <DeltagerVisning deltager={deltager} onVirksomhedClick={this.props.visVirksomhed} />}
       </div>
     );
   }
@@ -34,4 +34,9 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(DeltagerView);
+const mapDispatchToProps = {
+  visVirksomhed,
+  visDeltager
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeltagerView);

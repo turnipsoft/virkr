@@ -4,10 +4,10 @@ import DetaljeLinie from '../common/detaljelinie';
 export default class DeltagerVirksomhed extends Component {
 
   render() {
-    const {virksomhed, opdaterCvrNummer} = this.props;
+    const {virksomhed, onClick} = this.props;
 
     return(
-      <div className="card virksomhedcard" onClick={ () => opdaterCvrNummer(virksomhed.cvrnr) }>
+      <div className="card virksomhedcard" onClick={ () => onClick(virksomhed.cvrnr, true) }>
         <div className="card-block resizable-block">
           <DetaljeLinie text="Navn" value={virksomhed.navn} detalje={virksomhed.cvrnr} />
           <DetaljeLinie text="Virksomhedsstatus" value={virksomhed.status} />

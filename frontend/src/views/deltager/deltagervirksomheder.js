@@ -17,7 +17,7 @@ export default class DeltagerVirksomheder extends Component {
           </div>
           <br/>
           {deltager.virksomheder.map((virksomhed) => {
-            return (<DeltagerVirksomhed key={virksomhed.enhedsNummer} virksomhed={virksomhed} opdaterCvrNummer={this.props.opdaterCvrNummer} />)
+            return (<DeltagerVirksomhed key={virksomhed.enhedsNummer} virksomhed={virksomhed} onClick={this.props.onVirksomhedClick} />)
           })}
         </div>
 

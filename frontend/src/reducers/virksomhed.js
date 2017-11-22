@@ -12,6 +12,12 @@ const virksomhed = (state = {}, action) => {
         cvrdata: action.cvrdata,
         regnskaber: action.regnskaber
       }
+    case 'VIRKSOMHED_ERROR':
+      return {
+        hasError: true,
+        error: action.error,
+        cvrnummer: action.cvrnummer
+      }
     default:
       return state
   }

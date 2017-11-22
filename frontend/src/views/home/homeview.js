@@ -6,7 +6,7 @@ import CvrSoegebox from './cvrsoegebox';
 const HomeView = () => {
   return (
     <div>
-      <PageHeader headerText="Home" />
+      <PageHeader headerText="Søg" />
       <div className="row">
         <div className="col col-sm-6 offset-sm-3 justify-content-center top-margin">
           <CvrSoegebox />

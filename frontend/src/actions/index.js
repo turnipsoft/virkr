@@ -70,6 +70,14 @@ function virksomhedResultat(cvrnummer, cvrdata, regnskaber) {
   }
 }
 
+function virksomhedError(cvrnummer, error) {
+  return {
+    type: 'VIRKSOMHED_ERROR',
+    cvrnummer,
+    error
+  }
+}
+
 export function visVirksomhed(cvrnummer, navigate) {
   return dispatch => {
     dispatch(henterVirksomhed(cvrnummer))
@@ -79,8 +87,9 @@ export function visVirksomhed(cvrnummer, navigate) {
     return api.hentVirksomhedsdata(cvrnummer)
       .then(data => {
         api.hentNoegletal(cvrnummer)
-          .then(noegletal=> dispatch(virksomhedResultat(cvrnummer, data, noegletal))
-        )
+          .then(noegletal=> dispatch(virksomhedResultat(cvrnummer, data, noegletal)))
+          .catch(error => dispatch(virksomhedError(cvrnummer, error)))
       })
+      .catch(error => dispatch(virksomhedError(cvrnummer, error)))
   }
 }

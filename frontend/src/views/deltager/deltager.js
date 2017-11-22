@@ -26,7 +26,7 @@ export default class DeltagerVisning extends Component {
 
   _renderAssocieredeVirksomheder(deltager) {
     return (
-      <DeltagerVirsomheder deltager={deltager} opdaterCvrNummer={this.props.opdaterCvrNummer} visDeltagerGraf={this.props.visDeltagerGraf} />
+      <DeltagerVirsomheder deltager={deltager} onVirksomhedClick={this.props.onVirksomhedClick} visDeltagerGraf={this.props.visDeltagerGraf} />
     )
   }
 }
