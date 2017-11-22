@@ -8,8 +8,10 @@ import { visDeltager, visVirksomhed } from '../../actions/'
 class DeltagerView extends Component {
 
   componentWillMount() {
-    if (this.state===null && this.props.enhedsnummerParam) {
-      this.props.visDeltager(this.props.enhedsnummerParam, false);
+    const {enhedsnummer, enhedsnummerParam, visDeltager} = this.props;
+
+    if (!enhedsnummer && enhedsnummerParam) {
+      visDeltager(enhedsnummerParam, false);
     }
   }
 
@@ -27,10 +29,13 @@ class DeltagerView extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const {deltager} = state;
+
   return {
-    showSpinner: state.deltager.isFetching,
+    showSpinner: deltager.isFetching,
     enhedsnummerParam: ownProps.match.params.enhedsnummer,
-    deltager : state.deltager.deltager
+    enhedsnummer: deltager.enhedsnummer,
+    deltager: deltager.deltager
   }
 }
 
