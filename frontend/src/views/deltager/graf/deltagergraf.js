@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Graph from 'react-graph-vis';
-import Modal from './modal.js';
-import EjerVisning from './ejervisning';
+import Modal from '../../common/modal.js';
+import EjerVisning from '../../common/ejervisning';
 
-export default class EjerGraf extends React.Component {
+export default class DeltagerGraf extends React.Component {
 
   openModal() {
     this.setState({ isModalOpen: true })
@@ -17,40 +17,37 @@ export default class EjerGraf extends React.Component {
     super(props);
     this.state = {};
 
-    var map = new Map();
     var allMap = new Map();
 
-    this.props.ejergraf.ejere.forEach((ejer) =>{
-      map.set(ejer.ejer.enhedsnummer, ejer.ejer.forretningsnoegle);
-      allMap.set(ejer.ejer.enhedsnummer, ejer);
+    this.props.deltagerGraf.grupperedeEjere.forEach((ejer) =>{
+      allMap.set(ejer.enhedsnummer, ejer);
     });
 
-    this.state = {ejerMap: map, ejerAllMap: allMap, isModalOpen: false};
+    this.state = {ejerAllMap: allMap, isModalOpen: false};
     this._visVirksomhed = this._visVirksomhed.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
   _visVirksomhed(enhedsnr) {
-    const ejer = this.state.ejerAllMap.get(enhedsnr).ejer;
+    const ejer = this.state.ejerAllMap.get(enhedsnr);
     this.setState({specifikEjer: ejer});
     this.openModal();
   }
 
   render() {
-    const ejergraf = this.props.ejergraf;
+    const deltagergraf = this.props.deltagerGraf;
 
-    const n = ejergraf.ejere.map((ejer) => {
-      var group = ejer.ejer.ejertype == 'PERSON' ? 'personer' : 'virksomheder'
-      if (ejer.ejer.ejertype == 'ROD') {
+    const n = deltagergraf.unikkeEjere.map((ejer) => {
+      var group = ejer.enhedsType == 'PERSON' ? 'personer' : 'virksomheder'
+      if (ejer.enhedsType == 'ROD') {
         group = 'rod';
       }
-      return {id: ejer.ejer.enhedsnummer, label: ejer.ejer.navn, group: group};
+      return {id: ejer.enhedsnummer, label: ejer.navn, group: group};
     });
 
-    const e = ejergraf.ejerRelationer.map((er) =>{
-      const vnr = (er.virksomhed.ejer ? er.virksomhed.ejer.enhedsnummer:"0");
-      return {from:er.ejer.ejer.enhedsnummer, to: vnr};
+    const e = deltagergraf.relationer.map((er) =>{
+      return {from:er.deltagerEnhedsnummer, to: er.virksomhedEnhedsnummer};
     });
 
     var graph = {
@@ -61,7 +58,9 @@ export default class EjerGraf extends React.Component {
 
     var options = {
       layout: {
-        hierarchical: false,
+        hierarchical: {
+          direction: "UD"
+        },
         improvedLayout: true
       },
       edges: {
@@ -124,15 +123,9 @@ export default class EjerGraf extends React.Component {
       <div className="ejergraf">
         <br/>
         <div className="row">
-          <div className="col-12 section-header">
-            <span className="fa fa-sitemap" /> &nbsp; Ejergraf
-          </div>
-        </div>
-        <br/>
-        <div className="row">
           <div className="col-2" />
           <div className="col-8">
-            Klik på ejerne herunder for at se detaljer om ejeren og dennes direkte og indirekte andele i virksomhederne
+            Klik på ejerne herunder for at se detaljer om ejeren
           </div>
           <div className="col-2" />
 
@@ -144,8 +137,8 @@ export default class EjerGraf extends React.Component {
           </div>
         </div>
         <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} className="card ejercard" width="70%">
-          <EjerVisning ejer={this.state.specifikEjer} opdaterCvrNummer={this.props.opdaterCvrNummer}
-                       opdaterDeltager={this.props.opdaterDeltager} />
+          <EjerVisning ejer={this.state.specifikEjer} visVirksomhed={this.props.visVirksomhed}
+                       visDeltager={this.props.visDeltager} />
         </Modal>
       </div>
     );

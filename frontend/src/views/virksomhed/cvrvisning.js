@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import Regnskabstal from '../regnskabstal';
+import Regnskabstal from './regnskabstal';
 import VirksomhedsInfo from './virksomhedsinfo';
 import VirksomhedsDetaljer from './virksomhedsdetaljer';
 import Ejere from './ejere';
 import Graf from './graf';
 
 export default class CvrVisning extends Component {
-
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     const { regnskaber, cvrdata } = this.props;
@@ -30,9 +26,9 @@ export default class CvrVisning extends Component {
   }
 
   _renderEjere(cvrdata) {
-    return (cvrdata!==null && cvrdata.ejere!==null) ? <Ejere cvrdata={cvrdata} opdaterCvrNummer={this.props.opdaterCvrNummer}
-                                                             opdaterDeltager={this.props.opdaterDeltager}
-                                                             visEjerGraf={this.props.visEjerGraf}/> : null
+    return (cvrdata!==null && cvrdata.ejere!==null) ? <Ejere cvrdata={cvrdata} visVirksomhed={this.props.visVirksomhed}
+                                                             visDeltager={this.props.visDeltager}
+                                                             visEjerGraf={this.props.visEjerGraf} /> : null
   }
 
   _renderCvrData(cvrdata) {

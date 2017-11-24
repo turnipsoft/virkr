@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk';
+import logger from 'redux-logger'
 import { routerMiddleware, ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createHashHistory'
+//import createHistory from 'history/createBrowserHistory'
 import Main from './containers/main';
 import Header from './views/common/header';
 import './images/regnskab-baggrund.png'
@@ -17,7 +19,8 @@ export const history = createHistory();
 
 const middleware = [
   thunkMiddleware,
-  routerMiddleware(history)
+  routerMiddleware(history),
+  logger
 ]
 
 const store = createStore(virkrReducers, {}, applyMiddleware(...middleware));

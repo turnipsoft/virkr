@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PageHeader from '../common/pageheader';
 import Spinner from '../common/spinner';
 import CvrVisning from './cvrvisning'
-import { visVirksomhed } from '../../actions/';
+import { visVirksomhed, visDeltager, visEjerGraf } from '../../actions/';
 
 class VirksomhedView extends Component {
 
@@ -16,7 +16,7 @@ class VirksomhedView extends Component {
   }
 
   render() {
-    const { regnskaber, cvrdata, showSpinner } = this.props;
+    const { regnskaber, cvrdata, showSpinner, visDeltager, visVirksomhed, visEjerGraf } = this.props;
 
     if (this.props.hasError) {
       <div>
@@ -31,9 +31,13 @@ class VirksomhedView extends Component {
 
     return (
       <div>
-        <PageHeader headerText='Virksomhedsinformationer' />
+        <PageHeader iconClassName="fa fa-factory" headerText='Virksomhedsinformationer' />
         {showSpinner && <Spinner/>}
-        {cvrdata && <CvrVisning cvrdata={cvrdata} regnskaber={regnskaber} />}
+        {cvrdata && <CvrVisning cvrdata={cvrdata}
+                                regnskaber={regnskaber}
+                                visDeltager={visDeltager}
+                                visVirksomhed={visVirksomhed}
+                                visEjerGraf={visEjerGraf} />}
       </div>
     )
   }
@@ -49,12 +53,13 @@ const mapStateToProps = (state, ownProps) => {
     cvrnummer: virksomhed.cvrnummer,
     cvrnummerParam: ownProps.match.params.cvrnummer,
     hasError: virksomhed.hasError,
-    error: virksomhed.error
+    error: virksomhed.error,
+    router: state.router
   }
 }
 
 const mapDispatchToProps = {
-  visVirksomhed
+  visVirksomhed, visDeltager, visEjerGraf
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(VirksomhedView);

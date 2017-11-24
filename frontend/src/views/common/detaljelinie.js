@@ -9,7 +9,7 @@ export default class DetaljeLinie extends Component {
     var val;
 
     if (this.props.link) {
-      val = <a href="#" onClick={ () => this.props.link(this.props.linkKey)}>{this.props.value}</a>
+      val = <span className="btn-link" onClick={ () => this.props.link(this.props.linkKey, true)}>{this.props.value}</span>
     } else {
       val = this.props.value;
     }

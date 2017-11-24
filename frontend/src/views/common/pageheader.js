@@ -1,11 +1,12 @@
 import React from 'react';
 
-const PageHeader = ({ headerText }) => {
+const PageHeader = ({ headerText, iconClassName }) => {
+
   return(
     <div className="menuBar">
       <div className="row">
         <div className="col-12 section-header">
-          {headerText?headerText:null}
+          <span className={iconClassName} /> &nbsp; {headerText?headerText:null}
         </div>
       </div>
     </div>

@@ -1,19 +1,19 @@
-const deltager = (state = {}, action) => {
+const deltagerGraf = (state = {}, action) => {
   switch (action.type) {
-    case 'GET_DELTAGER':
+    case 'GET_DELTAGER_GRAF':
       return {
         isFetching: true,
         enhedsnummer: action.enhedsnummer
       }
 
-    case 'DELTAGER_RESULT':
+    case 'DELTAGER_GRAF_RESULT':
       return {
         isFetching: false,
-        deltager: action.deltager
+        deltagerGraf: action.deltagerGraf
       }
     default:
       return state
   }
 }
 
-export default deltager
+export default deltagerGraf;

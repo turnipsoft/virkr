@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import DetaljeLinie from './common/detaljelinie';
+import DetaljeLinie from '../common/detaljelinie';
 
 export default class Ejer extends React.Component {
 
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     const {ejer} = this.props;
 
     return(
-      <div className="card ejercard" onClick={ () => this._opdater(this.props.ejer) }>
+      <div className="card ejercard" onClick={ () => this._visEjer(this.props.ejer) }>
         <div className="card-block resizable-block">
           <DetaljeLinie text="Navn" value={ejer.navn} detalje={ejer.ejertype} />
           <DetaljeLinie text="CVR-Nummer" value={ejer.forretningsnoegle} />
@@ -24,11 +21,11 @@ export default class Ejer extends React.Component {
 
   }
 
-  _opdater(ejer) {
+  _visEjer(ejer) {
     if (ejer.ejertype==="PERSON") {
-      this.props.opdaterDeltager(ejer.enhedsnummer);
+      this.props.visDeltager(ejer.enhedsnummer, true);
     } else {
-      this.props.opdaterCvrNummer(ejer.forretningsnoegle);
+      this.props.visVirksomhed(ejer.forretningsnoegle, true);
     }
   }
 

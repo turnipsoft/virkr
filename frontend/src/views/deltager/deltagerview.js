@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PageHeader from '../common/pageheader';
 import Spinner from '../common/spinner';
 import DeltagerVisning from './deltager';
-import { visDeltager, visVirksomhed } from '../../actions/'
+import { visDeltager, visVirksomhed, visDeltagerGraf } from '../../actions/'
 
 class DeltagerView extends Component {
 
@@ -16,19 +16,21 @@ class DeltagerView extends Component {
   }
 
   render() {
-    const { showSpinner, deltager } = this.props;
+    console.log('DeltagerView-Render');
+    const { showSpinner, deltager, visVirksomhed, visDeltagerGraf } = this.props;
 
     return(
       <div>
-        <PageHeader headerText="Deltager" />
+        <PageHeader iconClassName="fa fa-user" headerText="Deltager" />
         {showSpinner && <Spinner />}
-        {deltager && <DeltagerVisning deltager={deltager} onVirksomhedClick={this.props.visVirksomhed} />}
+        {deltager && <DeltagerVisning deltager={deltager} onVirksomhedClick={visVirksomhed} visDeltagerGraf={visDeltagerGraf} />}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log('DeltagerView');
   const {deltager} = state;
 
   return {
@@ -41,7 +43,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   visVirksomhed,
-  visDeltager
+  visDeltager,
+  visDeltagerGraf
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeltagerView);

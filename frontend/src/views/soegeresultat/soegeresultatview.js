@@ -8,13 +8,16 @@ import Soegeresultat from './soegeresultat';
 class SoegeresultatView extends Component {
 
   render() {
+    const {soegning, visDeltager, soegeresultat, visVirksomhed } = this.props;
+
     return(
       <div>
-        <PageHeader headerText="Søgeresultat" />
+        <PageHeader iconClassName="fa fa-search" headerText="Søgeresultat" />
         {this.props.showSpinner && <Spinner />}
-        {this.props.soegeresultat && <Soegeresultat soegeresultat={this.props.soegeresultat}
-                                                    onDeltagerClick={this.props.visDeltager}
-                                                    onVirksomhedClick={this.props.visVirksomhed} />}
+        {this.props.soegeresultat && <Soegeresultat soegning={soegning}
+                                                    soegeresultat={soegeresultat}
+                                                    visDeltager={visDeltager}
+                                                    visVirksomhed={visVirksomhed} />}
       </div>
     );
   }
@@ -23,7 +26,7 @@ class SoegeresultatView extends Component {
 const mapStateToProps = (state) => {
   return {
     showSpinner: state.soegning.isFetching,
-    soegning: state.soegning.soegning,
+    soegning: state.soegning.soegetext,
     soegeresultat : state.soegning.soegeresultat
   }
 }

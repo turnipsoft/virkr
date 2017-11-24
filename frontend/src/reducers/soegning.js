@@ -9,7 +9,8 @@ const soegning = (state = {}, action) => {
     case 'SEARCH_RESULT':
       return {
         isFetching: false,
-        soegeresultat: action.soegeresultat
+        soegeresultat: action.soegeresultat,
+        soegetext: action.soegetext
       }
     default:
       return state

@@ -4,10 +4,6 @@ import DeltagerVirsomheder from './deltagervirksomheder';
 
 export default class DeltagerVisning extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const {deltager} = this.props;
 

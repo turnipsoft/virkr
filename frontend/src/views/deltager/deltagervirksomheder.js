@@ -12,7 +12,9 @@ export default class DeltagerVirksomheder extends Component {
         <div className="virksomheder">
           <div className="row">
             <div className="col-12 section-header">
-              <a href="#" title="Vis komplet ejergraf"><span className="fa fa-sitemap" onClick={ () => visDeltagerGraf(deltager.enhedsNummer)} /></a> &nbsp;Associerede Virksomheder <a href="#" title="Vis komplet ejergraf" onClick={ () => visDeltagerGraf(deltager.enhedsNummer)} >(Se komplet ejergraf)</a>
+              <span className="btn-link fa fa-sitemap" onClick={ () => visDeltagerGraf(deltager.enhedsNummer, true)} />
+              &nbsp;Associerede Virksomheder
+              <span className="btn-link" onClick={ () => visDeltagerGraf(deltager.enhedsNummer, true)} >(Se komplet ejergraf)</span>
             </div>
           </div>
           <br/>
