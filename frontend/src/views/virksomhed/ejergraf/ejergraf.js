@@ -44,8 +44,11 @@ export default class EjerGraf extends React.Component {
       var group = ejer.ejer.ejertype == 'PERSON' ? 'personer' : 'virksomheder'
       if (ejer.ejer.ejertype == 'ROD') {
         group = 'rod';
+        return {id: ejer.ejer.enhedsnummer, label: ejer.ejer.navn, group: group, x:-400, y:-600};
+      } else {
+        return {id: ejer.ejer.enhedsnummer, label: ejer.ejer.navn, group: group};
       }
-      return {id: ejer.ejer.enhedsnummer, label: ejer.ejer.navn, group: group};
+
     });
 
     const e = ejergraf.ejerRelationer.map((er) =>{
@@ -62,8 +65,8 @@ export default class EjerGraf extends React.Component {
     var options = {
       layout: {
         hierarchical: {
-          direction: "UD",
-          sortMethod: "directed"
+          direction: "DU",
+          sortMethod: 'directed'
         },
         improvedLayout: true
       },
