@@ -9,7 +9,7 @@ const apiHost = debug ? 'slamhost' : 'virkr.dk';
 module.exports = {
   devtool: debug ? "inline-sourcemap" : null,
 
-  entry: './src/app.js',
+  entry: './src/index.js',
 
   output: {
     filename: "bundle.js",
