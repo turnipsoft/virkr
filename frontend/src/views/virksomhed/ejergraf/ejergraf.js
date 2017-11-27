@@ -128,16 +128,6 @@ export default class EjerGraf extends React.Component {
 
     return(
       <div className="ejergraf">
-        <br/>
-        <div className="row">
-          <div className="col-2" />
-          <div className="col-8">
-            Klik på ejerne herunder for at se detaljer om ejeren og dennes direkte og indirekte andele i virksomhederne
-          </div>
-          <div className="col-2" />
-
-        </div>
-        <br/>
         <div className="row">
           <div className="col ejergrafcol">
             <Graph graph={graph} options={options} events={events} style={styles}/>

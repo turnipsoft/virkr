@@ -121,16 +121,6 @@ export default class DeltagerGraf extends React.Component {
 
     return(
       <div className="ejergraf">
-        <br/>
-        <div className="row">
-          <div className="col-2" />
-          <div className="col-8">
-            Klik på ejerne herunder for at se detaljer om ejeren
-          </div>
-          <div className="col-2" />
-
-        </div>
-        <br/>
         <div className="row">
           <div className="col ejergrafcol">
             <Graph graph={graph} options={options} events={events} style={styles}/>
