@@ -1,17 +1,26 @@
 version: "3"
+
 services:
+
   virkrdb:
-    build:
-      context: .
-      dockerfile: Dockerfile.postgres
+    image: postgres:alpine
+    volumes:
+      - ./backend/src/main/sql/ddl.sql:/docker-entrypoint-initdb.d/1-ddl.sql
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+    expose:
+      - "5432"
 
   virkr:
-    build:
-      context: .
-      dockerfile: Dockerfile.tomcat
+    image: tomcat
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/build/libs/virkr-0.0.1.war:/usr/local/tomcat/webapps/virkr.war
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://virkrdb:5432/postgres
+      - VIRKR_MAPS_APIKEY==AIzaSyCFIFw8X7OTSOJ5lh-Z-HUxzNzbD2TYl-w
+      - VIRKR_CVR_PASSWORD=aa2d9502-86b1-4b08-b874-fd10960df469
     links:
       - virkrdb
-    ports:
-      - 8080:8080

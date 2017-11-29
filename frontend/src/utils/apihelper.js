@@ -2,12 +2,10 @@ import 'whatwg-fetch';
 
 export default class APIHelper {
 
-  static host() {
-    return 'http://virkr.dk:9092'
-  }
-
   static url(path) {
-    return this.host()+path;
+    const base = document.querySelector('base')
+    const baseUrl = base && base.href || '';
+    return baseUrl.concat(path);
   }
 
   static hentNoegletal(cvrnummer) {

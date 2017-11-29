@@ -2,9 +2,6 @@ const path = require('path');
 
 const debug = process.env.NODE_ENV !== "production";
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-
-const apiHost = debug ? 'slamhost' : 'virkr.dk';
 
 module.exports = {
   devtool: debug ? "inline-sourcemap" : null,
@@ -22,10 +19,7 @@ module.exports = {
         inject: true,
         template: './src/index.html'
       }
-    ),
-    new webpack.DefinePlugin({
-      __APIHOST__: apiHost
-    })
+    )
   ],
 
   resolve: {

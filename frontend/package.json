@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --progress --colors",
     "start": "webpack-dev-server --hot --inline",
     "clean": "rimraf build"
   },
