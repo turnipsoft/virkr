@@ -48,10 +48,11 @@ class CvrInternalService {
     ejerAfVirksomhed.ejer.forretningsnoegle = ejerAfVirksomhed.cvrnummer
     ejerAfVirksomhed.ejer.enhedsnummer = vrvirksomhed.enhedsNummer
     ejerAfVirksomhed.ejer.ejertype = EjerType.ROD
+    ejerAfVirksomhed.ejer.level = 0
 
     ejerGraf.ejere << ejerAfVirksomhed
 
-    berigEjergraf(vrvirksomhed, ejerGraf, ejerAfVirksomhed)
+    berigEjergraf(vrvirksomhed, ejerGraf, ejerAfVirksomhed, 1)
 
     return ejerGraf
   }
@@ -66,7 +67,7 @@ class CvrInternalService {
     virksomheder.each { virksomhed->
       // tager den kun med såfremt deltager faktisk er ejer af virksomheden, hvilket man kan se ved at virksomhedens ejere inkluderer personen
       if (virksomhed.ejere && virksomhed.ejere.find { it.enhedsnummer == enhedsnummer}) {
-        berigDeltagersVirksomhed(vrdeltagerperson.enhedsNummer, virksomhed, deltagerGraf)
+        berigDeltagersVirksomhed(vrdeltagerperson.enhedsNummer, virksomhed, deltagerGraf, 0)
       }
     }
 
@@ -84,8 +85,9 @@ class CvrInternalService {
     return ejerAfVirksomhed
 
   }
-  void berigDeltagersVirksomhed(String deltagerEnhedsnummer, Vrvirksomhed virksomhed, DeltagerGraf deltagerGraf) {
+  void berigDeltagersVirksomhed(String deltagerEnhedsnummer, Vrvirksomhed virksomhed, DeltagerGraf deltagerGraf, int level) {
     EjerAfVirksomhed ejerAfVirksomhed = bygEjerAfVirksomhed(virksomhed, deltagerEnhedsnummer)
+    ejerAfVirksomhed.ejer.level = level
 
     deltagerGraf.ejere << ejerAfVirksomhed
     deltagerGraf.relationer << new DeltagerRelation(deltagerEnhedsnummer, virksomhed.enhedsNummer)
@@ -99,7 +101,7 @@ class CvrInternalService {
       findAll {it.ejere?.find { it.enhedsnummer == virksomhed.enhedsNummer}}
 
     virksomhederDerEjesAfVirksomhed.each { ejetVirksomhed->
-      berigDeltagersVirksomhed(virksomhed.enhedsNummer, ejetVirksomhed, deltagerGraf)
+      berigDeltagersVirksomhed(virksomhed.enhedsNummer, ejetVirksomhed, deltagerGraf, level+1)
     }
   }
 
@@ -109,19 +111,18 @@ class CvrInternalService {
    * @param ejerGraf grafen der skal beriges
    * @param virksomhed modervirksomheden til vrvirksomheden
    */
-  void berigEjergraf(Vrvirksomhed vrvirksomhed, EjerGraf ejerGraf, EjerAfVirksomhed virksomhed) {
+  void berigEjergraf(Vrvirksomhed vrvirksomhed, EjerGraf ejerGraf, EjerAfVirksomhed virksomhed, int level) {
 
-    logger.info("Beriger ejergraf med virksomheden : $vrvirksomhed.virksomhedMetadata.nyesteNavn.navn")
     vrvirksomhed.ejere.each { ejer->
       if (ejer.forretningsnoegle && ejer.forretningsnoegle == vrvirksomhed.cvrNummer) {
         // skip den findes jo givetvis allerede
         return
       }
-      logger.info("Tilføjer ejer : $ejer.navn")
       EjerAfVirksomhed ejerAfVirksomhed = new EjerAfVirksomhed()
       ejerAfVirksomhed.cvrnummer = vrvirksomhed.cvrNummer
       ejerAfVirksomhed.virksomhedsnavn = vrvirksomhed.virksomhedMetadata.nyesteNavn.navn
       ejerAfVirksomhed.ejer = ejer
+      ejerAfVirksomhed.ejer.level = level
       ejerGraf.ejere << ejerAfVirksomhed
       EjerRelation ejerRelation = new EjerRelation()
       ejerRelation.virksomhed = virksomhed
@@ -135,7 +136,7 @@ class CvrInternalService {
       if (ejer.ejertype != EjerType.PERSON) {
         Vrvirksomhed v = cvrClient.hentVirksomhed(ejer.forretningsnoegle)
         if (v && v.cvrNummer != vrvirksomhed.cvrNummer) {
-          berigEjergraf(v, ejerGraf, ejerAfVirksomhed)
+          berigEjergraf(v, ejerGraf, ejerAfVirksomhed, level+1)
         }
       }
     }

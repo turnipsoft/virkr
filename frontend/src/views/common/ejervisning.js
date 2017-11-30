@@ -6,6 +6,8 @@ export default class EjerVisning extends React.Component {
   render() {
     const {ejer, visVirksomhed, visDeltager} = this.props;
 
+    const ejertype = (ejer.ejertype=='ROD' ? 'VIRKSOMHED' : ejer.ejertype);
+
     return(
         <div className="card-block resizable-block">
           {ejer.ejertype==='PERSON'?
@@ -13,7 +15,7 @@ export default class EjerVisning extends React.Component {
               <DetaljeLinie text="Navn" value={ejer.navn} detalje={ejer.ejertype} link={visDeltager} linkKey={ejer.enhedsnummer} />
             </div>) :
             (<div>
-              <DetaljeLinie text="Navn" value={ejer.navn} detalje={ejer.ejertype} />
+              <DetaljeLinie text="Navn" value={ejer.navn} detalje={ejertype} />
               <DetaljeLinie text="CVR-Nummer" value={ejer.forretningsnoegle} link={visVirksomhed} linkKey={ejer.forretningsnoegle} />
               <DetaljeLinie text="CVR-Nummer" value={ejer.cvrnummer} link={visVirksomhed} linkKey={ejer.cvrnummer} />
             </div>)
