@@ -58,18 +58,25 @@ Backenden udstiller 3 restendpoints :
 - /cvr/<cvrnr> : Henter virksomheds stamoplysninger for den pågældende virksomhed
 - /cvr/search/<soegning> : Foretager en søgning på virksomhedr i CVR Indeks
 
-#### Postgresql og Docker
-Postgresql kan startes med Docker ved i roden af projektet skrive:
+#### Docker
+For at bygge en container med Tomcat 7 (java 7) og applikationen deployed:
 
-    docker build -t virkr/postgres .
+    docker build -t virkr/erst .
 
 efterfulgt af:
 
-    docker run --name virkrdb -d -p 5432:5432 virkr/postgres
+    docker run --name virkr -d -p 8080:8080 virkr/erst
 
-Postgresql er herefter oppe på localhost:5432.
+Apllikationen er herefter tilgængelig på http://localhost:8080/virkr
 
-Databasen bliver automatisk opsat med indholdet af `backend/src/main/sql/ddl.sql`        
+Loggen kan læses med:
+   
+    docker logs -f virkr
+
+Containeren stoppes igen med:
+
+    docker stop virkr
+
 
 ### Frontenden
 Frontenden er lavet som en REACT applikation og er en SPA, udover REACT anvendes FLUX som design pattern for kommunikation
