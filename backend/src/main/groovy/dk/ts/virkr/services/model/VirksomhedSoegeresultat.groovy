@@ -7,4 +7,5 @@ class VirksomhedSoegeresultat {
   String navn
   String cvrnr
   String enhedsNummer
+  String adresseTekst
 }

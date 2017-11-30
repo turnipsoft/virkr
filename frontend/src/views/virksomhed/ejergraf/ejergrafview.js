@@ -44,7 +44,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   visVirksomhed,
-  visDeltager
+  visDeltager,
+  visEjerGraf
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EjerGrafView);

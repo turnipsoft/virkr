@@ -2,6 +2,7 @@ package dk.ts.virkr.services
 
 import dk.ts.virkr.cvr.integration.CvrClient
 import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
+import dk.ts.virkr.cvr.integration.model.virksomhed.Beliggenhedsadresse
 import dk.ts.virkr.services.model.graf.DeltagerGraf
 import dk.ts.virkr.services.model.graf.EjerGraf
 import dk.ts.virkr.cvr.integration.model.virksomhed.Vrvirksomhed
@@ -65,9 +66,12 @@ class CvrService {
     navn = navn.replace(" ","%20")
     List<Vrdeltagerperson> vrdeltagerpersoner =  cvrClient.soegDeltagere(navn)
     return vrdeltagerpersoner.collect {it->
+      if (it.enhedstype == 'ANDEN_DELTAGER') {
+        return null
+      }
       DeltagerSoegeresultat deltagerSoegeresultat = cvrInternalService.tilDeltager(it)
       return deltagerSoegeresultat
-    }
+    } - null
   }
 
   @RequestMapping(value = "/searchVirkr/{navn}", method= RequestMethod.GET)
@@ -80,6 +84,12 @@ class CvrService {
       virksomhedSoegeresultat.cvrnr = it.cvrNummer
       virksomhedSoegeresultat.navn = it.virksomhedMetadata.nyesteNavn.navn
       virksomhedSoegeresultat.enhedsNummer = it.enhedsNummer
+      if (it.virksomhedMetadata.nyesteBeliggenhedsadresse) {
+        Beliggenhedsadresse b = it.virksomhedMetadata.nyesteBeliggenhedsadresse
+        if (b.vejnavn && b.postnummer) {
+          virksomhedSoegeresultat.adresseTekst = b.adresselinie
+        }
+      }
       return virksomhedSoegeresultat
     }
     virkrSoegeresultat.deltagere = deltagerSoegeresultater

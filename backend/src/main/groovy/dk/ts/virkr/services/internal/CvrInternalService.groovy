@@ -191,10 +191,12 @@ class CvrInternalService {
   DeltagerSoegeresultat tilDeltager(Vrdeltagerperson vrdeltagerperson) {
     DeltagerSoegeresultat deltagerSoegeresultat = new DeltagerSoegeresultat()
     deltagerSoegeresultat.navn = vrdeltagerperson.navne[0].navn
-    deltagerSoegeresultat.adresselinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.vejadresselinie
-    deltagerSoegeresultat.bylinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.byLinje
-    deltagerSoegeresultat.postnr = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.postnummer
-    deltagerSoegeresultat.bynavn = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bynavn
+    if (vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse) {
+      deltagerSoegeresultat.adresselinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.vejadresselinie
+      deltagerSoegeresultat.bylinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.byLinje
+      deltagerSoegeresultat.postnr = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.postnummer
+      deltagerSoegeresultat.bynavn = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bynavn
+    }
     deltagerSoegeresultat.enhedsNummer = vrdeltagerperson.enhedsNummer
     deltagerSoegeresultat.enhedstype = vrdeltagerperson.enhedstype
     deltagerSoegeresultat.virksomheder = []
