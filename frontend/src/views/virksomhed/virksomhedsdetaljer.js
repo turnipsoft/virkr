@@ -43,7 +43,7 @@ export default class VirksomhedsDetaljer extends Component {
       <div>
         <div className="row">
           <div className="col-12 section-header">
-            <span className="fa fa-industry" /> &nbsp; Virksomhedsinformationer
+            <span className="fa fa-industry" /> &nbsp; Stamdata
           </div>
         </div>
         <br/>
