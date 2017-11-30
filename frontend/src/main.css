@@ -71,6 +71,17 @@
 @media(min-width: 992px) {
   .soegeresultatcard:hover {
     box-shadow: 8px 8px 3px lightgray;
+    cursor: pointer;
+  }
+
+  .ejercard:hover {
+     box-shadow: 8px 8px 3px lightgray;
+     cursor: pointer;
+   }
+
+  .virksomhedcard:hover {
+    box-shadow: 8px 8px 3px lightgray;
+    cursor: pointer;
   }
 }
 
@@ -79,9 +90,21 @@
     margin-bottom: 20px;
     box-shadow: 8px 8px 3px lightgray;
   }
+  .ejercard:hover {
+    margin-bottom: 20px;
+    box-shadow: 8px 8px 3px lightgray;
+  }
+  .virksomhedcard:hover {
+    margin-bottom: 20px;
+    box-shadow: 8px 8px 3px lightgray;
+  }
 }
 
 .ejercard {
+  margin-bottom: 20px;
+}
+
+.virksomhedcard {
   margin-bottom: 20px;
 }
 

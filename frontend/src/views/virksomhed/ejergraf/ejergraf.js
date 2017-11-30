@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Graph from 'react-graph-vis';
 import Modal from '../../common/modal.js';
 import EjerVisning from '../../common/ejervisning';
+import { wrap } from '../../../utils/utils'
 
 export default class EjerGraf extends React.Component {
 
@@ -44,11 +45,9 @@ export default class EjerGraf extends React.Component {
       var group = ejer.ejer.ejertype == 'PERSON' ? 'personer' : 'virksomheder'
       if (ejer.ejer.ejertype == 'ROD') {
         group = 'rod';
-        return {id: ejer.ejer.enhedsnummer, label: ejer.ejer.navn, group: group, x:-400, y:-600};
-      } else {
-        return {id: ejer.ejer.enhedsnummer, label: ejer.ejer.navn, group: group};
       }
-
+       const navn = wrap(ejer.ejer.navn, 25);
+      return {id: ejer.ejer.enhedsnummer, label: navn, group: group, level: ejer.ejer.level };
     });
 
     const e = ejergraf.ejerRelationer.map((er) =>{
@@ -65,7 +64,9 @@ export default class EjerGraf extends React.Component {
     var options = {
       layout: {
         hierarchical: {
-          direction: "DU",
+          direction: "UD",
+          blockShifting: true,
+          edgeMinimization: true,
           sortMethod: 'directed'
         },
         improvedLayout: true
@@ -78,6 +79,11 @@ export default class EjerGraf extends React.Component {
       autoResize: true,
       interaction: {
         hover:true
+      },
+      nodes: {
+        font: {
+          size: 10
+        }
       },
       groups: {
         virksomheder: {

@@ -22,6 +22,9 @@ class Ejer {
   String stemmeprocentInterval
   String kapitalklasse
 
+  // level bruges til at styre grafisk hvilket niveau ejeren skal ligge på i grafen
+  int level
+
   List<ReelEjerandel> reelleEjerandele = []
 
   static Ejer from(DeltagerRelation deltagerRelation) {

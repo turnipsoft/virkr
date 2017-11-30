@@ -23,4 +23,12 @@ class DeltagerSoegeresultat {
 
     return ''
   }
+
+  String getAdresseTekst() {
+    if (adresselinie && postnr) {
+      return adresselinie + ', '+postnr +' '+bynavn
+    }
+
+    return ''
+  }
 }

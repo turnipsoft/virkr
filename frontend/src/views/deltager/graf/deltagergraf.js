@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Graph from 'react-graph-vis';
 import Modal from '../../common/modal.js';
 import EjerVisning from '../../common/ejervisning';
+import { wrap } from '../../../utils/utils';
 
 export default class DeltagerGraf extends React.Component {
 
@@ -43,7 +44,9 @@ export default class DeltagerGraf extends React.Component {
       if (ejer.enhedsType == 'ROD') {
         group = 'rod';
       }
-      return {id: ejer.enhedsnummer, label: ejer.navn, group: group};
+
+      const navn = wrap(ejer.navn, 25);
+      return {id: ejer.enhedsnummer, label: navn, group: group, level: ejer.level };
     });
 
     const e = deltagergraf.relationer.map((er) =>{
@@ -59,7 +62,9 @@ export default class DeltagerGraf extends React.Component {
     var options = {
       layout: {
         hierarchical: {
-          direction: "UD"
+          direction: "UD",
+          parentCentralization: true,
+          sortMethod: 'directed'
         },
         improvedLayout: true
       },
@@ -71,6 +76,11 @@ export default class DeltagerGraf extends React.Component {
       autoResize: true,
       interaction: {
         hover:true
+      },
+      nodes: {
+        font: {
+          size: 10
+        }
       },
       groups: {
         virksomheder: {
