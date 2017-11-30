@@ -6,6 +6,9 @@ import dk.ts.virkr.aarsrapporter.model.RegnskabData
  * Created by sorenhartvig on 16/11/2017.
  */
 interface RegnskabsdataCache {
+  final String CACHE_TYPE_JPA = 'jpa'
+  final String CACHE_TYPE_MEMORYMAP = 'memorymap'
+  final String CACHE_TYPE_NOOP = 'noop'
 
   /**
    * Har til ansvar at hente regnskabsdata fra cachen på et givent cvrnummer
@@ -24,5 +27,12 @@ interface RegnskabsdataCache {
    * Har til ansvar at opdatere cachen med nye regnskaber der måtte være kommet på virksomheder
    */
   int opdaterCacheMedNyeRegnskaber()
+
+  /**
+   * Hvilken cachetype understøtter denne cache ('jpa', 'memorymap', 'noop')
+   * @param name
+   * @return
+   */
+  boolean supports(String name)
 
 }

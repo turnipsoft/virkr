@@ -7,6 +7,7 @@ import dk.ts.virkr.aarsrapporter.util.Utils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
@@ -17,6 +18,7 @@ import java.time.LocalDateTime
  * JPA regnskabsdata cache, datasource skal være sat op i application.yml
  */
 @Service
+@Profile('!ERST')
 class JpaRegnskabsdataCache implements RegnskabsdataCache {
 
   Logger logger = LoggerFactory.getLogger(JpaRegnskabsdataCache.class)
@@ -76,5 +78,10 @@ class JpaRegnskabsdataCache implements RegnskabsdataCache {
     }
 
     return count
+  }
+
+  @Override
+  boolean supports(String name) {
+    return CACHE_TYPE_JPA == name
   }
 }

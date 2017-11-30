@@ -27,4 +27,9 @@ class NoOpRegnskabsdataCache implements RegnskabsdataCache {
     logger.warn("NoOpCache:opdaterCacheMedNyeRegnskaber")
     return 0
   }
+
+  @Override
+  boolean supports(String name) {
+    return CACHE_TYPE_NOOP == name
+  }
 }

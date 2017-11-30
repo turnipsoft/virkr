@@ -2,13 +2,13 @@ package dk.ts.virkr.cvr.integration
 
 import dk.ts.virkr.aarsrapporter.util.JsonMarshaller
 import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
-import dk.ts.virkr.cvr.integration.model.deltager.VrdeltagerpersonWrapper
 import dk.ts.virkr.cvr.integration.model.deltager.elasticsearch.ElasticGetDeltagerResult
-import dk.ts.virkr.cvr.integration.model.virksomhed.elasticsearch.ElasticResult
 import dk.ts.virkr.cvr.integration.model.virksomhed.Vrvirksomhed
+import dk.ts.virkr.cvr.integration.model.virksomhed.elasticsearch.ElasticResult
 import org.slf4j.Logger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
+import org.apache.commons.codec.binary.Base64
 
 /**
  * Created by sorenhartvig on 29/05/2017.
@@ -17,16 +17,16 @@ import org.springframework.stereotype.Service
 class CvrClient {
 
   @Value('${virkr.cvr.url}')
-  url
+    url
 
   @Value('${virkr.cvr.deltagerurl}')
-  deltagerurl
+    deltagerurl
 
   @Value('${virkr.cvr.username}')
-  username
+    username
 
   @Value('${virkr.cvr.password}')
-  password
+    password
 
   static final Logger log = org.slf4j.LoggerFactory.getLogger(CvrClient.class)
 
@@ -104,18 +104,18 @@ class CvrClient {
   }
 
   String prepareNavneQuery(String navn) {
-    navn = navn.replace("{SLASH}","/")
-    String navnequery=''
+    navn = navn.replace("{SLASH}", "/")
+    String navnequery = ''
     if (navn.contains('%20')) {
       navn.split('%20').each {
-        if (navnequery.length()>0) {
+        if (navnequery.length() > 0) {
           navnequery += " AND "
         }
         navnequery += it
       }
-      navnequery='('+navnequery+')'
+      navnequery = '(' + navnequery + ')'
     } else {
-      navnequery=navn
+      navnequery = navn
     }
     return navnequery
   }
@@ -128,7 +128,7 @@ class CvrClient {
     String statusquery = '(Vrvirksomhed.virksomhedMetadata.sammensatStatus:(NORMAL OR Normal OR Aktiv))'
     String include = 'Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn,Vrvirksomhed.cvrNummer'
     String query = "($navnequery OR cvrNummer:$navn) AND $statusquery"
-    query = URLEncoder.encode(query,'UTF-8').replace('+','%20')
+    query = URLEncoder.encode(query, 'UTF-8').replace('+', '%20')
     String url = "$url?q=$query&_source_include=$include&_source_exclude=entities"
 
     String jsonResult = kaldCvr(url)
@@ -141,7 +141,7 @@ class CvrClient {
     navnequery = "Vrdeltagerperson.navne.navn:$navnequery"
 
     String include = 'Vrdeltagerperson.navne.navn,Vrdeltagerperson.enhedsNummer,Vrdeltagerperson.enhedstype,Vrdeltagerperson.deltagerpersonMetadata,Vrdeltagerperson.virksomhedSummariskRelation'
-    String query = URLEncoder.encode(navnequery,'UTF-8').replace('+','%20')
+    String query = URLEncoder.encode(navnequery, 'UTF-8').replace('+', '%20')
     String url = "$url?q=$query&_source_include=$include&_source_exclude=entities"
 
     String jsonResult = kaldCvr(url)
@@ -151,7 +151,7 @@ class CvrClient {
     dk.ts.virkr.cvr.integration.model.deltager.elasticsearch.ElasticResult elasticResult =
       marshaller.toObject(jsonResult, dk.ts.virkr.cvr.integration.model.deltager.elasticsearch.ElasticResult.class)
 
-    elasticResult.hits.hits.each { hit->
+    elasticResult.hits.hits.each { hit ->
       if (hit._source.vrdeltagerperson) {
         resultat << hit._source.vrdeltagerperson
       }
@@ -160,13 +160,13 @@ class CvrClient {
     return resultat
   }
 
-  private String kaldCvr(String url, String body=null) {
+  private String kaldCvr(String url, String body = null) {
     log.debug("Invoking URL: $url")
     URL u = new URL(url)
 
     HttpURLConnection uc = (HttpURLConnection) u.openConnection()
     String userpass = username + ":" + password
-    String basicAuth = "Basic " + new String(Base64.encoder.encode(userpass.bytes))
+    String basicAuth = "Basic " + new String(Base64.encodeBase64(userpass.bytes))
     uc.setRequestProperty("Authorization", basicAuth)
     if (body) {
       uc.doOutput = true

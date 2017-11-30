@@ -1,6 +1,5 @@
 package dk.ts.virkr.aarsrapporter.cache
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
@@ -13,20 +12,17 @@ class RegnskabsdataCacheFactory {
   @Value('${virkr.aarsrapporter.cachefactory}')
   String cacheFactory
 
-  @Autowired
-  JpaRegnskabsdataCache jpaRegnskabsdataCache
+  final List<RegnskabsdataCache> caches
 
-  @Autowired
-  MemoryMapCache memoryMapCache
+  RegnskabsdataCacheFactory(List<RegnskabsdataCache> caches) {
+    this.caches = caches
+    if (!cacheFactory) {
+      cacheFactory = RegnskabsdataCache.CACHE_TYPE_NOOP
+    }
+  }
 
   RegnskabsdataCache getRegnskabsdataCache() {
-    if (cacheFactory.equalsIgnoreCase('jpa')) {
-      return jpaRegnskabsdataCache
-    } else if (cacheFactory.equalsIgnoreCase('memorymap')) {
-      return memoryMapCache
-    }
-
-    return new NoOpRegnskabsdataCache()
+    return caches.find { it.supports(cacheFactory) }
   }
 
 }

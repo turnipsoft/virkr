@@ -27,15 +27,16 @@ repositories {
   mavenCentral()
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
 
 dependencies {
   compile "org.springframework.boot:spring-boot-starter-web"
   compile "org.springframework.boot:spring-boot-starter-data-jpa"
   compile "org.hibernate:hibernate-java8:5.1.0.Final"
-  compile "org.postgresql:postgresql:9.4-1206-jdbc42"
 
-  compile "org.hsqldb:hsqldb"
+  compile 'commons-codec:commons-codec:1.11'
+
   compile "com.google.code.gson:gson:2.7"
 
   compile "org.codehaus.groovy:groovy-all"

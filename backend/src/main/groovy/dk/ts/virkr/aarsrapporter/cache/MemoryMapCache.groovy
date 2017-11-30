@@ -55,4 +55,9 @@ class MemoryMapCache implements RegnskabsdataCache {
   int opdaterCacheMedNyeRegnskaber() {
     return 0
   }
+
+  @Override
+  boolean supports(String name) {
+    return CACHE_TYPE_MEMORYMAP == name
+  }
 }
