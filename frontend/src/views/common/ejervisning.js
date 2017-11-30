@@ -6,7 +6,13 @@ export default class EjerVisning extends React.Component {
   render() {
     const {ejer, visVirksomhed, visDeltager} = this.props;
 
-    const ejertype = (ejer.ejertype=='ROD' ? 'VIRKSOMHED' : ejer.ejertype);
+    let ejertype = (ejer.ejertype=='ROD' ? 'VIRKSOMHED' : ejer.ejertype);
+
+    if(ejertype=='VIRKSOMHED' && !ejer.cvrnummer) {
+      // Så er det en udenlands virksomhed og dem har ikke lyst til at linke til, de har ingen data
+      // Angiver også at det er udenlandsk
+      ejertype = 'UDENLANDSK';
+    }
 
     return(
         <div className="card-block resizable-block">
@@ -16,8 +22,7 @@ export default class EjerVisning extends React.Component {
             </div>) :
             (<div>
               <DetaljeLinie text="Navn" value={ejer.navn} detalje={ejertype} />
-              <DetaljeLinie text="CVR-Nummer" value={ejer.forretningsnoegle} link={visVirksomhed} linkKey={ejer.forretningsnoegle} />
-              <DetaljeLinie text="CVR-Nummer" value={ejer.cvrnummer} link={visVirksomhed} linkKey={ejer.cvrnummer} />
+              {ejertype=='VIRKSOMHED' && <DetaljeLinie text="CVR-Nummer" value={ejer.cvrnummer} link={visVirksomhed} linkKey={ejer.cvrnummer} />}
             </div>)
           }
           <DetaljeLinie text="Adresse" value={ejer.adresse} />
