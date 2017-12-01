@@ -26,8 +26,8 @@ export default class NoegletalTabel extends Component {
 
     return (
       <div className="card noegletal-tabel-card">
-        <div className="card-block">
-          <table className="table table-hover table-no-bordered noegletal-tabel">
+        <div className="card-block table-responsive">
+          <table className="table table-hover noegletal-tabel">
             <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber}/>
             <tbody>
 

@@ -9,7 +9,7 @@ const NoegletalGraf = ({regnskaber, felt, label}) => {
     <tr>
       <td colSpan={regnskaber.length+1}>
         <div className="row">
-          <div className="col col-2" />
+          <div className="col col-2 hidden-sm-down" />
           <div className="col col-8">
             <VaerdiGraf regnskaber={reversed} felt={felt} label={label} />
           </div>

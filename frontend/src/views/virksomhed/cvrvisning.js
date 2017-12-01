@@ -55,7 +55,7 @@ export default class CvrVisning extends Component {
           <br/>
           <Graf regnskaber={regnskaber} />
           <br />
-          <div className="hidden-sm-down">
+          <div className="hide-on-portrait">
             <NoegletalTabel regnskaber={sorteredeRegnskaber} />
           </div>
           <br />
