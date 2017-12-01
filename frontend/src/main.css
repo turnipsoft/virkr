@@ -114,6 +114,7 @@
   .noegletal-row:hover {
     cursor: pointer;
   }
+
 }
 
 @media (orientation:portrait) {
@@ -134,6 +135,11 @@
   .virksomhedcard:hover {
     margin-bottom: 20px;
     box-shadow: 8px 8px 3px lightgray;
+  }
+
+  .noegletal-tabel {
+    font-size: 12px;
+    border: 0px;
   }
 }
 
