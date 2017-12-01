@@ -52,6 +52,33 @@
   margin-bottom: 20px;
 }
 
+.noegletal-header {
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 50px;
+}
+
+.noegletal-vaerdi {
+  text-align: right;
+}
+
+.noegletal-label-bold {
+  font-weight: bold;
+}
+
+.noegletal-tabel {
+  font-size: 14px;
+  border: 0px;
+}
+
+.table tr td {
+  border: 0;
+  padding: 0.25rem;
+}
+
+.noegletal-color-negative {
+  color: red;
+}
+
 /*
   I det følgende låner vi lidt ideer fra Material Design: Cards får en dropshadow for at indikere at man
   kan interagere med dem.
