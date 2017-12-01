@@ -8,7 +8,13 @@ export default class EjerVisning extends React.Component {
 
     let ejertype = (ejer.ejertype=='ROD' ? 'VIRKSOMHED' : ejer.ejertype);
 
-    if(ejertype=='VIRKSOMHED' && !ejer.cvrnummer) {
+    let cvrnummer = ejer.forretningsnoegle?ejer.forretningsnoegle:ejer.cvrnummer;
+
+    if(cvrnummer && cvrnummer.length>8) {
+      cvrnummer = null;
+    }
+
+    if(ejertype=='VIRKSOMHED' && !cvrnummer) {
       // Så er det en udenlands virksomhed og dem har ikke lyst til at linke til, de har ingen data
       // Angiver også at det er udenlandsk
       ejertype = 'UDENLANDSK';
@@ -22,7 +28,7 @@ export default class EjerVisning extends React.Component {
             </div>) :
             (<div>
               <DetaljeLinie text="Navn" value={ejer.navn} detalje={ejertype} />
-              {ejertype=='VIRKSOMHED' && <DetaljeLinie text="CVR-Nummer" value={ejer.cvrnummer} link={visVirksomhed} linkKey={ejer.cvrnummer} />}
+              {ejertype=='VIRKSOMHED' && <DetaljeLinie text="CVR-Nummer" value={cvrnummer} link={visVirksomhed} linkKey={cvrnummer} />}
             </div>)
           }
           <DetaljeLinie text="Adresse" value={ejer.adresse} />
