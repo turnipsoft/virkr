@@ -110,6 +110,10 @@
     box-shadow: 8px 8px 3px lightgray;
     cursor: pointer;
   }
+
+  .noegletal-row:hover {
+    cursor: pointer;
+  }
 }
 
 @media(max-width: 991px) {

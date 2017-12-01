@@ -15,7 +15,7 @@ export default class RegnskabLinkRaekke extends Component {
 
     return (
       <tr>
-        <td>Links</td>
+        <td>XBRL og PDF Regnskab</td>
         {linksMarkup}
       </tr>
     )

@@ -4,7 +4,7 @@ import { resolveJsonValue, komma } from '../../../utils/utils';
 export default class NoegletalRaekke extends Component {
 
   render() {
-    const { regnskaber, label, felt, style, header, negative, highlight} = this.props;
+    const { regnskaber, label, felt, style, header, negative, highlight, onClick } = this.props;
 
     const feltvaerdier = regnskaber.map((regnskab) => {
       let vaerdi = resolveJsonValue(felt, regnskab);
@@ -34,7 +34,7 @@ export default class NoegletalRaekke extends Component {
     }
 
     return (
-      <tr>
+      <tr className="noegletal-row" onClick={onClick} >
         <td className={style?style:''}>
           {label}
         </td>

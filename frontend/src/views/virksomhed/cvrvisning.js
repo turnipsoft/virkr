@@ -4,7 +4,7 @@ import NoegletalTabel from './regnskab/noegletaltabel';
 import VirksomhedsInfo from './virksomhedsinfo';
 import VirksomhedsDetaljer from './virksomhedsdetaljer';
 import Ejere from './ejere';
-import Graf from './graf';
+import Graf from './regnskab/graf';
 
 export default class CvrVisning extends Component {
 
