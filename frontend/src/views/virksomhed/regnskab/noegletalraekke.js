@@ -47,11 +47,14 @@ export default class NoegletalRaekke extends Component {
 
     const className='noegletal-vaerdi';
 
+    let col = 0;
+
     return (
       vaerdier.map((vaerdi) => {
+        col++;
         if (header) {
           return (
-            <th className={className}>{vaerdi}</th>
+            <th key={col} className={className}>{vaerdi}</th>
           );
         }
 
@@ -59,7 +62,7 @@ export default class NoegletalRaekke extends Component {
         if (highlight && vaerdi<0) {
           cname+= ' noegletal-color-negative';
         }
-        return <td className={cname}>{vaerdi}</td>
+        return <td className={cname} key={col} >{vaerdi}</td>
       })
     );
   }

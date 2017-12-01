@@ -8,6 +8,7 @@ const NoegletalTabel = ({regnskaber}) => {
       <div className="card-block">
         <table className="table table-hover table-no-bordered noegletal-tabel" border="0" >
           <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} />
+          <tbody>
 
           <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.omsaetning"
                            label="Omsætning"
@@ -73,6 +74,7 @@ const NoegletalTabel = ({regnskaber}) => {
                            label="Gældsforpligtelser" regnskaber={regnskaber} />
           {emptyRow()}
           <RegnskabLinkRaekke regnskaber={regnskaber} />
+          </tbody>
 
         </table>
       </div>
