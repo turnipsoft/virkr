@@ -14,7 +14,7 @@ const Header = () => {
       <div className="hidden-xs-down virkr-header">
         <div className="row">
           <div className="col">
-            <h1><a href="/">Virkr</a></h1>
+            <h1><a href="">Virkr</a></h1>
             <p>Regnskaber, nøgletal, ejerforhold</p>
           </div>
         </div>
