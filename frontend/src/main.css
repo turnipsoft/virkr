@@ -52,6 +52,33 @@
   margin-bottom: 20px;
 }
 
+.noegletal-header {
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 50px;
+}
+
+.noegletal-vaerdi {
+  text-align: right;
+}
+
+.noegletal-label-bold {
+  font-weight: bold;
+}
+
+.noegletal-tabel {
+  font-size: 14px;
+  border: 0px;
+}
+
+.table tr td {
+  border: 0;
+  padding: 0.25rem;
+}
+
+.noegletal-color-negative {
+  color: red;
+}
+
 /*
   I det følgende låner vi lidt ideer fra Material Design: Cards får en dropshadow for at indikere at man
   kan interagere med dem.
@@ -83,6 +110,17 @@
     box-shadow: 8px 8px 3px lightgray;
     cursor: pointer;
   }
+
+  .noegletal-row:hover {
+    cursor: pointer;
+  }
+
+}
+
+@media (orientation:portrait) {
+  .hide-on-portrait {
+    display: none;
+  }
 }
 
 @media(max-width: 991px) {
@@ -97,6 +135,11 @@
   .virksomhedcard:hover {
     margin-bottom: 20px;
     box-shadow: 8px 8px 3px lightgray;
+  }
+
+  .noegletal-tabel {
+    font-size: 12px;
+    border: 0px;
   }
 }
 

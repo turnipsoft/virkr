@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Regnskabstal from './regnskabstal';
+import Regnskabstal from './regnskab/regnskabstal';
+import NoegletalTabel from './regnskab/noegletaltabel';
 import VirksomhedsInfo from './virksomhedsinfo';
 import VirksomhedsDetaljer from './virksomhedsdetaljer';
 import Ejere from './ejere';
-import Graf from './graf';
+import Graf from './regnskab/graf';
 
 export default class CvrVisning extends Component {
 
@@ -40,6 +41,8 @@ export default class CvrVisning extends Component {
       return null;
     }
 
+    const sorteredeRegnskaber = regnskaber.slice().reverse();
+
     if (regnskaber.length > 0) {
       return (
         <div>
@@ -48,13 +51,20 @@ export default class CvrVisning extends Component {
               <span className="fa fa-file-pdf-o" /> &nbsp; Regnskaber
             </div>
           </div>
+
           <br/>
           <Graf regnskaber={regnskaber} />
           <br />
+          <div className="hide-on-portrait">
+            <NoegletalTabel regnskaber={sorteredeRegnskaber} />
+          </div>
           <br />
-          {regnskaber.slice().reverse().map((regnskab) => {
+          {sorteredeRegnskaber.map((regnskab) => {
             return <Regnskabstal key={regnskab.id} regnskab={regnskab} />
           })}
+          <br/>
+
+
         </div>
       );
     } else {
