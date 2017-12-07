@@ -8,12 +8,14 @@ export default class NoegletalRaekke extends Component {
 
     const feltvaerdier = regnskaber.map((regnskab) => {
       let vaerdi = resolveJsonValue(felt, regnskab);
-      if (header) return vaerdi;
+      if (header) {
+        return { vaerdi: vaerdi, start: regnskab.startdato, slut: regnskab.slutdato };
+      }
       if (negative && vaerdi>0) {
         vaerdi = vaerdi * -1;
       }
 
-      return vaerdi;
+      return { vaerdi: vaerdi };
     });
 
     const empty = feltvaerdier.every((i) => { return (i === null || i === undefined) });
@@ -55,15 +57,18 @@ export default class NoegletalRaekke extends Component {
         col++;
         if (header) {
           return (
-            <th key={col} className={className}>{komma(vaerdi)}</th>
+            <th key={col} className={className}>{komma(vaerdi.vaerdi)}
+              <div className="header-periode">{vaerdi.start}</div>
+              <div className="header-periode">{vaerdi.slut}</div>
+            </th>
           );
         }
 
         let cname = className;
-        if (highlight && vaerdi<0) {
+        if (highlight && vaerdi.vaerdi<0) {
           cname+= ' noegletal-color-negative';
         }
-        return <td className={cname} key={col} >{komma(vaerdi)}</td>
+        return <td className={cname} key={col} >{komma(vaerdi.vaerdi)}</td>
       })
     );
   }
