@@ -8,7 +8,6 @@ import { routerMiddleware, ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createHashHistory'
 //import createHistory from 'history/createBrowserHistory'
 import Main from './containers/main';
-import Header from './views/common/header';
 import './images/regnskab-baggrund.png'
 import './main.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -29,7 +28,6 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history} >
       <div>
-        <Header />
         <Main />
       </div>
     </ConnectedRouter>
