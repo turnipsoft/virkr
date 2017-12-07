@@ -18,7 +18,7 @@ export default class NoegletalRaekke extends Component {
       return { vaerdi: vaerdi };
     });
 
-    const empty = feltvaerdier.every((i) => { return (i === null || i === undefined) });
+    const empty = feltvaerdier.every((i) => { return (i.vaerdi === null || i.vaerdi === undefined) });
     if (empty) {
       return null;
     }
