@@ -12,7 +12,8 @@ export default class NoegletalRaekke extends Component {
       if (negative && vaerdi>0) {
         vaerdi = vaerdi * -1;
       }
-      return komma(vaerdi);
+
+      return vaerdi;
     });
 
     const empty = feltvaerdier.every((i) => { return (i === null || i === undefined) });
@@ -54,7 +55,7 @@ export default class NoegletalRaekke extends Component {
         col++;
         if (header) {
           return (
-            <th key={col} className={className}>{vaerdi}</th>
+            <th key={col} className={className}>{komma(vaerdi)}</th>
           );
         }
 
@@ -62,7 +63,7 @@ export default class NoegletalRaekke extends Component {
         if (highlight && vaerdi<0) {
           cname+= ' noegletal-color-negative';
         }
-        return <td className={cname} key={col} >{vaerdi}</td>
+        return <td className={cname} key={col} >{komma(vaerdi)}</td>
       })
     );
   }
