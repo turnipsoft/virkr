@@ -67,7 +67,7 @@ class CvrInternalService {
     virksomheder.each { virksomhed->
       // tager den kun med såfremt deltager faktisk er ejer af virksomheden, hvilket man kan se ved at virksomhedens ejere inkluderer personen
       if (virksomhed.ejere && virksomhed.ejere.find { it.enhedsnummer == enhedsnummer}) {
-        berigDeltagersVirksomhed(vrdeltagerperson.enhedsNummer, virksomhed, deltagerGraf, 0)
+        berigDeltagersVirksomhed(vrdeltagerperson.enhedsNummer, virksomhed, deltagerGraf, 0, [])
       }
     }
 
@@ -85,7 +85,8 @@ class CvrInternalService {
     return ejerAfVirksomhed
 
   }
-  void berigDeltagersVirksomhed(String deltagerEnhedsnummer, Vrvirksomhed virksomhed, DeltagerGraf deltagerGraf, int level) {
+  void berigDeltagersVirksomhed(String deltagerEnhedsnummer, Vrvirksomhed virksomhed, DeltagerGraf deltagerGraf,
+                                int level, List<String> virksomhedsGren) {
     EjerAfVirksomhed ejerAfVirksomhed = bygEjerAfVirksomhed(virksomhed, deltagerEnhedsnummer)
     ejerAfVirksomhed.ejer.level = level
 
@@ -100,8 +101,14 @@ class CvrInternalService {
     List<Vrvirksomhed> virksomhederDerEjesAfVirksomhed = cvrClient.hentVirksomhedsDeltagere(virksomhed.enhedsNummer)?.
       findAll {it.ejere?.find { it.enhedsnummer == virksomhed.enhedsNummer}}
 
+    virksomhedsGren << virksomhed.cvrNummer
     virksomhederDerEjesAfVirksomhed.each { ejetVirksomhed->
-      berigDeltagersVirksomhed(virksomhed.enhedsNummer, ejetVirksomhed, deltagerGraf, level+1)
+      if (virksomhedsGren.contains(ejetVirksomhed.cvrNummer)) {
+        logger.warn("Virksomheden $ejetVirksomhed.virksomhedMetadata.nyesteNavn.navn med cvrnummer : $ejetVirksomhed.cvrNummer" +
+          " ejer direkte eller indirekte $virksomhed.virksomhedMetadata.nyesteNavn.navn med cvrnummer : $virksomhed.cvrNummer ")
+        return
+      }
+      berigDeltagersVirksomhed(virksomhed.enhedsNummer, ejetVirksomhed, deltagerGraf, level+1, virksomhedsGren)
     }
   }
 

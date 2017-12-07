@@ -65,9 +65,11 @@ class RegnskabXmlParser {
       println(it.name())
     }*/
 
+    /*
     if (ns.prefix == 'ifrs-full') {
       return haandterIFRS(ns, result, nl, data)
     }
+    */
 
     /** Resultatopgørelsen **/
     Resultatopgoerelse r = data.resultatopgoerelse
@@ -189,7 +191,7 @@ class RegnskabXmlParser {
     return null
   }
 
-  Integer extractInteger(String s) {
+  Long extractLong(String s) {
     String i = ""
     s.chars.each {
       if (it.toString().isNumber()) {
@@ -202,18 +204,30 @@ class RegnskabXmlParser {
       return 0
     }
 
-    return i.toInteger()
+    return i.toLong()
   }
 
-  String hentContextRef(Node xmlDokument, Namespace ns, RegnskabData regnskabData) {
-    if (ns.prefix=='fsa') {
-      // så er det noget tricky at finde contexten forsøger med ProfitLoss da den altid er til stede og entydigt svarer til Årets resultat som er krævet i et regnskab
-      NodeList n = xmlDokument[ns.ProfitLoss]
 
-      if (n!=null && n.size()>0) {
-        // som regel altid den mindste contextRef
-        Node node = n.min {extractInteger(it.attribute("contextRef"))}
-        return node.attribute("contextRef")
+  String hentContextRef(Node xmlDokument, Namespace ns, RegnskabData regnskabData) {
+
+    NodeList contextNodes = xmlDokument['context'];
+
+    // find den profit hvis contextRef ikke er konsolideret og som har nyeste periode.
+    if (ns.prefix=='fsa') {
+      NodeList n = xmlDokument[ns.ProfitLoss]
+      if (n != null && n.size() > 0) {
+        Node contextRefNode
+        n.each {
+          String contextRefCandidate = it.attribute("contextRef")
+          Node contextRefNodeCandidate = contextNodes.find { it.attribute('id') == contextRefCandidate }
+          if (!contextRefNode ||
+            (contextRefNodeCandidate.period.endDate.text() > contextRefNode.period.endDate.text() && !contextRefNodeCandidate.scenario)) {
+            contextRefNode = contextRefNodeCandidate
+          }
+        }
+        if (contextRefNode) {
+          return contextRefNode.attribute('id')
+        }
       }
     }
 

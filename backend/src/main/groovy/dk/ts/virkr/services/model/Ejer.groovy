@@ -59,15 +59,30 @@ class Ejer {
   }
 
   static Medlemsdata findAktuelMedlemsdataFraOrganisation(Organisation organisation) {
-    Medlemsdata medlemsdata = organisation.medlemsData.find{ it.attributter.find{it.type == 'EJERANDEL_MEDDELELSE_DATO'}.vaerdier.find{it.periode.gyldigTil==null}}
+    Medlemsdata medlemsdata = organisation.medlemsData.find{
+      Attribut attribut = it.attributter.find{it.type == 'EJERANDEL_MEDDELELSE_DATO'}
+      if (attribut) {
+        return attribut.vaerdier.find { it.periode.gyldigTil == null }
+      }
+
+      return false
+    }
     return  medlemsdata
   }
 
+  /**
+   * Forsøger at finde den aktuelle værdi for en given medlemsdata
+   * @param medlemsdata
+   * @param v
+   * @return
+   */
   static String findAktuelVaerdi(Medlemsdata medlemsdata, String v) {
     Attribut attribut = medlemsdata.attributter.find{ it.type==v }
     if (attribut) {
       Vaerdi vaerdi = attribut.vaerdier.find { it.periode.gyldigTil == null }
-      return vaerdi.vaerdi
+      if (vaerdi) {
+        return vaerdi.vaerdi
+      }
     }
 
     return null

@@ -12,6 +12,36 @@ import spock.lang.Specification
  */
 class RegnskabXmlParserSpec extends Specification {
 
+  void "test parse nc-2014.xml"() {
+    given:
+    String xml = TestUtil.load("/nc-2014.xml")
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+
+    when:
+    regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
+
+    Resultatopgoerelse ro = regnskabData.resultatopgoerelse
+
+    then:
+    ro.aaretsresultatTal.aaretsresultat == 28686000l
+  }
+
+  void "test parse nc-ifrs.xml"() {
+    given:
+    String xml = TestUtil.load("/nc-ifrs.xml")
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+
+    when:
+    regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
+
+    Resultatopgoerelse ro = regnskabData.resultatopgoerelse
+
+    then:
+    ro.aaretsresultatTal.aaretsresultat == 108187000l
+  }
+
   void "test parse greener pastures"() {
     given:
     String xml = TestUtil.load('/greener_pastures.xml')
@@ -91,30 +121,6 @@ class RegnskabXmlParserSpec extends Specification {
     virksomhedsdata.postnr == '1050'
     virksomhedsdata.bynavn == 'København K'
 
-  }
-
-  // FIXME: FSA regnskab... hmmmm how to parse
-  @Ignore
-  void "test parse dagrofa"() {
-    given:
-    String xml = TestUtil.load('/dagrofa.xml')
-    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
-
-    when:
-    regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
-
-    then:
-    regnskabData.bruttofortjeneste == 87883765l
-
-    regnskabData.driftsresultat == 50897000l
-    regnskabData.resultatfoerskat == 19704409l
-    regnskabData.finansielleIndtaegter == 63203l
-    regnskabData.finansielleOmkostninger == 17236l
-    regnskabData.skatafaaretsresultat == 4189184l
-    regnskabData.aaretsresultat == 15515225l
-    regnskabData.gaeldsforpligtelser == 19030055l
-    regnskabData.egenkapital == 31210704l
   }
 
   void "test parse lagkagehuset"() {
