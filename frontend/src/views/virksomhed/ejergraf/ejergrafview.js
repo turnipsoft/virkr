@@ -18,9 +18,11 @@ class EjerGrafView extends Component {
   render() {
     const { showSpinner, ejerGraf, visVirksomhed, visDeltager } = this.props;
 
+    const virksomhed = ejerGraf?ejerGraf.virksomhed:null;
+
     return(
       <div>
-        <PageHeader headerText="Ejergraf" iconClassName="fa fa-sitemap" />
+        <PageHeader headerText="Ejergraf" iconClassName="fa fa-sitemap" cvrdata={virksomhed} />
         {showSpinner && <Spinner />}
         {ejerGraf && <EjerGraf ejerGraf={ejerGraf}
                                visVirksomhed={visVirksomhed}

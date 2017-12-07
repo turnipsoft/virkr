@@ -19,19 +19,19 @@ class VirksomhedView extends Component {
     const { regnskaber, cvrdata, showSpinner, visDeltager, visVirksomhed, visEjerGraf } = this.props;
 
     if (this.props.hasError) {
-      <div>
+      return(<div>
         <PageHeader headerText='Virksomhedsinformationer' />
         <div className="row">
           <div className="col">
             Fejl er opstået under fremfinding af virksomheden : {this.props.error}
           </div>
         </div>
-      </div>
+      </div>)
     }
-
+    
     return (
       <div>
-        <PageHeader iconClassName="fa fa-factory" headerText='Virksomhedsinformationer' />
+        <PageHeader iconClassName="fa fa-factory" headerText='Virksomhedsinformationer' cvrdata={cvrdata} />
         {showSpinner && <Spinner/>}
         {cvrdata && <CvrVisning cvrdata={cvrdata}
                                 regnskaber={regnskaber}

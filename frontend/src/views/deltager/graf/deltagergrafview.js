@@ -19,9 +19,11 @@ class DeltagerGrafView extends Component {
     console.log('DeltagerGrafView-render');
     const { showSpinner, deltagerGraf, visVirksomhed, visDeltager } = this.props;
 
+    const deltager = deltagerGraf?deltagerGraf.deltager:null;
+
     return(
       <div>
-        <PageHeader headerText="Deltager Graf" iconClassName="fa fa-sitemap" />
+        <PageHeader headerText="Deltager Graf" iconClassName="fa fa-sitemap" deltager={deltager} />
         {showSpinner && <Spinner />}
         {deltagerGraf && <DeltagerGraf deltagerGraf={deltagerGraf}
                                        visVirksomhed={visVirksomhed}

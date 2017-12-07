@@ -37,6 +37,7 @@ class CvrInternalService {
   EjerGraf hentEjergraf(String cvrnummer) {
     EjerGraf ejerGraf = new EjerGraf()
     Vrvirksomhed vrvirksomhed = cvrClient.hentVirksomhed(cvrnummer)
+    ejerGraf.virksomhed = vrvirksomhed
 
     EjerAfVirksomhed ejerAfVirksomhed = new EjerAfVirksomhed()
     ejerAfVirksomhed.cvrnummer = vrvirksomhed.cvrNummer
@@ -60,6 +61,7 @@ class CvrInternalService {
   DeltagerGraf hentEjergrafForPerson(String enhedsnummer) {
     DeltagerGraf deltagerGraf = new DeltagerGraf()
     Vrdeltagerperson vrdeltagerperson = cvrClient.hentDeltager(enhedsnummer);
+    deltagerGraf.deltager = vrdeltagerperson
 
     // hent alle virksomheder som personen ejer
     List<Vrvirksomhed> virksomheder = cvrClient.hentVirksomhedsDeltagere(enhedsnummer)

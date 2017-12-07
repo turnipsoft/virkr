@@ -23,4 +23,11 @@ class Vrdeltagerperson {
   DeltagerPersonMetadata deltagerpersonMetadata
   List<VirksomhedSummariskRelation> virksomhedSummariskRelation
 
+  String getNavn() {
+    if (navne && navne.size()>0) {
+      return navne.get(0).navn
+    }
+
+    return null
+  }
 }

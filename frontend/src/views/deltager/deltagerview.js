@@ -21,7 +21,7 @@ class DeltagerView extends Component {
 
     return(
       <div>
-        <PageHeader iconClassName="fa fa-user" headerText="Deltager" />
+        <PageHeader iconClassName="fa fa-user" headerText="Deltager" deltager={deltager} />
         {showSpinner && <Spinner />}
         {deltager && <DeltagerVisning deltager={deltager} onVirksomhedClick={visVirksomhed} visDeltagerGraf={visDeltagerGraf} />}
       </div>

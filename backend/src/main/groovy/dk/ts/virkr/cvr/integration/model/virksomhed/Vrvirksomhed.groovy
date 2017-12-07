@@ -65,4 +65,15 @@ class Vrvirksomhed {
 
     return ejere
   }
+
+  String getNyesteStatus() {
+    if (this.virksomhedsstatus) {
+      Virksomhedsstatus status = virksomhedsstatus.find{ it.periode.gyldigTil == null }
+      if (status) {
+        return status.status
+      }
+    }
+
+    return null
+  }
 }

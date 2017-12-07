@@ -48,6 +48,11 @@
   text-decoration: none;
 }
 
+.header-details {
+  font-size: 14px;
+  font-weight: normal;
+}
+
 .soegeresultatcard {
   margin-bottom: 20px;
 }
