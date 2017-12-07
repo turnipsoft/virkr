@@ -54,9 +54,7 @@ export default class Graf extends Component {
             callback: (value) => {
               return value.toLocaleString().replace(/,/g, ".");
             }
-          }
-        }],
-        yAxes: [{
+          },
           gridLines: {
             zeroLineColor: '#d80a0a'
           }

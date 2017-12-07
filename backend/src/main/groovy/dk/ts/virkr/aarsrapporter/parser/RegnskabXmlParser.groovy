@@ -211,6 +211,11 @@ class RegnskabXmlParser {
   String hentContextRef(Node xmlDokument, Namespace ns, RegnskabData regnskabData) {
 
     NodeList contextNodes = xmlDokument['context'];
+    if (!contextNodes) {
+      String namespacenavn = hentNamespaceNavn(xmlDokument, "http://www.xbrl.org/2003/instance")
+      Namespace nsc = new Namespace("http://www.xbrl.org/2003/instance", namespacenavn)
+      contextNodes = xmlDokument[nsc.context];
+    }
 
     // find den profit hvis contextRef ikke er konsolideret og som har nyeste periode.
     if (ns.uri=='http://xbrl.dcca.dk/fsa') {
@@ -220,9 +225,11 @@ class RegnskabXmlParser {
         n.each {
           String contextRefCandidate = it.attribute("contextRef")
           Node contextRefNodeCandidate = contextNodes.find { it.attribute('id') == contextRefCandidate }
-          if (!contextRefNode ||
-            (contextRefNodeCandidate.period.endDate.text() > contextRefNode.period.endDate.text() && !contextRefNodeCandidate.scenario)) {
-            contextRefNode = contextRefNodeCandidate
+          if ((!contextRefNode ||
+            (contextRefNodeCandidate.period.endDate.text() > contextRefNode.period.endDate.text()) && !contextRefNodeCandidate.scenario)) {
+            if (!contextRefNodeCandidate.scenario) {
+              contextRefNode = contextRefNodeCandidate
+            }
           }
         }
         if (contextRefNode) {
