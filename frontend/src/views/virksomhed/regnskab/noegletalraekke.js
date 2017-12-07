@@ -39,14 +39,14 @@ export default class NoegletalRaekke extends Component {
         <td className={style?style:''}>
           {label}
         </td>
-        {this._renderVaerdier(feltvaerdier, header, highlight)}
+        {this._renderVaerdier(feltvaerdier, header, highlight, style)}
       </tr>
     );
   }
 
-  _renderVaerdier(vaerdier, header, highlight) {
+  _renderVaerdier(vaerdier, header, highlight, style) {
 
-    const className='noegletal-vaerdi';
+    const className='noegletal-vaerdi '+style;
 
     let col = 0;
 

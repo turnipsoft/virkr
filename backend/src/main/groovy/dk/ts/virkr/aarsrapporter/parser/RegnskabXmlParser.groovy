@@ -263,9 +263,11 @@ class RegnskabXmlParser {
   }
 
   String hentNamespaceNavn(Node xmlDokument, String namespace) {
-    return xmlDokument.attributes().find { attribute->
-      attribute.value == namespace
-    }.key.substring(6)
+    String ns = xmlDokument.attributes().find { attribute->
+      attribute.value == namespace && attribute.key!='xmlns'
+    }.key
+
+    return ns.substring(6)
   }
 
   String getGSDNamespace(String xml) {
