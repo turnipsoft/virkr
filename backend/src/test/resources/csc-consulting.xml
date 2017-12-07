@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xbrl xmlns="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase"
+      xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
+      xmlns:EOGS10000="http://xbrl.dcca.dk/gsd" xmlns:EOGS20000="http://xbrl.dcca.dk/dst"
+      xmlns:EOGS30000="http://xbrl.dcca.dk/tax" xmlns:EOGS40000="http://xbrl.dcca.dk/arr"
+      xmlns:EOGS50000="http://xbrl.dcca.dk/eogs" xmlns:EOGS60000="http://xbrl.dcca.dk/mrv"
+      xmlns:EOGS70000="http://xbrl.dcca.dk/sob" xmlns:EOGS80000="http://xbrl.dcca.dk/fsa">
+  <link:schemaRef xlink:type="simple" xlink:arcrole="http://www.w3.org/1999/xlink/properties/linkbase"
+                  xlink:href="http://archprod.service.eogs.dk/taxonomy/20120101/entryDanishGAAPBalanceSheetAccountFormIncomeStatementByNatureIncludingManagementsReviewStatisticsAndTax20120101.xsd"/>
+  <context id="nNC0" xmlns="http://www.xbrl.org/2003/instance">
+    <entity xmlns="http://www.xbrl.org/2003/instance">
+      <identifier xmlns="http://www.xbrl.org/2003/instance" scheme="http://www.dcca.dk/cvr">26370817</identifier>
+    </entity>
+    <period xmlns="http://www.xbrl.org/2003/instance">
+      <startDate xmlns="http://www.xbrl.org/2003/instance">2011-01-01</startDate>
+      <endDate xmlns="http://www.xbrl.org/2003/instance">2012-12-31</endDate>
+    </period>
+  </context>
+  <context id="NC1" xmlns="http://www.xbrl.org/2003/instance">
+    <entity xmlns="http://www.xbrl.org/2003/instance">
+      <identifier xmlns="http://www.xbrl.org/2003/instance" scheme="http://www.dcca.dk/cvr">26370817</identifier>
+    </entity>
+    <period xmlns="http://www.xbrl.org/2003/instance">
+      <startDate xmlns="http://www.xbrl.org/2003/instance">2011-01-01</startDate>
+      <endDate xmlns="http://www.xbrl.org/2003/instance">2011-12-31</endDate>
+    </period>
+  </context>
+  <context id="EV1" xmlns="http://www.xbrl.org/2003/instance">
+    <entity xmlns="http://www.xbrl.org/2003/instance">
+      <identifier xmlns="http://www.xbrl.org/2003/instance" scheme="http://www.dcca.dk/cvr">26370817</identifier>
+    </entity>
+    <period xmlns="http://www.xbrl.org/2003/instance">
+      <instant xmlns="http://www.xbrl.org/2003/instance">2011-12-31</instant>
+    </period>
+  </context>
+  <context id="NC2" xmlns="http://www.xbrl.org/2003/instance">
+    <entity xmlns="http://www.xbrl.org/2003/instance">
+      <identifier xmlns="http://www.xbrl.org/2003/instance" scheme="http://www.dcca.dk/cvr">26370817</identifier>
+    </entity>
+    <period xmlns="http://www.xbrl.org/2003/instance">
+      <startDate xmlns="http://www.xbrl.org/2003/instance">2012-01-01</startDate>
+      <endDate xmlns="http://www.xbrl.org/2003/instance">2012-12-31</endDate>
+    </period>
+  </context>
+  <context id="EV2" xmlns="http://www.xbrl.org/2003/instance">
+    <entity xmlns="http://www.xbrl.org/2003/instance">
+      <identifier xmlns="http://www.xbrl.org/2003/instance" scheme="http://www.dcca.dk/cvr">26370817</identifier>
+    </entity>
+    <period xmlns="http://www.xbrl.org/2003/instance">
+      <instant xmlns="http://www.xbrl.org/2003/instance">2012-12-31</instant>
+    </period>
+  </context>
+  <unit xmlns="http://www.xbrl.org/2003/instance" id="currency">
+    <measure xmlns="http://www.xbrl.org/2003/instance">iso4217:DKK</measure>
+  </unit>
+  <EOGS10000:NameOfAuditFirm contextRef="nNC0">Revisor Dansk Revision Randers Godkendt Revisionspartnerselskab
+    Tronholmen 5 8960 Randers SØ
+  </EOGS10000:NameOfAuditFirm>
+  <EOGS10000:DateOfGeneralMeeting contextRef="nNC0">2013-04-29</EOGS10000:DateOfGeneralMeeting>
+  <EOGS10000:InformationOnTypeOfSubmittedReport contextRef="nNC0">Årsrapport
+  </EOGS10000:InformationOnTypeOfSubmittedReport>
+  <EOGS10000:NameAndSurnameOfChairmanOfGeneralMeeting contextRef="nNC0">Svend Lynge Jørgensen
+  </EOGS10000:NameAndSurnameOfChairmanOfGeneralMeeting>
+  <EOGS10000:NameOfSubmittingEnterprise contextRef="nNC0">Dansk Revision RandersGodkendt Revisionspartnerselskab
+  </EOGS10000:NameOfSubmittingEnterprise>
+  <EOGS10000:AddressOfSubmittingEnterpriseStreetAndNumber contextRef="nNC0">Tronholmen 5
+  </EOGS10000:AddressOfSubmittingEnterpriseStreetAndNumber>
+  <EOGS10000:AddressOfSubmittingEnterprisePostcodeAndTown contextRef="nNC0">8960Randers SØ
+  </EOGS10000:AddressOfSubmittingEnterprisePostcodeAndTown>
+  <EOGS10000:DateOfApprovalOfReport contextRef="nNC0">2013-03-22</EOGS10000:DateOfApprovalOfReport>
+  <EOGS10000:NameOfFinancialInstitution contextRef="nNC0">Pengeinstitut Nordea Bank, Randers ,,,,,;
+  </EOGS10000:NameOfFinancialInstitution>
+  <EOGS80000:TaxExpense contextRef="NC1" precision="INF" unitRef="currency">88836</EOGS80000:TaxExpense>
+  <EOGS80000:TaxExpense contextRef="NC2" precision="INF" unitRef="currency">49756</EOGS80000:TaxExpense>
+  <EOGS80000:ProfitLoss contextRef="NC1" precision="INF" unitRef="currency">266514</EOGS80000:ProfitLoss>
+  <EOGS80000:ProfitLoss contextRef="NC2" precision="INF" unitRef="currency">149267</EOGS80000:ProfitLoss>
+  <EOGS80000:FixturesFittingsToolsAndEquipment contextRef="EV1" precision="INF" unitRef="currency">265000
+  </EOGS80000:FixturesFittingsToolsAndEquipment>
+  <EOGS80000:FixturesFittingsToolsAndEquipment contextRef="EV2" precision="INF" unitRef="currency">205000
+  </EOGS80000:FixturesFittingsToolsAndEquipment>
+  <EOGS80000:PropertyPlantAndEquipment contextRef="EV1" precision="INF" unitRef="currency">265000
+  </EOGS80000:PropertyPlantAndEquipment>
+  <EOGS80000:PropertyPlantAndEquipment contextRef="EV2" precision="INF" unitRef="currency">205000
+  </EOGS80000:PropertyPlantAndEquipment>
+  <EOGS80000:ShorttermTradeReceivables contextRef="EV1" precision="INF" unitRef="currency">113811
+  </EOGS80000:ShorttermTradeReceivables>
+  <EOGS80000:ShorttermTradeReceivables contextRef="EV2" precision="INF" unitRef="currency">206110
+  </EOGS80000:ShorttermTradeReceivables>
+  <EOGS80000:OtherShorttermReceivables contextRef="EV1" precision="INF" unitRef="currency">9924
+  </EOGS80000:OtherShorttermReceivables>
+  <EOGS80000:OtherShorttermReceivables contextRef="EV2" precision="INF" unitRef="currency">0
+  </EOGS80000:OtherShorttermReceivables>
+  <EOGS80000:DeferredIncomeAssets contextRef="EV1" precision="INF" unitRef="currency">4992
+  </EOGS80000:DeferredIncomeAssets>
+  <EOGS80000:DeferredIncomeAssets contextRef="EV2" precision="INF" unitRef="currency">8046
+  </EOGS80000:DeferredIncomeAssets>
+  <EOGS80000:CashAndCashEquivalents contextRef="EV1" precision="INF" unitRef="currency">648743
+  </EOGS80000:CashAndCashEquivalents>
+  <EOGS80000:CashAndCashEquivalents contextRef="EV2" precision="INF" unitRef="currency">223735
+  </EOGS80000:CashAndCashEquivalents>
+  <EOGS80000:ProvisionsForDeferredTax contextRef="EV1" precision="INF" unitRef="currency">4956
+  </EOGS80000:ProvisionsForDeferredTax>
+  <EOGS80000:ProvisionsForDeferredTax contextRef="EV2" precision="INF" unitRef="currency">5280
+  </EOGS80000:ProvisionsForDeferredTax>
+  <EOGS80000:ShorttermTradePayables contextRef="EV1" precision="INF" unitRef="currency">16977
+  </EOGS80000:ShorttermTradePayables>
+  <EOGS80000:ShorttermTradePayables contextRef="EV2" precision="INF" unitRef="currency">22063
+  </EOGS80000:ShorttermTradePayables>
+  <EOGS10000:IdentificationNumberCvrOfReportingEntity contextRef="nNC0">26370817
+  </EOGS10000:IdentificationNumberCvrOfReportingEntity>
+  <EOGS80000:DepreciationOfPropertyPlantAndEquipment contextRef="NC1" precision="INF" unitRef="currency">53800
+  </EOGS80000:DepreciationOfPropertyPlantAndEquipment>
+  <EOGS80000:DepreciationOfPropertyPlantAndEquipment contextRef="NC2" precision="INF" unitRef="currency">60000
+  </EOGS80000:DepreciationOfPropertyPlantAndEquipment>
+  <EOGS80000:ProfitLossFromOrdinaryActivitiesBeforeTax contextRef="NC1" precision="INF" unitRef="currency">355350
+  </EOGS80000:ProfitLossFromOrdinaryActivitiesBeforeTax>
+  <EOGS80000:ProfitLossFromOrdinaryActivitiesBeforeTax contextRef="NC2" precision="INF" unitRef="currency">199023
+  </EOGS80000:ProfitLossFromOrdinaryActivitiesBeforeTax>
+  <EOGS80000:PaidContributedCapital contextRef="EV1" precision="INF" unitRef="currency">125000
+  </EOGS80000:PaidContributedCapital>
+  <EOGS80000:PaidContributedCapital contextRef="EV2" precision="INF" unitRef="currency">125000
+  </EOGS80000:PaidContributedCapital>
+  <EOGS80000:RetainedEarnings contextRef="EV1" precision="INF" unitRef="currency">228674</EOGS80000:RetainedEarnings>
+  <EOGS80000:RetainedEarnings contextRef="EV2" precision="INF" unitRef="currency">177941</EOGS80000:RetainedEarnings>
+  <EOGS80000:ProposedDividendRecognisedInEquity contextRef="EV1" precision="INF" unitRef="currency">500000
+  </EOGS80000:ProposedDividendRecognisedInEquity>
+  <EOGS80000:ProposedDividendRecognisedInEquity contextRef="EV2" precision="INF" unitRef="currency">200000
+  </EOGS80000:ProposedDividendRecognisedInEquity>
+  <EOGS40000:AuditorsReportOnAuditedFinancialStatements contextRef="nNC0">Til kapitalejeren i CSC Consulting ApS
+    Påtegning på årsregnskabet Vi har revideret årsregnskabet for CSC Consulting ApS for regnskabsåret 1. januar 2012 -
+    31. december 2012 , der omfatter anvendt regnskabspraksis, resultatopgørelse, balance og noter. Årsregnskabet
+    udarbejdes efter årsregnskabsloven. Ledelsens ansvar for årsregnskabet Ledelsen har ansvaret for udarbejdelsen af et
+    årsregnskab, der giver et retvisende billede i overensstemmelse med årsregnskabsloven. Ledelsen har endvidere
+    ansvaret for den interne kontrol, som ledelsen anser nødvendig for at udarbejde et årsregnskab uden væsentlig
+    fejlinformation, uanset om denne skyldes besvigelser eller fejl. Revisors ansvar Vores ansvar er at udtrykke en
+    konklusion om årsregnskabet på grundlag af vores revision. Vi har udført revisionen i overensstemmelse med
+    internationale standarder om revision og yderligere krav ifølge dansk revisorlovgivning. Dette kræver, at vi
+    overholder etiske krav samt planlægger og udfører revisionen for at opnå høj grad af sikkerhed for, at årsregnskabet
+    er uden væsentlig fejlinformation. En revision omfatter udførelse af revisionshandlinger for at opnå revisionsbevis
+    for beløb og oplysninger i årsregnskabet. De valgte revisionshandlinger afhænger af revisors vurdering, herunder
+    vurderingen af risici for væsentlig fejlinformation i årsregnskabet, uanset om denne skyldes besvigelser eller fejl.
+    Ved risikovurderingen overvejer revisor intern kontrol, der er relevant for virksomhedens udarbejdelse af et
+    årsregnskab, der giver et retvisende billede. Formålet hermed er at udforme revisionshandlinger, der er passende
+    efter omstændighederne, men ikke at udtrykke en konklusion om effektiviteten af virksomhedens interne kontrol. En
+    revision omfatter endvidere vurdering af, om ledelsens valg af regnskabspraksis er passende, om ledelsens
+    regnskabsmæssige skøn er rimelige samt den samlede præsentation af årsregnskabet. Det er vores opfattelse, at det
+    opnåede revisionsbevis er tilstrækkeligt og egnet som grundlag for vores konklusion. Revisionen har ikke givet
+    anledning til forbehold. Konklusion Det er vores opfattelse, at årsregnskabet giver et retvisende billede af
+    selskabets aktiver, passiver og finansielle stilling pr. 31. december 2012 samt af resultatet af selskabets
+    aktiviteter for regnskabsåret 1. januar 2012 - 31. december 2012 i overensstemmelse med årsregnskabsloven. Udtalelse
+    om ledelsesberetningen Vi har i henhold til årsregnskabsloven gennemlæst ledelsesberetningen, men ikke foretaget
+    yderligere handlinger i tillæg til den gennemførte revision af årsregnskabet. Det er på denne baggrund vores
+    opfattelse, at oplysningerne i ledelsesberetningen er i overensstemmelse med årsregnskabet. Randers SØ , 2013-03-22
+    Dansk Revision Randers Godkendt Revisionspartnerselskab Jens Amstrup Jørgen Harbo Statsautoriseret revisor
+    Registreret revisor
+  </EOGS40000:AuditorsReportOnAuditedFinancialStatements>
+  <EOGS10000:NameOfReportingEntity contextRef="nNC0">CSC Consulting ApS</EOGS10000:NameOfReportingEntity>
+  <EOGS10000:AddressOfReportingEntityStreetAndNumber contextRef="nNC0">Granvænget 23
+  </EOGS10000:AddressOfReportingEntityStreetAndNumber>
+  <EOGS10000:AddressOfReportingEntityPostcodeAndTown contextRef="nNC0">8920Randers NV
+  </EOGS10000:AddressOfReportingEntityPostcodeAndTown>
+  <EOGS10000:ReportingPeriodStartDate contextRef="nNC0">2012-01-01</EOGS10000:ReportingPeriodStartDate>
+  <EOGS10000:ReportingPeriodEndDate contextRef="nNC0">2012-12-31</EOGS10000:ReportingPeriodEndDate>
+  <EOGS60000:ManagementsReview contextRef="nNC0">Hovedaktivitet Selskabets hovedaktivitet har i lighed med tidligere år
+    været konsulentvirksomhed. Udviklingen i aktiviteter og økonomiske forhold Selskabet har fortsat sine normale
+    driftsaktiviteter. Der har ikke været enkeltstående begivenheder i regnskabsåret, som er af så væsentlig karakter,
+    at det kræver omtale i ledelsesberetningen. Årets udvikling og resultat anses for tilfredsstillende.
+  </EOGS60000:ManagementsReview>
+  <EOGS70000:StatementByExecutiveAndSupervisoryBoards contextRef="nNC0">Direktionen har i dag behandlet og godkendt
+    årsrapporten for 1. januar 2012 - 31. december 2012 for CSC Consulting ApS . Årsrapporten aflægges i
+    overensstemmelse med årsregnskabsloven. Det er min opfattelse, at årsregnskabet giver et retvisende billede af
+    selskabets aktiver, passiver og finansielle stilling pr. 31. december 2012 samt af resultatet af selskabets
+    aktiviteter for regnskabsåret 1. januar 2012 - 31. december 2012 . Ledelsesberetningen indeholder efter min
+    opfattelse en retvisende redegørelse for de forhold, beretningen omhandler. Årsrapporten indstilles til
+    generalforsamlingens godkendelse. Randers NV , 2013-03-22 Direktionen: Svend Lynge Jørgensen,
+  </EOGS70000:StatementByExecutiveAndSupervisoryBoards>
+  <EOGS70000:DateOfApprovalOfAnnualReport contextRef="nNC0">2013-03-22</EOGS70000:DateOfApprovalOfAnnualReport>
+  <EOGS80000:DisclosureOfAccountingPolicies contextRef="nNC0">Generelt Årsrapporten er aflagt i overensstemmelse med
+    årsregnskabslovens bestemmelser for regnskabsklasse B. Årsregnskabet er aflagt efter samme regnskabspraksis som
+    sidste år. Generelt om indregning og måling Aktiver indregnes i balancen, når det er sandsynligt, at fremtidige
+    økonomiske fordele vil tilflyde selskabet, og aktivets værdi kan måles pålideligt. Forpligtelser indregnes i
+    balancen, når det er sandsynligt, at fremtidige økonomiske ressourcer vil fragå selskabet, og forpligtelsens værdi
+    kan måles pålideligt. Ved første indregning måles aktiver og forpligtelser til kostpris. Efterfølgende måles aktiver
+    og forpligtelser som beskrevet for hver enkelt regnskabspost nedenfor. Visse finansielle aktiver og forpligtelser
+    måles til amortiseret kostpris, hvorved der indregnes en konstant effektiv rente over løbetiden. Amortiseret
+    kostpris opgøres som oprindelig kostpris med fradrag af eventuelle afdrag samt tillæg/fradrag af den akkumulerede
+    amortisering af forskellen mellem kostpris og nominelt beløb. Ved indregning og måling tages hensyn til
+    forudsigelige tab og risici, der fremkommer inden årsrapporten aflægges, og som be- eller afkræfter forhold, der
+    eksisterede på balancedagen. Indtægter indregnes i resultatopgørelsen i takt med, at de indtjenes, herunder
+    indregnes værdireguleringer af finansielle aktiver og forpligtelser, der måles til dagsværdi eller amortiseret
+    kostpris. Endvidere indregnes omkostninger, der er afholdt for at opnå årets indtjening, herunder afskrivninger,
+    nedskrivninger og hensatte forpligtelser samt tilbageførsler som følge af ændrede regnskabsmæssige skøn af beløb,
+    der tidligere har været indregnet i resultatopgørelsen. Omregning af fremmed valuta Transaktioner i fremmed valuta
+    er i årets løb omregnet til transaktionsdagens kurs. Tilgodehavender, gæld og andre poster i fremmed valuta, som
+    ikke er afregnet på balancedagen, omregnes til balancedagens valutakurs. Realiserede og urealiserede
+    valutakursreguleringer er indregnet i resultatopgørelsen under finansielle poster. Der benyttes ikke finansielle
+    instrumenter til sikring af modværdien i danske kroner af balanceposter i fremmed valuta samt fremtidige
+    transaktioner i fremmed valuta. Resultatopgørelsen Indtægtskriterier Nettoomsætningen indregnes i
+    resultatopgørelsen, såfremt levering og risikoovergang til køber har fundet sted inden regnskabsårets udgang.
+    Nettoomsætning indregnes excl. moms. Bruttofortjeneste Bruttofortjeneste omfatter nettoomsætningen fratrukket andre
+    eksterne omkostninger. Andre eksterne omkostninger Andre eksterne omkostninger omfatter omkostninger til salg og
+    administration. Personaleomkostninger Personaleomkostninger omfatter løn og gage samt sociale omkostninger,
+    pensioner mv. til selskabets personale. Finansielle indtægter og omkostninger Finansielle poster omfatter
+    renteindtægter og –omkostninger, transaktioner i fremmed valuta samt tillæg og godtgørelse vedrørende
+    acontoskatteordningen m.v. Skat af årets resultat Årets skat, som består af årets aktuelle skat og årets forskydning
+    i udskudt skat, indregnes i resultatopgørelsen med den del, der kan henføres til årets resultat, og direkte på
+    egenkapitalen med den del, der kan henføres til posteringer direkte på egenkapitalen. Selskabet er omfattet af de
+    danske regler om obligatorisk sambeskatning af moderselskabet og de danske dattervirksomheder. Den aktuelle danske
+    selskabsskat fordeles ved afregning af sambeskatningsbidrag mellem de sambeskattede virksomheder i forhold til
+    disses skattepligtige indkomster. I tilknytning hertil modtager virksomheder med skattemæssigt underskud
+    sambeskatningsbidrag fra virksomheder, der har kunnet anvende dette underskud (fuld fordeling). Balancen Materielle
+    anlægsaktiver Materielle anlægsaktiver måles til kostpris med fradrag af akkumulerede afskrivninger. Der foretages
+    lineære afskrivninger baseret på en vurdering af de enkelte aktivers forventede brugstider og restværdi.
+    Afskrivningsgrundlaget er kostpris med fradrag af forventet restværdi efter afsluttet brugstid. Kostprisen omfatter
+    anskaffelsesprisen samt omkostninger direkte tilknyttet anskaffelsen indtil det tidspunkt, hvor aktivet er klar til
+    at blive taget i brug. Der indgår forventede brugstider som følger: Andre anlæg, driftsmateriel og inventar 5 år
+    Fortjeneste eller tab ved afhændelse af materielle anlægsaktiver opgøres som forskellen mellem salgspris med fradrag
+    af salgsomkostninger og den regnskabsmæssige værdi på salgstidspunktet. Fortjeneste eller tab indregnes i
+    resultatopgørelsen under andre driftsindtægter eller andre driftsomkostninger. Nedskrivning på anlægsaktiver Den
+    regnskabsmæssige værdi af materielle anlægsaktiver vurderes årligt for indikationer på værdiforringelse, ud over det
+    som udtrykkes ved afskrivning. Foreligger der indikationer på værdiforringelse, foretages nedskrivningstest af hvert
+    enkelt aktiv henholdsvis gruppe af aktiver. Der foretages nedskrivning til genindvindingsværdien, såfremt denne er
+    lavere end den regnskabsmæssige værdi. Som genindvindingsværdi anvendes den højeste værdi af nettosalgspris og
+    kapitalværdi. Kapitalværdien opgøres som nutidsværdien af de forventede nettoindtægter fra anvendelsen af aktivet
+    eller aktivgruppen. Tilgodehavender Tilgodehavender fra salg og tjenesteydelser måles i balancen til pålydende værdi
+    med fradrag af nedskrivninger til imødegåelse af forventede tab efter en vurdering af de enkelte tilgodehavender.
+    Periodeafgrænsningsposter Periodeafgrænsningsposter, som er indregnet under aktiver, omfatter afholdte omkostninger
+    vedrørende efterfølgende regnskabsår. Udbytte Udbytte, ledelsen foreslår udbetalt for året, vises som en særskilt
+    post under egenkapitalen. Foreslået udbytte indregnes som en forpligtelse på tidspunktet for vedtagelse på
+    generalforsamlingen. Gældsforpligtelser Gæld er målt til amortiseret kostpris svarende til nominel værdi. Skyldig
+    skat og udskudt skat Aktuelle skatteforpligtelser og tilgodehavende aktuel skat måles i balancen som beregnet skat
+    af årets skattepligtige indkomst reguleret for skat af tidligere års skattepligtige indkomster samt for betalte
+    acontoskatter. Udskudt skat måles efter den balanceorienterede gældsmetode af midlertidige forskelle mellem
+    regnskabsmæssig og skattemæssig værdi af aktiver og forpligtelser. Udskudt skat måles på grundlag af de skatteregler
+    og skattesatser, der med balancedagens lovgivning vil være gældende, når den udskudte skat forventes udløst som
+    aktuel skat. Ændring i udskudt skat som følge af ændringer i skattesatser indregnes i resultatopgørelsen.
+  </EOGS80000:DisclosureOfAccountingPolicies>
+  <EOGS80000:InformationOnReportingClassOfEntity contextRef="nNC0">Regnskabsklasse B
+  </EOGS80000:InformationOnReportingClassOfEntity>
+  <EOGS80000:ClassOfReportingEntity contextRef="nNC0">Regnskabsklasse B</EOGS80000:ClassOfReportingEntity>
+  <EOGS80000:DisclosureOfEquity contextRef="nNC0">&lt;table xmlns="http://www.w3.org/1999/xhtml" style="border: 0pt
+    none;width: 650px; border-collapse: collapse;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th style="border: 0pt none; width:
+    55%;"&gt; &lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;Virksom-
+    hedskapital&lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;Overkurs
+    ved emission&lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;Reserver
+    for opskrivninger&lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;Reserver
+    for nettoopskrivninger&lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;Reserver
+    for egne kapitalandele&lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;Reserve
+    for dagsværdi på investeringsaktiver&lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%;
+    text-align: right;"&gt;Reserve for biologiske aktiver&lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold;
+    width:15%; text-align: right;"&gt;Øvrige lovpligtige og vedtægtsmæssige reserver&lt;/th&gt;&lt;th style="border: 0pt
+    none; font-weight:bold; width:15%; text-align: right;"&gt;Reserve for udlån og sikkerhedsstillelse&lt;/th&gt;&lt;th
+    style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;Ikke-indbetalt kapital&lt;/th&gt;&lt;th
+    style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;Overført resultat&lt;/th&gt;&lt;th
+    style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;Foreslået udbytte&lt;/th&gt;&lt;th
+    style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;I alt&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Saldo
+    primo&lt;/td&gt;&lt;td style="text-align: right;"&gt;125.000&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align:
+    right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align:
+    right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;228.674&lt;/td&gt;&lt;td style="text-align: right;"&gt;500.000&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;853.674&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Udbetalt udbytte&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align:
+    right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align:
+    right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;-500.000&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;-500.000&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Årets resultat&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align:
+    right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align:
+    right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;-50.733&lt;/td&gt;&lt;td style="text-align: right;"&gt;200.000&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;149.267&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Egenkapital ultimo&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;125.000&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align:
+    right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align:
+    right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;177.941&lt;/td&gt;&lt;td style="text-align: right;"&gt;200.000&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;502.941&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style="text-align:
+    right;"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Virksomhedskapitalen er sammensat af aktier/anparter á DKK
+    1.000 eller multipla heraf.&lt;/td&gt;&lt;td style="text-align: right;"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</EOGS80000:DisclosureOfEquity>
+  <EOGS80000:OtherFinanceExpenses contextRef="NC1" precision="INF" unitRef="currency">1949
+  </EOGS80000:OtherFinanceExpenses>
+  <EOGS80000:OtherFinanceExpenses contextRef="NC2" precision="INF" unitRef="currency">2129
+  </EOGS80000:OtherFinanceExpenses>
+  <EOGS80000:OtherOperatingExpenses contextRef="NC1" precision="INF" unitRef="currency">61680
+  </EOGS80000:OtherOperatingExpenses>
+  <EOGS80000:OtherOperatingExpenses contextRef="NC2" precision="INF" unitRef="currency">0
+  </EOGS80000:OtherOperatingExpenses>
+  <EOGS80000:GrossProfitLoss contextRef="NC1" precision="INF" unitRef="currency">596840</EOGS80000:GrossProfitLoss>
+  <EOGS80000:GrossProfitLoss contextRef="NC2" precision="INF" unitRef="currency">389875</EOGS80000:GrossProfitLoss>
+  <EOGS80000:DisclosureOfTaxExpenses contextRef="nNC0">&lt;table xmlns="http://www.w3.org/1999/xhtml" style="border: 0pt
+    none;width: 650px; border-collapse: collapse;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th style="border: 0pt none; width:
+    55%;"&gt; &lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;2012&lt;/th&gt;&lt;th
+    style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;2011&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Skat
+    af årets resultat&lt;/td&gt;&lt;td style="text-align: right;"&gt;49.432&lt;/td&gt;&lt;td style="text-align: right;"&gt;97.275&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Regulering
+    af udsk. skat&lt;/td&gt;&lt;td style="text-align: right;"&gt;324&lt;/td&gt;&lt;td style="text-align: right;"&gt;-8.439&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Skat
+    af årets resultat i alt&lt;/td&gt;&lt;td style="text-align: right;"&gt;49.756&lt;/td&gt;&lt;td style="text-align:
+    right;"&gt;88.836&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</EOGS80000:DisclosureOfTaxExpenses>
+  <EOGS80000:DisclosureOfEmployeeBenefitsExpense contextRef="nNC0">&lt;table xmlns="http://www.w3.org/1999/xhtml"
+    style="border: 0pt none;width: 650px; border-collapse: collapse;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th style="border:
+    0pt none; width: 55%;"&gt; &lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align:
+    right;"&gt;2012&lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;2011&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Løn
+    og gager&lt;/td&gt;&lt;td style="text-align: right;"&gt;121.281&lt;/td&gt;&lt;td style="text-align: right;"&gt;121.356&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Andre
+    omkostninger til social sikring&lt;/td&gt;&lt;td style="text-align: right;"&gt;7.441&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;8.587&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Personaleomkostninger i alt&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;128.722&lt;/td&gt;&lt;td style="text-align: right;"&gt;129.943&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</EOGS80000:DisclosureOfEmployeeBenefitsExpense>
+  <EOGS80000:EmployeeBenefitsExpense contextRef="NC1" precision="INF" unitRef="currency">129943
+  </EOGS80000:EmployeeBenefitsExpense>
+  <EOGS80000:EmployeeBenefitsExpense contextRef="NC2" precision="INF" unitRef="currency">128722
+  </EOGS80000:EmployeeBenefitsExpense>
+  <EOGS80000:DisclosureOfOtherFinanceIncome contextRef="nNC0">&lt;table xmlns="http://www.w3.org/1999/xhtml"
+    style="border: 0pt none;width: 650px; border-collapse: collapse;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th style="border:
+    0pt none; width: 55%;"&gt; &lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align:
+    right;"&gt;2012&lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align: right;"&gt;2011&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Renteindtægter,
+    SLJ Holding af 1/8 2001 ApS&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align:
+    right;"&gt;4.716&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Andre finansielle indtægter&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;1.166&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Finansielle
+    indtægter i alt&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;td style="text-align: right;"&gt;5.882&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</EOGS80000:DisclosureOfOtherFinanceIncome>
+  <EOGS80000:OtherFinanceIncome contextRef="NC1" precision="INF" unitRef="currency">5882</EOGS80000:OtherFinanceIncome>
+  <EOGS80000:OtherFinanceIncome contextRef="NC2" precision="INF" unitRef="currency">0</EOGS80000:OtherFinanceIncome>
+  <EOGS80000:ShorttermTaxPayables contextRef="EV1" precision="INF" unitRef="currency">97275
+  </EOGS80000:ShorttermTaxPayables>
+  <EOGS80000:ShorttermTaxPayables contextRef="EV2" precision="INF" unitRef="currency">49432
+  </EOGS80000:ShorttermTaxPayables>
+  <EOGS80000:OtherShorttermPayables contextRef="EV1" precision="INF" unitRef="currency">62186
+  </EOGS80000:OtherShorttermPayables>
+  <EOGS80000:OtherShorttermPayables contextRef="EV2" precision="INF" unitRef="currency">63174
+  </EOGS80000:OtherShorttermPayables>
+  <EOGS80000:ShorttermPayablesToGroupEnterprises contextRef="EV1" precision="INF" unitRef="currency">7402
+  </EOGS80000:ShorttermPayablesToGroupEnterprises>
+  <EOGS80000:ShorttermPayablesToGroupEnterprises contextRef="EV2" precision="INF" unitRef="currency">0
+  </EOGS80000:ShorttermPayablesToGroupEnterprises>
+  <EOGS80000:DisclosureOfMortgagesAndCollaterals contextRef="nNC0">&lt;table xmlns="http://www.w3.org/1999/xhtml"
+    style="border: 0pt none;width: 650px; border-collapse: collapse;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th style="border:
+    0pt none; width: 55%;"&gt; &lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align:
+    right;"&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ingen.&lt;/td&gt;&lt;td style="text-align: right;"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td
+    style="text-align:
+    right;"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</EOGS80000:DisclosureOfMortgagesAndCollaterals>
+  <EOGS80000:DisclosureOfOwnership contextRef="nNC0">Ejerforhold Ifølge årsregnskabsloven skal følgende
+    selskabsdeltagere oplyses: SLJ Holding af 1/8 2001 ApS ,,,,Randers,
+  </EOGS80000:DisclosureOfOwnership>
+  <EOGS80000:DisclosureOfContingentLiabilities contextRef="nNC0">&lt;table xmlns="http://www.w3.org/1999/xhtml"
+    style="border: 0pt none;width: 650px; border-collapse: collapse;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th style="border:
+    0pt none; width: 55%;"&gt; &lt;/th&gt;&lt;th style="border: 0pt none; font-weight:bold; width:15%; text-align:
+    right;"&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ingen.&lt;/td&gt;&lt;td style="text-align: right;"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td
+    style="text-align: right;"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style="text-align: right;"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</EOGS80000:DisclosureOfContingentLiabilities>
+</xbrl>

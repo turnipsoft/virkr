@@ -42,6 +42,21 @@ class RegnskabXmlParserSpec extends Specification {
     ro.aaretsresultatTal.aaretsresultat == 108187000l
   }
 
+  void "test csc consulting"() {
+    given:
+    String xml = TestUtil.load("/csc-consulting.xml")
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+
+    when:
+    regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
+
+    Resultatopgoerelse ro = regnskabData.resultatopgoerelse
+
+    then:
+    ro.aaretsresultatTal.aaretsresultat == 149267l
+  }
+
   void "test parse greener pastures"() {
     given:
     String xml = TestUtil.load('/greener_pastures.xml')

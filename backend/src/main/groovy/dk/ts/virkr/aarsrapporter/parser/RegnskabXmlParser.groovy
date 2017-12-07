@@ -213,7 +213,7 @@ class RegnskabXmlParser {
     NodeList contextNodes = xmlDokument['context'];
 
     // find den profit hvis contextRef ikke er konsolideret og som har nyeste periode.
-    if (ns.prefix=='fsa') {
+    if (ns.uri=='http://xbrl.dcca.dk/fsa') {
       NodeList n = xmlDokument[ns.ProfitLoss]
       if (n != null && n.size() > 0) {
         Node contextRefNode
@@ -231,14 +231,11 @@ class RegnskabXmlParser {
       }
     }
 
-    Namespace c = new Namespace("http://xbrl.dcca.dk/gsd", "c")
-    Namespace gsd = new Namespace("http://xbrl.dcca.dk/gsd", "gsd")
+    // find korrekte namespaces
+    Namespace gsd = new Namespace("http://xbrl.dcca.dk/gsd", hentNamespaceNavn(xmlDokument, "http://xbrl.dcca.dk/gsd"))
 
-    NodeList n = xmlDokument[c.InformationOnTypeOfSubmittedReport]
+    NodeList n = xmlDokument[gsd.InformationOnTypeOfSubmittedReport]
 
-    if (n.size()==0) {
-      n = xmlDokument[gsd.InformationOnTypeOfSubmittedReport]
-    }
     Node n1 = n.get(0)
     String contextRef = n1.attribute("contextRef")
 
@@ -256,6 +253,12 @@ class RegnskabXmlParser {
 
     return null
 
+  }
+
+  String hentNamespaceNavn(Node xmlDokument, String namespace) {
+    return xmlDokument.attributes().find { attribute->
+      attribute.value == namespace
+    }.key.substring(6)
   }
 
   String getGSDNamespace(String xml) {
