@@ -3,6 +3,7 @@ package dk.ts.virkr.services.internal
 import dk.ts.virkr.cvr.integration.CvrClient
 import dk.ts.virkr.cvr.integration.model.deltager.VirksomhedSummariskRelation
 import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
+import dk.ts.virkr.cvr.integration.model.virksomhed.Attribut
 import dk.ts.virkr.cvr.integration.model.virksomhed.Medlemsdata
 import dk.ts.virkr.cvr.integration.model.virksomhed.Organisation
 import dk.ts.virkr.cvr.integration.model.virksomhed.Virksomhedsstatus
@@ -18,6 +19,7 @@ import dk.ts.virkr.services.model.ReelEjerandel
 import dk.ts.virkr.cvr.integration.model.virksomhed.Vrvirksomhed
 import dk.ts.virkr.services.model.DeltagerSoegeresultat
 import dk.ts.virkr.services.model.DeltagerVirksomhed
+import javafx.scene.media.MediaErrorEvent
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -212,7 +214,10 @@ class CvrInternalService {
     vrdeltagerperson.virksomhedSummariskRelation.each {vsr->
       // arbejder p.t. kun med aktuelle data, så der skal være et livsforløb hvor gyldigtil er null
       if (vsr.virksomhed.livsforloeb.find{ !it.periode.gyldigTil}) {
-        deltagerSoegeresultat.virksomheder << lavDeltagerVirksomhed(vsr)
+        DeltagerVirksomhed dv = lavDeltagerVirksomhed(vsr)
+        if (dv) {
+          deltagerSoegeresultat.virksomheder << dv
+        }
       }
     }
     return deltagerSoegeresultat
@@ -244,8 +249,32 @@ class CvrInternalService {
       deltagerVirksomhed.navn = virksomhedsnavn.navn
     }
 
-    List<String> roller = virksomhedSummariskRelation.organisationer.collect {it->
+    // skal finde de roller hvor personen er aktiv
+    List<Organisation> aktiveOrganisationer = virksomhedSummariskRelation.organisationer.findAll {
+      // find funktion og check udløbsdatoen
+      Medlemsdata medlemsdata = it.medlemsData.find { m->
+        m.attributter.find { attribut->
+          attribut.type == 'FUNKTION' &&
+          attribut.vaerdier.find{ vaerdi->
+            vaerdi.periode.gyldigTil==null
+          }
+        }
+      }
+      // hvis den fandtes er personen aktiv i rollen
+      if (medlemsdata) {
+        return true
+      }
+
+      return false
+    }
+
+    List<String> roller = aktiveOrganisationer.collect {it->
       return it.organisationsNavn.find { !it.periode.gyldigTil }?.navn
+    }
+
+    // hvis der ingen roller er så kan vi lige så godt stoppe her.
+    if (!roller) {
+      return null
     }
 
     roller = konverterRoller(roller)
@@ -262,7 +291,7 @@ class CvrInternalService {
       deltagerVirksomhed.stemmeretiprocent = Ejer.interval(deltagerVirksomhed.stemmeret)
     }
 
-    return deltagerVirksomhed
+      return deltagerVirksomhed
 
   }
 
