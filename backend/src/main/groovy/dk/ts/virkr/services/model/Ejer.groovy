@@ -41,12 +41,14 @@ class Ejer {
     ejer.forretningsnoegle = deltagerRelation.deltager.forretningsnoegle
 
     Medlemsdata medlemsdata = findAktuelleMedlemsdata(deltagerRelation)
-
-    ejer.andel = findAktuelVaerdi(medlemsdata, 'EJERANDEL_PROCENT')
-    ejer.andelInterval = interval(ejer.andel)
-    ejer.stemmeprocent = findAktuelVaerdi(medlemsdata, 'EJERANDEL_STEMMERET_PROCENT')
-    ejer.stemmeprocentInterval = interval(ejer.stemmeprocent)
-    ejer.kapitalklasse = findAktuelVaerdi(medlemsdata,'EJERANDEL_KAPITALKLASSE')
+    if (medlemsdata) {
+      // så er der aktuelle ejeroplysninger
+      ejer.andel = findAktuelVaerdi(medlemsdata, 'EJERANDEL_PROCENT')
+      ejer.andelInterval = interval(ejer.andel)
+      ejer.stemmeprocent = findAktuelVaerdi(medlemsdata, 'EJERANDEL_STEMMERET_PROCENT')
+      ejer.stemmeprocentInterval = interval(ejer.stemmeprocent)
+      ejer.kapitalklasse = findAktuelVaerdi(medlemsdata, 'EJERANDEL_KAPITALKLASSE')
+    }
     return ejer
 
   }
@@ -57,7 +59,7 @@ class Ejer {
   }
 
   static Medlemsdata findAktuelMedlemsdataFraOrganisation(Organisation organisation) {
-    Medlemsdata medlemsdata = organisation.medlemsData.find{ it.attributter.find{it.type == 'EJERANDEL_PROCENT'}.vaerdier.find{it.periode.gyldigTil==null}}
+    Medlemsdata medlemsdata = organisation.medlemsData.find{ it.attributter.find{it.type == 'EJERANDEL_MEDDELELSE_DATO'}.vaerdier.find{it.periode.gyldigTil==null}}
     return  medlemsdata
   }
 
@@ -72,6 +74,10 @@ class Ejer {
   }
 
   static String interval(String andel) {
+    if (!andel) {
+      return null
+    }
+
     double d = Double.parseDouble(andel)
     if (d==0) {
       return "0%"
