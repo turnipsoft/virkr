@@ -146,7 +146,9 @@ class RegnskabXmlParser {
     } else {
       // prøv ifrs
       namespace = getIFRSNamespace(xml)
-      ns = new Namespace("http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full", namespace)
+      if (namespace) {
+        ns = new Namespace("http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full", namespace)
+      }
     }
     ns
   }
@@ -279,7 +281,12 @@ class RegnskabXmlParser {
   }
 
   String getIFRSNamespace(String xml) {
-    return getNamespace(xml, "http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full")
+    String result = getNamespace(xml, "http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full")
+    if (!result) {
+      result = getNamespace(xml, "http://xbrl.dcca.dk/ifrs-dk-cor_2013-12-20")
+    }
+
+    return result
   }
 
   String getNamespace(String xml, String ns) {

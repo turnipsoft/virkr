@@ -18,22 +18,26 @@ export default class VirksomhedsDetaljer extends Component {
 
     const branche = vdata.nyesteHovedbranche.branchetekst + " (" + vdata.nyesteHovedbranche.branchekode + ")";
 
-    var email = "";
+    let email = "";
     if (cvrdata.elektroniskPost && cvrdata.elektroniskPost.length>0) {
       email = cvrdata.elektroniskPost[0].kontaktoplysning;
     }
 
-    var www = "";
+    let www = "";
     if (cvrdata.hjemmeside && cvrdata.hjemmeside.length>0) {
       www = cvrdata.hjemmeside[0].kontaktoplysning;
     }
 
-    var telefon = "";
+    let telefon = "";
     if (cvrdata.telefonNummer && cvrdata.telefonNummer.length>0) {
       telefon = cvrdata.telefonNummer[0].kontaktoplysning;
     }
 
-    var virksomhedsform = vdata.nyesteVirksomhedsform.virksomhedsformkode + " - "+ vdata.nyesteVirksomhedsform.langBeskrivelse;
+    const virksomhedsform = vdata.nyesteVirksomhedsform.virksomhedsformkode + " - "+ vdata.nyesteVirksomhedsform.langBeskrivelse;
+
+    const status = cvrdata.nyesteStatus
+
+    const ophoersdato = cvrdata.nyesteLivsforloeb.periode.gyldigTil
 
     const apikey = "AIzaSyCkZhz21v6u43m7qMUZiFe6obxHoTLhvgE";
     const q = vejadresselinie+", "+byLinje
@@ -78,6 +82,8 @@ export default class VirksomhedsDetaljer extends Component {
                   <DetaljeLinie text="Kapital" value={cvrdata.kapital} />
                   <DetaljeLinie text="Tegningsregel" value={cvrdata.tegningsregel} />
                   <DetaljeLinie text="Formål" value={cvrdata.formaal} />
+                  <DetaljeLinie text="Status" value={status} />
+                  <DetaljeLinie text="Ophørsdato" value={ophoersdato} />
                 </div>
               </div>
               <br/>
