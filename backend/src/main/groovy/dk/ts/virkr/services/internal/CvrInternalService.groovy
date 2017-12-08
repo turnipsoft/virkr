@@ -78,6 +78,26 @@ class CvrInternalService {
     return deltagerGraf
   }
 
+  DeltagerGraf hentDeltagerGrafForVirksomhed(String cvrnummer) {
+    DeltagerGraf deltagerGraf = new DeltagerGraf()
+    Vrvirksomhed vrvirksomhed = cvrClient.hentVirksomhed(cvrnummer)
+    deltagerGraf.virksomhed = vrvirksomhed
+
+    String enhedsnummer = vrvirksomhed.enhedsNummer
+
+    // hent alle virksomheder som virksomheden ejer
+    List<Vrvirksomhed> virksomheder = cvrClient.hentVirksomhedsDeltagere(enhedsnummer)
+
+    virksomheder.each { virksomhed->
+      // tager den kun med såfremt deltager faktisk er ejer af virksomheden, hvilket man kan se ved at virksomhedens ejere inkluderer personen
+      if (virksomhed.ejere && virksomhed.ejere.find { it.enhedsnummer == enhedsnummer}) {
+        berigDeltagersVirksomhed(enhedsnummer, virksomhed, deltagerGraf, 0, [])
+      }
+    }
+
+    return deltagerGraf
+  }
+
   EjerAfVirksomhed bygEjerAfVirksomhed(Vrvirksomhed virksomhed, String enhedsnummer){
     EjerAfVirksomhed ejerAfVirksomhed = new EjerAfVirksomhed()
     ejerAfVirksomhed.cvrnummer = virksomhed.cvrNummer

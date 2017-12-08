@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 export default class APIHelper {
 
   static host() {
-    return 'http://virkr.dk:9092'
+    return 'http://localhost:9092'
   }
 
   static url(path) {
@@ -24,6 +24,10 @@ export default class APIHelper {
 
   static hentDeltagerGraf(enhedsnummer) {
     return this._call(this.url('/cvr/deltagergraf/' + enhedsnummer))
+  }
+
+  static hentVirksomhedGraf(cvrnummer) {
+    return this._call(this.url('/cvr/virksomhedgraf/' + cvrnummer))
   }
 
   static soeg(soegning) {

@@ -1,6 +1,7 @@
 package dk.ts.virkr.services.model.graf
 
 import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
+import dk.ts.virkr.cvr.integration.model.virksomhed.Vrvirksomhed
 import dk.ts.virkr.services.model.EjerType
 
 /**
@@ -8,6 +9,7 @@ import dk.ts.virkr.services.model.EjerType
  */
 class DeltagerGraf {
   Vrdeltagerperson deltager
+  Vrvirksomhed virksomhed
 
   List<EjerAfVirksomhed> ejere = []
   List<DeltagerRelation> relationer = []
@@ -72,4 +74,8 @@ class DeltagerGraf {
     return unikkeEnheder.entrySet().collect {it.value}
   }
 
+
+  boolean erDeltagerVirksomhed() {
+    return virksomhed
+  }
 }

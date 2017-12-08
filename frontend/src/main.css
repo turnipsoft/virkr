@@ -6,6 +6,11 @@
   margin-top: 2%;
 }
 
+.header-periode {
+  font-size: 10px;
+  font-weight: normal;
+}
+
 .virkr-header h1 {
   font-family: 'Lobster', cursive;
   color: var(--header-color);

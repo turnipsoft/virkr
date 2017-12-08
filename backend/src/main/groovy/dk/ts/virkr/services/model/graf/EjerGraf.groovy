@@ -11,4 +11,18 @@ class EjerGraf {
 
   List<EjerAfVirksomhed> ejere = []
   List<EjerRelation> ejerRelationer = []
+
+  List<EjerAfVirksomhed> getUnikkeEjere() {
+    List<String> unikkeEjerId = []
+    List<EjerAfVirksomhed> unikkeEjere = []
+
+    ejere.each { ejer->
+      if (!unikkeEjerId.contains(ejer.ejer.enhedsnummer) && !unikkeEjerId.contains(ejer.ejer.enhedsnummer)) {
+        unikkeEjerId << ejer.ejer.enhedsnummer
+        unikkeEjere << ejer
+      }
+    }
+
+    return unikkeEjere
+  }
 }

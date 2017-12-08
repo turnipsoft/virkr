@@ -9,7 +9,8 @@ const ejerGraf = (state = {}, action) => {
     case 'EJER_GRAF_RESULT':
       return {
         isFetching: false,
-        ejerGraf: action.ejerGraf
+        ejerGraf: action.ejerGraf,
+        deltagerGraf: action.deltagerGraf
       }
     case 'EJER_GRAF_ERROR':
       return {

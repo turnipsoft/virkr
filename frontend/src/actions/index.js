@@ -78,6 +78,14 @@ function virksomhedError(cvrnummer, error) {
   }
 }
 
+function ejerGrafError(cvrnummer, error) {
+  return {
+    type: 'EJERGRAF_ERROR',
+    cvrnummer,
+    error
+  }
+}
+
 export function visVirksomhed(cvrnummer, navigate) {
   return dispatch => {
     dispatch(henterVirksomhed(cvrnummer))
@@ -129,11 +137,12 @@ function henterEjerGraf(cvrnummer) {
   }
 }
 
-function ejerGrafResultat(cvrnummer, ejerGraf) {
+function ejerGrafResultat(cvrnummer, ejerGraf, deltagerGraf) {
   return {
     type: 'EJER_GRAF_RESULT',
     cvrnummer,
-    ejerGraf
+    ejerGraf,
+    deltagerGraf
   }
 }
 
@@ -143,7 +152,13 @@ export function visEjerGraf(cvrnummer, navigate) {
     if (navigate) {
       dispatch(push(`/ejergraf/${cvrnummer}`));
     }
+
     return api.hentEjerGraf(cvrnummer)
-      .then(data => dispatch(ejerGrafResultat(cvrnummer, data)))
+      .then(data => {
+        api.hentVirksomhedGraf(cvrnummer)
+          .then(deltagergraf=> dispatch(ejerGrafResultat(cvrnummer, data, deltagergraf)))
+          .catch(error => dispatch(ejerGrafError(cvrnummer, error)))
+      })
+      .catch(error => dispatch(ejerGrafError(cvrnummer, error)))
   }
 }

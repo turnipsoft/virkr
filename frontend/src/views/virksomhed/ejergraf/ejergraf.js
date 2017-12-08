@@ -21,7 +21,7 @@ export default class EjerGraf extends React.Component {
     var map = new Map();
     var allMap = new Map();
 
-    this.props.ejerGraf.ejere.forEach((ejer) =>{
+    this.props.ejerGraf.unikkeEjere.forEach((ejer) =>{
       map.set(ejer.ejer.enhedsnummer, ejer.ejer.forretningsnoegle);
       allMap.set(ejer.ejer.enhedsnummer, ejer);
     });
@@ -41,7 +41,7 @@ export default class EjerGraf extends React.Component {
   render() {
     const ejergraf = this.props.ejerGraf;
 
-    const n = ejergraf.ejere.map((ejer) => {
+    const n = ejergraf.unikkeEjere.map((ejer) => {
       var group = ejer.ejer.ejertype == 'PERSON' ? 'personer' : 'virksomheder'
       if (ejer.ejer.ejertype == 'ROD') {
         group = 'rod';
