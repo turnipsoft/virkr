@@ -64,7 +64,7 @@ export default class EjerGraf extends React.Component {
     var options = {
       layout: {
         hierarchical: {
-          direction: "UD",
+          direction: "DU",
           blockShifting: true,
           edgeMinimization: true,
           sortMethod: 'directed'

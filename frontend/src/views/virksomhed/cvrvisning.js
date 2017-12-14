@@ -52,12 +52,13 @@ export default class CvrVisning extends Component {
             </div>
           </div>
 
-          <br/>
-          <Graf regnskaber={regnskaber} />
           <br />
           <div className="hide-on-portrait">
             <NoegletalTabel regnskaber={sorteredeRegnskaber} />
           </div>
+
+          <br/>
+          <Graf regnskaber={regnskaber} />
           <br />
           {sorteredeRegnskaber.map((regnskab) => {
             return <Regnskabstal key={regnskab.id} regnskab={regnskab} />

@@ -41,7 +41,7 @@ export default class EjerVisning extends React.Component {
                   <div>
                     <DetaljeLinie text="Virksomhed" value={re.virksomhedsnavn} detalje={re.cvrnummer} key={re.virksomhedsnavn} link={visVirksomhed} linkKey={re.cvrnummer}  />
                     <DetaljeLinie text="Ejerandel" value={re.ejer.andelInterval} key={re.cvrnummer} />
-                    <DetaljeLinie text="Ophørsdato" value={re.ejer.ophoersdato} key={re.cvrnummer} />
+                    {re.ejer && re.ejer.ophoersdato && <DetaljeLinie text="Ophørsdato" value={re.ejer.ophoersdato} key={re.cvrnummer+re.ejer.ophoersdato} />}
                     <hr/>
                   </div>
                 )
@@ -55,7 +55,7 @@ export default class EjerVisning extends React.Component {
                     <div key={re.cvrnummer}>
                       <DetaljeLinie text="Virksomhed" value={re.virksomhedsnavn} detalje={re.cvrnummer} key={re.virksomhedsnavn} link={visVirksomhed} linkKey={re.cvrnummer}  />
                       <DetaljeLinie text="Ejerandel" value={re.andelInterval} key={re.cvrnummer} />
-                      <DetaljeLinie text="Ophørsdato" value={re.ophoersdato} key={re.cvrnummer} />
+                      {re.ejer && re.ejer.ophoersdato && <DetaljeLinie text="Ophørsdato" value={re.ejer.ophoersdato} key={re.cvrnummer+re.ejer.ophoersdato} />}
                       <hr/>
                     </div>
                   )
