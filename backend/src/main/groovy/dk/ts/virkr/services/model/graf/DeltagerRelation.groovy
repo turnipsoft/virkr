@@ -6,9 +6,11 @@ package dk.ts.virkr.services.model.graf
 class DeltagerRelation {
   String deltagerEnhedsnummer
   String virksomhedEnhedsnummer
+  String andelInterval
 
-  DeltagerRelation(String deltagerEnhedsnummer, String virksomhedEnhedsnummer) {
+  DeltagerRelation(String deltagerEnhedsnummer, String virksomhedEnhedsnummer, String andelInterval) {
     this.deltagerEnhedsnummer = deltagerEnhedsnummer
     this.virksomhedEnhedsnummer = virksomhedEnhedsnummer
+    this.andelInterval = andelInterval
   }
 }

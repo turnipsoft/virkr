@@ -52,7 +52,7 @@ export default class EjerGraf extends React.Component {
 
     const e = ejergraf.ejerRelationer.map((er) =>{
       const vnr = (er.virksomhed.ejer ? er.virksomhed.ejer.enhedsnummer:"0");
-      return {from:er.ejer.ejer.enhedsnummer, to: vnr};
+      return {from:er.ejer.ejer.enhedsnummer, to: vnr, label: er.ejer.ejer.andelInterval, font: {align: 'middle', size: 8}};
     });
 
     var graph = {

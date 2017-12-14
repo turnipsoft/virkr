@@ -113,7 +113,7 @@ class CvrInternalService {
     ejerAfVirksomhed.ejer.level = level
 
     deltagerGraf.ejere << ejerAfVirksomhed
-    deltagerGraf.relationer << new DeltagerRelation(deltagerEnhedsnummer, virksomhed.enhedsNummer)
+    deltagerGraf.relationer << new DeltagerRelation(deltagerEnhedsnummer, virksomhed.enhedsNummer, ejerAfVirksomhed.ejer.andelInterval)
 
     // Der skal findes alle de virksomheder som har virkomsheden som deltage relation og dernæst findes de virksomheder som faktisk har
     // en ejerrelation til virksomheden  ved at kigge i hver virksomheds ejere og holde det op i mod enhedsnummeret på virksomheden.
