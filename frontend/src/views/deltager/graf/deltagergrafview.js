@@ -29,7 +29,7 @@ class DeltagerGrafView extends Component {
 
     return(
       <div>
-        <PageHeader headerText="Deltager Graf" iconClassName="fa fa-sitemap" deltager={deltager} />
+        <PageHeader headerText="Deltager Graf" iconClassName="fa fa-sitemap" deltager={deltager} context="deltagergraf"/>
         {showSpinner && <Spinner />}
         {deltagerGraf && <DeltagerGraf deltagerGraf={deltagerGraf}
                                        visVirksomhed={visVirksomhed}
@@ -55,7 +55,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   visVirksomhed,
-  visDeltager
+  visDeltager,
+  visDeltagerGraf
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeltagerGrafView);

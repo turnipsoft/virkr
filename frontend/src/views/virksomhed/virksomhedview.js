@@ -37,7 +37,7 @@ class VirksomhedView extends Component {
 
     return (
       <div>
-        <PageHeader iconClassName="fa fa-factory" headerText='Virksomhedsinformationer' cvrdata={cvrdata} />
+        <PageHeader iconClassName="fa fa-factory" headerText='Virksomhedsinformationer' cvrdata={cvrdata} context="virksomhed" />
         {showSpinner && <Spinner/>}
         {cvrdata && <CvrVisning cvrdata={cvrdata}
                                 regnskaber={regnskaber}

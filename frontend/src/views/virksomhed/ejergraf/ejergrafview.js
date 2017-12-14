@@ -30,7 +30,7 @@ class EjerGrafView extends Component {
 
     return(
       <div>
-        <PageHeader headerText="Ejergraf" iconClassName="fa fa-sitemap" cvrdata={virksomhed} />
+        <PageHeader headerText="Ejergraf" iconClassName="fa fa-sitemap" cvrdata={virksomhed} context="ejergraf" />
         {showSpinner && <Spinner />}
         {ejerGraf && <EjerGraf ejerGraf={ejerGraf}
                                visVirksomhed={visVirksomhed}
