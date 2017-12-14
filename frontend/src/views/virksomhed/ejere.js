@@ -18,7 +18,7 @@ export default class Ejere extends React.Component {
           <div className="ejere">
             <div className="row">
               <div className="col-12 section-header">
-                <span className="btn-link fa fa-sitemap" onClick={ () => visEjerGraf(cvrdata.cvrNummer, true)} /> &nbsp; Ejere &nbsp;
+                <span className="btn-link fa fa-sitemap" onClick={ () => visEjerGraf(cvrdata.cvrNummer, true)} /> &nbsp; Legale Ejere &nbsp;
                 <span className="btn-link" onClick={ () => visEjerGraf(cvrdata.cvrNummer, true)} >(Se komplet ejergraf)</span>
               </div>
             </div>
@@ -44,7 +44,7 @@ export default class Ejere extends React.Component {
         <div className="ejere">
           <div className="row">
             <div className="col-12 section-header">
-              Historiske Ejere
+              Historisk Legale Ejere
             </div>
           </div>
           <br/>
