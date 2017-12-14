@@ -8,6 +8,11 @@ import Graf from './regnskab/graf';
 
 export default class CvrVisning extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {visGraf: false};
+  }
+
   render() {
     const { regnskaber, cvrdata } = this.props;
 
@@ -36,6 +41,19 @@ export default class CvrVisning extends Component {
     return (cvrdata !== null) ? <VirksomhedsDetaljer cvrdata={cvrdata} /> : null
   }
 
+  _renderNoegletalHeader() {
+    const viserGraf = this.state.visGraf;
+
+    const icon = viserGraf? 'fa-minus' : 'fa-plus';
+    const className = 'btn-link fa '+icon;
+    return (
+      <div className="row">
+        <div className="col-12 section-header">
+          <span className={className} onClick={ () => this.setState({visGraf: !viserGraf})} /> &nbsp; Nøgletalsgraf &nbsp;
+        </div>
+      </div>);
+  }
+
   _renderRegnskaber(regnskaber) {
     if (regnskaber === null) {
       return null;
@@ -58,7 +76,8 @@ export default class CvrVisning extends Component {
           </div>
 
           <br/>
-          <Graf regnskaber={regnskaber} />
+          {this._renderNoegletalHeader()}
+          {this.state.visGraf && <Graf regnskaber={regnskaber} />}
           <br />
           {sorteredeRegnskaber.map((regnskab) => {
             return <Regnskabstal key={regnskab.id} regnskab={regnskab} />
