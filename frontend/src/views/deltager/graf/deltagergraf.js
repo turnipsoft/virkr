@@ -25,23 +25,31 @@ export default class DeltagerGraf extends React.Component {
     });
 
     this.state = {ejerAllMap: allMap, isModalOpen: false};
-    this._visVirksomhed = this._visVirksomhed.bind(this);
+    this._visEnhed = this._visEnhed.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-  _visVirksomhed(enhedsnr) {
+  _visEnhed(enhedsnr) {
     const ejer = this.state.ejerAllMap.get(enhedsnr);
-    this.setState({specifikEjer: ejer});
-    this.openModal();
+    //skal ikke vise oversigten men bare navigere direkte
+    if (ejer.cvrnummer) {
+      this.props.visVirksomhed(ejer.cvrnummer, true);
+    } else {
+      this.props.visDeltager(ejer.enhedsnummer, true);
+    }
+    //this.setState({specifikEjer: ejer});
+    //this.openModal();
   }
 
   render() {
     const deltagergraf = this.props.deltagerGraf;
 
+    const rodEnhedsnummer = deltagergraf.deltager? deltagergraf.deltager.enhedsnummer: deltagergraf.virksomhed.enhedsNummer;
+
     const n = deltagergraf.unikkeEjere.map((ejer) => {
       var group = ejer.enhedsType == 'PERSON' ? 'personer' : 'virksomheder'
-      if (ejer.enhedsType == 'ROD') {
+      if (ejer.enhedsType == 'ROD' || ejer.enhedsnummer == rodEnhedsnummer) {
         group = 'rod';
       }
 
@@ -50,7 +58,7 @@ export default class DeltagerGraf extends React.Component {
     });
 
     const e = deltagergraf.relationer.map((er) =>{
-      return {from:er.deltagerEnhedsnummer, to: er.virksomhedEnhedsnummer, label: er.andelInterval, font: {align: 'middle', size: 8}};
+      return {from:er.deltagerEnhedsnummer, to: er.virksomhedEnhedsnummer, label: er.andelInterval, font: {align: 'middle', size: 10}};
     });
 
     var graph = {
@@ -113,9 +121,9 @@ export default class DeltagerGraf extends React.Component {
       }
     };
 
-    var vv = this._visVirksomhed;
+    const vv = this._visEnhed;
 
-    var events = {
+    const events = {
       click: function(event) {
         var { nodes } = event;
 

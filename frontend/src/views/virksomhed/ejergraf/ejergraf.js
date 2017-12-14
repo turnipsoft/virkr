@@ -27,15 +27,22 @@ export default class EjerGraf extends React.Component {
     });
 
     this.state = {ejerMap: map, ejerAllMap: allMap, isModalOpen: false};
-    this._visVirksomhed = this._visVirksomhed.bind(this);
+    this._visEnhed = this._visEnhed.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-  _visVirksomhed(enhedsnr) {
+  _visEnhed(enhedsnr) {
     const ejer = this.state.ejerAllMap.get(enhedsnr).ejer;
-    this.setState({specifikEjer: ejer});
-    this.openModal();
+    if (ejer.forretningsnoegle != ejer.enhedsnummer && (ejer.ejertype == 'VIRKSOMHED' || ejer.ejertype == 'ROD')) {
+      this.props.visVirksomhed(ejer.forretningsnoegle, true);
+    } else if ( ejer.ejertype == 'PERSON') {
+      this.props.visDeltager(ejer.enhedsnummer, true);
+    } else {
+      this.setState({specifikEjer: ejer});
+      this.openModal();
+    }
+
   }
 
   render() {
@@ -116,9 +123,9 @@ export default class EjerGraf extends React.Component {
       }
     };
 
-    var vv = this._visVirksomhed;
+    const vv = this._visEnhed;
 
-    var events = {
+    const events = {
       click: function(event) {
         var { nodes } = event;
 
@@ -128,7 +135,7 @@ export default class EjerGraf extends React.Component {
       }
     }
 
-    var styles = {
+    const styles = {
       width: '100%', height: '100%'
     }
 
