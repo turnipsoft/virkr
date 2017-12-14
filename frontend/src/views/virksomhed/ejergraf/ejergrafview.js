@@ -16,6 +16,13 @@ class EjerGrafView extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.ejerGraf) {
+      const virksomhed = nextProps.ejerGraf.virksomhed;
+      document.title = `virkr.dk - ${virksomhed.virksomhedMetadata.nyesteNavn.navn} - Ejergraf`;
+    }
+  }
+
   render() {
     const { showSpinner, ejerGraf, deltagerGraf, visVirksomhed, visDeltager } = this.props;
 

@@ -15,6 +15,12 @@ class DeltagerView extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.deltager) {
+      document.title = `virkr.dk - ${nextProps.deltager.navn} - Deltager`;
+    }
+  }
+
   render() {
     console.log('DeltagerView-Render');
     const { showSpinner, deltager, visVirksomhed, visDeltagerGraf } = this.props;

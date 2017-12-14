@@ -15,6 +15,12 @@ class DeltagerGrafView extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.deltagerGraf) {
+      document.title = `virkr.dk - ${nextProps.deltagerGraf.deltager.navn} - EjerGraf`;
+    }
+  }
+
   render() {
     console.log('DeltagerGrafView-render');
     const { showSpinner, deltagerGraf, visVirksomhed, visDeltager } = this.props;

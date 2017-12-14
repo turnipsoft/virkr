@@ -15,6 +15,12 @@ class VirksomhedView extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.cvrdata) {
+      document.title = `virkr.dk - ${nextProps.cvrdata.virksomhedMetadata.nyesteNavn.navn} - ${nextProps.cvrdata.cvrNummer}`;
+    }
+  }
+
   render() {
     const { regnskaber, cvrdata, showSpinner, visDeltager, visVirksomhed, visEjerGraf } = this.props;
 
@@ -28,7 +34,7 @@ class VirksomhedView extends Component {
         </div>
       </div>)
     }
-    
+
     return (
       <div>
         <PageHeader iconClassName="fa fa-factory" headerText='Virksomhedsinformationer' cvrdata={cvrdata} />

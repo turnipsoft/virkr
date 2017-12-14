@@ -7,6 +7,12 @@ import Soegeresultat from './soegeresultat';
 
 class SoegeresultatView extends Component {
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.soegning) {
+      document.title = `virkr.dk - Søgning - ${nextProps.soegning}`
+    }
+  }
+
   render() {
     const {soegning, visDeltager, soegeresultat, visVirksomhed } = this.props;
 
