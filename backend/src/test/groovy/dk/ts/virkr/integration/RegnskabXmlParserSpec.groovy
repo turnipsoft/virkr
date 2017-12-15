@@ -89,7 +89,6 @@ class RegnskabXmlParserSpec extends Specification {
     ro.bruttoresultatTal.bruttofortjeneste.vaerdi == 4100142l
     ro.aaretsresultatTal.aaretsresultat.vaerdi == 541316l
     ro.nettoresultatTal.driftsresultat.vaerdi == 727959l
-    ro.aaretsresultatTal.resultatfoerskat.vaerdi == 722363l
     ro.aaretsresultatTal.skatafaaretsresultat.vaerdi == 181047l
 
     regnskabData.balance.passiver.gaeldsforpligtelser.vaerdi == 1258900l
@@ -173,11 +172,8 @@ class RegnskabXmlParserSpec extends Specification {
 
     then:
     ro.omsaetningTal.omsaetning.vaerdi == 552449000l
-    ro.bruttoresultatTal.bruttofortjeneste.vaerdi == 292764000l
     ro.bruttoresultatTal.regnskabsmaessigeafskrivninger.vaerdi == 28137000l
     ro.bruttoresultatTal.medarbejderomkostninger.vaerdi == 213730000l
-
-    ro.nettoresultatTal.driftsresultat.vaerdi == 50897000l
     ro.nettoresultatTal.finansielleindtaegter.vaerdi == 795000
 
     ro.aaretsresultatTal.resultatfoerskat.vaerdi == 47316000l
