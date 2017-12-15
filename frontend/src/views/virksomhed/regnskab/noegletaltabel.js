@@ -62,6 +62,14 @@ export default class NoegletalTabel extends Component {
             <NoegletalGraf regnskaber={regnskaber} label="Eksterne omkostninger"
                            felt="resultatopgoerelse.omsaetningTal.eksterneomkostninger"/>}
 
+            <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.andreeksterneomkostninger" label="Andre Eksterne omkostninger"
+                             negative={true}
+                             regnskaber={regnskaber}
+                             onClick={()=>this.selectNoegletal('resultatopgoerelse.omsaetningTal.andreeksterneomkostninger')} />
+            {selected==='resultatopgoerelse.omsaetningTal.eksterneomkostninger' &&
+            <NoegletalGraf regnskaber={regnskaber} label="AndreEksterne omkostninger"
+                           felt="resultatopgoerelse.omsaetningTal.andreeksterneomkostninger"/>}
+
 
             <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.variableomkostninger" label="Variable omkostninger"
                              negative={true}
@@ -87,10 +95,10 @@ export default class NoegletalTabel extends Component {
                                  felt="resultatopgoerelse.bruttoresultatTal.kapitalandeleiassocieredevirksomheder"/>}
 
             <NoegletalRaekke felt="resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger"
-                             label="Kapacitetsomkostninger" regnskaber={regnskaber} negative={true}
+                             label="Personaleomkostninger" regnskaber={regnskaber} negative={true}
                              onClick={()=>this.selectNoegletal('resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger')} />
             {selected==='resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Kapacitetsomkostninger"
+            <NoegletalGraf regnskaber={regnskaber} label="Personaleomkostninger"
                            felt="resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger"/>}
 
 

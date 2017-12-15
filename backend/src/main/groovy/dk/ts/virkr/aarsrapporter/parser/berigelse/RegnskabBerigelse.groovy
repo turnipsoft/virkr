@@ -1,5 +1,6 @@
 package dk.ts.virkr.aarsrapporter.parser.berigelse
 
+import dk.ts.virkr.aarsrapporter.model.Regnskab
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.model.Resultatopgoerelse
 
@@ -8,7 +9,7 @@ import dk.ts.virkr.aarsrapporter.model.Resultatopgoerelse
  */
 class RegnskabBerigelse {
 
-  boolean berigNoegletal(RegnskabData regnskabData) {
+  boolean berigNoegletal(Regnskab regnskabData) {
     boolean harBeriget = false
 
     ResultatopgoerelseBerigelse resultatopgoerelseBerigelse = new ResultatopgoerelseBerigelse()

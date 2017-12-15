@@ -7,9 +7,11 @@ export default class NoegletalRaekke extends Component {
     const { regnskaber, label, felt, style, header, negative, highlight, onClick } = this.props;
 
     const feltvaerdier = regnskaber.map((regnskab) => {
-      let vaerdi = resolveJsonValue(felt, regnskab);
+      const aktueltRegnskab = regnskab.aktueltAarsregnskab;
+
+      let vaerdi = resolveJsonValue(felt, aktueltRegnskab);
       if (header) {
-        return { vaerdi: vaerdi, start: regnskab.startdato, slut: regnskab.slutdato };
+        return { vaerdi: vaerdi, start: aktueltRegnskab.startdato, slut: aktueltRegnskab.slutdato };
       }
       if (negative && vaerdi>0) {
         vaerdi = vaerdi * -1;
@@ -18,8 +20,11 @@ export default class NoegletalRaekke extends Component {
       return { vaerdi: vaerdi };
     });
 
-    const empty = feltvaerdier.every((i) => { return (i.vaerdi === null || i.vaerdi === undefined) });
-    if (empty) {
+    // Ingen tomme rækker
+    const empty = feltvaerdier.every((i) => { return (i.vaerdi === null || i.vaerdi === undefined)
+      || i.vaerdi.vaerdi===null || i.vaerdi.vaerdi===undefined });
+
+    if (empty && !header) {
       return null;
     }
 
@@ -68,10 +73,25 @@ export default class NoegletalRaekke extends Component {
         if (highlight && vaerdi.vaerdi<0) {
           cname+= ' noegletal-color-negative';
         }
-        return <td className={cname} key={col} >{komma(vaerdi.vaerdi)}</td>
+        return <td className={cname} key={col} >
+          {komma(vaerdi.vaerdi.vaerdi)}
+          {this._renderWarnings(vaerdi.vaerdi)}
+          </td>
       })
     );
   }
 
+  _renderWarnings(regnskabstal) {
+    if (regnskabstal && regnskabstal.vaerdi && regnskabstal.metadata.kontroller.length>0) {
+      let text = '';
+      regnskabstal.metadata.kontroller.forEach ((kontrol) => {
+          text+=kontrol.text+"\n";
+        }
+      );
+      return(
+        <span>&nbsp;<span className="fa fa-exclamation red" title={text} /></span>
+      )
+    }
+  }
 }
 

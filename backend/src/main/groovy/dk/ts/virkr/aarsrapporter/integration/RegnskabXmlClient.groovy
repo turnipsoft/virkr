@@ -1,5 +1,6 @@
 package dk.ts.virkr.aarsrapporter.integration
 
+import dk.ts.virkr.aarsrapporter.model.Regnskab
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Dokument
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Offentliggoerelse
@@ -41,8 +42,20 @@ class RegnskabXmlClient {
           data.startdato = offentliggoerelse.regnskab.regnskabsperiode.startDato
           data.slutdato = offentliggoerelse.regnskab.regnskabsperiode.slutDato
           data.sidsteopdatering = sdf.format(offentliggoerelse.sidstOpdateret)
-          data = parser.parseOgBerig(data, unzippedData)
-          data.virksomhedsdata = parser.hentVirksomhedsdataFraRegnskab(unzippedData, data)
+          parser.parseOgBerig(data, unzippedData)
+          data.virksomhedsdata = parser.hentVirksomhedsdataFraRegnskab(unzippedData)
+
+          // berig aktuelt aar (dobbelt konfekt i know.. for nu, vi er i gang med en refac så rolig nu!
+          data.aktueltAarsregnskab = new Regnskab()
+          data.aktueltAarsregnskab.aar = data.aar
+          data.aktueltAarsregnskab.startdato = data.startdato
+          data.aktueltAarsregnskab.slutdato = data.slutdato
+          parser.parseOgBerig(data.aktueltAarsregnskab, unzippedData)
+
+          // forrige aar
+          data.sidsteAarsregnskab = new Regnskab()
+          parser.parseOgBerig(data.sidsteAarsregnskab, unzippedData, false)
+
           regnskabdata << data
         }
       }

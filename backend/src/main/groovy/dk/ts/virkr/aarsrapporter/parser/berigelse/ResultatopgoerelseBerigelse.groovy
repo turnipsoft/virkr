@@ -1,5 +1,6 @@
 package dk.ts.virkr.aarsrapporter.parser.berigelse
 
+import dk.ts.virkr.aarsrapporter.model.Regnskab
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 
 /**
@@ -7,7 +8,7 @@ import dk.ts.virkr.aarsrapporter.model.RegnskabData
  */
 class ResultatopgoerelseBerigelse {
 
-  boolean berigNoegletal(RegnskabData rd) {
+  boolean berigNoegletal(Regnskab rd) {
     boolean harBeriget = false
 
     AaretsresultatBerigelse aaretsresultatBerigelse = new AaretsresultatBerigelse()

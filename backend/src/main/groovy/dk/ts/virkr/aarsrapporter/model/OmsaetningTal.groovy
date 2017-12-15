@@ -7,36 +7,36 @@ import org.springframework.beans.BeanUtils
  * Created by sorenhartvig on 24/06/2017.
  */
 class OmsaetningTal extends ModelBase {
-  Long omsaetning
-  Long vareforbrug  // CostOfSales
-  Long driftsindtaegter // OtherOperatingIncome
-  Long andreeksterneomkostninger //OtherExternalExpenses
-  Long variableomkostninger // RawMaterialsAndConsumablesUsed
-  Long lokalomkostninger
-  Long eksterneomkostninger
-  Long ejendomsomkostninger
-  Long vaerdiregulering
+  Regnskabstal omsaetning
+  Regnskabstal vareforbrug  // CostOfSales
+  Regnskabstal driftsindtaegter // OtherOperatingIncome
+  Regnskabstal andreeksterneomkostninger //OtherExternalExpenses
+  Regnskabstal variableomkostninger // RawMaterialsAndConsumablesUsed
+  Regnskabstal lokalomkostninger
+  Regnskabstal eksterneomkostninger
+  Regnskabstal ejendomsomkostninger
+  Regnskabstal vaerdiregulering
 
   static OmsaetningTal from(Regnskabsdata rd) {
     OmsaetningTal oms = new OmsaetningTal()
-    oms.omsaetning = rd.omsaetning
-    oms.vareforbrug = rd.vareforbrug
-    oms.driftsindtaegter = rd.driftsindtaegter
-    oms.andreeksterneomkostninger = rd.andreeksterneomkostninger
-    oms.variableomkostninger = rd.variableomkostninger
-    oms.lokalomkostninger = rd.lokalomkostninger
-    oms.eksterneomkostninger = rd.eksterneomkostninger
+    oms.omsaetning = new Regnskabstal(rd.omsaetning)
+    oms.vareforbrug = new Regnskabstal(rd.vareforbrug)
+    oms.driftsindtaegter = new Regnskabstal(rd.driftsindtaegter)
+    oms.andreeksterneomkostninger = new Regnskabstal(rd.andreeksterneomkostninger)
+    oms.variableomkostninger = new Regnskabstal(rd.variableomkostninger)
+    oms.lokalomkostninger = new Regnskabstal(rd.lokalomkostninger)
+    oms.eksterneomkostninger = new Regnskabstal(rd.eksterneomkostninger)
     return oms
   }
 
   void berig(Regnskabsdata oms) {
-    oms.omsaetning = this.omsaetning
-    oms.vareforbrug = this.vareforbrug
-    oms.driftsindtaegter = this.driftsindtaegter
-    oms.andreeksterneomkostninger = this.andreeksterneomkostninger
-    oms.variableomkostninger = this.variableomkostninger
-    oms.lokalomkostninger = this.lokalomkostninger
-    oms.eksterneomkostninger = this.eksterneomkostninger
+    oms.omsaetning = this.omsaetning.vaerdi
+    oms.vareforbrug = this.vareforbrug.vaerdi
+    oms.driftsindtaegter = this.driftsindtaegter.vaerdi
+    oms.andreeksterneomkostninger = this.andreeksterneomkostninger.vaerdi
+    oms.variableomkostninger = this.variableomkostninger.vaerdi
+    oms.lokalomkostninger = this.lokalomkostninger.vaerdi
+    oms.eksterneomkostninger = this.eksterneomkostninger.vaerdi
   }
 
 }

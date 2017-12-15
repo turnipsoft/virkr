@@ -23,6 +23,10 @@
   margin-top: 8px
 }
 
+.red {
+  color: red;
+}
+
 .virkr-header a {
   font-family: 'Lobster', cursive;
   font-weight: bold;

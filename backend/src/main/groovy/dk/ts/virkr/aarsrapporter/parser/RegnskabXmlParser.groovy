@@ -1,6 +1,8 @@
 package dk.ts.virkr.aarsrapporter.parser
 
+import dk.ts.virkr.aarsrapporter.model.Regnskab
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
+import dk.ts.virkr.aarsrapporter.model.Regnskabstal
 import dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata
 import dk.ts.virkr.aarsrapporter.model.Resultatopgoerelse
 import dk.ts.virkr.aarsrapporter.parser.berigelse.RegnskabBerigelse
@@ -12,12 +14,12 @@ import groovy.xml.Namespace
  */
 class RegnskabXmlParser {
 
-  Virksomhedsdata hentVirksomhedsdataFraRegnskab(String xml, RegnskabData regnskabData) {
+  Virksomhedsdata hentVirksomhedsdataFraRegnskab(String xml) {
     XmlParser parser = new XmlParser(false, false)
     Node result = parser.parseText(xml)
     Namespace ns = hentNamespace(xml)
 
-    String contextRef = hentContextRef(result, ns, regnskabData)
+    String contextRef = hentContextRef(result, ns)
     // hent de relevante felter for dette regnskabsår fra contexten.
     NodeList nl = result.findAll {
       it.attribute('contextRef') == contextRef
@@ -37,99 +39,105 @@ class RegnskabXmlParser {
     return virksomhedsdata
   }
 
-  RegnskabData parseOgBerig(RegnskabData data, String xml) {
+  String getNSPrefix(Node node) {
+    String name = node.name()
+    String resultat = name.contains(':')? name.substring(0, name.indexOf(':')+1): ''
+    return resultat
+  }
+
+  void berigMedPeriode(Regnskab regnskab, Node xmlDokument, Namespace ns, String contextRefName) {
+    List<Node> contextNodes = hentContextNodes(xmlDokument, ns)
+    Node contextRefNode = contextNodes.find { it.attribute('id') == contextRefName }
+    String nsPrefix = getNSPrefix(contextRefNode)
+
+    String startDate = contextRefNode[nsPrefix+'period'][nsPrefix+'startDate'].text()
+    String endDate = contextRefNode[nsPrefix+'period'][nsPrefix+'endDate'].text()
+    regnskab.startdato = startDate
+    regnskab.slutdato = endDate
+    regnskab.aar = startDate.substring(0,4)
+  }
+
+  void parseOgBerig(Regnskab data, String xml, boolean nyeste = true) {
     XmlParser parser = new XmlParser(false, false)
 
     Node result = parser.parseText(xml)
     Namespace ns = hentNamespace(xml)
 
-    String contextRef = hentContextRef(result, ns, data)
-
-    String assetsRef = null
+    String contextRef = hentContextRef(result, ns, nyeste)
 
     // IFRS regnskaber vil have contexten som duration_CY_C_only hvor C'et står for consolidated og altså en context
     // der dækker en hel gruppe, men vi er ikke interesserede i hele gruppens nøgle tal eller måsker er man
     // i stedet vil man have parentens og det er så duration_CY_only
     // Så for nu, overskrives denne til jeg bliver klogere.
-    if (contextRef.equals("duration_CY_C_only")) {
-      contextRef = 'duration_CY_only'
-    }
+    //if (contextRef.equals("duration_CY_C_only")) {
+    //  contextRef = 'duration_CY_only'
+    //}
 
     // hent de relevante felter for dette regnskabsår fra contexten.
     NodeList nl = result.findAll {
       it.attribute('contextRef') == contextRef
     }
 
-
-    /*nl.each {
-      println(it.name())
-    }*/
-
-    /*
-    if (ns.prefix == 'ifrs-full') {
-      return haandterIFRS(ns, result, nl, data)
-    }
-    */
+    /* periode dato år */
+    berigMedPeriode(data, result, ns, contextRef)
 
     /** Resultatopgørelsen **/
     Resultatopgoerelse r = data.resultatopgoerelse
 
     //Omsætning
-    r.omsaetningTal.omsaetning = getLongValue(nl, ns, "Revenue")
-    r.omsaetningTal.vareforbrug = getLongValue(nl, ns, "CostOfSales")
+    r.omsaetningTal.omsaetning = getRegnskabstal(nl, ns, "Revenue")
+    r.omsaetningTal.vareforbrug = getRegnskabstal(nl, ns, "CostOfSales")
     // driftsindtæger
-    r.omsaetningTal.driftsindtaegter = getLongValue(nl, ns, "OtherOperatingIncome")
+    r.omsaetningTal.driftsindtaegter = getRegnskabstal(nl, ns, "OtherOperatingIncome")
     // andre eksterne omkostninger
-    r.omsaetningTal.andreeksterneomkostninger = getLongValue(nl, ns, "OtherExternalExpenses")
-    r.omsaetningTal.variableomkostninger = getLongValue(nl, ns, "RawMaterialsAndConsumablesUsed")
-    r.omsaetningTal.lokalomkostninger = getLongValue(nl, ns, "PropertyCost")
-    r.omsaetningTal.eksterneomkostninger = getLongValue(nl,ns, "ExternalExpenses")
+    r.omsaetningTal.andreeksterneomkostninger = getRegnskabstal(nl, ns, "OtherExternalExpenses")
+    r.omsaetningTal.variableomkostninger = getRegnskabstal(nl, ns, "RawMaterialsAndConsumablesUsed")
+    r.omsaetningTal.lokalomkostninger = getRegnskabstal(nl, ns, "PropertyCost")
+    r.omsaetningTal.eksterneomkostninger = getRegnskabstal(nl,ns, "ExternalExpenses")
 
     //BruttoresultatTal
-    r.bruttoresultatTal.bruttofortjeneste = getLongValue(nl, ns, "GrossProfitLoss", "GrossResult", "GrossProfit")
-    r.bruttoresultatTal.medarbejderomkostninger = getLongValue(nl, ns, "EmployeeBenefitsExpense")
+    r.bruttoresultatTal.bruttofortjeneste = getRegnskabstal(nl, ns, "GrossProfitLoss", "GrossResult", "GrossProfit")
+    r.bruttoresultatTal.medarbejderomkostninger = getRegnskabstal(nl, ns, "EmployeeBenefitsExpense")
     // regnskabsmæssige afskrivninger
-    r.bruttoresultatTal.regnskabsmaessigeafskrivninger = getLongValue(nl, ns,
+    r.bruttoresultatTal.regnskabsmaessigeafskrivninger = getRegnskabstal(nl, ns,
       "DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss")
-    r.bruttoresultatTal.administrationsomkostninger = getLongValue(nl, ns, "AdministrativeExpenses")
-    r.bruttoresultatTal.kapitalandeleiassocieredevirksomheder = getLongValue(nl, ns, "IncomeFromInvestmentsInAssociates",
+    r.bruttoresultatTal.administrationsomkostninger = getRegnskabstal(nl, ns, "AdministrativeExpenses")
+    r.bruttoresultatTal.kapitalandeleiassocieredevirksomheder = getRegnskabstal(nl, ns, "IncomeFromInvestmentsInAssociates",
       "IncomeFromInvestmentsInGroupEnterprises")
 
     // NettoresultatTal
-    r.nettoresultatTal.finansielleomkostninger = getLongValue(nl, ns, "OtherFinanceExpenses", "FinanceCosts",
+    r.nettoresultatTal.finansielleomkostninger = getRegnskabstal(nl, ns, "OtherFinanceExpenses", "FinanceCosts",
       "RestOfOtherFinanceExpenses")
-    r.nettoresultatTal.driftsresultat = getLongValue(nl, ns, "ProfitLossFromOrdinaryOperatingActivities",
+    r.nettoresultatTal.driftsresultat = getRegnskabstal(nl, ns, "ProfitLossFromOrdinaryOperatingActivities",
       "ProfitLossFromOperatingActivities")
-    r.nettoresultatTal.finansielleindtaegter = getLongValue(nl, ns, "OtherFinanceIncome", "FinanceIncome")
+    r.nettoresultatTal.finansielleindtaegter = getRegnskabstal(nl, ns, "OtherFinanceIncome", "FinanceIncome")
 
     // Årets resultat
-    r.aaretsresultatTal.aaretsresultat = getLongValue(nl, ns, "ProfitLoss")
-    r.aaretsresultatTal.resultatfoerskat = getLongValue(nl, ns, "ProfitLossFromOrdinaryActivitiesBeforeTax", "ProfitLossBeforeTax")
-    r.aaretsresultatTal.skatafaaretsresultat = getLongValue(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense",
+     r.aaretsresultatTal.aaretsresultat = getRegnskabstal(nl, ns, "ProfitLoss")
+    r.aaretsresultatTal.resultatfoerskat = getRegnskabstal(nl, ns, "ProfitLossFromOrdinaryActivitiesBeforeTax", "ProfitLossBeforeTax")
+    r.aaretsresultatTal.skatafaaretsresultat = getRegnskabstal(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense",
       "IncomeTaxExpenseContinuingOperations")
 
 
     // passiver
     // findes i hele dokumentet denne har en anden context ref som er slutdato på perioden, skal evt. refactores til at
     // finde gennem denne
-    data.balance.passiver.gaeldsforpligtelser = getValue(result,ns.LiabilitiesOtherThanProvisions, ns.CurrentLiabilities)
+    data.balance.passiver.gaeldsforpligtelser = new Regnskabstal(getValue(result,ns.LiabilitiesOtherThanProvisions, ns.CurrentLiabilities))
 
     if (!data.balance.passiver.gaeldsforpligtelser) {
-      data.balance.passiver.gaeldsforpligtelser = getValue(result, ns.ShorttermLiabilitiesOtherThanProvisions)
+      data.balance.passiver.gaeldsforpligtelser = new Regnskabstal(getValue(result, ns.ShorttermLiabilitiesOtherThanProvisions))
     }
 
-    data.balance.passiver.egenkapital = getValue(result, ns.Equity)
+    data.balance.passiver.egenkapital = new Regnskabstal(getValue(result, ns.Equity))
 
-    berigRegnskabdataMedManglendeNoegletal(data)
-
-    return data
+    //berigRegnskabdataMedManglendeNoegletal(data)
   }
 
   /**
    * Beriger nøgletal rekursivt indtil der ikke er flere nøgletal at berige
    * @param data
    */
-  void berigRegnskabdataMedManglendeNoegletal(RegnskabData data) {
+  void berigRegnskabdataMedManglendeNoegletal(Regnskab data) {
     RegnskabBerigelse regnskabBerigelse = new RegnskabBerigelse()
     boolean harBeriget = regnskabBerigelse.berigNoegletal(data)
     while (harBeriget) {
@@ -153,29 +161,24 @@ class RegnskabXmlParser {
     ns
   }
 
-  RegnskabData haandterIFRS(Namespace ns, Node xmlRoot, NodeList nl, RegnskabData data) {
-    // TBD
-    return data
-  }
-
-  Long getLongValue(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null,
-                    String altNodeName2 =  null){
+  Regnskabstal getRegnskabstal(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null,
+                               String altNodeName2 =  null){
     nodeName = "$ns.prefix:$nodeName"
     Node n = nodeList.find {
       it.name() == nodeName
     }
 
     if (n!=null) {
-      return getAmount(n)
+      return new Regnskabstal(getAmount(n))
     } else if (altNodename) {
-      Long val = getLongValue(nodeList, ns, altNodename)
-      if (!val) {
-        return getLongValue(nodeList, ns, altNodeName2)
+      Regnskabstal val = getRegnskabstal(nodeList, ns, altNodename)
+      if (!val.vaerdi) {
+        return getRegnskabstal(nodeList, ns, altNodeName2)
       }
       return val
     }
 
-    return null
+    return new Regnskabstal()
   }
 
   String getStringValue(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null){
@@ -209,9 +212,7 @@ class RegnskabXmlParser {
     return i.toLong()
   }
 
-
-  String hentContextRef(Node xmlDokument, Namespace ns, RegnskabData regnskabData) {
-
+  NodeList hentContextNodes(Node xmlDokument, Namespace ns) {
     NodeList contextNodes = xmlDokument['context'];
     if (!contextNodes) {
       String namespacenavn = hentNamespaceNavn(xmlDokument, "http://www.xbrl.org/2003/instance")
@@ -219,36 +220,72 @@ class RegnskabXmlParser {
       contextNodes = xmlDokument[nsc.context];
     }
 
+    return contextNodes
+  }
+
+  String hentContextRef(Node xmlDokument, Namespace ns, boolean nyeste = true) {
+
+    NodeList contextNodes = hentContextNodes(xmlDokument, ns)
+
     // find den profit hvis contextRef ikke er konsolideret og som har nyeste periode.
-    if (ns.uri=='http://xbrl.dcca.dk/fsa') {
+    if (true || ns.uri=='http://xbrl.dcca.dk/fsa') {
       NodeList n = xmlDokument[ns.ProfitLoss]
+      if (!n) {
+        // backup til GrossProfitLoss
+        n = xmlDokument[ns.GrossProfitLoss]
+      }
+      if (!n) {
+        // backup til GrossResult
+        n = xmlDokument[ns.GrossResult]
+      }
       if (n != null && n.size() > 0) {
-        Node contextRefNode
+        List<Node> contextRefNodeCandidates = []
         n.each {
           String contextRefCandidate = it.attribute("contextRef")
           Node contextRefNodeCandidate = contextNodes.find { it.attribute('id') == contextRefCandidate }
-          if ((!contextRefNode ||
-            (contextRefNodeCandidate.period.endDate.text() > contextRefNode.period.endDate.text()) && !contextRefNodeCandidate.scenario)) {
-            if (!contextRefNodeCandidate.scenario) {
-              contextRefNode = contextRefNodeCandidate
+          // skal ikke have dem der har scenario på i FSA og ikke have de konsoliderede i IFRS'erne
+          String contextRefNodeCandidateName = contextRefNodeCandidate.attribute('id')
+          if (contextRefNodeCandidate && !contextRefNodeCandidate.scenario && !contextRefNodeCandidateName.contains('_C_')) {
+            Node existing = contextRefNodeCandidates.find {
+              String name = it.name()
+              String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
+              String e1 = it[ens+'period'][ens+'endDate'].text()
+              String e2 = contextRefNodeCandidate[ens+'period'][ens+'endDate'].text()
+              e1==e2
+            }
+            // tilføjer kun hvis den ikke allerede eksisterer i forvejen
+            if (!existing) {
+              contextRefNodeCandidates << contextRefNodeCandidate
             }
           }
         }
-        if (contextRefNode) {
-          return contextRefNode.attribute('id')
+
+        String name = contextRefNodeCandidates[0].name()
+        String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
+
+        contextRefNodeCandidates = contextRefNodeCandidates.sort {it[ens+'period'][ens+'endDate'].text() }
+        if (nyeste) {
+          return contextRefNodeCandidates.last().attribute('id')
+        } else {
+          if (contextRefNodeCandidates.size()>1) {
+            return contextRefNodeCandidates.get(contextRefNodeCandidates.size()-2).attribute('id');
+          } else {
+            return null;
+          }
         }
       }
     }
 
     // find korrekte namespaces
-    Namespace gsd = new Namespace("http://xbrl.dcca.dk/gsd", hentNamespaceNavn(xmlDokument, "http://xbrl.dcca.dk/gsd"))
+    //Namespace gsd = new Namespace("http://xbrl.dcca.dk/gsd", hentNamespaceNavn(xmlDokument, "http://xbrl.dcca.dk/gsd"))
 
-    NodeList n = xmlDokument[gsd.InformationOnTypeOfSubmittedReport]
+    //NodeList n = xmlDokument[gsd.InformationOnTypeOfSubmittedReport]
 
-    Node n1 = n.get(0)
-    String contextRef = n1.attribute("contextRef")
+    //Node n1 = n.get(0)
+    //String contextRef = n1.attribute("contextRef")
 
-    return contextRef
+    return null
+    //return contextRef
   }
 
   String findNode(xmlnodes, n) {

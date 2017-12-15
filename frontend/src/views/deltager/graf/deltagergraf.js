@@ -34,9 +34,11 @@ export default class DeltagerGraf extends React.Component {
     const ejer = this.state.ejerAllMap.get(enhedsnr);
     //skal ikke vise oversigten men bare navigere direkte
     if (ejer.cvrnummer) {
-      this.props.visVirksomhed(ejer.cvrnummer, true);
+      window.open('./#/virksomhed/'+ejer.cvrnummer,'_blank');
+      //this.props.visVirksomhed(ejer.cvrnummer, true);
     } else {
-      this.props.visDeltager(ejer.enhedsnummer, true);
+      window.open('./#/deltager/'+ejer.enhedsnummer,'_blank');
+      //this.props.visDeltager(ejer.enhedsnummer, true);
     }
     //this.setState({specifikEjer: ejer});
     //this.openModal();
@@ -106,7 +108,7 @@ export default class DeltagerGraf extends React.Component {
             face: 'FontAwesome',
             code: '\uf0c0',
             size: 50,
-            color: '#2058b2'
+            color: '#336d1a'
           }
         },
         personer: {
@@ -146,7 +148,7 @@ export default class DeltagerGraf extends React.Component {
         </div>
         <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} className="card ejercard" width="70%">
           <EjerVisning ejer={this.state.specifikEjer} visVirksomhed={this.props.visVirksomhed}
-                       visDeltager={this.props.visDeltager} />
+                       visDeltager={this.props.visDeltager} fraGraf />
         </Modal>
       </div>
     );

@@ -2,6 +2,7 @@ package dk.ts.virkr.aarsrapporter.parser.berigelse
 
 import dk.ts.virkr.aarsrapporter.db.Regnskabsdata
 import dk.ts.virkr.aarsrapporter.model.AaretsresultatTal
+import dk.ts.virkr.aarsrapporter.model.Regnskab
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 
 /**
@@ -9,7 +10,7 @@ import dk.ts.virkr.aarsrapporter.model.RegnskabData
  */
 class AaretsresultatBerigelse extends Berigelse {
 
-  boolean berigNoegletal(RegnskabData rd) {
+  boolean berigNoegletal(Regnskab rd) {
     boolean harBeriget = false
 
     if (berigResultatFoerskat(rd.resultatopgoerelse.aaretsresultatTal)) {
@@ -21,10 +22,10 @@ class AaretsresultatBerigelse extends Berigelse {
 
   boolean berigResultatFoerskat(AaretsresultatTal aaretsresultatTal) {
     // Der er ikke noget resultat før skat, men det kan findes ved at trække skatten af årets resultat fra årets resultat
-    if (!aaretsresultatTal.resultatfoerskat &&
-         aaretsresultatTal.skatafaaretsresultat &&
-         aaretsresultatTal.aaretsresultat) {
-      aaretsresultatTal.resultatfoerskat = val(aaretsresultatTal.aaretsresultat) +
+    if (!aaretsresultatTal.resultatfoerskat.vaerdi &&
+         aaretsresultatTal.skatafaaretsresultat.vaerdi &&
+         aaretsresultatTal.aaretsresultat.vaerdi) {
+      aaretsresultatTal.resultatfoerskat.vaerdi = val(aaretsresultatTal.aaretsresultat) +
         val(aaretsresultatTal.skatafaaretsresultat)
       return true
     }

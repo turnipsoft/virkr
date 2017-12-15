@@ -35,9 +35,11 @@ export default class EjerGraf extends React.Component {
   _visEnhed(enhedsnr) {
     const ejer = this.state.ejerAllMap.get(enhedsnr).ejer;
     if (ejer.forretningsnoegle != ejer.enhedsnummer && (ejer.ejertype == 'VIRKSOMHED' || ejer.ejertype == 'ROD')) {
-      this.props.visVirksomhed(ejer.forretningsnoegle, true);
+      //this.props.visVirksomhed(ejer.forretningsnoegle, true);
+      window.open('./#/virksomhed/'+ejer.forretningsnoegle,'_blank');
     } else if ( ejer.ejertype == 'PERSON') {
-      this.props.visDeltager(ejer.enhedsnummer, true);
+      window.open('./#/deltager/'+ejer.enhedsnummer,'_blank');
+      //this.props.visDeltager(ejer.enhedsnummer, true);
     } else {
       this.setState({specifikEjer: ejer});
       this.openModal();
@@ -108,7 +110,7 @@ export default class EjerGraf extends React.Component {
             face: 'FontAwesome',
             code: '\uf0c0',
             size: 50,
-            color: '#2058b2'
+            color: '#336d1a'
           }
         },
         personer: {
@@ -148,7 +150,7 @@ export default class EjerGraf extends React.Component {
         </div>
         <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} className="card ejercard" width="70%">
           <EjerVisning ejer={this.state.specifikEjer} visVirksomhed={this.props.visVirksomhed}
-                       visDeltager={this.props.visDeltager} />
+                       visDeltager={this.props.visDeltager} fraGraf />
         </Modal>
       </div>
     );

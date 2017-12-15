@@ -8,9 +8,9 @@ import org.springframework.beans.BeanUtils
 /**
  * Created by sorenhartvig on 22/06/16.
  */
-class RegnskabData extends ModelBase {
+class RegnskabData extends Regnskab {
 
-  public RegnskabData() {
+  RegnskabData() {
     resultatopgoerelse = new Resultatopgoerelse()
     balance = new Balance()
     noter =  new Noter()
@@ -19,20 +19,17 @@ class RegnskabData extends ModelBase {
 
   String id
   String cvrnummer
-  String startdato
-  String slutdato
   String sidsteopdatering
-  String aar
   boolean omgoerelse
   String pdfurl
   String xbrlurl
 
-  Resultatopgoerelse resultatopgoerelse
-  Balance balance
-  Noter noter
   Virksomhedsdata virksomhedsdata
 
-  public static RegnskabData from(Regnskabsdata rd) {
+  Regnskab aktueltAarsregnskab
+  Regnskab sidsteAarsregnskab
+
+  static RegnskabData from(Regnskabsdata rd) {
     RegnskabData regnskabsdata = new RegnskabData()
     regnskabsdata.cvrnummer = rd.cvrnummer
     regnskabsdata.startdato = Utils.toString(rd.startdato)
@@ -51,7 +48,7 @@ class RegnskabData extends ModelBase {
     return regnskabsdata
   }
 
-  public void berig(Regnskabsdata regnskabsdata) {
+  void berig(Regnskabsdata regnskabsdata) {
     regnskabsdata.cvrnummer = this.cvrnummer
     regnskabsdata.pdfurl = this.pdfurl
     regnskabsdata.xbrlurl = this.xbrlurl
