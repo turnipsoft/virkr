@@ -57,7 +57,7 @@ class RegnskabXmlParser {
     regnskab.aar = startDate.substring(0,4)
   }
 
-  void parseOgBerig(Regnskab data, String xml, boolean nyeste = true) {
+  boolean parseOgBerig(Regnskab data, String xml, boolean nyeste = true) {
     XmlParser parser = new XmlParser(false, false)
 
     Node result = parser.parseText(xml)
@@ -72,6 +72,10 @@ class RegnskabXmlParser {
     //if (contextRef.equals("duration_CY_C_only")) {
     //  contextRef = 'duration_CY_only'
     //}
+
+    if (!contextRef) {
+      return false
+    }
 
     // hent de relevante felter for dette regnskabsår fra contexten.
     NodeList nl = result.findAll {
@@ -130,6 +134,7 @@ class RegnskabXmlParser {
 
     data.balance.passiver.egenkapital = new Regnskabstal(getValue(result, ns.Equity))
 
+    return true
     //berigRegnskabdataMedManglendeNoegletal(data)
   }
 
@@ -238,6 +243,7 @@ class RegnskabXmlParser {
         // backup til GrossResult
         n = xmlDokument[ns.GrossResult]
       }
+
       if (n != null && n.size() > 0) {
         List<Node> contextRefNodeCandidates = []
         n.each {

@@ -52,9 +52,9 @@ class RegnskabXmlClient {
           data.aktueltAarsregnskab.slutdato = data.slutdato
           parser.parseOgBerig(data.aktueltAarsregnskab, unzippedData)
 
-          // forrige aar
+          // forrige aar det findes ikke nødvendigvis
           data.sidsteAarsregnskab = new Regnskab()
-          parser.parseOgBerig(data.sidsteAarsregnskab, unzippedData, false)
+          data.findesTal = parser.parseOgBerig(data.sidsteAarsregnskab, unzippedData, false)
 
           regnskabdata << data
         }

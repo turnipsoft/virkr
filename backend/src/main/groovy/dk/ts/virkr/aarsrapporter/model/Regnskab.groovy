@@ -9,8 +9,10 @@ class Regnskab extends ModelBase {
     this.resultatopgoerelse = new Resultatopgoerelse()
     this.balance = new Balance()
     this.noter = new Noter()
+    this.findesTal = true
   }
 
+  boolean findesTal
   String startdato
   String slutdato
   String aar
