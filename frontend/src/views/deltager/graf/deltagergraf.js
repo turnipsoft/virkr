@@ -60,7 +60,7 @@ export default class DeltagerGraf extends React.Component {
     });
 
     const e = deltagergraf.relationer.map((er) =>{
-      return {from:er.deltagerEnhedsnummer, to: er.virksomhedEnhedsnummer, label: er.andelInterval, font: {align: 'middle', size: 10}};
+      return {from:er.deltagerEnhedsnummer, to: er.virksomhedEnhedsnummer, label: er.andelInterval, font: {align: 'horizontal', size: 10}};
     });
 
     var graph = {
