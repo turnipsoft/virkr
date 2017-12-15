@@ -29,7 +29,7 @@ export default class VaerdiGraf extends Component {
     });
 
     const vaerdier = regnskaber.map((regnskab) => {
-      return resolveJsonValue( felt, regnskab)
+      return resolveJsonValue( felt, regnskab).vaerdi
     });
 
     const options = {
