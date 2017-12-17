@@ -174,32 +174,11 @@ class RegnskabXmlParser {
       }
 
       revision.assistancetype = getStringValue(nl, ns, 'TypeOfAuditorAssistance')
-      if (!revision.assistancetype) {
-        // i gamle dage lå de ikke i CMN Namespace men GSD så vi må hente derfra
-        ns = hentNamespace(xml, GSD_NAMESPACE)
-        nl = xmlDokument.findAll {
-          it.name().toString().startsWith(ns.prefix)
-        }
-        revision.assistancetype = getStringValue(nl, ns, 'TypeOfAuditorAssistance')
-      }
-
       revision.revisionsfirmaNavn = getStringValue(nl, ns, 'NameOfAuditFirm')
       revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditor')
       revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditor')
       revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfAuditFirm')
-      revision.assistancetype = getStringValue(nl, ns, 'TypeOfAuditorAssistance')
       revision.mnenummer = getStringValue(nl, ns, 'IdentificationNumberOfAuditor')
-    } else {
-      // hent i det mindste navnet på revisionsfirmaet
-      ns = hentNamespace(xml, GSD_NAMESPACE)
-
-      // hent de relevante fra GSD
-      nl = xmlDokument.findAll {
-        it.name().toString().startsWith(ns.prefix)
-      }
-
-      revision.revisionsfirmaNavn = getStringValue(nl, ns, 'NameOfAuditFirm')
-
     }
 
     ns = hentNamespace(xml, GSD_NAMESPACE)
@@ -208,6 +187,14 @@ class RegnskabXmlParser {
     nl = xmlDokument.findAll {
       it.name().toString().startsWith(ns.prefix)
     }
+
+    // Det er ikke altid felterne ovenfor kommer fra CMN så forsøges GSD
+    revision.assistancetype = !revision.assistancetype? getStringValue(nl, ns, 'TypeOfAuditorAssistance') : revision.assistancetype
+    revision.revisionsfirmaNavn =  !revision.revisionsfirmaNavn? getStringValue(nl, ns, 'NameOfAuditFirm') :revision.revisionsfirmaNavn
+    revision.navnPaaRevisor =  !revision.navnPaaRevisor? getStringValue(nl, ns, 'NameAndSurnameOfAuditor') : revision.navnPaaRevisor
+    revision.beskrivelseAfRevisor =  !revision.beskrivelseAfRevisor? getStringValue(nl, ns, 'DescriptionOfAuditor') : revision.beskrivelseAfRevisor
+    revision.revisionsfirmaCvrnummer =  !revision.revisionsfirmaCvrnummer? getStringValue(nl, ns, 'IdentificationNumberCvrOfAuditFirm') : revision.revisionsfirmaCvrnummer
+    revision.mnenummer =  !revision.mnenummer ? getStringValue(nl, ns, 'IdentificationNumberOfAuditor') : revision.mnenummer
 
     // hvis der ikke var audit felter, så hent audit fra submitting enterprise
     if (!revision.revisionsfirmaNavn) {
@@ -244,6 +231,16 @@ class RegnskabXmlParser {
     if (!revision.navnPaaRevisor) {
       revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditor')
       revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditor')
+    }
+
+    if (!revision.navnPaaRevisor) {
+      // hvis de stadig ikke er der, kan de ligge i nogle andre felter
+      revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditorAppointedToPerformAudit')
+      revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditorAppointedToPerformAudit')
+    }
+
+    if (!revision.revisionsfirmaCvrnummer) {
+      revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfAuditFirm')
     }
 
     // findes ikke i IFRS regnskaber
