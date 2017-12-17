@@ -73,25 +73,33 @@ export default class NoegletalRaekke extends Component {
         if (highlight && vaerdi.vaerdi<0) {
           cname+= ' noegletal-color-negative';
         }
+
+        const warningText = this._warningText(vaerdi.vaerdi);
+
+        if (warningText) {
+          return (<td className={cname} key={col} >
+                    <span title={warningText} >{komma(vaerdi.vaerdi.vaerdi)}<span>&nbsp;<span className="fa fa-exclamation red" title={warningText} /></span></span>
+                 </td>)
+        }
+
         return <td className={cname} key={col} >
           {komma(vaerdi.vaerdi.vaerdi)}
-          {this._renderWarnings(vaerdi.vaerdi)}
           </td>
       })
     );
   }
 
-  _renderWarnings(regnskabstal) {
+  _warningText(regnskabstal) {
     if (regnskabstal && regnskabstal.vaerdi && regnskabstal.metadata.kontroller.length>0) {
       let text = '';
-      regnskabstal.metadata.kontroller.forEach ((kontrol) => {
-          text+=kontrol.text+"\n";
+      regnskabstal.metadata.kontroller.forEach((kontrol) => {
+          text += kontrol.text + "\n";
         }
       );
-      return(
-        <span>&nbsp;<span className="fa fa-exclamation red" title={text} /></span>
-      )
+      return text;
     }
+
+    return null;
   }
 }
 

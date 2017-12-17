@@ -4,6 +4,7 @@ import dk.ts.virkr.aarsrapporter.model.Regnskab
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Dokument
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Offentliggoerelse
+import dk.ts.virkr.aarsrapporter.parser.RegnskabNodes
 import dk.ts.virkr.aarsrapporter.parser.RegnskabXmlParser
 
 import java.text.SimpleDateFormat
@@ -42,19 +43,21 @@ class RegnskabXmlClient {
           data.startdato = offentliggoerelse.regnskab.regnskabsperiode.startDato
           data.slutdato = offentliggoerelse.regnskab.regnskabsperiode.slutDato
           data.sidsteopdatering = sdf.format(offentliggoerelse.sidstOpdateret)
-          parser.parseOgBerig(data, unzippedData)
-          data.virksomhedsdata = parser.hentVirksomhedsdataFraRegnskab(unzippedData)
+          RegnskabNodes regnskabNodes = new RegnskabNodes(unzippedData)
+
+          parser.parseOgBerig(data, regnskabNodes)
+          data.virksomhedsdata = parser.hentVirksomhedsdataFraRegnskab(regnskabNodes)
 
           // berig aktuelt aar (dobbelt konfekt i know.. for nu, vi er i gang med en refac så rolig nu!
           data.aktueltAarsregnskab = new Regnskab()
           data.aktueltAarsregnskab.aar = data.aar
           data.aktueltAarsregnskab.startdato = data.startdato
           data.aktueltAarsregnskab.slutdato = data.slutdato
-          parser.parseOgBerig(data.aktueltAarsregnskab, unzippedData)
+          parser.parseOgBerig(data.aktueltAarsregnskab, regnskabNodes)
 
           // forrige aar det findes ikke nødvendigvis
           data.sidsteAarsregnskab = new Regnskab()
-          data.findesTal = parser.parseOgBerig(data.sidsteAarsregnskab, unzippedData, false)
+          data.findesTal = parser.parseOgBerig(data.sidsteAarsregnskab, regnskabNodes, false)
 
           regnskabdata << data
         }

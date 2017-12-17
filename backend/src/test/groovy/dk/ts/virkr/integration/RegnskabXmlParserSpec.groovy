@@ -1,6 +1,7 @@
 package dk.ts.virkr.integration
 
 import dk.ts.virkr.aarsrapporter.model.Regnskab
+import dk.ts.virkr.aarsrapporter.parser.RegnskabNodes
 import dk.ts.virkr.aarsrapporter.parser.RegnskabXmlParser
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.model.Resultatopgoerelse
@@ -18,9 +19,10 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load("/nc-2014.xml")
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
 
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
@@ -33,9 +35,10 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load("/nc-ifrs.xml")
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
 
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
@@ -48,9 +51,10 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load("/csc-consulting.xml")
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
 
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
@@ -63,9 +67,10 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load("/csc-2013.xml")
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
 
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
@@ -79,9 +84,10 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load('/greener_pastures.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
 
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
@@ -101,10 +107,10 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load('/capgemini.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabXmlParser.parseOgBerig(regnskabData, xml)
-
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
     then:
@@ -123,9 +129,10 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load('/nine.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
 
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
@@ -164,7 +171,7 @@ class RegnskabXmlParserSpec extends Specification {
     regnskabData.revision.adressant == 'aktionærerne\n  '
 
     when:
-    Virksomhedsdata virksomhedsdata = regnskabXmlParser.hentVirksomhedsdataFraRegnskab(xml)
+    Virksomhedsdata virksomhedsdata = regnskabXmlParser.hentVirksomhedsdataFraRegnskab(regnskabNodes)
 
     then:
     virksomhedsdata
@@ -176,7 +183,7 @@ class RegnskabXmlParserSpec extends Specification {
 
     when:
     Regnskab sidsteAar = new Regnskab()
-    regnskabXmlParser.parseOgBerig(sidsteAar, xml, false )
+    regnskabXmlParser.parseOgBerig(sidsteAar, regnskabNodes, false )
 
     then:
     sidsteAar
@@ -188,9 +195,10 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load('/FR77a_2.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
 
     then:
     regnskabData.revision.mnenummer == 'mne33215'
@@ -201,9 +209,10 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load('/ingen_revision.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
 
     then:
     regnskabData.revision.assistancetype == 'Ingen bistand'
@@ -214,9 +223,10 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load('/lagkagehuset.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
     then:

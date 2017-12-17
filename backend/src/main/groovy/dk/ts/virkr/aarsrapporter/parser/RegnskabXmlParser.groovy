@@ -2,7 +2,6 @@ package dk.ts.virkr.aarsrapporter.parser
 
 import dk.ts.virkr.aarsrapporter.model.Generalforsamling
 import dk.ts.virkr.aarsrapporter.model.Regnskab
-import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.model.Regnskabstal
 import dk.ts.virkr.aarsrapporter.model.Revision
 import dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata
@@ -17,19 +16,13 @@ import groovy.xml.Namespace
  */
 class RegnskabXmlParser {
 
-  Virksomhedsdata hentVirksomhedsdataFraRegnskab(String xml) {
-    XmlParser parser = new XmlParser(false, false)
-    Node result = parser.parseText(xml)
-    Namespace ns = hentNamespace(xml)
+  Virksomhedsdata hentVirksomhedsdataFraRegnskab(RegnskabNodes regnskabNodes) {
 
-    String contextRef = hentContextRef(result, ns)
+    String contextRef = regnskabNodes.aktuelContext
     // hent de relevante felter for dette regnskabsår fra contexten.
-    NodeList nl = result.findAll {
-      it.attribute('contextRef') == contextRef
-    }
+    NodeList nl = regnskabNodes.aktuelleNoegletalNodes
 
-    String gsdNamespace = getGSDNamespace(xml)
-    ns = new Namespace("http://xbrl.dcca.dk/gsd", gsdNamespace)
+    Namespace ns = regnskabNodes.gsdNamespace
 
     Virksomhedsdata virksomhedsdata = new Virksomhedsdata()
     virksomhedsdata.cvrnummer = getStringValue(nl, ns, "IdentificationNumberCvrOfReportingEntity" )
@@ -48,8 +41,8 @@ class RegnskabXmlParser {
     return resultat
   }
 
-  void berigMedPeriode(Regnskab regnskab, Node xmlDokument, Namespace ns, String contextRefName) {
-    List<Node> contextNodes = hentContextNodes(xmlDokument, ns)
+  void berigMedPeriode(Regnskab regnskab, RegnskabNodes regnskabNodes, Namespace ns, String contextRefName) {
+    List<Node> contextNodes = regnskabNodes.contextNodes
     Node contextRefNode = contextNodes.find { it.attribute('id') == contextRefName }
     String nsPrefix = getNSPrefix(contextRefNode)
 
@@ -60,33 +53,20 @@ class RegnskabXmlParser {
     regnskab.aar = startDate.substring(0,4)
   }
 
-  boolean parseOgBerig(Regnskab data, String xml, boolean nyeste = true) {
-    XmlParser parser = new XmlParser(false, false)
+  boolean parseOgBerig(Regnskab data, RegnskabNodes regnskabNodes, boolean nyeste = true) {
+    Namespace ns = regnskabNodes.noegletalNamespace()
 
-    Node result = parser.parseText(xml)
-    Namespace ns = hentNamespace(xml)
-
-    String contextRef = hentContextRef(result, ns, nyeste)
-
-    // IFRS regnskaber vil have contexten som duration_CY_C_only hvor C'et står for consolidated og altså en context
-    // der dækker en hel gruppe, men vi er ikke interesserede i hele gruppens nøgle tal eller måsker er man
-    // i stedet vil man have parentens og det er så duration_CY_only
-    // Så for nu, overskrives denne til jeg bliver klogere.
-    //if (contextRef.equals("duration_CY_C_only")) {
-    //  contextRef = 'duration_CY_only'
-    //}
+    String contextRef = nyeste?regnskabNodes.aktuelContext : regnskabNodes.sidsteAarsContext
 
     if (!contextRef) {
       return false
     }
 
     // hent de relevante felter for dette regnskabsår fra contexten.
-    NodeList nl = result.findAll {
-      it.attribute('contextRef') == contextRef
-    }
+    NodeList nl = nyeste ? regnskabNodes.aktuelleNoegletalNodes : regnskabNodes.sidsteAarsNoegletalNodes
 
     /* periode dato år */
-    berigMedPeriode(data, result, ns, contextRef)
+    berigMedPeriode(data, regnskabNodes, ns, contextRef)
 
     /** Resultatopgørelsen **/
     Resultatopgoerelse r = data.resultatopgoerelse
@@ -131,20 +111,19 @@ class RegnskabXmlParser {
     // passiver
     // findes i hele dokumentet denne har en anden context ref som er slutdato på perioden, skal evt. refactores til at
     // finde gennem denne
-    data.balance.passiver.gaeldsforpligtelser = new Regnskabstal(getValue(result,ns.LiabilitiesOtherThanProvisions, ns.CurrentLiabilities))
+    data.balance.passiver.gaeldsforpligtelser = new Regnskabstal(getValue(regnskabNodes.xmlDokument,ns.LiabilitiesOtherThanProvisions, ns.CurrentLiabilities))
 
     if (!data.balance.passiver.gaeldsforpligtelser) {
-      data.balance.passiver.gaeldsforpligtelser = new Regnskabstal(getValue(result, ns.ShorttermLiabilitiesOtherThanProvisions))
+      data.balance.passiver.gaeldsforpligtelser = new Regnskabstal(getValue(regnskabNodes.xmlDokument, ns.ShorttermLiabilitiesOtherThanProvisions))
     }
 
-    data.balance.passiver.egenkapital = new Regnskabstal(getValue(result, ns.Equity))
+    data.balance.passiver.egenkapital = new Regnskabstal(getValue(regnskabNodes.xmlDokument, ns.Equity))
 
     if (nyeste) {
-      berigMedRevision(data, xml)
+      berigMedRevision(data, regnskabNodes)
     }
 
     return true
-    //berigRegnskabdataMedManglendeNoegletal(data)
   }
 
   /**
@@ -159,19 +138,15 @@ class RegnskabXmlParser {
     }
   }
 
-  private berigMedRevision(Regnskab regnskab, String xml) {
+  private berigMedRevision(Regnskab regnskab, RegnskabNodes regnskabNodes) {
     XmlParser parser = new XmlParser(false, false)
 
     Revision revision = new Revision()
-    NodeList nl
-    Node xmlDokument = parser.parseText(xml)
-    Namespace ns = hentNamespace(xml, CMN_NAMESPACE)
+    NodeList nl = regnskabNodes.cmnNodes
+    Namespace ns = regnskabNodes.cmnNamespace
 
     if (ns) {
       // hent de relevante fra CMN NAMESPACE
-      nl = xmlDokument.findAll {
-        it.name().toString().startsWith(ns.prefix)
-      }
 
       revision.assistancetype = getStringValue(nl, ns, 'TypeOfAuditorAssistance')
       revision.revisionsfirmaNavn = getStringValue(nl, ns, 'NameOfAuditFirm')
@@ -181,12 +156,10 @@ class RegnskabXmlParser {
       revision.mnenummer = getStringValue(nl, ns, 'IdentificationNumberOfAuditor')
     }
 
-    ns = hentNamespace(xml, GSD_NAMESPACE)
+    ns = regnskabNodes.gsdNamespace
 
     // hent de relevante fra GSD
-    nl = xmlDokument.findAll {
-      it.name().toString().startsWith(ns.prefix)
-    }
+    nl = regnskabNodes.gsdNodes
 
     // Det er ikke altid felterne ovenfor kommer fra CMN så forsøges GSD
     revision.assistancetype = !revision.assistancetype? getStringValue(nl, ns, 'TypeOfAuditorAssistance') : revision.assistancetype
@@ -226,49 +199,47 @@ class RegnskabXmlParser {
     revision.generalforsamling.dato = getStringValue(nl, ns, 'DateOfGeneralMeeting')
     revision.generalforsamling.formand = getStringValue(nl, ns, 'NameAndSurnameOfChairmanOfGeneralMeeting')
 
-    ns = hentNamespace(xml, ARR_NAMESPACE)
+    ns = regnskabNodes.arrNamespace
 
     // hent de relevante fra ARR
-    nl = xmlDokument.findAll {
-      it.name().toString().startsWith(ns.prefix)
-    }
+    nl = regnskabNodes.arrNodes
 
-    revision.revisionUnderskriftsted = getStringValue(nl, ns, 'SignatureOfAuditorsPlace')
-    revision.revisionUnderskriftdato = getStringValue(nl, ns, 'SignatureOfAuditorsDate')
-    revision.adressant = getStringValue(nl, ns, 'AddresseeOfAuditorsReportOnAuditedFinancialStatements')
+    if (ns) {
+      revision.revisionUnderskriftsted = getStringValue(nl, ns, 'SignatureOfAuditorsPlace')
+      revision.revisionUnderskriftdato = getStringValue(nl, ns, 'SignatureOfAuditorsDate')
+      revision.adressant = getStringValue(nl, ns, 'AddresseeOfAuditorsReportOnAuditedFinancialStatements')
 
-    // Hvis revisoren i sig selv ikke lå i CMN/GSD, kan de ligge i ARR
-    if (!revision.navnPaaRevisor) {
-      revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditor')
-      revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditor')
-    }
+      // Hvis revisoren i sig selv ikke lå i CMN/GSD, kan de ligge i ARR
+      if (!revision.navnPaaRevisor) {
+        revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditor')
+        revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditor')
+      }
 
-    if (!revision.navnPaaRevisor) {
-      // hvis de stadig ikke er der, kan de ligge i nogle andre felter
-      revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditorAppointedToPerformAudit')
-      revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditorAppointedToPerformAudit')
-    }
+      if (!revision.navnPaaRevisor) {
+        // hvis de stadig ikke er der, kan de ligge i nogle andre felter
+        revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditorAppointedToPerformAudit')
+        revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditorAppointedToPerformAudit')
+      }
 
-    if (!revision.revisionsfirmaCvrnummer) {
-      revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfAuditFirm')
-    }
+      if (!revision.revisionsfirmaCvrnummer) {
+        revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfAuditFirm')
+      }
 
-    revision.supplerendeInformationOmAndreForhold = getStringValue(nl, ns, 'SupplementaryInformationOnOtherMatters')
-    revision.supplerendeInformationOmAarsrapport = getStringValue(nl, ns, 'SupplementaryInformationOnMattersPertainingToAuditedFinancialStatement')
-    revision.grundlagForKonklusion = getStringValue(nl, ns, 'DescriptionOfQualificationsOfAuditedFinancialStatements')
-    if (revision.grundlagForKonklusion && !revision.grundlagForKonklusion.toLowerCase().contains('forbehold')) {
-      // kun hvis der står noget om forbehold
-      revision.grundlagForKonklusion = null
+      revision.supplerendeInformationOmAndreForhold = getStringValue(nl, ns, 'SupplementaryInformationOnOtherMatters')
+      revision.supplerendeInformationOmAarsrapport = getStringValue(nl, ns, 'SupplementaryInformationOnMattersPertainingToAuditedFinancialStatement')
+      revision.grundlagForKonklusion = getStringValue(nl, ns, 'DescriptionOfQualificationsOfAuditedFinancialStatements')
+      if (revision.grundlagForKonklusion && !revision.grundlagForKonklusion.toLowerCase().contains('forbehold')) {
+        // kun hvis der står noget om forbehold
+        revision.grundlagForKonklusion = null
+      }
     }
 
     // findes ikke i IFRS regnskaber
-    ns = hentNamespace(xml, SOB_NAMESPACE)
+    ns = regnskabNodes.sobNamespace
 
     if (ns) {
       // hent de relevante fra SOB
-      nl = xmlDokument.findAll {
-        it.name().toString().startsWith(ns.prefix)
-      }
+      nl = regnskabNodes.sobNodes
 
       revision.godkendelsesdato = getStringValue(nl, ns, 'DateOfApprovalOfAnnualReport')
       revision.ingenRevision = getStringValue(nl, ns, 'StatementOnOptingOutOfAuditingFinancialStatementsInNextReportingPeriodDueToExemption')
@@ -331,6 +302,9 @@ class RegnskabXmlParser {
   }
 
   String getStringValue(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null){
+    if (!ns) {
+      println "dafuck"
+    }
     nodeName = "$ns.prefix:$nodeName"
     Node n = nodeList.find {
       it.name() == nodeName
