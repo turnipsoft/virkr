@@ -140,6 +140,29 @@ class RegnskabXmlParserSpec extends Specification {
     regnskabData.balance.passiver.gaeldsforpligtelser.vaerdi == 19030055l
     regnskabData.balance.passiver.egenkapital.vaerdi == 31210704l
 
+    // revision
+    regnskabData.revision
+    regnskabData.revision.navnPaaRevisor == 'Marian Fruergaard'
+    regnskabData.revision.revisionsfirmaNavn == 'Redmark, Statsautoriseret Revisionspartnerselskab'
+    regnskabData.revision.revisionsfirmaCvrnummer == '29442789'
+    regnskabData.revision.beskrivelseAfRevisor == 'statsautoriseret revisor'
+    regnskabData.revision.beliggenhedsadresse
+    regnskabData.revision.beliggenhedsadresse.vejadresselinie == 'Hasseris Bymidte 6'
+    regnskabData.revision.beliggenhedsadresse.byLinje == '9000 Aalborg'
+    regnskabData.revision.beliggenhedsadresse.land == 'Danmark'
+    regnskabData.revision.telefonnummer == '98183333'
+    regnskabData.revision.email == 'aalborg@redmark.dk'
+    regnskabData.revision.generalforsamling
+    regnskabData.revision.generalforsamling.dato == '2016-10-11'
+    regnskabData.revision.generalforsamling.formand == 'Finn Peder Hove\n  '
+    regnskabData.revision.assistancetype == 'Revisionspåtegning'
+    regnskabData.regnskabsklasse == 'Regnskabsklasse C, mellemstor virksomhed'
+
+    regnskabData.revision.godkendelsesdato == '2016-10-10'
+    regnskabData.revision.revisionUnderskriftsted == 'Aalborg'
+    regnskabData.revision.revisionUnderskriftdato == '2016-10-10'
+    regnskabData.revision.adressant == 'aktionærerne\n  '
+
     when:
     Virksomhedsdata virksomhedsdata = regnskabXmlParser.hentVirksomhedsdataFraRegnskab(xml)
 
@@ -158,6 +181,32 @@ class RegnskabXmlParserSpec extends Specification {
     then:
     sidsteAar
 
+  }
+
+  void "test mne"() {
+    given:
+    String xml = TestUtil.load('/FR77a_2.xml')
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, xml)
+
+    then:
+    regnskabData.revision.mnenummer == 'mne33215'
+  }
+
+  void "test assistance"() {
+    given:
+    String xml = TestUtil.load('/ingen_revision.xml')
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, xml)
+
+    then:
+    regnskabData.revision.assistancetype == 'Ingen bistand'
   }
 
   void "test parse lagkagehuset"() {

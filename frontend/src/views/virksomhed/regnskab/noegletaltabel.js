@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import NoegletalRaekke from './noegletalraekke';
 import RegnskabLinkRaekke from './regnskablinkraekke';
+import RevisionsRaekke from './revisionsraekke';
 import NoegletalGraf from './noegletalgraf';
 
 export default class NoegletalTabel extends Component {
@@ -192,7 +193,9 @@ export default class NoegletalTabel extends Component {
 
             {this.emptyRow()}
 
-            <RegnskabLinkRaekke regnskaber={regnskaber}/>
+            <RegnskabLinkRaekke regnskaber={regnskaber} />
+            {this.emptyRow()}
+            <RevisionsRaekke regnskaber={regnskaber} />
             </tbody>
 
           </table>

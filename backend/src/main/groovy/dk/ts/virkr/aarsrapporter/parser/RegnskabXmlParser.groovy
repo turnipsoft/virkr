@@ -1,11 +1,14 @@
 package dk.ts.virkr.aarsrapporter.parser
 
+import dk.ts.virkr.aarsrapporter.model.Generalforsamling
 import dk.ts.virkr.aarsrapporter.model.Regnskab
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.model.Regnskabstal
+import dk.ts.virkr.aarsrapporter.model.Revision
 import dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata
 import dk.ts.virkr.aarsrapporter.model.Resultatopgoerelse
 import dk.ts.virkr.aarsrapporter.parser.berigelse.RegnskabBerigelse
+import dk.ts.virkr.cvr.integration.model.virksomhed.Beliggenhedsadresse
 import groovy.xml.Namespace
 
 
@@ -122,6 +125,8 @@ class RegnskabXmlParser {
     r.aaretsresultatTal.skatafaaretsresultat = getRegnskabstal(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense",
       "IncomeTaxExpenseContinuingOperations")
 
+    // regnskabsklasse
+    data.regnskabsklasse = getStringValue(nl, ns,'ClassOfReportingEntity' )
 
     // passiver
     // findes i hele dokumentet denne har en anden context ref som er slutdato på perioden, skal evt. refactores til at
@@ -133,6 +138,10 @@ class RegnskabXmlParser {
     }
 
     data.balance.passiver.egenkapital = new Regnskabstal(getValue(result, ns.Equity))
+
+    if (nyeste) {
+      berigMedRevision(data, xml)
+    }
 
     return true
     //berigRegnskabdataMedManglendeNoegletal(data)
@@ -150,20 +159,139 @@ class RegnskabXmlParser {
     }
   }
 
-  private Namespace hentNamespace(String xml) {
+  private berigMedRevision(Regnskab regnskab, String xml) {
+    XmlParser parser = new XmlParser(false, false)
+
+    Revision revision = new Revision()
+    NodeList nl
+    Node xmlDokument = parser.parseText(xml)
+    Namespace ns = hentNamespace(xml, CMN_NAMESPACE)
+
+    if (ns) {
+      // hent de relevante fra CMN NAMESPACE
+      nl = xmlDokument.findAll {
+        it.name().toString().startsWith(ns.prefix)
+      }
+
+      revision.assistancetype = getStringValue(nl, ns, 'TypeOfAuditorAssistance')
+      if (!revision.assistancetype) {
+        // i gamle dage lå de ikke i CMN Namespace men GSD så vi må hente derfra
+        ns = hentNamespace(xml, GSD_NAMESPACE)
+        nl = xmlDokument.findAll {
+          it.name().toString().startsWith(ns.prefix)
+        }
+        revision.assistancetype = getStringValue(nl, ns, 'TypeOfAuditorAssistance')
+      }
+
+      revision.revisionsfirmaNavn = getStringValue(nl, ns, 'NameOfAuditFirm')
+      revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditor')
+      revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditor')
+      revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfAuditFirm')
+      revision.assistancetype = getStringValue(nl, ns, 'TypeOfAuditorAssistance')
+      revision.mnenummer = getStringValue(nl, ns, 'IdentificationNumberOfAuditor')
+    } else {
+      // hent i det mindste navnet på revisionsfirmaet
+      ns = hentNamespace(xml, GSD_NAMESPACE)
+
+      // hent de relevante fra GSD
+      nl = xmlDokument.findAll {
+        it.name().toString().startsWith(ns.prefix)
+      }
+
+      revision.revisionsfirmaNavn = getStringValue(nl, ns, 'NameOfAuditFirm')
+
+    }
+
+    ns = hentNamespace(xml, GSD_NAMESPACE)
+
+    // hent de relevante fra GSD
+    nl = xmlDokument.findAll {
+      it.name().toString().startsWith(ns.prefix)
+    }
+
+    // hvis der ikke var audit felter, så hent audit fra submitting enterprise
+    if (!revision.revisionsfirmaNavn) {
+      // hent fra submitting enterprise
+      revision.revisionsfirmaNavn = getStringValue(nl, ns, 'NameOfSubmittingEnterprise')
+      revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfSubmittingEnterprise')
+    }
+
+    revision.beliggenhedsadresse = new Beliggenhedsadresse()
+    revision.beliggenhedsadresse.vejnavn = getStringValue(nl, ns, 'AddressOfAuditorStreetName')
+    revision.beliggenhedsadresse.husnummerFra = getStringValue(nl, ns, 'AddressOfAuditorStreetBuildingIdentifier')
+    revision.beliggenhedsadresse.postnummer = getStringValue(nl, ns, 'AddressOfAuditorPostCodeIdentifier')
+    revision.beliggenhedsadresse.postdistrikt = getStringValue(nl, ns, 'AddressOfAuditorDistrictName')
+    revision.beliggenhedsadresse.land = getStringValue(nl, ns, 'AddressOfAuditorCountry')
+    revision.telefonnummer = getStringValue(nl, ns, 'TelephoneNumberOfAuditor')
+    revision.email = getStringValue(nl, ns, 'EmailOfAuditor')
+
+    revision.generalforsamling = new Generalforsamling()
+    revision.generalforsamling.dato = getStringValue(nl, ns, 'DateOfGeneralMeeting')
+    revision.generalforsamling.formand = getStringValue(nl, ns, 'NameAndSurnameOfChairmanOfGeneralMeeting')
+
+    ns = hentNamespace(xml, ARR_NAMESPACE)
+
+    // hent de relevante fra ARR
+    nl = xmlDokument.findAll {
+      it.name().toString().startsWith(ns.prefix)
+    }
+
+    revision.revisionUnderskriftsted = getStringValue(nl, ns, 'SignatureOfAuditorsPlace')
+    revision.revisionUnderskriftdato = getStringValue(nl, ns, 'SignatureOfAuditorsDate')
+    revision.adressant = getStringValue(nl, ns, 'AddresseeOfAuditorsReportOnAuditedFinancialStatements')
+
+    // Hvis revisoren i sig selv ikke lå i CMN/GSD, kan de ligge i ARR
+    if (!revision.navnPaaRevisor) {
+      revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditor')
+      revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditor')
+    }
+
+    // findes ikke i IFRS regnskaber
+    ns = hentNamespace(xml, SOB_NAMESPACE)
+
+    if (ns) {
+      // hent de relevante fra SOB
+      nl = xmlDokument.findAll {
+        it.name().toString().startsWith(ns.prefix)
+      }
+
+      revision.godkendelsesdato = getStringValue(nl, ns, 'DateOfApprovalOfAnnualReport')
+      revision.ingenRevision = getStringValue(nl, ns, 'StatementOnOptingOutOfAuditingFinancialStatementsInNextReportingPeriodDueToExemption')
+    }
+
+    regnskab.revision = revision
+  }
+
+  Namespace hentNamespace(String xml) {
     String namespace = getFSANamespace(xml)
     Namespace ns = null
 
     if (namespace) {
       ns = new Namespace("http://xbrl.dcca.dk/fsa", namespace)
     } else {
-      // prøv ifrs
+      // prøv ifrs, der er vist lige noget fishy her, som skal refactores
       namespace = getIFRSNamespace(xml)
       if (namespace) {
         ns = new Namespace("http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full", namespace)
       }
     }
     ns
+  }
+
+  static final String CMN_NAMESPACE = 'http://xbrl.dcca.dk/cmn'
+  static final String ARR_NAMESPACE = 'http://xbrl.dcca.dk/arr'
+  static final String GSD_NAMESPACE = 'http://xbrl.dcca.dk/gsd'
+  static final String SOB_NAMESPACE = 'http://xbrl.dcca.dk/sob'
+  static final String FSA_NAMESPACE = 'http://xbrl.dcca.dk/fsa'
+
+  Namespace hentNamespace(String xml, String namespaceUrl) {
+    String namespace = getNamespace(xml, namespaceUrl)
+    if (namespace) {
+      Namespace ns = new Namespace(namespaceUrl, namespace)
+      return  ns
+    }
+
+    return null
   }
 
   Regnskabstal getRegnskabstal(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null,
@@ -316,17 +444,33 @@ class RegnskabXmlParser {
   }
 
   String getGSDNamespace(String xml) {
-    return getNamespace(xml, "http://xbrl.dcca.dk/gsd")
+    return getNamespace(xml, GSD_NAMESPACE)
   }
 
   String getFSANamespace(String xml) {
-    return getNamespace(xml, "http://xbrl.dcca.dk/fsa")
+    return getNamespace(xml, FSA_NAMESPACE)
+  }
+
+  String getCMNNamespace(String xml) {
+    return getNamespace(xml, CMN_NAMESPACE)
+  }
+
+  String getARRNamespace(String xml) {
+    return getNamespace(xml, ARR_NAMESPACE)
+  }
+
+  String getSOBNamespace(String xml) {
+    return getNamespace(xml, SOB_NAMESPACE)
   }
 
   String getIFRSNamespace(String xml) {
     String result = getNamespace(xml, "http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full")
     if (!result) {
       result = getNamespace(xml, "http://xbrl.dcca.dk/ifrs-dk-cor_2013-12-20")
+    }
+
+    if (!result) {
+      result = getNamespace("http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full")
     }
 
     return result
