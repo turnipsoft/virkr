@@ -256,6 +256,10 @@ class RegnskabXmlParser {
     revision.supplerendeInformationOmAndreForhold = getStringValue(nl, ns, 'SupplementaryInformationOnOtherMatters')
     revision.supplerendeInformationOmAarsrapport = getStringValue(nl, ns, 'SupplementaryInformationOnMattersPertainingToAuditedFinancialStatement')
     revision.grundlagForKonklusion = getStringValue(nl, ns, 'DescriptionOfQualificationsOfAuditedFinancialStatements')
+    if (revision.grundlagForKonklusion && !revision.grundlagForKonklusion.toLowerCase().contains('forbehold')) {
+      // kun hvis der står noget om forbehold
+      revision.grundlagForKonklusion = null
+    }
 
     // findes ikke i IFRS regnskaber
     ns = hentNamespace(xml, SOB_NAMESPACE)
