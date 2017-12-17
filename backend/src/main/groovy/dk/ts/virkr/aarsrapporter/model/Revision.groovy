@@ -22,6 +22,9 @@ class Revision {
   String mnenummer
 
   String ingenRevision
+  String supplerendeInformationOmAndreForhold
+  String supplerendeInformationOmAarsrapport
+  String grundlagForKonklusion
 
   Generalforsamling generalforsamling
 }

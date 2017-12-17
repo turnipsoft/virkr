@@ -198,9 +198,19 @@ class RegnskabXmlParser {
 
     // hvis der ikke var audit felter, så hent audit fra submitting enterprise
     if (!revision.revisionsfirmaNavn) {
-      // hent fra submitting enterprise
       revision.revisionsfirmaNavn = getStringValue(nl, ns, 'NameOfSubmittingEnterprise')
+    }
+
+    if (!revision.revisionsfirmaNavn) {
+      revision.revisionsfirmaNavn = getStringValue(nl, ns, 'NameOfReportingEntity')
+    }
+
+    if (!revision.revisionsfirmaCvrnummer) {
       revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfSubmittingEnterprise')
+    }
+
+    if (!revision.revisionsfirmaCvrnummer) {
+      revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfReportingEntity')
     }
 
     revision.beliggenhedsadresse = new Beliggenhedsadresse()
@@ -243,6 +253,10 @@ class RegnskabXmlParser {
       revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfAuditFirm')
     }
 
+    revision.supplerendeInformationOmAndreForhold = getStringValue(nl, ns, 'SupplementaryInformationOnOtherMatters')
+    revision.supplerendeInformationOmAarsrapport = getStringValue(nl, ns, 'SupplementaryInformationOnMattersPertainingToAuditedFinancialStatement')
+    revision.grundlagForKonklusion = getStringValue(nl, ns, 'DescriptionOfQualificationsOfAuditedFinancialStatements')
+
     // findes ikke i IFRS regnskaber
     ns = hentNamespace(xml, SOB_NAMESPACE)
 
@@ -254,6 +268,7 @@ class RegnskabXmlParser {
 
       revision.godkendelsesdato = getStringValue(nl, ns, 'DateOfApprovalOfAnnualReport')
       revision.ingenRevision = getStringValue(nl, ns, 'StatementOnOptingOutOfAuditingFinancialStatementsInNextReportingPeriodDueToExemption')
+
     }
 
     regnskab.revision = revision
