@@ -25,6 +25,8 @@ class RegnskabNodes {
   public List<Node> ifrsNodes
   public List<Node> aktuelleNoegletalNodes
   public List<Node> sidsteAarsNoegletalNodes
+  public List<Node> aktuelleBalanceNodes
+  public List<Node> sidsteAarsBalanceNodes
   public NodeList contextNodes
 
   public Namespace fsaNamespace
@@ -34,8 +36,11 @@ class RegnskabNodes {
   public Namespace sobNamespace
   public Namespace ifrsNamespace
 
-  public String aktuelContext;
-  public String sidsteAarsContext;
+  public String aktuelContext
+  public String sidsteAarsContext
+
+  public String aktuelBalanceContext
+  public String sidsteAarsBalanceContext
 
   Namespace noegletalNamespace() {
     return this.fsaNamespace ? this.fsaNamespace : this.ifrsNamespace
@@ -82,19 +87,31 @@ class RegnskabNodes {
       this.ifrsNodes = hentNodes(xmlDokument, this.ifrsNamespace)
     }
 
-    this.aktuelContext = hentContextRef(xmlDokument, noegletalNamespace(), true)
-    this.sidsteAarsContext = hentContextRef(xmlDokument, noegletalNamespace(), false)
+    this.contextNodes = hentContextNodes(xmlDokument, noegletalNamespace())
+    this.aktuelContext = hentContextRef(xmlDokument, noegletalNamespace(), this.contextNodes, NOEGLETAL_IDENTER, true)
+    this.sidsteAarsContext = hentContextRef(xmlDokument, noegletalNamespace(), this.contextNodes, NOEGLETAL_IDENTER, false)
+
+    this.aktuelBalanceContext = hentContextRef(xmlDokument, noegletalNamespace(), this.contextNodes, BALANCE_IDENTER, true)
+    this.sidsteAarsBalanceContext = hentContextRef(xmlDokument, noegletalNamespace(), this.contextNodes, BALANCE_IDENTER, false)
+
 
     this.aktuelleNoegletalNodes = xmlDokument.findAll {
       it.attribute('contextRef') == this.aktuelContext
     }
 
-    if (this.sidsteAarsContext) {
-      this.sidsteAarsNoegletalNodes = xmlDokument.findAll {
-        it.attribute('contextRef') == this.sidsteAarsContext
+    this.aktuelleBalanceNodes = xmlDokument.findAll {
+      it.attribute('contextRef') == this.aktuelBalanceContext
+    }
+
+    if (this.sidsteAarsBalanceContext) {
+      this.sidsteAarsBalanceNodes = xmlDokument.findAll {
+        it.attribute('contextRef') == this.sidsteAarsBalanceContext
       }
     }
   }
+
+  public static List<String> NOEGLETAL_IDENTER = ['ProfitLoss','GrossProfitLoss','GrossResult']
+  public static List<String> BALANCE_IDENTER = ['Equity','Assets','Provisions']
 
   public static final List<String> IFRS_NAMESPACE_LIST = ["http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full",
                                                     "http://xbrl.dcca.dk/ifrs-dk-cor_2013-12-20"]
@@ -158,60 +175,59 @@ class RegnskabNodes {
     return contextNodes
   }
 
-  String hentContextRef(Node xmlDokument, Namespace ns, boolean nyeste = true) {
+  String hentContextRef(Node xmlDokument,
+                        Namespace ns,
+                        NodeList contextNodes,
+                        List<String> identificerendeElementer,
+                        boolean nyeste = true) {
 
-    NodeList contextNodes = hentContextNodes(xmlDokument, ns)
+
     this.contextNodes = contextNodes
 
-    // find den profit hvis contextRef ikke er konsolideret og som har nyeste periode.
-    if (true || ns.uri=='http://xbrl.dcca.dk/fsa') {
-      NodeList n = xmlDokument[ns.ProfitLoss]
-      if (!n) {
-        // backup til GrossProfitLoss
-        n = xmlDokument[ns.GrossProfitLoss]
-      }
-      if (!n) {
-        // backup til GrossResult
-        n = xmlDokument[ns.GrossResult]
-      }
+    // find det element hvis contextRef ikke er konsolideret og som har nyeste periode.
+    NodeList n
+    identificerendeElementer.each {
+      if (n) return;
+      n = xmlDokument[ns.prefix+':'+it]
+    }
 
-      if (n != null && n.size() > 0) {
-        List<Node> contextRefNodeCandidates = []
-        n.each {
-          String contextRefCandidate = it.attribute("contextRef")
-          Node contextRefNodeCandidate = contextNodes.find { it.attribute('id') == contextRefCandidate }
-          // skal ikke have dem der har scenario på i FSA og ikke have de konsoliderede i IFRS'erne
-          String contextRefNodeCandidateName = contextRefNodeCandidate.attribute('id')
-          if (contextRefNodeCandidate && !contextRefNodeCandidate.scenario && !contextRefNodeCandidateName.contains('_C_')) {
-            Node existing = contextRefNodeCandidates.find {
-              String name = it.name()
-              String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
-              String e1 = it[ens+'period'][ens+'endDate'].text()
-              String e2 = contextRefNodeCandidate[ens+'period'][ens+'endDate'].text()
-              e1==e2
-            }
-            // tilføjer kun hvis den ikke allerede eksisterer i forvejen
-            if (!existing) {
-              contextRefNodeCandidates << contextRefNodeCandidate
-            }
+    if (n != null && n.size() > 0) {
+      List<Node> contextRefNodeCandidates = []
+      n.each {
+        String contextRefCandidate = it.attribute("contextRef")
+        Node contextRefNodeCandidate = contextNodes.find { it.attribute('id') == contextRefCandidate }
+        // skal ikke have dem der har scenario på i FSA og ikke have de konsoliderede i IFRS'erne
+        String contextRefNodeCandidateName = contextRefNodeCandidate.attribute('id')
+        if (contextRefNodeCandidate && !contextRefNodeCandidate.scenario && !contextRefNodeCandidateName.contains('_C_')) {
+          Node existing = contextRefNodeCandidates.find {
+            String name = it.name()
+            String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
+            String e1 = it[ens+'period'][ens+'endDate'].text()
+            String e2 = contextRefNodeCandidate[ens+'period'][ens+'endDate'].text()
+            e1==e2
+          }
+          // tilføjer kun hvis den ikke allerede eksisterer i forvejen
+          if (!existing) {
+            contextRefNodeCandidates << contextRefNodeCandidate
           }
         }
+      }
 
-        String name = contextRefNodeCandidates[0].name()
-        String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
+      String name = contextRefNodeCandidates[0].name()
+      String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
 
-        contextRefNodeCandidates = contextRefNodeCandidates.sort {it[ens+'period'][ens+'endDate'].text() }
-        if (nyeste) {
-          return contextRefNodeCandidates.last().attribute('id')
+      contextRefNodeCandidates = contextRefNodeCandidates.sort {it[ens+'period'][ens+'endDate'].text() }
+      if (nyeste) {
+        return contextRefNodeCandidates.last().attribute('id')
+      } else {
+        if (contextRefNodeCandidates.size()>1) {
+          return contextRefNodeCandidates.get(contextRefNodeCandidates.size()-2).attribute('id');
         } else {
-          if (contextRefNodeCandidates.size()>1) {
-            return contextRefNodeCandidates.get(contextRefNodeCandidates.size()-2).attribute('id');
-          } else {
-            return null;
-          }
+          return null;
         }
       }
     }
+
 
     return null
   }

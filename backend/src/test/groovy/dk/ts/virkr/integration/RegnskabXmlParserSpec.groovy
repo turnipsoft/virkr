@@ -117,7 +117,7 @@ class RegnskabXmlParserSpec extends Specification {
     ro.bruttoresultatTal.bruttofortjeneste.vaerdi == 68539000l
     ro.nettoresultatTal.driftsresultat.vaerdi == 18567000l
     ro.aaretsresultatTal.resultatfoerskat.vaerdi == 18762000l
-    ro.aaretsresultatTal.skatafaaretsresultat.vaerdi == 4240000l
+    ro.aaretsresultatTal.skatafaaretsresultat.vaerdi == -4240000l
     ro.aaretsresultatTal.aaretsresultat.vaerdi == 14522000l
     regnskabData.balance.passiver.gaeldsforpligtelser.vaerdi == 80864000l
     regnskabData.balance.passiver.egenkapital.vaerdi == 61554000l
@@ -142,7 +142,7 @@ class RegnskabXmlParserSpec extends Specification {
     ro.aaretsresultatTal.resultatfoerskat.vaerdi == 19704409l
     ro.nettoresultatTal.finansielleindtaegter.vaerdi == 63203l
     ro.nettoresultatTal.finansielleomkostninger.vaerdi == 17236l
-    ro.aaretsresultatTal.skatafaaretsresultat.vaerdi == 4189184l
+    ro.aaretsresultatTal.skatafaaretsresultat.vaerdi == -4189184l
     ro.aaretsresultatTal.aaretsresultat.vaerdi == 15515225l
     regnskabData.balance.passiver.gaeldsforpligtelser.vaerdi == 19030055l
     regnskabData.balance.passiver.egenkapital.vaerdi == 31210704l
@@ -218,6 +218,20 @@ class RegnskabXmlParserSpec extends Specification {
     regnskabData.revision.assistancetype == 'Ingen bistand'
   }
 
+  void "test nine 2016 balance"() {
+    given:
+    String xml = TestUtil.load('/nine-2016.xml')
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    then:
+    regnskabData.balance.passiver.udbytte.vaerdi == 15000000l
+  }
+
   void "test parse lagkagehuset"() {
     given:
     String xml = TestUtil.load('/lagkagehuset.xml')
@@ -237,9 +251,10 @@ class RegnskabXmlParserSpec extends Specification {
 
     ro.aaretsresultatTal.resultatfoerskat.vaerdi == 47316000l
     ro.nettoresultatTal.finansielleomkostninger.vaerdi == 4376000l
-    ro.aaretsresultatTal.skatafaaretsresultat.vaerdi == 9175000l
+    ro.aaretsresultatTal.skatafaaretsresultat.vaerdi == -9175000l
     ro.aaretsresultatTal.aaretsresultat.vaerdi == 38141000l
     regnskabData.balance.passiver.gaeldsforpligtelser.vaerdi == 97955000l
-    regnskabData.balance.passiver.egenkapital.vaerdi == 75968l
+
+    regnskabData.balance.passiver.egenkapital.vaerdi == 135307000l
   }
 }

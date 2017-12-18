@@ -9,8 +9,9 @@ import org.springframework.beans.BeanUtils
 class Passiver extends ModelBase {
   Regnskabstal gaeldsforpligtelser
   Regnskabstal egenkapital
+  Regnskabstal udbytte
 
-  public static Passiver from(Regnskabsdata rd) {
+  static Passiver from(Regnskabsdata rd) {
     Passiver p = new Passiver()
     p.gaeldsforpligtelser = new Regnskabstal(rd.gaeldsforpligtelser)
     p.egenkapital = new Regnskabstal(rd.egenkapital)

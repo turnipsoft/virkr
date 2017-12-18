@@ -4,7 +4,7 @@ import { resolveJsonValue, komma } from '../../../utils/utils';
 export default class NoegletalRaekke extends Component {
 
   render() {
-    const { regnskaber, label, felt, style, header, negative, highlight, onClick } = this.props;
+    const { regnskaber, label, felt, style, header, negative, highlight, onClick, skat } = this.props;
 
     const feltvaerdier = regnskaber.map((regnskab) => {
       const aktueltRegnskab = regnskab.aktueltAarsregnskab;
@@ -13,8 +13,12 @@ export default class NoegletalRaekke extends Component {
       if (header) {
         return { vaerdi: vaerdi, start: aktueltRegnskab.startdato, slut: aktueltRegnskab.slutdato };
       }
-      if (negative && vaerdi>0) {
-        vaerdi = vaerdi * -1;
+
+      // skat er lidt specielt så det hackes ind her, hved ikke hvordan vi ellers skal håndterer, pointen er jo at man kan have tilgodehavende hos skat
+      if (!skat) {
+        if (negative && vaerdi && vaerdi.vaerdi>0) {
+          vaerdi.vaerdi = vaerdi.vaerdi * -1;
+        }
       }
 
       return { vaerdi: vaerdi };
@@ -60,6 +64,10 @@ export default class NoegletalRaekke extends Component {
     return (
       vaerdier.map((vaerdi) => {
         col++;
+        if (!vaerdi.vaerdi) {
+          return <td key={col}></td>;
+        }
+
         if (header) {
           return (
             <th key={col} className={className}>{komma(vaerdi.vaerdi)}
@@ -70,7 +78,7 @@ export default class NoegletalRaekke extends Component {
         }
 
         let cname = className;
-        if (highlight && vaerdi.vaerdi<0) {
+        if (highlight && vaerdi.vaerdi.vaerdi<0) {
           cname+= ' noegletal-color-negative';
         }
 

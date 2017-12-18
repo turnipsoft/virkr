@@ -160,7 +160,7 @@ export default class NoegletalTabel extends Component {
                            felt="resultatopgoerelse.aaretsresultatTal.resultatfoerskat"/>}
 
             <NoegletalRaekke felt="resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat"
-                             label="Skat af årets resultat" regnskaber={regnskaber} negative={true}
+                             label="Skat af årets resultat" regnskaber={regnskaber} negative={true} skat={true}
                              onClick={()=>this.selectNoegletal('resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat')} />
             {selected==='resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat' &&
             <NoegletalGraf regnskaber={regnskaber} label="Skat af årets resultat"

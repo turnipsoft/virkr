@@ -56,6 +56,7 @@ class RegnskabXmlParser {
   boolean parseOgBerig(Regnskab data, RegnskabNodes regnskabNodes, boolean nyeste = true) {
     Namespace ns = regnskabNodes.noegletalNamespace()
 
+    // bemærk at contextref siger noget om hvilken periode man henter tal for
     String contextRef = nyeste?regnskabNodes.aktuelContext : regnskabNodes.sidsteAarsContext
 
     if (!contextRef) {
@@ -67,8 +68,29 @@ class RegnskabXmlParser {
 
     /* periode dato år */
     berigMedPeriode(data, regnskabNodes, ns, contextRef)
+    // regnskabsklasse
+    data.regnskabsklasse = getStringValue(nl, ns,'ClassOfReportingEntity' )
 
-    /** Resultatopgørelsen **/
+    berigResultatopgoerelse(data, nl, ns)
+
+    nl = nyeste ? regnskabNodes.aktuelleBalanceNodes : regnskabNodes.sidsteAarsBalanceNodes
+
+    data.balance.passiver.gaeldsforpligtelser = getRegnskabstal(nl, ns, 'LiabilitiesOtherThanProvisions','CurrentLiabilities', 'ShorttermLiabilitiesOtherThanProvisions' )
+    data.balance.passiver.egenkapital = getRegnskabstal(nl, ns, 'Equity' )
+    data.balance.passiver.udbytte = getRegnskabstal(nl, ns, 'ProposedDividendRecognisedInEquity' )
+
+    // det aktuelle regnskab har også revisionsoplysninger
+    if (nyeste) {
+      berigMedRevision(data, regnskabNodes)
+    }
+
+    fixSkat(data)
+
+    return true
+  }
+
+  private void berigResultatopgoerelse(Regnskab data, NodeList nl, Namespace ns) {
+/** Resultatopgørelsen **/
     Resultatopgoerelse r = data.resultatopgoerelse
 
     //Omsætning
@@ -80,7 +102,7 @@ class RegnskabXmlParser {
     r.omsaetningTal.andreeksterneomkostninger = getRegnskabstal(nl, ns, "OtherExternalExpenses")
     r.omsaetningTal.variableomkostninger = getRegnskabstal(nl, ns, "RawMaterialsAndConsumablesUsed")
     r.omsaetningTal.lokalomkostninger = getRegnskabstal(nl, ns, "PropertyCost")
-    r.omsaetningTal.eksterneomkostninger = getRegnskabstal(nl,ns, "ExternalExpenses")
+    r.omsaetningTal.eksterneomkostninger = getRegnskabstal(nl, ns, "ExternalExpenses")
 
     //BruttoresultatTal
     r.bruttoresultatTal.bruttofortjeneste = getRegnskabstal(nl, ns, "GrossProfitLoss", "GrossResult", "GrossProfit")
@@ -100,34 +122,15 @@ class RegnskabXmlParser {
     r.nettoresultatTal.finansielleindtaegter = getRegnskabstal(nl, ns, "OtherFinanceIncome", "FinanceIncome")
 
     // Årets resultat
-     r.aaretsresultatTal.aaretsresultat = getRegnskabstal(nl, ns, "ProfitLoss")
+    r.aaretsresultatTal.aaretsresultat = getRegnskabstal(nl, ns, "ProfitLoss")
     r.aaretsresultatTal.resultatfoerskat = getRegnskabstal(nl, ns, "ProfitLossFromOrdinaryActivitiesBeforeTax", "ProfitLossBeforeTax")
     r.aaretsresultatTal.skatafaaretsresultat = getRegnskabstal(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense",
       "IncomeTaxExpenseContinuingOperations")
-
-    // regnskabsklasse
-    data.regnskabsklasse = getStringValue(nl, ns,'ClassOfReportingEntity' )
-
-    // passiver
-    // findes i hele dokumentet denne har en anden context ref som er slutdato på perioden, skal evt. refactores til at
-    // finde gennem denne
-    data.balance.passiver.gaeldsforpligtelser = new Regnskabstal(getValue(regnskabNodes.xmlDokument,ns.LiabilitiesOtherThanProvisions, ns.CurrentLiabilities))
-
-    if (!data.balance.passiver.gaeldsforpligtelser) {
-      data.balance.passiver.gaeldsforpligtelser = new Regnskabstal(getValue(regnskabNodes.xmlDokument, ns.ShorttermLiabilitiesOtherThanProvisions))
-    }
-
-    data.balance.passiver.egenkapital = new Regnskabstal(getValue(regnskabNodes.xmlDokument, ns.Equity))
-
-    if (nyeste) {
-      berigMedRevision(data, regnskabNodes)
-    }
-
-    return true
   }
 
   /**
    * Beriger nøgletal rekursivt indtil der ikke er flere nøgletal at berige
+   * Er p.t. ude af drift, der er for manger usikkerhedsmomenter i disse beregninger.
    * @param data
    */
   void berigRegnskabdataMedManglendeNoegletal(Regnskab data) {
@@ -249,62 +252,41 @@ class RegnskabXmlParser {
     regnskab.revision = revision
   }
 
-  Namespace hentNamespace(String xml) {
-    String namespace = getFSANamespace(xml)
-    Namespace ns = null
+  void fixSkat(Regnskab regnskab) {
+    // forsøg at fix skat til at være negativt eller positivt tal
+    if (regnskab.resultatopgoerelse.aaretsresultatTal.resultatfoerskat &&
+      regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat &&
+      regnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat) {
 
-    if (namespace) {
-      ns = new Namespace("http://xbrl.dcca.dk/fsa", namespace)
-    } else {
-      // prøv ifrs, der er vist lige noget fishy her, som skal refactores
-      namespace = getIFRSNamespace(xml)
-      if (namespace) {
-        ns = new Namespace("http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full", namespace)
+      if (regnskab.resultatopgoerelse.aaretsresultatTal.resultatfoerskat.vaerdi<
+          regnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat.vaerdi) {
+        regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat.vaerdi =
+          Math.abs(regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat.vaerdi)
+      } else {
+        regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat.vaerdi =
+          Math.abs(regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat.vaerdi)*-1
       }
     }
-    ns
   }
+  Regnskabstal getRegnskabstal(NodeList nodeList, Namespace ns, String ...nodeName){
+    Node node
 
-  static final String CMN_NAMESPACE = 'http://xbrl.dcca.dk/cmn'
-  static final String ARR_NAMESPACE = 'http://xbrl.dcca.dk/arr'
-  static final String GSD_NAMESPACE = 'http://xbrl.dcca.dk/gsd'
-  static final String SOB_NAMESPACE = 'http://xbrl.dcca.dk/sob'
-  static final String FSA_NAMESPACE = 'http://xbrl.dcca.dk/fsa'
+    nodeName.each {
+      if (node) return
+      String nodenameMedPrefix = "$ns.prefix:$it"
+      node = nodeList.find {
+        it.name().toString() == nodenameMedPrefix
+      }
+    }
 
-  Namespace hentNamespace(String xml, String namespaceUrl) {
-    String namespace = getNamespace(xml, namespaceUrl)
-    if (namespace) {
-      Namespace ns = new Namespace(namespaceUrl, namespace)
-      return  ns
+    if (node!=null) {
+      return new Regnskabstal(getAmount(node))
     }
 
     return null
   }
 
-  Regnskabstal getRegnskabstal(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null,
-                               String altNodeName2 =  null){
-    nodeName = "$ns.prefix:$nodeName"
-    Node n = nodeList.find {
-      it.name() == nodeName
-    }
-
-    if (n!=null) {
-      return new Regnskabstal(getAmount(n))
-    } else if (altNodename) {
-      Regnskabstal val = getRegnskabstal(nodeList, ns, altNodename)
-      if (!val.vaerdi) {
-        return getRegnskabstal(nodeList, ns, altNodeName2)
-      }
-      return val
-    }
-
-    return new Regnskabstal()
-  }
-
   String getStringValue(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null){
-    if (!ns) {
-      println "dafuck"
-    }
     nodeName = "$ns.prefix:$nodeName"
     Node n = nodeList.find {
       it.name() == nodeName
@@ -317,164 +299,6 @@ class RegnskabXmlParser {
     }
 
     return null
-  }
-
-  Long extractLong(String s) {
-    String i = ""
-    s.chars.each {
-      if (it.toString().isNumber()) {
-        i+=it.toString()
-      }
-
-    }
-
-    if (i.length()==0) {
-      return 0
-    }
-
-    return i.toLong()
-  }
-
-  NodeList hentContextNodes(Node xmlDokument, Namespace ns) {
-    NodeList contextNodes = xmlDokument['context'];
-    if (!contextNodes) {
-      String namespacenavn = hentNamespaceNavn(xmlDokument, "http://www.xbrl.org/2003/instance")
-      Namespace nsc = new Namespace("http://www.xbrl.org/2003/instance", namespacenavn)
-      contextNodes = xmlDokument[nsc.context];
-    }
-
-    return contextNodes
-  }
-
-  String hentContextRef(Node xmlDokument, Namespace ns, boolean nyeste = true) {
-
-    NodeList contextNodes = hentContextNodes(xmlDokument, ns)
-
-    // find den profit hvis contextRef ikke er konsolideret og som har nyeste periode.
-    if (true || ns.uri=='http://xbrl.dcca.dk/fsa') {
-      NodeList n = xmlDokument[ns.ProfitLoss]
-      if (!n) {
-        // backup til GrossProfitLoss
-        n = xmlDokument[ns.GrossProfitLoss]
-      }
-      if (!n) {
-        // backup til GrossResult
-        n = xmlDokument[ns.GrossResult]
-      }
-
-      if (n != null && n.size() > 0) {
-        List<Node> contextRefNodeCandidates = []
-        n.each {
-          String contextRefCandidate = it.attribute("contextRef")
-          Node contextRefNodeCandidate = contextNodes.find { it.attribute('id') == contextRefCandidate }
-          // skal ikke have dem der har scenario på i FSA og ikke have de konsoliderede i IFRS'erne
-          String contextRefNodeCandidateName = contextRefNodeCandidate.attribute('id')
-          if (contextRefNodeCandidate && !contextRefNodeCandidate.scenario && !contextRefNodeCandidateName.contains('_C_')) {
-            Node existing = contextRefNodeCandidates.find {
-              String name = it.name()
-              String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
-              String e1 = it[ens+'period'][ens+'endDate'].text()
-              String e2 = contextRefNodeCandidate[ens+'period'][ens+'endDate'].text()
-              e1==e2
-            }
-            // tilføjer kun hvis den ikke allerede eksisterer i forvejen
-            if (!existing) {
-              contextRefNodeCandidates << contextRefNodeCandidate
-            }
-          }
-        }
-
-        String name = contextRefNodeCandidates[0].name()
-        String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
-
-        contextRefNodeCandidates = contextRefNodeCandidates.sort {it[ens+'period'][ens+'endDate'].text() }
-        if (nyeste) {
-          return contextRefNodeCandidates.last().attribute('id')
-        } else {
-          if (contextRefNodeCandidates.size()>1) {
-            return contextRefNodeCandidates.get(contextRefNodeCandidates.size()-2).attribute('id');
-          } else {
-            return null;
-          }
-        }
-      }
-    }
-
-    // find korrekte namespaces
-    //Namespace gsd = new Namespace("http://xbrl.dcca.dk/gsd", hentNamespaceNavn(xmlDokument, "http://xbrl.dcca.dk/gsd"))
-
-    //NodeList n = xmlDokument[gsd.InformationOnTypeOfSubmittedReport]
-
-    //Node n1 = n.get(0)
-    //String contextRef = n1.attribute("contextRef")
-
-    return null
-    //return contextRef
-  }
-
-  String findNode(xmlnodes, n) {
-
-    def nodes = xmlnodes[n]
-
-    if (nodes && nodes.size() > 0) {
-      Node node = nodes[0]
-      return node[0]
-    }
-
-    return null
-
-  }
-
-  String hentNamespaceNavn(Node xmlDokument, String namespace) {
-    String ns = xmlDokument.attributes().find { attribute->
-      attribute.value == namespace && attribute.key!='xmlns'
-    }.key
-
-    return ns.substring(6)
-  }
-
-  String getGSDNamespace(String xml) {
-    return getNamespace(xml, GSD_NAMESPACE)
-  }
-
-  String getFSANamespace(String xml) {
-    return getNamespace(xml, FSA_NAMESPACE)
-  }
-
-  String getCMNNamespace(String xml) {
-    return getNamespace(xml, CMN_NAMESPACE)
-  }
-
-  String getARRNamespace(String xml) {
-    return getNamespace(xml, ARR_NAMESPACE)
-  }
-
-  String getSOBNamespace(String xml) {
-    return getNamespace(xml, SOB_NAMESPACE)
-  }
-
-  String getIFRSNamespace(String xml) {
-    String result = getNamespace(xml, "http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full")
-    if (!result) {
-      result = getNamespace(xml, "http://xbrl.dcca.dk/ifrs-dk-cor_2013-12-20")
-    }
-
-    if (!result) {
-      result = getNamespace("http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full")
-    }
-
-    return result
-  }
-
-  String getNamespace(String xml, String ns) {
-    int idx = xml.indexOf(ns)
-    if (idx<0) {
-      return null;
-    }
-    xml = xml.substring(0, idx)
-    idx = xml.lastIndexOf('xmlns:')
-    String namespace = xml.substring(idx + 6, xml.length() - 2)
-    return namespace
   }
 
   Long getValue(root, nodeName, alternateNodeName = null) {
@@ -491,6 +315,11 @@ class RegnskabXmlParser {
 
   Long getAmount(Node n) {
     String amount = n.text()
-    return Double.valueOf(amount).longValue()
+    Long vaerdi = Double.valueOf(amount).longValue()
+    // så er der lige noget med decimalerne
+    String decimaler = n.attribute('decimals')
+    // man kan desværre ikke rigtig regne med de decimaler der.. hmmmm
+
+    return vaerdi
   }
 }
