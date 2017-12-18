@@ -50,13 +50,17 @@ export default class EjerGraf extends React.Component {
   render() {
     const ejergraf = this.props.ejerGraf;
 
-    const n = ejergraf.unikkeEjere.map((ejer) => {
+    let n = ejergraf.unikkeEjere.map((ejer) => {
       var group = ejer.ejer.ejertype == 'PERSON' ? 'personer' : 'virksomheder'
       if (ejer.ejer.ejertype == 'ROD') {
         group = 'rod';
       }
        const navn = wrap(ejer.ejer.navn, 25);
       return {id: ejer.ejer.enhedsnummer, label: navn, group: group, level: ejer.ejer.level };
+    });
+
+    n = n.sort(function(a,b) {
+      return a.level-b.level
     });
 
     const e = ejergraf.ejerRelationer.map((er) =>{
@@ -71,6 +75,9 @@ export default class EjerGraf extends React.Component {
 
 
     var options = {
+      physics: {
+        enabled: false
+      },
       layout: {
         hierarchical: {
           direction: "DU",

@@ -70,6 +70,9 @@ export default class DeltagerGraf extends React.Component {
 
 
     var options = {
+      physics: {
+        enabled: false
+      },
       layout: {
         hierarchical: {
           direction: "UD",
