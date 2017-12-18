@@ -61,7 +61,10 @@ class KontrolAfvigendeTal implements RegnskabstalKontrol {
       long rest = sidsteAar.vaerdi%precision
       long beregnetVaerdi = sidsteAar.vaerdi - rest
 
-      if (beregnetVaerdi==aktuelt.vaerdi || beregnetVaerdi+precision == aktuelt.vaerdi) {
+      beregnetVaerdi = Math.abs(beregnetVaerdi)
+      long aktuelVaerdi = Math.abs(aktuelt.vaerdi)
+
+      if (beregnetVaerdi==aktuelVaerdi || beregnetVaerdi+precision == aktuelVaerdi) {
         // alt ok, så er tallet afrundet med den forventede precision
         return
       }
