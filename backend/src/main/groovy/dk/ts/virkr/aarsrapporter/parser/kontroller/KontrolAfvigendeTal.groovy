@@ -1,5 +1,6 @@
 package dk.ts.virkr.aarsrapporter.parser.kontroller
 
+import dk.ts.virkr.aarsrapporter.model.Passiver
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.model.Regnskabstal
 import dk.ts.virkr.aarsrapporter.model.RegnskabstalKontrolResultat
@@ -55,9 +56,13 @@ class KontrolAfvigendeTal implements RegnskabstalKontrol {
     }
 
     if (aktuelt.vaerdi != sidsteAar.vaerdi) {
-      long diff = Math.abs(aktuelt.vaerdi) - Math.abs(sidsteAar.vaerdi)
-      if (Math.abs(diff) <= 1000) {
-        // Der rundes ofte op og ned og man kan ikke regne med hvilken vej, hele tusinde er et vidt begreb
+      // præcision skal afgøres udfra decimal
+      long precision = Math.pow(10,Math.abs(aktuelt.decimal))
+      long rest = sidsteAar.vaerdi%precision
+      long beregnetVaerdi = sidsteAar.vaerdi - rest
+
+      if (beregnetVaerdi==aktuelt.vaerdi || beregnetVaerdi+precision == aktuelt.vaerdi) {
+        // alt ok, så er tallet afrundet med den forventede precision
         return
       }
       // der er en difference

@@ -99,6 +99,12 @@ class RegnskabNodes {
       it.attribute('contextRef') == this.aktuelContext
     }
 
+    if (this.sidsteAarsContext) {
+      this.sidsteAarsNoegletalNodes = xmlDokument.findAll {
+        it.attribute('contextRef') == this.sidsteAarsContext
+      }
+    }
+
     this.aktuelleBalanceNodes = xmlDokument.findAll {
       it.attribute('contextRef') == this.aktuelBalanceContext
     }

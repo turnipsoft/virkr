@@ -7,7 +7,7 @@ export default class RevisionsRaekke extends Component {
     const {regnskaber} = this.props;
 
     const revisionsMarkup = regnskaber.map((regnskab)=> {
-      return this._renderRevision(regnskab)
+      return this._renderRevision(regnskab.aktueltAarsregnskab)
     });
 
     return (

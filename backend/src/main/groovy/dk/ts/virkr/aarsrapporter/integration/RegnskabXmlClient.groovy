@@ -45,14 +45,10 @@ class RegnskabXmlClient {
           data.sidsteopdatering = sdf.format(offentliggoerelse.sidstOpdateret)
           RegnskabNodes regnskabNodes = new RegnskabNodes(unzippedData)
 
-          parser.parseOgBerig(data, regnskabNodes)
+          //parser.parseOgBerig(data, regnskabNodes)
           data.virksomhedsdata = parser.hentVirksomhedsdataFraRegnskab(regnskabNodes)
 
-          // berig aktuelt aar (dobbelt konfekt i know.. for nu, vi er i gang med en refac så rolig nu!
           data.aktueltAarsregnskab = new Regnskab()
-          data.aktueltAarsregnskab.aar = data.aar
-          data.aktueltAarsregnskab.startdato = data.startdato
-          data.aktueltAarsregnskab.slutdato = data.slutdato
           parser.parseOgBerig(data.aktueltAarsregnskab, regnskabNodes)
 
           // forrige aar det findes ikke nødvendigvis

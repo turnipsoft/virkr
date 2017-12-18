@@ -90,7 +90,8 @@ class RegnskabXmlParser {
   }
 
   private void berigResultatopgoerelse(Regnskab data, NodeList nl, Namespace ns) {
-/** Resultatopgørelsen **/
+
+    /** Resultatopgørelsen **/
     Resultatopgoerelse r = data.resultatopgoerelse
 
     //Omsætning
@@ -281,7 +282,11 @@ class RegnskabXmlParser {
     }
 
     if (node!=null) {
-      return new Regnskabstal(getAmount(node))
+      String decimaler = node.attribute('decimals')
+      Long decimal = decimaler? Long.valueOf(decimaler) : 0
+      // man kan desværre ikke rigtig regne med de decimaler der.. hmmmm
+
+      return new Regnskabstal(getAmount(node), decimal)
     }
 
     return null
@@ -317,10 +322,6 @@ class RegnskabXmlParser {
   Long getAmount(Node n) {
     String amount = n.text()
     Long vaerdi = Double.valueOf(amount).longValue()
-    // så er der lige noget med decimalerne
-    String decimaler = n.attribute('decimals')
-    // man kan desværre ikke rigtig regne med de decimaler der.. hmmmm
-
     return vaerdi
   }
 }

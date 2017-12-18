@@ -25,11 +25,11 @@ export default class VaerdiGraf extends Component {
     const { felt, label } = this.props;
 
     const aarLabels = regnskaber.map((regnskab) => {
-      return regnskab.aar
+      return regnskab.aktueltAarsregnskab.aar
     });
 
     const vaerdier = regnskaber.map((regnskab) => {
-      return resolveJsonValue( felt, regnskab).vaerdi
+      return resolveJsonValue( felt, regnskab.aktueltAarsregnskab).vaerdi
     });
 
     const options = {

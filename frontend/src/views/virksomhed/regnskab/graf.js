@@ -22,19 +22,19 @@ export default class Graf extends Component {
 
   getGraf(regnskaber) {
     const aarLabels = regnskaber.map((regnskab) => {
-      return regnskab.aar
+      return regnskab.aktueltAarsregnskab.aar
     });
 
     const bruttofortjenester = regnskaber.map((regnskab) => {
-      return regnskab.resultatopgoerelse.bruttoresultatTal.bruttofortjeneste.vaerdi;
+      return regnskab.aktueltAarsregnskab.resultatopgoerelse.bruttoresultatTal.bruttofortjeneste.vaerdi;
     });
 
     const egenkapitaler = regnskaber.map((regnskab) => {
-      return regnskab.balance.passiver.egenkapital.vaerdi;
+      return regnskab.aktueltAarsregnskab.balance.passiver.egenkapital.vaerdi;
     });
 
     const aaretsresultater = regnskaber.map((regnskab) => {
-      return regnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat.vaerdi;
+      return regnskab.aktueltAarsregnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat.vaerdi;
     });
 
     const options = {
