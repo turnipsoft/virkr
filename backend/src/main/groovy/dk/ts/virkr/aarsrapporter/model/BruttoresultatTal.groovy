@@ -12,7 +12,6 @@ class BruttoresultatTal extends ModelBase {
   Regnskabstal administrationsomkostninger
   Regnskabstal ejendomsomkostninger
   Regnskabstal regnskabsmaessigeafskrivninger //DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
-  Regnskabstal kapitalandeleiassocieredevirksomheder
 
   static BruttoresultatTal from(Regnskabsdata rd) {
     BruttoresultatTal br = new BruttoresultatTal()
@@ -22,7 +21,7 @@ class BruttoresultatTal extends ModelBase {
     br.administrationsomkostninger = new Regnskabstal(rd.administrationsomkostninger)
     br.ejendomsomkostninger = new Regnskabstal(rd.lokalomkostninger)
     br.regnskabsmaessigeafskrivninger = new Regnskabstal(rd.regnskabsmaessigeafskrivninger)
-    br.kapitalandeleiassocieredevirksomheder = new Regnskabstal(rd.kapitalandeleiassocieredevirksomheder)
+
     return br
   }
 
@@ -32,7 +31,6 @@ class BruttoresultatTal extends ModelBase {
     br.administrationsomkostninger = this.administrationsomkostninger.vaerdi
     br.lokalomkostninger = this.ejendomsomkostninger.vaerdi
     br.regnskabsmaessigeafskrivninger = this.regnskabsmaessigeafskrivninger.vaerdi
-    br.kapitalandeleiassocieredevirksomheder = this.kapitalandeleiassocieredevirksomheder.vaerdi
   }
 
 }

@@ -48,6 +48,14 @@ export default class NoegletalTabel extends Component {
             <NoegletalGraf regnskaber={regnskaber} label="Vareforbrug"
                            felt="resultatopgoerelse.omsaetningTal.vareforbrug"/>}
 
+            <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.andreeksterneomkostninger" label="Andre Eksterne omkostninger"
+                             negative={true}
+                             regnskaber={regnskaber}
+                             onClick={()=>this.selectNoegletal('resultatopgoerelse.omsaetningTal.andreeksterneomkostninger')} />
+            {selected==='resultatopgoerelse.omsaetningTal.andreeksterneomkostninger' &&
+            <NoegletalGraf regnskaber={regnskaber} label="Andre Eksterne omkostninger"
+                           felt="resultatopgoerelse.omsaetningTal.andreeksterneomkostninger"/>}
+
             <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.driftsindtaegter" label="Andre driftsindtægter"
                              regnskaber={regnskaber}
                              onClick={()=>this.selectNoegletal('resultatopgoerelse.omsaetningTal.driftsindtaegter')} />
@@ -62,15 +70,6 @@ export default class NoegletalTabel extends Component {
             {selected==='resultatopgoerelse.omsaetningTal.eksterneomkostninger' &&
             <NoegletalGraf regnskaber={regnskaber} label="Eksterne omkostninger"
                            felt="resultatopgoerelse.omsaetningTal.eksterneomkostninger"/>}
-
-            <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.andreeksterneomkostninger" label="Andre Eksterne omkostninger"
-                             negative={true}
-                             regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.omsaetningTal.andreeksterneomkostninger')} />
-            {selected==='resultatopgoerelse.omsaetningTal.andreeksterneomkostninger' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Andre Eksterne omkostninger"
-                           felt="resultatopgoerelse.omsaetningTal.andreeksterneomkostninger"/>}
-
 
             <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.variableomkostninger" label="Variable omkostninger"
                              negative={true}
@@ -88,20 +87,12 @@ export default class NoegletalTabel extends Component {
             {selected==='resultatopgoerelse.bruttoresultatTal.bruttofortjeneste' && <NoegletalGraf regnskaber={regnskaber} label="Bruttofortjeneste"
                            felt="resultatopgoerelse.bruttoresultatTal.bruttofortjeneste"/>}
 
-            <NoegletalRaekke felt="resultatopgoerelse.bruttoresultatTal.kapitalandeleiassocieredevirksomheder"
-                             label="Indtægter af kapitalandele" regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.bruttoresultatTal.kapitalandeleiassocieredevirksomheder')} />
-            {selected==='resultatopgoerelse.bruttoresultatTal.kapitalandeleiassocieredevirksomheder' &&
-                  <NoegletalGraf regnskaber={regnskaber} label="Indtægter af kapitalandele"
-                                 felt="resultatopgoerelse.bruttoresultatTal.kapitalandeleiassocieredevirksomheder"/>}
-
             <NoegletalRaekke felt="resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger"
                              label="Personaleomkostninger" regnskaber={regnskaber} negative={true}
                              onClick={()=>this.selectNoegletal('resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger')} />
             {selected==='resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger' &&
             <NoegletalGraf regnskaber={regnskaber} label="Personaleomkostninger"
                            felt="resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger"/>}
-
 
             <NoegletalRaekke felt="resultatopgoerelse.bruttoresultatTal.regnskabsmaessigeafskrivninger"
                              label="Afskrivninger" regnskaber={regnskaber} negative={true}
@@ -124,7 +115,6 @@ export default class NoegletalTabel extends Component {
             <NoegletalGraf regnskaber={regnskaber} label="Administrative omkostninger"
                            felt="resultatopgoerelse.bruttoresultatTal.administrationsomkostninger"/>}
 
-
             {this.emptyRow()}
 
             <NoegletalRaekke felt="resultatopgoerelse.nettoresultatTal.driftsresultat"
@@ -134,6 +124,20 @@ export default class NoegletalTabel extends Component {
             {selected==='resultatopgoerelse.nettoresultatTal.driftsresultat' &&
             <NoegletalGraf regnskaber={regnskaber} label="Resultat før finansielle poster"
                            felt="resultatopgoerelse.nettoresultatTal.driftsresultat"/>}
+
+            <NoegletalRaekke felt="resultatopgoerelse.nettoresultatTal.kapitalandeleiassocieredevirksomheder"
+                             label="Kapitalandele i associerede virksomheder" regnskaber={regnskaber}
+                             onClick={()=>this.selectNoegletal('resultatopgoerelse.nettoresultatTal.kapitalandeleiassocieredevirksomheder')} />
+            {selected==='resultatopgoerelse.nettoresultatTal.kapitalandeleiassocieredevirksomheder' &&
+            <NoegletalGraf regnskaber={regnskaber} label="Kapitalandele i associerede virksomheder"
+                           felt="resultatopgoerelse.nettoresultatTal.kapitalandeleiassocieredevirksomheder"/>}
+
+            <NoegletalRaekke felt="resultatopgoerelse.nettoresultatTal.kapitalandeleitilknyttedevirksomheder"
+                             label="Kapitalandele i tilknyttede virksomheder" regnskaber={regnskaber}
+                             onClick={()=>this.selectNoegletal('resultatopgoerelse.nettoresultatTal.kapitalandeleitilknyttedevirksomheder')} />
+            {selected==='resultatopgoerelse.nettoresultatTal.kapitalandeleitilknyttedevirksomheder' &&
+            <NoegletalGraf regnskaber={regnskaber} label="Kapitalandele i tilknyttede virksomheder"
+                           felt="resultatopgoerelse.nettoresultatTal.kapitalandeleitilknyttedevirksomheder"/>}
 
             <NoegletalRaekke felt="resultatopgoerelse.nettoresultatTal.finansielleindtaegter"
                              label="Finansielle indtægter" regnskaber={regnskaber}
