@@ -29,7 +29,11 @@ export default class VaerdiGraf extends Component {
     });
 
     const vaerdier = regnskaber.map((regnskab) => {
-      return resolveJsonValue( felt, regnskab.aktueltAarsregnskab).vaerdi
+      const vaerdi = resolveJsonValue( felt, regnskab.aktueltAarsregnskab)
+      if (vaerdi) {
+        return vaerdi.vaerdi;
+      }
+      return null;
     });
 
     const options = {
