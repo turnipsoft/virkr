@@ -67,8 +67,8 @@ export default class NoegletalTabel extends Component {
                              negative={true}
                              regnskaber={regnskaber}
                              onClick={()=>this.selectNoegletal('resultatopgoerelse.omsaetningTal.andreeksterneomkostninger')} />
-            {selected==='resultatopgoerelse.omsaetningTal.eksterneomkostninger' &&
-            <NoegletalGraf regnskaber={regnskaber} label="AndreEksterne omkostninger"
+            {selected==='resultatopgoerelse.omsaetningTal.andreeksterneomkostninger' &&
+            <NoegletalGraf regnskaber={regnskaber} label="Andre Eksterne omkostninger"
                            felt="resultatopgoerelse.omsaetningTal.andreeksterneomkostninger"/>}
 
 
