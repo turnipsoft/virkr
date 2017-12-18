@@ -1,0 +1,1528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbrl xmlns="http://www.xbrl.org/2003/instance" xmlns:g="http://xbrl.dcca.dk/sob"
+      xmlns:b="http://xbrl.dcca.dk/entryBalanceSheetAccountFormIncomeStatementByNature"
+      xmlns:h="http://xbrl.dcca.dk/mrv" xmlns:f="http://xbrl.dcca.dk/arr" xmlns:d="http://xbrl.dcca.dk/cmn"
+      xmlns:e="http://xbrl.dcca.dk/fsa" xmlns:c="http://xbrl.dcca.dk/gsd" xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
+      xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:link="http://www.xbrl.org/2003/linkbase"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://xbrl.dcca.dk/entryBalanceSheetAccountFormIncomeStatementByNature http://archprod.service.eogs.dk/taxonomy/20161001/entryDanishGAAPBalanceSheetAccountFormIncomeStatementByNatureIncludingManagementsReviewStatisticsAndTax20161001.xsd">
+  <link:schemaRef xlink:type="simple"
+                  xlink:href="http://archprod.service.eogs.dk/taxonomy/20161001/entryDanishGAAPBalanceSheetAccountFormIncomeStatementByNatureIncludingManagementsReviewStatisticsAndTax20161001.xsd"/>
+  <c:InformationOnTypeOfSubmittedReport contextRef="c1">Årsrapport</c:InformationOnTypeOfSubmittedReport>
+  <c:IdentificationNumberCvrOfSubmittingEnterprise contextRef="c1">29442789
+  </c:IdentificationNumberCvrOfSubmittingEnterprise>
+  <c:NameOfSubmittingEnterprise contextRef="c1">Redmark, Statsautoriseret Revisionspartnerselskab
+  </c:NameOfSubmittingEnterprise>
+  <c:AddressOfSubmittingEnterpriseStreetAndNumber contextRef="c1">Hasseris Bymidte, 6
+  </c:AddressOfSubmittingEnterpriseStreetAndNumber>
+  <c:AddressOfSubmittingEnterprisePostcodeAndTown contextRef="c1">9000, Aalborg
+  </c:AddressOfSubmittingEnterprisePostcodeAndTown>
+  <c:PrecedingReportingPeriodStartDate contextRef="c1">2015-07-01</c:PrecedingReportingPeriodStartDate>
+  <c:PredingReportingPeriodEndDate contextRef="c1">2016-06-30</c:PredingReportingPeriodEndDate>
+  <c:ReportingPeriodStartDate contextRef="c1">2016-07-01</c:ReportingPeriodStartDate>
+  <c:ReportingPeriodEndDate contextRef="c1">2017-06-30</c:ReportingPeriodEndDate>
+  <c:DateOfApprovalOfReport contextRef="c1">2017-08-31</c:DateOfApprovalOfReport>
+  <c:IdentificationNumberCvrOfReportingEntity contextRef="c1">30714024</c:IdentificationNumberCvrOfReportingEntity>
+  <c:NameOfReportingEntity contextRef="c1">NineConsult A/S</c:NameOfReportingEntity>
+  <c:AddressOfReportingEntityStreetName contextRef="c1">Kongens Nytorv</c:AddressOfReportingEntityStreetName>
+  <c:AddressOfReportingEntityStreetBuildingIdentifier contextRef="c1">3-5
+  </c:AddressOfReportingEntityStreetBuildingIdentifier>
+  <c:AddressOfReportingEntityPostCodeIdentifier contextRef="c1">1050</c:AddressOfReportingEntityPostCodeIdentifier>
+  <c:AddressOfReportingEntityDistrictName contextRef="c1">København K</c:AddressOfReportingEntityDistrictName>
+  <c:NameOfFinancialInstitution contextRef="c1">Spar Nord</c:NameOfFinancialInstitution>
+  <d:NameOfAuditFirm contextRef="c88">Redmark, Statsautoriseret Revisionspartnerselskab</d:NameOfAuditFirm>
+  <d:IdentificationNumberCvrOfAuditFirm contextRef="c88">29442789</d:IdentificationNumberCvrOfAuditFirm>
+  <d:NameAndSurnameOfAuditor contextRef="c88">Marian Fruergaard</d:NameAndSurnameOfAuditor>
+  <d:DescriptionOfAuditor contextRef="c88">statsautoriseret revisor</d:DescriptionOfAuditor>
+  <c:AddressOfAuditorStreetName contextRef="c88">Hasseris Bymidte</c:AddressOfAuditorStreetName>
+  <c:AddressOfAuditorStreetBuildingIdentifier contextRef="c88">6</c:AddressOfAuditorStreetBuildingIdentifier>
+  <c:AddressOfAuditorPostCodeIdentifier contextRef="c88">9000</c:AddressOfAuditorPostCodeIdentifier>
+  <c:AddressOfAuditorDistrictName contextRef="c88">Aalborg</c:AddressOfAuditorDistrictName>
+  <c:AddressOfAuditorCountry contextRef="c1">Danmark</c:AddressOfAuditorCountry>
+  <c:TelephoneNumberOfAuditor contextRef="c88">98183333</c:TelephoneNumberOfAuditor>
+  <c:EmailOfAuditor contextRef="c1">aalborg@redmark.dk</c:EmailOfAuditor>
+  <c:DateOfGeneralMeeting contextRef="c1">2017-09-14</c:DateOfGeneralMeeting>
+  <c:NameAndSurnameOfChairmanOfGeneralMeeting contextRef="c1">Christian Hoffmann
+  </c:NameAndSurnameOfChairmanOfGeneralMeeting>
+  <e:ClassOfReportingEntity contextRef="c1">Regnskabsklasse C, mellemstor virksomhed</e:ClassOfReportingEntity>
+  <d:TypeOfAuditorAssistance contextRef="c1">Revisionspåtegning</d:TypeOfAuditorAssistance>
+  <f:AddresseeOfAuditorsReportOnAuditedFinancialStatements contextRef="c1">aktionærerne
+  </f:AddresseeOfAuditorsReportOnAuditedFinancialStatements>
+  <f:SignatureOfAuditorsPlace contextRef="c1">Aalborg</f:SignatureOfAuditorsPlace>
+  <f:SignatureOfAuditorsDate contextRef="c1">2017-08-31</f:SignatureOfAuditorsDate>
+  <g:PlaceOfSignatureOfStatement contextRef="c1">København K</g:PlaceOfSignatureOfStatement>
+  <g:DateOfApprovalOfAnnualReport contextRef="c1">2017-08-31</g:DateOfApprovalOfAnnualReport>
+  <e:GrossProfitLoss contextRef="c1" unitRef="u5" decimals="0">98289048</e:GrossProfitLoss>
+  <e:GrossProfitLoss contextRef="c3" unitRef="u5" decimals="0">87883765</e:GrossProfitLoss>
+  <e:EmployeeBenefitsExpense contextRef="c1" unitRef="u5" decimals="0">73206857</e:EmployeeBenefitsExpense>
+  <e:EmployeeBenefitsExpense contextRef="c3" unitRef="u5" decimals="0">66617494</e:EmployeeBenefitsExpense>
+  <e:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
+    contextRef="c1" unitRef="u5" decimals="0">1546046
+  </e:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss>
+  <e:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
+    contextRef="c3" unitRef="u5" decimals="0">1607829
+  </e:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss>
+  <e:ProfitLossFromOrdinaryOperatingActivities contextRef="c1" unitRef="u5" decimals="0">23536145
+  </e:ProfitLossFromOrdinaryOperatingActivities>
+  <e:ProfitLossFromOrdinaryOperatingActivities contextRef="c3" unitRef="u5" decimals="0">19658442
+  </e:ProfitLossFromOrdinaryOperatingActivities>
+  <e:OtherFinanceIncome contextRef="c1" unitRef="u5" decimals="0">31133</e:OtherFinanceIncome>
+  <e:OtherFinanceIncome contextRef="c3" unitRef="u5" decimals="0">63203</e:OtherFinanceIncome>
+  <e:OtherFinanceExpenses contextRef="c1" unitRef="u5" decimals="0">26253</e:OtherFinanceExpenses>
+  <e:OtherFinanceExpenses contextRef="c3" unitRef="u5" decimals="0">17236</e:OtherFinanceExpenses>
+  <e:ProfitLossFromOrdinaryActivitiesBeforeTax contextRef="c1" unitRef="u5" decimals="0">23541025
+  </e:ProfitLossFromOrdinaryActivitiesBeforeTax>
+  <e:ProfitLossFromOrdinaryActivitiesBeforeTax contextRef="c3" unitRef="u5" decimals="0">19704409
+  </e:ProfitLossFromOrdinaryActivitiesBeforeTax>
+  <e:TaxExpenseOnOrdinaryActivities contextRef="c1" unitRef="u5" decimals="0">5209939</e:TaxExpenseOnOrdinaryActivities>
+  <e:TaxExpenseOnOrdinaryActivities contextRef="c3" unitRef="u5" decimals="0">4189184</e:TaxExpenseOnOrdinaryActivities>
+  <e:ProfitLoss contextRef="c1" unitRef="u5" decimals="0">18331086</e:ProfitLoss>
+  <e:ProfitLoss contextRef="c3" unitRef="u5" decimals="0">15515225</e:ProfitLoss>
+  <e:ProfitLoss contextRef="c108" unitRef="u5" decimals="0">15000000</e:ProfitLoss>
+  <e:ProfitLoss contextRef="c109" unitRef="u5" decimals="0">20000000</e:ProfitLoss>
+  <e:ProfitLoss contextRef="c122" unitRef="u5" decimals="0">3331086</e:ProfitLoss>
+  <e:ProfitLoss contextRef="c123" unitRef="u5" decimals="0">-4484775</e:ProfitLoss>
+  <e:AcquiredIntangibleAssets contextRef="c6" unitRef="u5" decimals="0">290000</e:AcquiredIntangibleAssets>
+  <e:AcquiredIntangibleAssets contextRef="c4" unitRef="u5" decimals="0">0</e:AcquiredIntangibleAssets>
+  <e:IntangibleAssets contextRef="c6" unitRef="u5" decimals="0">290000</e:IntangibleAssets>
+  <e:IntangibleAssets contextRef="c4" unitRef="u5" decimals="0">0</e:IntangibleAssets>
+  <e:FixturesFittingsToolsAndEquipment contextRef="c6" unitRef="u5" decimals="0">821753
+  </e:FixturesFittingsToolsAndEquipment>
+  <e:FixturesFittingsToolsAndEquipment contextRef="c4" unitRef="u5" decimals="0">913791
+  </e:FixturesFittingsToolsAndEquipment>
+  <e:PropertyPlantAndEquipment contextRef="c6" unitRef="u5" decimals="0">821753</e:PropertyPlantAndEquipment>
+  <e:PropertyPlantAndEquipment contextRef="c4" unitRef="u5" decimals="0">913791</e:PropertyPlantAndEquipment>
+  <e:OtherLongtermReceivables contextRef="c6" unitRef="u5" decimals="0">526075</e:OtherLongtermReceivables>
+  <e:OtherLongtermReceivables contextRef="c4" unitRef="u5" decimals="0">513263</e:OtherLongtermReceivables>
+  <e:LongtermInvestmentsAndReceivables contextRef="c6" unitRef="u5" decimals="0">526075
+  </e:LongtermInvestmentsAndReceivables>
+  <e:LongtermInvestmentsAndReceivables contextRef="c4" unitRef="u5" decimals="0">513263
+  </e:LongtermInvestmentsAndReceivables>
+  <e:NoncurrentAssets contextRef="c6" unitRef="u5" decimals="0">1637828</e:NoncurrentAssets>
+  <e:NoncurrentAssets contextRef="c4" unitRef="u5" decimals="0">1427054</e:NoncurrentAssets>
+  <e:ShorttermTradeReceivables contextRef="c6" unitRef="u5" decimals="0">30715441</e:ShorttermTradeReceivables>
+  <e:ShorttermTradeReceivables contextRef="c4" unitRef="u5" decimals="0">25998853</e:ShorttermTradeReceivables>
+  <e:ContractWorkInProgress contextRef="c6" unitRef="u5" decimals="0">1016859</e:ContractWorkInProgress>
+  <e:ContractWorkInProgress contextRef="c4" unitRef="u5" decimals="0">0</e:ContractWorkInProgress>
+  <e:OtherShorttermReceivables contextRef="c6" unitRef="u5" decimals="0">0</e:OtherShorttermReceivables>
+  <e:OtherShorttermReceivables contextRef="c4" unitRef="u5" decimals="0">25344</e:OtherShorttermReceivables>
+  <e:DeferredIncomeAssets contextRef="c6" unitRef="u5" decimals="0">1533947</e:DeferredIncomeAssets>
+  <e:DeferredIncomeAssets contextRef="c4" unitRef="u5" decimals="0">1033311</e:DeferredIncomeAssets>
+  <e:ShorttermReceivables contextRef="c6" unitRef="u5" decimals="0">33266247</e:ShorttermReceivables>
+  <e:ShorttermReceivables contextRef="c4" unitRef="u5" decimals="0">27057508</e:ShorttermReceivables>
+  <e:CashAndCashEquivalents contextRef="c6" unitRef="u5" decimals="0">19581002</e:CashAndCashEquivalents>
+  <e:CashAndCashEquivalents contextRef="c4" unitRef="u5" decimals="0">22130259</e:CashAndCashEquivalents>
+  <e:CurrentAssets contextRef="c6" unitRef="u5" decimals="0">52847249</e:CurrentAssets>
+  <e:CurrentAssets contextRef="c4" unitRef="u5" decimals="0">49187767</e:CurrentAssets>
+  <e:Assets contextRef="c6" unitRef="u5" decimals="0">54485077</e:Assets>
+  <e:Assets contextRef="c4" unitRef="u5" decimals="0">50614821</e:Assets>
+  <e:ContributedCapital contextRef="c6" unitRef="u5" decimals="0">500000</e:ContributedCapital>
+  <e:ContributedCapital contextRef="c4" unitRef="u5" decimals="0">500000</e:ContributedCapital>
+  <e:RetainedEarnings contextRef="c6" unitRef="u5" decimals="0">14041790</e:RetainedEarnings>
+  <e:RetainedEarnings contextRef="c4" unitRef="u5" decimals="0">10710704</e:RetainedEarnings>
+  <e:ProposedDividendRecognisedInEquity contextRef="c6" unitRef="u5" decimals="0">15000000
+  </e:ProposedDividendRecognisedInEquity>
+  <e:ProposedDividendRecognisedInEquity contextRef="c4" unitRef="u5" decimals="0">20000000
+  </e:ProposedDividendRecognisedInEquity>
+  <e:Equity contextRef="c6" unitRef="u5" decimals="0">29541790</e:Equity>
+  <e:Equity contextRef="c4" unitRef="u5" decimals="0">31210704</e:Equity>
+  <e:ProvisionsForDeferredTax contextRef="c6" unitRef="u5" decimals="0">390239</e:ProvisionsForDeferredTax>
+  <e:ProvisionsForDeferredTax contextRef="c4" unitRef="u5" decimals="0">134062</e:ProvisionsForDeferredTax>
+  <e:OtherProvisions contextRef="c6" unitRef="u5" decimals="0">220000</e:OtherProvisions>
+  <e:OtherProvisions contextRef="c4" unitRef="u5" decimals="0">240000</e:OtherProvisions>
+  <e:Provisions contextRef="c6" unitRef="u5" decimals="0">610239</e:Provisions>
+  <e:Provisions contextRef="c4" unitRef="u5" decimals="0">374062</e:Provisions>
+  <e:ShorttermDebtToBanks contextRef="c6" unitRef="u5" decimals="0">128056</e:ShorttermDebtToBanks>
+  <e:ShorttermDebtToBanks contextRef="c4" unitRef="u5" decimals="0">61562</e:ShorttermDebtToBanks>
+  <e:ShorttermTradePayables contextRef="c6" unitRef="u5" decimals="0">3662146</e:ShorttermTradePayables>
+  <e:ShorttermTradePayables contextRef="c4" unitRef="u5" decimals="0">717173</e:ShorttermTradePayables>
+  <e:ShorttermTaxPayables contextRef="c6" unitRef="u5" decimals="0">4162762</e:ShorttermTaxPayables>
+  <e:ShorttermTaxPayables contextRef="c4" unitRef="u5" decimals="0">4335101</e:ShorttermTaxPayables>
+  <e:OtherShorttermPayables contextRef="c6" unitRef="u5" decimals="0">16088417</e:OtherShorttermPayables>
+  <e:OtherShorttermPayables contextRef="c4" unitRef="u5" decimals="0">13798890</e:OtherShorttermPayables>
+  <e:ShorttermDeferredIncome contextRef="c6" unitRef="u5" decimals="0">291667</e:ShorttermDeferredIncome>
+  <e:ShorttermDeferredIncome contextRef="c4" unitRef="u5" decimals="0">117329</e:ShorttermDeferredIncome>
+  <e:ShorttermLiabilitiesOtherThanProvisions contextRef="c6" unitRef="u5" decimals="0">24333048
+  </e:ShorttermLiabilitiesOtherThanProvisions>
+  <e:ShorttermLiabilitiesOtherThanProvisions contextRef="c4" unitRef="u5" decimals="0">19030055
+  </e:ShorttermLiabilitiesOtherThanProvisions>
+  <e:LiabilitiesOtherThanProvisions contextRef="c6" unitRef="u5" decimals="0">24333048
+  </e:LiabilitiesOtherThanProvisions>
+  <e:LiabilitiesOtherThanProvisions contextRef="c4" unitRef="u5" decimals="0">19030055
+  </e:LiabilitiesOtherThanProvisions>
+  <e:LiabilitiesAndEquity contextRef="c6" unitRef="u5" decimals="0">54485077</e:LiabilitiesAndEquity>
+  <e:LiabilitiesAndEquity contextRef="c4" unitRef="u5" decimals="0">50614821</e:LiabilitiesAndEquity>
+  <e:ProfitLoss contextRef="c1" unitRef="u5" decimals="0">18331086</e:ProfitLoss>
+  <e:ProfitLoss contextRef="c3" unitRef="u5" decimals="0">15515225</e:ProfitLoss>
+  <e:Adjustments contextRef="c1" unitRef="u5" decimals="0">5845750</e:Adjustments>
+  <e:Adjustments contextRef="c3" unitRef="u5" decimals="0">4736907</e:Adjustments>
+  <e:AdjustmentsForDecreaseIncreaseInWorkingCapital contextRef="c1" unitRef="u5" decimals="0">-819898
+  </e:AdjustmentsForDecreaseIncreaseInWorkingCapital>
+  <e:AdjustmentsForDecreaseIncreaseInWorkingCapital contextRef="c3" unitRef="u5" decimals="0">3860233
+  </e:AdjustmentsForDecreaseIncreaseInWorkingCapital>
+  <e:CashFlowFromOperatingActivitiesBeforeFinancialItems contextRef="c1" unitRef="u5" decimals="0">23356938
+  </e:CashFlowFromOperatingActivitiesBeforeFinancialItems>
+  <e:CashFlowFromOperatingActivitiesBeforeFinancialItems contextRef="c3" unitRef="u5" decimals="0">24112365
+  </e:CashFlowFromOperatingActivitiesBeforeFinancialItems>
+  <e:InterestReceivedClassifiedAsOperatingActivities contextRef="c1" unitRef="u5" decimals="0">31133
+  </e:InterestReceivedClassifiedAsOperatingActivities>
+  <e:InterestReceivedClassifiedAsOperatingActivities contextRef="c3" unitRef="u5" decimals="0">63202
+  </e:InterestReceivedClassifiedAsOperatingActivities>
+  <e:InterestPaidClassifiedAsOperatingActivities contextRef="c1" unitRef="u5" decimals="0">26253
+  </e:InterestPaidClassifiedAsOperatingActivities>
+  <e:InterestPaidClassifiedAsOperatingActivities contextRef="c3" unitRef="u5" decimals="0">17236
+  </e:InterestPaidClassifiedAsOperatingActivities>
+  <e:CashFlowFromOrdinaryOperatingActivities contextRef="c1" unitRef="u5" decimals="0">23361818
+  </e:CashFlowFromOrdinaryOperatingActivities>
+  <e:CashFlowFromOrdinaryOperatingActivities contextRef="c3" unitRef="u5" decimals="0">24158331
+  </e:CashFlowFromOrdinaryOperatingActivities>
+  <e:IncomeTaxesPaidRefundClassifiedAsOperatingActivities contextRef="c1" unitRef="u5" decimals="0">5126103
+  </e:IncomeTaxesPaidRefundClassifiedAsOperatingActivities>
+  <e:IncomeTaxesPaidRefundClassifiedAsOperatingActivities contextRef="c3" unitRef="u5" decimals="0">3191482
+  </e:IncomeTaxesPaidRefundClassifiedAsOperatingActivities>
+  <e:CashFlowsFromUsedInOperatingActivities contextRef="c1" unitRef="u5" decimals="0">18235715
+  </e:CashFlowsFromUsedInOperatingActivities>
+  <e:CashFlowsFromUsedInOperatingActivities contextRef="c3" unitRef="u5" decimals="0">20966849
+  </e:CashFlowsFromUsedInOperatingActivities>
+  <e:PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities contextRef="c1" unitRef="u5" decimals="0">350000
+  </e:PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities>
+  <e:PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities contextRef="c3" unitRef="u5" decimals="0">0
+  </e:PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities>
+  <e:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities contextRef="c1" unitRef="u5" decimals="0">
+    488654
+  </e:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities>
+  <e:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities contextRef="c3" unitRef="u5" decimals="0">
+    523739
+  </e:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities>
+  <e:PurchaseOfInvestments contextRef="c1" unitRef="u5" decimals="0">12812</e:PurchaseOfInvestments>
+  <e:PurchaseOfInvestments contextRef="c3" unitRef="u5" decimals="0">12500</e:PurchaseOfInvestments>
+  <e:CashFlowsFromUsedInInvestingActivities contextRef="c1" unitRef="u5" decimals="0">-851466
+  </e:CashFlowsFromUsedInInvestingActivities>
+  <e:CashFlowsFromUsedInInvestingActivities contextRef="c3" unitRef="u5" decimals="0">-536239
+  </e:CashFlowsFromUsedInInvestingActivities>
+  <e:DividendPaidCashFlow contextRef="c1" unitRef="u5" decimals="0">20000000</e:DividendPaidCashFlow>
+  <e:DividendPaidCashFlow contextRef="c3" unitRef="u5" decimals="0">16000000</e:DividendPaidCashFlow>
+  <e:CashFlowsFromUsedInFinancingActivities contextRef="c1" unitRef="u5" decimals="0">-20000000
+  </e:CashFlowsFromUsedInFinancingActivities>
+  <e:CashFlowsFromUsedInFinancingActivities contextRef="c3" unitRef="u5" decimals="0">-16000000
+  </e:CashFlowsFromUsedInFinancingActivities>
+  <e:NetIncreaseDecreaseInCashAndCashEquivalents contextRef="c1" unitRef="u5" decimals="0">-2615751
+  </e:NetIncreaseDecreaseInCashAndCashEquivalents>
+  <e:NetIncreaseDecreaseInCashAndCashEquivalents contextRef="c3" unitRef="u5" decimals="0">4430610
+  </e:NetIncreaseDecreaseInCashAndCashEquivalents>
+  <e:CashAndCashEquivalentsConcerningCashflowStatement contextRef="c420" unitRef="u5" decimals="0">22068697
+  </e:CashAndCashEquivalentsConcerningCashflowStatement>
+  <e:CashAndCashEquivalentsConcerningCashflowStatement contextRef="c421" unitRef="u5" decimals="0">17638087
+  </e:CashAndCashEquivalentsConcerningCashflowStatement>
+  <e:CashAndCashEquivalentsConcerningCashflowStatement contextRef="c6" unitRef="u5" decimals="0">19452946
+  </e:CashAndCashEquivalentsConcerningCashflowStatement>
+  <e:CashAndCashEquivalentsConcerningCashflowStatement contextRef="c4" unitRef="u5" decimals="0">22068697
+  </e:CashAndCashEquivalentsConcerningCashflowStatement>
+  <e:CashAndCashEquivalents contextRef="c6" unitRef="u5" decimals="0">19581002</e:CashAndCashEquivalents>
+  <e:CashAndCashEquivalents contextRef="c4" unitRef="u5" decimals="0">22130259</e:CashAndCashEquivalents>
+  <e:ShorttermDebtToBanksCashFlowsStatement contextRef="c6" unitRef="u5" decimals="0">-128056
+  </e:ShorttermDebtToBanksCashFlowsStatement>
+  <e:ShorttermDebtToBanksCashFlowsStatement contextRef="c4" unitRef="u5" decimals="0">-61562
+  </e:ShorttermDebtToBanksCashFlowsStatement>
+  <e:WagesAndSalaries contextRef="c1" unitRef="u5" decimals="0">66391265</e:WagesAndSalaries>
+  <e:WagesAndSalaries contextRef="c3" unitRef="u5" decimals="0">61147779</e:WagesAndSalaries>
+  <e:PostemploymentBenefitExpense contextRef="c1" unitRef="u5" decimals="0">2213616</e:PostemploymentBenefitExpense>
+  <e:PostemploymentBenefitExpense contextRef="c3" unitRef="u5" decimals="0">1991490</e:PostemploymentBenefitExpense>
+  <e:SocialSecurityContributions contextRef="c1" unitRef="u5" decimals="0">500564</e:SocialSecurityContributions>
+  <e:SocialSecurityContributions contextRef="c3" unitRef="u5" decimals="0">408805</e:SocialSecurityContributions>
+  <e:OtherEmployeeExpense contextRef="c1" unitRef="u5" decimals="0">4101412</e:OtherEmployeeExpense>
+  <e:OtherEmployeeExpense contextRef="c3" unitRef="u5" decimals="0">3069420</e:OtherEmployeeExpense>
+  <e:EmployeeBenefitsExpense contextRef="c1" unitRef="u5" decimals="0">73206857</e:EmployeeBenefitsExpense>
+  <e:EmployeeBenefitsExpense contextRef="c3" unitRef="u5" decimals="0">66617494</e:EmployeeBenefitsExpense>
+  <e:AverageNumberOfEmployees contextRef="c1" unitRef="u7" decimals="INF">77</e:AverageNumberOfEmployees>
+  <e:AverageNumberOfEmployees contextRef="c3" unitRef="u7" decimals="INF">74</e:AverageNumberOfEmployees>
+  <e:OtherInterestExpenses contextRef="c1" unitRef="u5" decimals="0">26253</e:OtherInterestExpenses>
+  <e:OtherInterestExpenses contextRef="c3" unitRef="u5" decimals="0">17236</e:OtherInterestExpenses>
+  <e:OtherFinanceExpenses contextRef="c1" unitRef="u5" decimals="0">26253</e:OtherFinanceExpenses>
+  <e:OtherFinanceExpenses contextRef="c3" unitRef="u5" decimals="0">17236</e:OtherFinanceExpenses>
+  <e:AdditionsToIntangibleAssets contextRef="c350" unitRef="u5" decimals="0">350000</e:AdditionsToIntangibleAssets>
+  <e:IntangibleAssetsGross contextRef="c351" unitRef="u5" decimals="0">350000</e:IntangibleAssetsGross>
+  <e:AmortisationOfIntangibleAssets contextRef="c350" unitRef="u5" decimals="0">60000</e:AmortisationOfIntangibleAssets>
+  <e:AccumulatedImpairmentLossesAndAmortisationOfIntangibleAssets contextRef="c351" unitRef="u5" decimals="0">60000
+  </e:AccumulatedImpairmentLossesAndAmortisationOfIntangibleAssets>
+  <e:IntangibleAssets contextRef="c351" unitRef="u5" decimals="0">290000</e:IntangibleAssets>
+  <e:PropertyPlantAndEquipmentGross contextRef="c160" unitRef="u5" decimals="0">2739271
+  </e:PropertyPlantAndEquipmentGross>
+  <e:AdditionsToPropertyPlantAndEquipment contextRef="c161" unitRef="u5" decimals="0">488654
+  </e:AdditionsToPropertyPlantAndEquipment>
+  <e:DisposalsOfPropertyPlantAndEquipment contextRef="c161" unitRef="u5" decimals="0">337448
+  </e:DisposalsOfPropertyPlantAndEquipment>
+  <e:PropertyPlantAndEquipmentGross contextRef="c162" unitRef="u5" decimals="0">2890477
+  </e:PropertyPlantAndEquipmentGross>
+  <e:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment contextRef="c160" unitRef="u5" decimals="0">
+    1731940
+  </e:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment>
+  <e:DepreciationOfPropertyPlantAndEquipment contextRef="c161" unitRef="u5" decimals="0">580691
+  </e:DepreciationOfPropertyPlantAndEquipment>
+  <e:ImpairmentLossesAndDepreciationOfDisposedPropertyPlantAndEquipment contextRef="c161" unitRef="u5" decimals="0">
+    -337448
+  </e:ImpairmentLossesAndDepreciationOfDisposedPropertyPlantAndEquipment>
+  <e:ReversalsOfImpairmentLossesAndDepreciationOfDisposedPropertyPlantAndEquipment contextRef="c161" unitRef="u5"
+                                                                                   decimals="0">-93541
+  </e:ReversalsOfImpairmentLossesAndDepreciationOfDisposedPropertyPlantAndEquipment>
+  <e:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment contextRef="c162" unitRef="u5" decimals="0">
+    2068724
+  </e:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment>
+  <e:PropertyPlantAndEquipment contextRef="c162" unitRef="u5" decimals="0">821753</e:PropertyPlantAndEquipment>
+  <e:InvestmentsGross contextRef="c139" unitRef="u5" decimals="0">513263</e:InvestmentsGross>
+  <e:AdditionsToInvestments contextRef="c140" unitRef="u5" decimals="0">12812</e:AdditionsToInvestments>
+  <e:InvestmentsGross contextRef="c141" unitRef="u5" decimals="0">526075</e:InvestmentsGross>
+  <e:LongtermInvestmentsAndReceivables contextRef="c141" unitRef="u5" decimals="0">526075
+  </e:LongtermInvestmentsAndReceivables>
+  <e:Equity contextRef="c181" unitRef="u5" decimals="0">500000</e:Equity>
+  <e:Equity contextRef="c720" unitRef="u5" decimals="0">500000</e:Equity>
+  <e:Equity contextRef="c183" unitRef="u5" decimals="0">500000</e:Equity>
+  <e:Equity contextRef="c722" unitRef="u5" decimals="0">500000</e:Equity>
+  <e:Equity contextRef="c199" unitRef="u5" decimals="0">10710704</e:Equity>
+  <e:Equity contextRef="c741" unitRef="u5" decimals="0">15195479</e:Equity>
+  <e:ProfitLoss contextRef="c200" unitRef="u5" decimals="0">3331086</e:ProfitLoss>
+  <e:ProfitLoss contextRef="c742" unitRef="u5" decimals="0">-4484775</e:ProfitLoss>
+  <e:Equity contextRef="c201" unitRef="u5" decimals="0">14041790</e:Equity>
+  <e:Equity contextRef="c743" unitRef="u5" decimals="0">10710704</e:Equity>
+  <e:Equity contextRef="c202" unitRef="u5" decimals="0">20000000</e:Equity>
+  <e:Equity contextRef="c744" unitRef="u5" decimals="0">16000000</e:Equity>
+  <e:DividendPaid contextRef="c203" unitRef="u5" decimals="0">20000000</e:DividendPaid>
+  <e:DividendPaid contextRef="c745" unitRef="u5" decimals="0">16000000</e:DividendPaid>
+  <e:Dividend contextRef="c203" unitRef="u5" decimals="0">15000000</e:Dividend>
+  <e:Dividend contextRef="c745" unitRef="u5" decimals="0">20000000</e:Dividend>
+  <e:Equity contextRef="c204" unitRef="u5" decimals="0">15000000</e:Equity>
+  <e:Equity contextRef="c746" unitRef="u5" decimals="0">20000000</e:Equity>
+  <e:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssets contextRef="c1"
+                                                                                                      unitRef="u5"
+                                                                                                      decimals="0">
+    640691
+  </e:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssets>
+  <e:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssets contextRef="c3"
+                                                                                                      unitRef="u5"
+                                                                                                      decimals="0">
+    593690
+  </e:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssets>
+  <e:AdjustmentsOfInterestAndSimilarIncomes contextRef="c1" unitRef="u5" decimals="0">-31133
+  </e:AdjustmentsOfInterestAndSimilarIncomes>
+  <e:AdjustmentsOfInterestAndSimilarIncomes contextRef="c3" unitRef="u5" decimals="0">-63203
+  </e:AdjustmentsOfInterestAndSimilarIncomes>
+  <e:AdjustmentsfInterestAndSimilarExpenses contextRef="c1" unitRef="u5" decimals="0">26253
+  </e:AdjustmentsfInterestAndSimilarExpenses>
+  <e:AdjustmentsfInterestAndSimilarExpenses contextRef="c3" unitRef="u5" decimals="0">17236
+  </e:AdjustmentsfInterestAndSimilarExpenses>
+  <e:AdjustmentsOfTaxExpense contextRef="c1" unitRef="u5" decimals="0">5209939</e:AdjustmentsOfTaxExpense>
+  <e:AdjustmentsOfTaxExpense contextRef="c3" unitRef="u5" decimals="0">4189184</e:AdjustmentsOfTaxExpense>
+  <e:DecreaseIncreaseInReceivables contextRef="c1" unitRef="u5" decimals="0">-6208739</e:DecreaseIncreaseInReceivables>
+  <e:DecreaseIncreaseInReceivables contextRef="c3" unitRef="u5" decimals="0">8373909</e:DecreaseIncreaseInReceivables>
+  <e:DecreaseIncreaseInTradePayables contextRef="c1" unitRef="u5" decimals="0">5408841
+  </e:DecreaseIncreaseInTradePayables>
+  <e:DecreaseIncreaseInTradePayables contextRef="c3" unitRef="u5" decimals="0">-4753676
+  </e:DecreaseIncreaseInTradePayables>
+  <e:OtherAdjustmentsForDecreaseIncreaseInWorkingCapital contextRef="c1" unitRef="u5" decimals="0">-20000
+  </e:OtherAdjustmentsForDecreaseIncreaseInWorkingCapital>
+  <e:OtherAdjustmentsForDecreaseIncreaseInWorkingCapital contextRef="c3" unitRef="u5" decimals="0">240000
+  </e:OtherAdjustmentsForDecreaseIncreaseInWorkingCapital>
+  <d:NameAndSurnameOfMemberOfExecutiveBoard contextRef="c71">Christian Hoffmann
+  </d:NameAndSurnameOfMemberOfExecutiveBoard>
+  <d:NameAndSurnameOfMemberOfSupervisoryBoard contextRef="c32">Jacob Strange
+  </d:NameAndSurnameOfMemberOfSupervisoryBoard>
+  <d:NameAndSurnameOfMemberOfSupervisoryBoard contextRef="c48">Finn Peder Ramsgaard Hove
+  </d:NameAndSurnameOfMemberOfSupervisoryBoard>
+  <d:NameAndSurnameOfMemberOfSupervisoryBoard contextRef="c49">Christian Hoffmann
+  </d:NameAndSurnameOfMemberOfSupervisoryBoard>
+  <d:TitleOfMemberOfSupervisoryBoard contextRef="c32">Formand</d:TitleOfMemberOfSupervisoryBoard>
+  <d:NameAndSurnameOfMemberOfSupervisoryBoard contextRef="c50">Michael Foldbjerg
+  </d:NameAndSurnameOfMemberOfSupervisoryBoard>
+  <e:GrossResult contextRef="c261" unitRef="u5" decimals="-3">82956000</e:GrossResult>
+  <e:GrossResult contextRef="c264" unitRef="u5" decimals="-3">65416000</e:GrossResult>
+  <e:GrossResult contextRef="c267" unitRef="u5" decimals="-3">50278000</e:GrossResult>
+  <e:ProfitLossFromOrdinaryOperatingActivities contextRef="c261" unitRef="u5" decimals="-3">23451000
+  </e:ProfitLossFromOrdinaryOperatingActivities>
+  <e:ProfitLossFromOrdinaryOperatingActivities contextRef="c264" unitRef="u5" decimals="-3">13859000
+  </e:ProfitLossFromOrdinaryOperatingActivities>
+  <e:ProfitLossFromOrdinaryOperatingActivities contextRef="c267" unitRef="u5" decimals="-3">12961000
+  </e:ProfitLossFromOrdinaryOperatingActivities>
+  <e:ResultsFromNetFinancials contextRef="c1" unitRef="u5" decimals="-3">5000</e:ResultsFromNetFinancials>
+  <e:ResultsFromNetFinancials contextRef="c3" unitRef="u5" decimals="-3">46000</e:ResultsFromNetFinancials>
+  <e:ResultsFromNetFinancials contextRef="c261" unitRef="u5" decimals="-3">49000</e:ResultsFromNetFinancials>
+  <e:ResultsFromNetFinancials contextRef="c264" unitRef="u5" decimals="-3">35000</e:ResultsFromNetFinancials>
+  <e:ResultsFromNetFinancials contextRef="c267" unitRef="u5" decimals="-3">19000</e:ResultsFromNetFinancials>
+  <e:ProfitLoss contextRef="c261" unitRef="u5" decimals="-3">17935000</e:ProfitLoss>
+  <e:ProfitLoss contextRef="c264" unitRef="u5" decimals="-3">10466000</e:ProfitLoss>
+  <e:ProfitLoss contextRef="c267" unitRef="u5" decimals="-3">9696000</e:ProfitLoss>
+  <e:Assets contextRef="c263" unitRef="u5" decimals="-3">54554000</e:Assets>
+  <e:Assets contextRef="c266" unitRef="u5" decimals="-3">38233000</e:Assets>
+  <e:Assets contextRef="c269" unitRef="u5" decimals="-3">25568000</e:Assets>
+  <e:InvestmentInPropertyPlantAndEquipment contextRef="c1" unitRef="u5" decimals="-3">489000
+  </e:InvestmentInPropertyPlantAndEquipment>
+  <e:InvestmentInPropertyPlantAndEquipment contextRef="c3" unitRef="u5" decimals="-3">524000
+  </e:InvestmentInPropertyPlantAndEquipment>
+  <e:Assets contextRef="c263" unitRef="u5" decimals="-3">676000</e:Assets>
+  <e:Assets contextRef="c266" unitRef="u5" decimals="-3">558000</e:Assets>
+  <e:Assets contextRef="c269" unitRef="u5" decimals="-3">659000</e:Assets>
+  <e:Equity contextRef="c263" unitRef="u5" decimals="-3">31695000</e:Equity>
+  <e:Equity contextRef="c266" unitRef="u5" decimals="-3">20761000</e:Equity>
+  <e:Equity contextRef="c269" unitRef="u5" decimals="-3">15295000</e:Equity>
+  <e:CashFlowsFromUsedInOperatingActivities contextRef="c261" unitRef="u5" decimals="-3">8454000
+  </e:CashFlowsFromUsedInOperatingActivities>
+  <e:CashFlowsFromUsedInOperatingActivities contextRef="c264" unitRef="u5" decimals="-3">0
+  </e:CashFlowsFromUsedInOperatingActivities>
+  <e:CashFlowsFromUsedInOperatingActivities contextRef="c267" unitRef="u5" decimals="-3">0
+  </e:CashFlowsFromUsedInOperatingActivities>
+  <e:CashFlowsFromUsedInInvestingActivities contextRef="c261" unitRef="u5" decimals="-3">-676000
+  </e:CashFlowsFromUsedInInvestingActivities>
+  <e:CashFlowsFromUsedInInvestingActivities contextRef="c264" unitRef="u5" decimals="-3">0
+  </e:CashFlowsFromUsedInInvestingActivities>
+  <e:CashFlowsFromUsedInInvestingActivities contextRef="c267" unitRef="u5" decimals="-3">0
+  </e:CashFlowsFromUsedInInvestingActivities>
+  <e:CashFlowsFromUsedInFinancingActivities contextRef="c261" unitRef="u5" decimals="-3">-7000000
+  </e:CashFlowsFromUsedInFinancingActivities>
+  <e:CashFlowsFromUsedInFinancingActivities contextRef="c264" unitRef="u5" decimals="-3">0
+  </e:CashFlowsFromUsedInFinancingActivities>
+  <e:CashFlowsFromUsedInFinancingActivities contextRef="c267" unitRef="u5" decimals="-3">0
+  </e:CashFlowsFromUsedInFinancingActivities>
+  <h:ValueOfKeyFigureOrFinancialRatio contextRef="c274" unitRef="u5" decimals="-3">-2616000
+  </h:ValueOfKeyFigureOrFinancialRatio>
+  <h:ValueOfKeyFigureOrFinancialRatio contextRef="c281" unitRef="u5" decimals="-3">4431000
+  </h:ValueOfKeyFigureOrFinancialRatio>
+  <h:ValueOfKeyFigureOrFinancialRatio contextRef="c287" unitRef="u5" decimals="-3">777000
+  </h:ValueOfKeyFigureOrFinancialRatio>
+  <h:ValueOfKeyFigureOrFinancialRatio contextRef="c295" unitRef="u5" decimals="-3">0
+  </h:ValueOfKeyFigureOrFinancialRatio>
+  <h:ValueOfKeyFigureOrFinancialRatio contextRef="c302" unitRef="u5" decimals="-3">0
+  </h:ValueOfKeyFigureOrFinancialRatio>
+  <h:NameOfKeyFigureOrFinancialRatio contextRef="c274">Pengestrømme i alt</h:NameOfKeyFigureOrFinancialRatio>
+  <h:NameOfKeyFigureOrFinancialRatio contextRef="c281">Pengestrømme i alt</h:NameOfKeyFigureOrFinancialRatio>
+  <h:NameOfKeyFigureOrFinancialRatio contextRef="c287">Pengestrømme i alt</h:NameOfKeyFigureOrFinancialRatio>
+  <h:NameOfKeyFigureOrFinancialRatio contextRef="c295">Pengestrømme i alt</h:NameOfKeyFigureOrFinancialRatio>
+  <h:NameOfKeyFigureOrFinancialRatio contextRef="c302">Pengestrømme i alt</h:NameOfKeyFigureOrFinancialRatio>
+  <e:AverageNumberOfEmployees contextRef="c261" unitRef="u7" decimals="INF">65</e:AverageNumberOfEmployees>
+  <e:AverageNumberOfEmployees contextRef="c264" unitRef="u7" decimals="INF">54</e:AverageNumberOfEmployees>
+  <e:AverageNumberOfEmployees contextRef="c267" unitRef="u7" decimals="INF">36</e:AverageNumberOfEmployees>
+  <h:ValueOfKeyFigureOrFinancialRatio contextRef="c483" unitRef="u7" decimals="INF">217.2
+  </h:ValueOfKeyFigureOrFinancialRatio>
+  <h:ValueOfKeyFigureOrFinancialRatio contextRef="c484" unitRef="u7" decimals="INF">258.5
+  </h:ValueOfKeyFigureOrFinancialRatio>
+  <h:ValueOfKeyFigureOrFinancialRatio contextRef="c485" unitRef="u7" decimals="INF">264.8
+  </h:ValueOfKeyFigureOrFinancialRatio>
+  <h:ValueOfKeyFigureOrFinancialRatio contextRef="c486" unitRef="u7" decimals="INF">0
+  </h:ValueOfKeyFigureOrFinancialRatio>
+  <h:ValueOfKeyFigureOrFinancialRatio contextRef="c487" unitRef="u7" decimals="INF">0
+  </h:ValueOfKeyFigureOrFinancialRatio>
+  <h:NameOfKeyFigureOrFinancialRatio contextRef="c483">Likviditetsgrad</h:NameOfKeyFigureOrFinancialRatio>
+  <h:NameOfKeyFigureOrFinancialRatio contextRef="c484">Likviditetsgrad</h:NameOfKeyFigureOrFinancialRatio>
+  <h:NameOfKeyFigureOrFinancialRatio contextRef="c485">Likviditetsgrad</h:NameOfKeyFigureOrFinancialRatio>
+  <h:NameOfKeyFigureOrFinancialRatio contextRef="c486">Likviditetsgrad</h:NameOfKeyFigureOrFinancialRatio>
+  <h:NameOfKeyFigureOrFinancialRatio contextRef="c487">Likviditetsgrad</h:NameOfKeyFigureOrFinancialRatio>
+  <h:EquityRatio contextRef="c1" unitRef="u7" decimals="1">54.2</h:EquityRatio>
+  <h:EquityRatio contextRef="c3" unitRef="u7" decimals="1">61.7</h:EquityRatio>
+  <h:EquityRatio contextRef="c261" unitRef="u7" decimals="1">58.1</h:EquityRatio>
+  <h:EquityRatio contextRef="c264" unitRef="u7" decimals="1">54.3</h:EquityRatio>
+  <h:EquityRatio contextRef="c267" unitRef="u7" decimals="1">59.8</h:EquityRatio>
+  <h:ReturnOnEquity contextRef="c1" unitRef="u7" decimals="1">60.3</h:ReturnOnEquity>
+  <h:ReturnOnEquity contextRef="c3" unitRef="u7" decimals="1">49.3</h:ReturnOnEquity>
+  <h:ReturnOnEquity contextRef="c261" unitRef="u7" decimals="1">68.4</h:ReturnOnEquity>
+  <h:ReturnOnEquity contextRef="c264" unitRef="u7" decimals="1">58.1</h:ReturnOnEquity>
+  <h:ReturnOnEquity contextRef="c267" unitRef="u7" decimals="1">84.7</h:ReturnOnEquity>
+  <g:IdentificationOfApprovedAnnualReport contextRef="c1">Bestyrelse og direktion har dags dato aflagt årsrapporten for
+    2016/17 for NineConsult A/S.
+  </g:IdentificationOfApprovedAnnualReport>
+  <g:ConfirmationThatAnnualReportIsPresentedInAccordanceWithRequirementsProvidedForByLegislationAnyStandardsAndRequirementsProvidedByArticlesOfAssociationOrByAgreement
+    contextRef="c1">Årsrapporten er aflagt i overensstemmelse med årsregnskabsloven.
+  </g:ConfirmationThatAnnualReportIsPresentedInAccordanceWithRequirementsProvidedForByLegislationAnyStandardsAndRequirementsProvidedByArticlesOfAssociationOrByAgreement>
+  <g:ConfirmationThatFinancialStatementGivesTrueAndFairViewOfAssetsLiabilitiesEquityFinancialPositionAndResults
+    contextRef="c1">Vi anser den valgte regnskabspraksis for hensigtsmæssig, og efter vores opfattelse giver
+    årsregnskabet et retvisende billede af selskabets aktiver, passiver og finansielle stilling pr. 30. juni 2017 samt
+    af resultatet af selskabets aktiviteter og pengestrømme for regnskabsåret 1. juli 2016 - 30. juni 2017.
+  </g:ConfirmationThatFinancialStatementGivesTrueAndFairViewOfAssetsLiabilitiesEquityFinancialPositionAndResults>
+  <g:ManagementsStatementAboutManagementsReview contextRef="c1">Ledelsesberetningen indeholder efter vores opfattelse en
+    retvisende redegørelse for de forhold, som beretningen omhandler.
+  </g:ManagementsStatementAboutManagementsReview>
+  <g:RecommendationForApprovalOfAnnualReportByGeneralMeeting contextRef="c1">Årsrapporten indstilles til
+    generalforsamlingens godkendelse.
+
+  </g:RecommendationForApprovalOfAnnualReportByGeneralMeeting>
+  <f:IdentificationOfAuditedFinancialStatements contextRef="c1">Vi har revideret årsregnskabet for NineConsult A/S for
+    regnskabsåret 1. juli 2016 - 30. juni 2017, der omfatter anvendt regnskabspraksis, resultatopgørelse, balance,
+    egenkapitalopgørelse, pengestrømsopgørelse og noter. Årsregnskabet udarbejdes efter årsregnskabsloven.
+  </f:IdentificationOfAuditedFinancialStatements>
+  <f:OpinionOnAuditedFinancialStatements contextRef="c1">Det er vores opfattelse, at årsregnskabet giver et retvisende
+    billede af selskabets aktiver, passiver og finansielle stilling pr. 30. juni 2017 samt af resultatet af selskabets
+    aktiviteter og pengestrømme for regnskabsåret 1. juli 2016 - 30. juni 2017 i overensstemmelse med årsregnskabsloven.
+  </f:OpinionOnAuditedFinancialStatements>
+  <f:DescriptionOfQualificationsOfAuditedFinancialStatements contextRef="c1">Grundlag for konklusion
+    Vi har udført vores revision i overensstemmelse med internationale standarder om revision og de yderligere krav, der
+    er gældende i Danmark. Vores ansvar ifølge disse standarder og krav er nærmere beskrevet i revisionspåtegningens
+    afsnit ”Revisors ansvar for revisionen af årsregnskabet”. Vi er uafhængige af selskabet i overensstemmelse med
+    internationale etiske regler for revisorer (IESBA’s Etiske regler) og de yderligere krav, der er gældende i Danmark,
+    ligesom vi har opfyldt vores øvrige etiske forpligtelser i henhold til disse regler og krav. Det er vores
+    opfattelse, at det opnåede revisionsbevis er tilstrækkeligt og egnet som grundlag for vores konklusion.
+  </f:DescriptionOfQualificationsOfAuditedFinancialStatements>
+  <f:StatementOfExecutiveAndSupervisoryBoardsResponsibilityForFinancialStatements contextRef="c1">Ledelsen har ansvaret
+    for udarbejdelsen af et årsregnskab, der giver et retvisende billede i overensstemmelse med årsregnskabsloven.
+    Ledelsen har endvidere ansvaret for den interne kontrol, som ledelsen anser nødvendig for at udarbejde et
+    årsregnskab uden væsentlig fejlinformation, uanset om denne skyldes besvigelser eller fejl.
+
+    Ved udarbejdelsen af årsregnskabet er ledelsen ansvarlig for at vurdere selskabets evne til at fortsætte driften; at
+    oplyse om forhold vedrørende fortsat drift, hvor dette er relevant; samt at udarbejde årsregnskabet på grundlag af
+    regnskabsprincippet om fortsat drift, medmindre ledelsen enten har til hensigt at likvidere selskabet, indstille
+    driften eller ikke har andet realistisk alternativ end at gøre dette.
+  </f:StatementOfExecutiveAndSupervisoryBoardsResponsibilityForFinancialStatements>
+  <f:StatementOfAuditorsResponsibilityForAuditAndAuditPerformed contextRef="c1">Vores mål er at opnå høj grad af
+    sikkerhed for, om årsregnskabet som helhed er uden væsentlig fejlinformation, uanset om denne skyldes besvigelser
+    eller fejl, og at afgive en revisionspåtegning med en konklusion. Høj grad af sikkerhed er et højt niveau af
+    sikkerhed, men er ikke en garanti for, at en revision, der udføres i overensstemmelse med internationale standarder
+    om revision og de yderligere krav, der er gældende i Danmark, altid vil afdække væsentlig fejlinformation, når sådan
+    findes. Fejlinformationer kan opstå som følge af besvigelser eller fejl og kan betragtes som væsentlige, hvis det
+    med rimelighed kan forventes, at de enkeltvis eller samlet har indflydelse på de økonomiske beslutninger, som
+    regnskabsbrugerne træffer på grundlag af årsregnskabet.
+
+    Som led i en revision, der udføres i overensstemmelse med internationale standarder om revision og de yderligere
+    krav, der er gældende i Danmark, foretager vi faglige vurderinger og opretholder professionel skepsis under
+    revisionen. Herudover:
+
+    Identificerer og vurderer vi risikoen for væsentlig fejlinformation i årsregnskabet, uanset om denne skyldes
+    besvigelser eller fejl, udformer og udfører revisionshandlinger som reaktion på disse risici samt opnår
+    revisionsbevis, der er tilstrækkeligt og egnet til at danne grundlag for vores konklusion. Risikoen for ikke at
+    opdage væsentlig fejlinformation forårsaget af besvigelser er højere end ved væsentlig fejlinformation forårsaget af
+    fejl, idet besvigelser kan omfatte sammensværgelser, dokumentfalsk, bevidste udeladelser, vildledning eller
+    tilsidesættelse af intern kontrol.
+
+    Opnår vi forståelse af den interne kontrol med relevans for revisionen for at kunne udforme revisionshandlinger, der
+    er passende efter omstændighederne, men ikke for at kunne udtrykke en konklusion om effektiviteten af selskabets
+    interne kontrol.
+
+    Tager vi stilling til, om den regnskabspraksis, som er anvendt af ledelsen, er passende, samt om de regnskabsmæssige
+    skøn og tilknyttede oplysninger, som ledelsen har udarbejdet, er rimelige.
+
+    Konkluderer vi, om ledelsens udarbejdelse af årsregnskabet på grundlag af regnskabsprincippet om fortsat drift er
+    passende, samt om der på grundlag af det opnåede revisionsbevis er væsentlig usikkerhed forbundet med begivenheder
+    eller forhold, der kan skabe betydelig tvivl om selskabets evne til at fortsætte driften. Hvis vi konkluderer, at
+    der er en væsentlig usikkerhed, skal vi i vores revisionspåtegning gøre opmærksom på oplysninger herom i
+    årsregnskabet eller, hvis sådanne oplysninger ikke er tilstrækkelige, modificere vores konklusion. Vores
+    konklusioner er baseret på det revisionsbevis, der er opnået frem til datoen for vores revisionspåtegning.
+    Fremtidige begivenheder eller forhold kan dog medføre, at selskabet ikke længere kan fortsætte driften.
+
+    Tager vi stilling til den samlede præsentation, struktur og indhold af årsregnskabet, herunder noteoplysningerne,
+    samt om årsregnskabet afspejler de underliggende transaktioner og begivenheder på en sådan måde, at der gives et
+    retvisende billede heraf.
+
+    Vi kommunikerer med den øverste ledelse om blandt andet det planlagte omfang og den tidsmæssige placering af
+    revisionen samt betydelige revisionsmæssige observationer, herunder eventuelle betydelige mangler i intern kontrol,
+    som vi identificerer under revisionen.
+  </f:StatementOfAuditorsResponsibilityForAuditAndAuditPerformed>
+  <f:StatementOnManagementsReviewAuditorsReportOnAuditedFinancialStatements contextRef="c1">Udtalelse om
+    ledelsesberetningen
+    Ledelsen er ansvarlig for ledelsesberetningen.
+
+    Vores konklusion om årsregnskabet omfatter ikke ledelsesberetningen, og vi udtrykker ingen form for konklusion med
+    sikkerhed om ledelsesberetningen.
+
+    I tilknytning til vores revision af årsregnskabet er det vores ansvar at læse ledelsesberetningen og i den
+    forbindelse overveje, om ledelsesberetningen er væsentligt inkonsistent med årsregnskabet eller vores viden opnået
+    ved revisionen eller på anden måde synes at indeholde væsentlig fejlinformation.
+
+    Vores ansvar er derudover at overveje, om ledelsesberetningen indeholder krævede oplysninger i henhold til
+    årsregnskabsloven.
+
+    Baseret på det udførte arbejde er det vores opfattelse, at ledelsesberetningen er i overensstemmelse med
+    årsregnskabet og er udarbejdet i overensstemmelse med årsregnskabslovens krav. Vi har ikke fundet væsentlig
+    fejlinformation i ledelsesberetningen.
+  </f:StatementOnManagementsReviewAuditorsReportOnAuditedFinancialStatements>
+  <e:DescriptionOfMethodsOfStatingKeyFiguresAndFinancialRatiosIncludedInManagementReview contextRef="c1">De i hoved- og
+    nøgletalsoversigten anførte nøgletal er beregnet således:
+
+    Likviditetsgrad
+    Omsætningsaktiver x 100 Kortfristede gældsforpligtelser
+
+    Soliditetsgrad
+    Egenkapital ultimo x 100 Aktiver i alt ultimo
+
+    Egenkapitalforrentning
+    Årets resultat x 100 Gennemsnitlig egenkapital
+  </e:DescriptionOfMethodsOfStatingKeyFiguresAndFinancialRatiosIncludedInManagementReview>
+  <h:ManagementsReview contextRef="c1">Selskabets væsentligste aktiviteter
+    Virksomhedens aktiviteter består i at levere specialudviklet software og konsulentydelse inden for IT og
+    ledelsesrådgivning; med særligt fokus på IT projekter med anvendelse af Java, Open Source, og .NET teknologier.
+
+    Udvikling i aktiviteter og økonomiske forhold
+    Årets bruttofortjeneste udgør 98.289 t.kr. mod 87.884 t.kr. sidste år. Det ordinære resultat efter skat udgør 18.331
+    t.kr. mod 15.515 t.kr. sidste år. Ledelsen anser årets resultat for tilfredsstillende og som forventet.
+
+    Der er fortsat en høj kundetilfredshed, hvorved fastholdelse af kunderne er meget høj for selskabet. Samlet har
+    dette givet en udbygning af antallet af kunder i årets løb. Nine har styrket sin position inden for offentlig
+    digitalisering, hvor der i regnskabsårets løb er vundet og leveret flere vigtige og højt profilerede løsninger. Der
+    har været et fokus på en stadig udbygning og videreudvikling af de metoder og processer, som opgaverne leveres efter
+    i tæt agilt samarbejde med kunderne. Flere opgaver er således leveret til tiden og til kundernes tilfredshed efter
+    disse principper.
+
+    Selskabets likvider er i 2016/17 faldet med 0,02.616 t.kr., nemlig fra 0,022.069 t.kr. til 0,019.453 t.kr., grundet
+    udbytteudlodning i 1. halvår.
+
+    Videnressourcer
+    Nine er en vidensvirksomhed baseret på vores forsatte evne til et tiltrække, fastholde og udvikle de bedste
+    konsulenter. Vores konstante fokus på udviklingen af de personlige og faglige kompetencer sker dels gennem de
+    udfordrende opgaver vi arbejder på, dels gennem vores eget Nine Academy, diverse certificeringer samt de for alle
+    årlige relevante konferencer diverse steder i verden målrettet den enkeltes fag-område.
+
+    Den forventede udvikling
+    Selskabet forventer for det kommende år et resultat på niveau med 2016/17.
+
+    Begivenheder efter regnskabsårets udløb
+    Der er efter regnskabsårets afslutning ikke indtruffet begivenheder, som væsentligt vil kunne påvirke selskabets
+    finansielle stilling.
+  </h:ManagementsReview>
+  <e:InformationOnReportingClassOfEntity contextRef="c1">Årsrapporten for NineConsult A/S er aflagt i overensstemmelse
+    med årsregnskabslovens bestemmelser for en mellemstor klasse C-virksomhed.
+
+    Årsrapporten er aflagt efter samme regnskabspraksis som sidste år og aflægges i danske kroner.
+  </e:InformationOnReportingClassOfEntity>
+  <e:DescriptionOfGeneralMattersRelatedToRecognitionMeasurementAndChangesInAccountingPolicies contextRef="c1">Generelt
+    om indregning og måling
+    I resultatopgørelsen indregnes indtægter i takt med, at de indtjenes. Herunder indregnes værdireguleringer af
+    finansielle aktiver og forpligtelser. I resultatopgørelsen indregnes ligeledes alle omkostninger, herunder
+    afskrivninger, nedskrivninger og hensatte forpligtelser samt tilbageførsler som følge af ændrede regnskabsmæssige
+    skøn af beløb, der tidligere har været indregnet i resultatopgørelsen.
+
+    Aktiver indregnes i balancen, når det er sandsynligt, at fremtidige økonomiske fordele vil tilflyde selskabet, og
+    aktivets værdi kan måles pålideligt.
+
+    Forpligtelser indregnes i balancen, når det er sandsynligt, at fremtidige økonomiske fordele vil fragå selskabet, og
+    forpligtelsens værdi kan måles pålideligt.
+
+    Ved første indregning måles aktiver og forpligtelser til kostpris. Efterfølgende måles aktiver og forpligtelser som
+    beskrevet nedenfor for hver enkelt regnskabspost.
+
+    Visse finansielle aktiver og forpligtelser måles til amortiseret kostpris, hvorved der indregnes en konstant
+    effektiv rente over løbetiden. Amortiseret kostpris opgøres som oprindelig kostpris med fradrag af eventuelle afdrag
+    samt tillæg/fradrag af den akkumulerede amortisering af forskellen mellem kostpris og nominelt beløb. Herved
+    fordeles kurstab og kursgevinst over aktivets eller forpligtelsens løbetid.
+
+    Ved indregning og måling tages hensyn til forudsigelige tab og risici, der fremkommer inden årsrapporten aflægges,
+    og som vedrører forhold, der eksisterede på balancedagen.
+  </e:DescriptionOfGeneralMattersRelatedToRecognitionMeasurementAndChangesInAccountingPolicies>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfRevenue contextRef="c1">Bruttofortjeneste
+    Bruttofortjeneste indeholder nettoomsætning, ændring i lagre af færdigvarer og varer under fremstilling, arbejde
+    udført for egen regning og opført under aktiver, andre driftsindtægter samt eksterne omkostninger.
+
+    Nettoomsætning omfatter værdien af årets leverede ydelser, inklusive udlæg for kunder med fradrag af merværdiafgift
+    og prisnedslag, der er direkte forbundet med salget.
+
+    Nettoomsætning indregnes i resultatopgørelsen, når salget er gennemført. Dette anses generelt for at være tilfældet,
+    når:
+    Tjenesteydelsen er leveret inden regnskabsårets udløb
+    Der foreligger en forpligtende salgsaftale
+    Salgsprisen er fastlagt
+    Indbetalingen er modtaget eller med rimelig sikkerhed kan forventes modtaget
+
+    Det sikres hermed, at indregningen først sker, når de samlede indtægter og omkostninger samt færdiggørelsesgraden på
+    balancedagen kan opgøres pålideligt, og det er sandsynligt, at de økonomiske fordele, herunder betalinger, vil tilgå
+    virksomheden.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfRevenue>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfCostOfSales contextRef="c1">Direkte omkostninger omfatter
+    omkostninger til eksterne konsulenter og øvrige projektrelaterede omkostninger.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfCostOfSales>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfExternalExpenses contextRef="c1">Andre eksterne omkostninger
+    omfatter omkostninger til distribution, salg, reklame, administration og, lokaler.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfExternalExpenses>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfEmployeeBenefitExpense contextRef="c1">Personaleomkostninger
+    Personaleomkostninger omfatter løn og gager, inklusive feriepenge og pensioner samt andre omkostninger til social
+    sikring mv. til selskabets medarbejdere. I personaleomkostninger er fratrukket modtagne godtgørelser fra offentlige
+    myndigheder.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfEmployeeBenefitExpense>
+  <e:DescriptionOfMethodsOfImpairmentLossesAndDepreciation contextRef="c1">Af- og nedskrivninger
+    Af- og nedskrivninger indeholder årets af- og nedskrivninger af immaterielle og materielle anlægsaktiver.
+  </e:DescriptionOfMethodsOfImpairmentLossesAndDepreciation>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfFinanceIncomeAndExpenses contextRef="c1">Finansielle
+    indtægter og omkostninger
+    Finansielle indtægter og omkostninger indeholder renter, realiserede og urealiserede kursgevinster og -tab
+    vedrørende finansielle aktiver og forpligtelser, amortisering af finansielle aktiver og forpligtelser, samt tillæg
+    og godtgørelser under acontoskatteordningen mv. Finansielle indtægter og omkostninger indregnes i resultatopgørelsen
+    med de beløb, der vedrører regnskabsåret.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfFinanceIncomeAndExpenses>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfTaxExpenses contextRef="c1">Skat af årets resultat
+    Årets skat, der består af årets aktuelle selskabsskat og ændring i udskudt skat, indregnes i resultatopgørelsen med
+    den del, der kan henføres til årets resultat, og direkte i egenkapitalen med den del, der kan henføres til
+    posteringer direkte i egenkapitalen.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfTaxExpenses>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfPropertyPlantAndEquipment contextRef="c1">Materielle
+    anlægsaktiver
+    Materielle anlægsaktiver måles til kostpris med fradrag af akkumulerede afskrivninger og nedskrivninger.
+
+    Afskrivningsgrundlaget er kostpris med fradrag af eventuel forventet restværdi efter afsluttet brugstid.
+    Afskrivningsperioden og restværdien fastsættes på anskaffelsestidspunktet og revurderes årligt. Overstiger
+    restværdien aktivets regnskabsmæssige værdi, ophører afskrivningen.
+
+    Ved ændring i afskrivningsperioden eller restværdien indregnes virkningen for afskrivninger fremadrettet som en
+    ændring i regnskabsmæssigt skøn.
+
+    Kostprisen omfatter anskaffelsesprisen samt omkostninger direkte tilknyttet anskaffelsen indtil det tidspunkt, hvor
+    aktivet er klar til at blive taget i brug.
+
+    Kostprisen på et samlet aktiv opdeles i separate bestanddele, der afskrives hver for sig, hvor brugstiden på de
+    enkelte bestanddele er forskellig.
+
+    Der foretages lineære afskrivninger baseret på følgende vurdering af aktivernes forventede brugstider:
+
+    Andre anlæg, driftsmateriel og inventar
+    3-5
+    år
+
+    Småaktiver med en forventet levetid under 1 år indregnes i anskaffelsesåret som omkostninger i resultatopgørelsen.
+
+    Fortjeneste eller tab ved afhændelse af materielle anlægsaktiver opgøres som forskellen mellem salgspris med fradrag
+    af salgsomkostninger og den regnskabsmæssige værdi på salgstidspunktet. Fortjeneste eller tab indregnes i
+    resultatopgørelsen under andre driftsindtægter eller andre driftsomkostninger.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfPropertyPlantAndEquipment>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfReceivables contextRef="c1">Tilgodehavender
+    Tilgodehavender måles til amortiseret kostpris, hvilket sædvanligvis svarer til nominel værdi. Der nedskrives til
+    nettorealisationsværdien med henblik på at imødegå forventede tab.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfReceivables>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfContractWorkInProgress contextRef="c1">Igangværende arbejder
+    for fremmed regning
+    Igangværende arbejder for fremmed regning måles til salgsværdien af det udførte arbejde fratrukket
+    acontofaktureringer og forventede tab.
+
+    Salgsværdien måles på baggrund af færdiggørelsesgraden på balancedagen og de samlede forventede indtægter på den
+    enkelte kontrakt. Færdiggørelsesgraden opgøres som andelen af de afholdte omkostninger i forhold til forventede
+    samlede omkostninger på den enkelte kontrakt.
+
+    Når salgsværdien på en kontrakt ikke kan opgøres pålideligt, måles salgsværdien kun til de medgåede omkostninger
+    eller nettorealisationsværdien, hvis denne er lavere.
+
+    Kontrakter, hvor salgsværdien af det udførte arbejde overstiger acontofaktureringer og forventede tab, indregnes
+    under tilgodehavender. Kontrakter, hvor acontofaktureringer og forventede tab overstiger salgsværdien, indregnes
+    under forpligtelser.
+
+    Omkostninger i forbindelse med salgsarbejde og opnåelse af kontrakter indregnes i resultatopgørelsen i takt med, at
+    de afholdes.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfContractWorkInProgress>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfDeferredIncomeAssets contextRef="c1">
+    Periodeafgrænsningsposter
+    Periodeafgrænsningsposter, som er indregnet under aktiver, omfatter afholdte omkostninger vedrørende efterfølgende
+    regnskabsår.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfDeferredIncomeAssets>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfCashAndCashEquivalents contextRef="c1">Likvide beholdninger
+    Likvide beholdninger omfatter indeståender i pengeinstitutter og kontantbeholdninger.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfCashAndCashEquivalents>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfEquity contextRef="c1">Egenkapital
+    Udbytte
+    Udbytte, som forventes udbetalt for året, vises som en særskilt post under egenkapitalen. Foreslået udbytte
+    indregnes som en forpligtelse på tidspunktet for vedtagelse på den ordinære generalforsamling
+    (deklarationstidspunktet).
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfEquity>
+  <e:DescriptionOfMethodsOfDividends contextRef="c1">Udbytte
+    Udbytte, som forventes udbetalt for året, vises som en særskilt post under egenkapitalen. Foreslået udbytte
+    indregnes som en forpligtelse på tidspunktet for vedtagelse på den ordinære generalforsamling
+    (deklarationstidspunktet).
+  </e:DescriptionOfMethodsOfDividends>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfTaxPayablesAndDeferredTax contextRef="c1">Selskabsskat og
+    udskudt skat
+    Aktuelle skattetilgodehavender og -forpligtelser indregnes i balancen med det beløb, der kan beregnes på grundlag af
+    årets forventede skattepligtige indkomst reguleret for skat af tidligere års skattepligtige indkomster samt for
+    betalte acontoskatter. Skattetilgodehavender og -forpligtelser præsenteres modregnet i det omfang, der er legal
+    modregningsadgang, og posterne forventes afregnet netto eller samtidig.
+
+    Udskudt skat er skatten af alle midlertidige forskelle mellem regnskabsmæssig og skattemæssig værdi af aktiver og
+    forpligtelser opgjort på grundlag af den planlagte anvendelse af aktivet henholdsvis afvikling af forpligtelsen.
+
+    Udskudt skat måles på grundlag af de skatteregler og skattesatser, der med balancedagens lovgivning vil være
+    gældende, når den udskudte skat forventes udløst som aktuel skat.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfTaxPayablesAndDeferredTax>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfOtherProvisions contextRef="c1">Andre hensatte forpligtelser
+    Hensatte forpligtelser omfatter forventede omkostninger til garantiforpligtelser, tab på igangværende arbejder,
+    omstruktureringer med videre. Hensatte forpligtelser indregnes, når selskabet som følge af en tidligere begivenhed
+    har en retlig eller faktisk forpligtelse, og det er sandsynligt, at indfrielse af forpligtelsen vil medføre et
+    forbrug af selskabets økonomiske ressourcer.
+
+    Hensatte forpligtelser måles til nettorealisationsværdi eller til dagsværdi, hvor opfyldelse af forpligtelsen
+    forventes at ligge langt ude i fremtiden.
+
+    Garantiforpligtelser omfatter forpligtelser til udbedring af arbejder inden for garantiperioden på 1-5 år. De
+    hensatte forpligtelser måles til nettorealisationsværdi og indregnes på baggrund af erfaringerne med
+    garantiarbejder.
+
+    Når det er sandsynligt, at de totale omkostninger vil overstige de totale indtægter på et igangværende arbejde for
+    fremmed regning, hensættes det samlede tab, der må påregnes på entreprisen. Hensættelsen indregnes som omkostning
+    under produktionsomkostninger.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfOtherProvisions>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfLiabilitiesOtherThanProvisions contextRef="c1">
+    Gældsforpligtelser
+    Andre gældsforpligtelser måles til amortiseret kostpris, hvilket sædvanligvis svarer til nominel værdi.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfLiabilitiesOtherThanProvisions>
+  <e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfDeferredIncomeLiabilities contextRef="c1">
+    Periodeafgrænsningsposter
+    Under periodeafgrænsningsposter indregnes modtagne betalinger vedrørende indtægter i de efterfølgende år.
+  </e:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfDeferredIncomeLiabilities>
+  <e:DescriptionMethodsOfRecognitionAndMeasurementBasisForCashFlowsStatement contextRef="c1">Pengestrømsopgørelsen viser
+    selskabets pengestrømme for året fordelt på driftsaktivitet, investeringsaktivitet og finansieringsaktivitet for
+    året, årets forskydning i likvider samt likvider ved årets begyndelse og afslutning.
+
+    Likviditetsvirkningen af køb og salg af virksomheder vises separat under pengestrømme fra investeringsaktivitet. I
+    pengestrømsopgørelsen indregnes pengestrømme vedrørende købte virksomheder fra anskaffelsestidspunktet, og
+    pengestrømme vedrørende solgte virksomheder indregnes frem til salgstidspunktet.
+
+    Pengestrømme fra driftsaktivitet
+    Pengestrømme fra driftsaktivitet opgøres som årets resultat reguleret for ikke-kontante driftsposter, ændring i
+    driftskapital samt betalt selskabsskat.
+
+    Pengestrømme fra investeringsaktivitet
+    Pengestrømme fra investeringsaktivitet omfatter betaling i forbindelse med køb og salg af virksomheder og
+    aktiviteter samt køb og salg af immaterielle, materielle og finansielle anlægsaktiver.
+
+    Pengestrømme fra finansieringsaktivitet
+    Pengestrømme fra finansieringsaktivitet omfatter ændringer i størrelse eller sammensætning af selskabskapital og
+    omkostninger forbundet hermed. Herudover omfatter pengestrømmene optagelse af lån, afdrag på rentebærende gæld og
+    betaling af udbytte til selskabsdeltagere.
+  </e:DescriptionMethodsOfRecognitionAndMeasurementBasisForCashFlowsStatement>
+  <e:ExplanationOfEntitysDefinitionOfCashAndCashEquivalents contextRef="c1">Likvider
+    Likvider omfatter likvide beholdninger med fradrag af kortfristet gæld til pengeinstitutter samt kortfristede
+    værdipapirer med en løbetid under 3 måneder, der uden hindring kan omsættes til likvide beholdninger, og som kun er
+    forbundet med ubetydelig risiko for værdiændringer.
+  </e:ExplanationOfEntitysDefinitionOfCashAndCashEquivalents>
+  <e:DisclosureOfProvisionsForDeferredTax contextRef="c1">12.
+    Hensættelser til udskudt skat
+    Hensættelser til udskudt skat 1. juli
+    134.062
+    2.818.404
+    Udskudt skat af årets resultat
+    256.177
+    -2.684.342
+
+
+    390.239
+    134.062
+
+  </e:DisclosureOfProvisionsForDeferredTax>
+  <e:DisclosureOfOtherProvisions contextRef="c1">13.
+    Andre hensatte forpligtelser
+    Garantiforpligtelser
+    220.000
+    240.000
+
+
+    220.000
+    240.000
+
+
+  </e:DisclosureOfOtherProvisions>
+  <e:DisclosureOfMortgagesAndCollaterals contextRef="c1">15. Pantsætninger og sikkerhedsstillelser
+    Ingen.
+
+  </e:DisclosureOfMortgagesAndCollaterals>
+  <e:DisclosureOfContingentLiabilities contextRef="c1">16. Eventualposter
+    Eventualforpligtelser
+    Der er indgået huslejekontrakt med en årlig leje på tkr. 1.025. Kontrakten er opsagt til fraflytning pr. 30.
+    september 2017. Der er indgået huslejekontrakt med en årlig leje på tkr. 2.508 med løbende halvårs opsigelse. Indtil
+    lejeaftalens ikrafttræden er der stillet bankgaranti på tkr. 1.568, som erstattes af et depositum ved kontraktens
+    effektuering.
+
+    Der er afgivet lejegaranti via pengeinstitut på tkr. 1.568 vedrørende lejekontrakt.
+  </e:DisclosureOfContingentLiabilities><!--Aktuelle periode enkelt selskab-->
+  <context id="c1">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+  </context><!--Forrige periode enkelt selskab-->
+  <context id="c3">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2015-07-01</startDate>
+      <endDate>2016-06-30</endDate>
+    </period>
+  </context><!--Slutdato forrige periode enkelt selskab-->
+  <context id="c4">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2016-06-30</instant>
+    </period>
+  </context><!--Slutdato aktuelle periode enkelt selskab-->
+  <context id="c6">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2017-06-30</instant>
+    </period>
+  </context><!--BOARD1-->
+  <context id="c32">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="d:IdentificationOfMemberOfSupervisoryBoardDimension">
+        <d:memberOfBoardIdentifier>1</d:memberOfBoardIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--BOARD2-->
+  <context id="c48">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="d:IdentificationOfMemberOfSupervisoryBoardDimension">
+        <d:memberOfBoardIdentifier>2</d:memberOfBoardIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--BOARD3-->
+  <context id="c49">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="d:IdentificationOfMemberOfSupervisoryBoardDimension">
+        <d:memberOfBoardIdentifier>3</d:memberOfBoardIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--BOARD4-->
+  <context id="c50">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="d:IdentificationOfMemberOfSupervisoryBoardDimension">
+        <d:memberOfBoardIdentifier>4</d:memberOfBoardIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--CEO1-->
+  <context id="c71">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="d:IdentificationOfMemberOfExecutiveBoardDimension">
+        <d:memberOfBoardIdentifier>1</d:memberOfBoardIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--REVISOR1-->
+  <context id="c88">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="d:IdentificationOfAuditorDimension">
+        <d:auditorIdentifier>1</d:auditorIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--Udbytte Egenkapital aktuel i aaret-->
+  <context id="c108">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ResultDistributionDimension">e:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Udbytte Egenkapital forrige i aaret-->
+  <context id="c109">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2015-07-01</startDate>
+      <endDate>2016-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ResultDistributionDimension">e:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Overfoert resultat aktuel i aaret-->
+  <context id="c122">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ResultDistributionDimension">e:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Overfoert resultat forrige i aaret-->
+  <context id="c123">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2015-07-01</startDate>
+      <endDate>2016-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ResultDistributionDimension">e:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Tilgodehavender aktuel primo-->
+  <context id="c139">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2016-07-01</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfInvestmentsDimension">e:OtherReceivablesMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Tilgodehavender aktuel i aaret-->
+  <context id="c140">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfInvestmentsDimension">e:OtherReceivablesMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Tilgodehavender aktuel ultimo-->
+  <context id="c141">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2017-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfInvestmentsDimension">e:OtherReceivablesMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Andre anlag aktuel primo-->
+  <context id="c160">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2016-07-01</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfPropertyPlantAndEquipmentDimension">
+        e:FixturesFittingsToolsAndEquipmentMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Andre anlag aktuel i aaret-->
+  <context id="c161">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfPropertyPlantAndEquipmentDimension">
+        e:FixturesFittingsToolsAndEquipmentMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Andre anlag aktuel ultimo-->
+  <context id="c162">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2017-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfPropertyPlantAndEquipmentDimension">
+        e:FixturesFittingsToolsAndEquipmentMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Virksomhedskapital aktuel primo-->
+  <context id="c181">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2016-07-01</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:ContributedCapitalMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Virksomhedskapital aktuel ultimo-->
+  <context id="c183">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2017-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:ContributedCapitalMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Overfort res aktuel primo-->
+  <context id="c199">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2016-07-01</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Overfort res aktuel i aaret-->
+  <context id="c200">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Overfort res aktuel ultimo-->
+  <context id="c201">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2017-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Udbytte aktuel primo-->
+  <context id="c202">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2016-07-01</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Udbytte aktuel i aaret-->
+  <context id="c203">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Udbytte aktuel ultimo-->
+  <context id="c204">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2017-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--HTAL aar3-->
+  <context id="c261">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:TwoYearsAgoMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--HTAL ultimo aar3-->
+  <context id="c263">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2017-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:TwoYearsAgoMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--HTAL aar4-->
+  <context id="c264">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:ThreeYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--HTAL ultimo aar4-->
+  <context id="c266">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2017-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:ThreeYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--HTAL aar5-->
+  <context id="c267">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:FourYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--HTAL ultimo aar5-->
+  <context id="c269">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2017-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:FourYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--HTAL PS forsklikv 1-->
+  <context id="c274">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="h:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <h:keyFigureOrFinancialRatioIdentifier>0</h:keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--HTAL PS forsklikv 2-->
+  <context id="c281">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:PreviousYearMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="h:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <h:keyFigureOrFinancialRatioIdentifier>0</h:keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--HTAL PS forsklikv 3-->
+  <context id="c287">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:TwoYearsAgoMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="h:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <h:keyFigureOrFinancialRatioIdentifier>0</h:keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--HTAL PS forsklikv 4-->
+  <context id="c295">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:ThreeYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="h:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <h:keyFigureOrFinancialRatioIdentifier>0</h:keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--HTAL PS forsklikv 5-->
+  <context id="c302">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:FourYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="h:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <h:keyFigureOrFinancialRatioIdentifier>0</h:keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--Erhverv_immat aktuel i aaret-->
+  <context id="c350">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfIntangibleAssetsDimension">e:AcquiredIntangibleAssetsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Erhverv_immat aktuel ultimo-->
+  <context id="c351">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2017-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfIntangibleAssetsDimension">e:AcquiredIntangibleAssetsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Startdato aktuelle periode enkelt selskab-->
+  <context id="c420">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2016-07-01</instant>
+    </period>
+  </context><!--Startdato forrige periode enkelt selskab-->
+  <context id="c421">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2015-07-01</instant>
+    </period>
+  </context><!--HTAL VALG_1_1-->
+  <context id="c483">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="h:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <h:keyFigureOrFinancialRatioIdentifier>2</h:keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context><!--HTAL VALG_1_2-->
+  <context id="c484">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="h:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <h:keyFigureOrFinancialRatioIdentifier>2</h:keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:PreviousYearMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--HTAL VALG_1_3-->
+  <context id="c485">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="h:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <h:keyFigureOrFinancialRatioIdentifier>2</h:keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:TwoYearsAgoMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--HTAL VALG_1_4-->
+  <context id="c486">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="h:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <h:keyFigureOrFinancialRatioIdentifier>2</h:keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:ThreeYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--HTAL VALG_1_5-->
+  <context id="c487">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2016-07-01</startDate>
+      <endDate>2017-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="h:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <h:keyFigureOrFinancialRatioIdentifier>2</h:keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+      <xbrldi:explicitMember dimension="d:RetrospectiveInformationDimension">d:FourYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Virksomhedskapital forrige EKprimo-->
+  <context id="c720">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2015-07-01</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:ContributedCapitalMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Virksomhedskapital forrige EKultimo-->
+  <context id="c722">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2016-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:ContributedCapitalMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Overfort res forrige EKprimo-->
+  <context id="c741">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2015-07-01</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Overfort res forrige EKi aaret-->
+  <context id="c742">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2015-07-01</startDate>
+      <endDate>2016-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Overfort res forrige EKultimo-->
+  <context id="c743">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2016-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context><!--Udbytte forrige EKprimo-->
+  <context id="c744">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2015-07-01</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Udbytte forrige EKi aaret-->
+  <context id="c745">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <startDate>2015-07-01</startDate>
+      <endDate>2016-06-30</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--Udbytte forrige EKultimo-->
+  <context id="c746">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">30714024</identifier>
+    </entity>
+    <period>
+      <instant>2016-06-30</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="e:ClassesOfEquityDimension">e:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context><!--DKK enere-->
+  <unit id="u5">
+    <measure>iso4217:DKK</measure>
+  </unit><!--Antal-->
+  <unit id="u7">
+    <measure>xbrli:pure</measure>
+  </unit>
+</xbrl>
