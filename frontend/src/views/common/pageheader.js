@@ -33,7 +33,7 @@ const PageHeader = ({ headerText, iconClassName, cvrdata, deltager, context }) =
         <div className="col-12 section-header">
           <div className="row">
             <div className={virkrheaderclass}>
-              <a href="/">Virkr</a>
+              <a href="">Virkr</a>
             </div>
             <div className="col-10">
               <span className={iconClassName} /> &nbsp; {headerText?headerText:null}
