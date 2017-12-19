@@ -15,13 +15,21 @@ class DeltagerGrafView extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.deltagerGraf) {
+      document.title = `virkr.dk - ${nextProps.deltagerGraf.deltager.navn} - EjerGraf`;
+    }
+  }
+
   render() {
     console.log('DeltagerGrafView-render');
     const { showSpinner, deltagerGraf, visVirksomhed, visDeltager } = this.props;
 
+    const deltager = deltagerGraf?deltagerGraf.deltager:null;
+
     return(
       <div>
-        <PageHeader headerText="Deltager Graf" iconClassName="fa fa-sitemap" />
+        <PageHeader headerText="Deltager Graf" iconClassName="fa fa-sitemap" deltager={deltager} context="deltagergraf"/>
         {showSpinner && <Spinner />}
         {deltagerGraf && <DeltagerGraf deltagerGraf={deltagerGraf}
                                        visVirksomhed={visVirksomhed}
@@ -47,7 +55,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   visVirksomhed,
-  visDeltager
+  visDeltager,
+  visDeltagerGraf
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeltagerGrafView);

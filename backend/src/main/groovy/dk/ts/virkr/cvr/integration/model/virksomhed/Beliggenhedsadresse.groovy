@@ -22,6 +22,7 @@ class Beliggenhedsadresse {
   String postdistrikt
   Periode periode
   String sidstOpdateret
+  String land
   String lat
   String lng
 

@@ -24,6 +24,10 @@ export default class APIHelper {
     return this._call(this.url('/cvr/deltagergraf/' + enhedsnummer))
   }
 
+  static hentVirksomhedGraf(cvrnummer) {
+    return this._call(this.url('/cvr/virksomhedgraf/' + cvrnummer))
+  }
+
   static soeg(soegning) {
     return this._call(this.url('/cvr/search/' + soegning))
   }

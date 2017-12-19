@@ -1,9 +1,15 @@
 package dk.ts.virkr.aarsrapporter.parser
 
-import dk.ts.virkr.aarsrapporter.model.RegnskabData
+import dk.ts.virkr.aarsrapporter.model.Aktiver
+import dk.ts.virkr.aarsrapporter.model.Generalforsamling
+import dk.ts.virkr.aarsrapporter.model.Passiver
+import dk.ts.virkr.aarsrapporter.model.Regnskab
+import dk.ts.virkr.aarsrapporter.model.Regnskabstal
+import dk.ts.virkr.aarsrapporter.model.Revision
 import dk.ts.virkr.aarsrapporter.model.virksomhedsdata.Virksomhedsdata
 import dk.ts.virkr.aarsrapporter.model.Resultatopgoerelse
 import dk.ts.virkr.aarsrapporter.parser.berigelse.RegnskabBerigelse
+import dk.ts.virkr.cvr.integration.model.virksomhed.Beliggenhedsadresse
 import groovy.xml.Namespace
 
 
@@ -12,19 +18,13 @@ import groovy.xml.Namespace
  */
 class RegnskabXmlParser {
 
-  Virksomhedsdata hentVirksomhedsdataFraRegnskab(String xml, RegnskabData regnskabData) {
-    XmlParser parser = new XmlParser(false, false)
-    Node result = parser.parseText(xml)
-    Namespace ns = hentNamespace(xml)
+  Virksomhedsdata hentVirksomhedsdataFraRegnskab(RegnskabNodes regnskabNodes) {
 
-    String contextRef = hentContextRef(result, ns, regnskabData)
+    String contextRef = regnskabNodes.aktuelContext
     // hent de relevante felter for dette regnskabsår fra contexten.
-    NodeList nl = result.findAll {
-      it.attribute('contextRef') == contextRef
-    }
+    NodeList nl = regnskabNodes.aktuelleNoegletalNodes
 
-    String gsdNamespace = getGSDNamespace(xml)
-    ns = new Namespace("http://xbrl.dcca.dk/gsd", gsdNamespace)
+    Namespace ns = regnskabNodes.gsdNamespace
 
     Virksomhedsdata virksomhedsdata = new Virksomhedsdata()
     virksomhedsdata.cvrnummer = getStringValue(nl, ns, "IdentificationNumberCvrOfReportingEntity" )
@@ -37,97 +37,155 @@ class RegnskabXmlParser {
     return virksomhedsdata
   }
 
-  RegnskabData parseOgBerig(RegnskabData data, String xml) {
-    XmlParser parser = new XmlParser(false, false)
+  String getNSPrefix(Node node) {
+    String name = node.name()
+    String resultat = name.contains(':')? name.substring(0, name.indexOf(':')+1): ''
+    return resultat
+  }
 
-    Node result = parser.parseText(xml)
-    Namespace ns = hentNamespace(xml)
+  void berigMedPeriode(Regnskab regnskab, RegnskabNodes regnskabNodes, Namespace ns, String contextRefName) {
+    List<Node> contextNodes = regnskabNodes.contextNodes
+    Node contextRefNode = contextNodes.find { it.attribute('id') == contextRefName }
+    String nsPrefix = getNSPrefix(contextRefNode)
 
-    String contextRef = hentContextRef(result, ns, data)
+    String startDate = contextRefNode[nsPrefix+'period'][nsPrefix+'startDate'].text()
+    String endDate = contextRefNode[nsPrefix+'period'][nsPrefix+'endDate'].text()
+    regnskab.startdato = startDate
+    regnskab.slutdato = endDate
+    regnskab.aar = startDate.substring(0,4)
+  }
 
-    String assetsRef = null
+  boolean parseOgBerig(Regnskab data, RegnskabNodes regnskabNodes, boolean nyeste = true) {
+    Namespace ns = regnskabNodes.noegletalNamespace()
 
-    // IFRS regnskaber vil have contexten som duration_CY_C_only hvor C'et står for consolidated og altså en context
-    // der dækker en hel gruppe, men vi er ikke interesserede i hele gruppens nøgle tal eller måsker er man
-    // i stedet vil man have parentens og det er så duration_CY_only
-    // Så for nu, overskrives denne til jeg bliver klogere.
-    if (contextRef.equals("duration_CY_C_only")) {
-      contextRef = 'duration_CY_only'
+    // bemærk at contextref siger noget om hvilken periode man henter tal for
+    String contextRef = nyeste?regnskabNodes.aktuelContext : regnskabNodes.sidsteAarsContext
+
+    if (!contextRef) {
+      return false
     }
 
     // hent de relevante felter for dette regnskabsår fra contexten.
-    NodeList nl = result.findAll {
-      it.attribute('contextRef') == contextRef
+    NodeList nl = nyeste ? regnskabNodes.aktuelleNoegletalNodes : regnskabNodes.sidsteAarsNoegletalNodes
+
+    /* periode dato år */
+    berigMedPeriode(data, regnskabNodes, ns, contextRef)
+    // regnskabsklasse
+    data.regnskabsklasse = getStringValue(nl, ns,'ClassOfReportingEntity' )
+
+    berigResultatopgoerelse(data, nl, ns)
+
+    nl = nyeste ? regnskabNodes.aktuelleBalanceNodes : regnskabNodes.sidsteAarsBalanceNodes
+
+    Aktiver aktiver = data.balance.aktiver
+    aktiver.langsigtedekapitalandeleitilknyttedevirksomheder = getRegnskabstal(nl, ns, 'LongtermInvestmentsInGroupEnterprises')
+    aktiver.andreanlaegdriftoginventar = getRegnskabstal(nl, ns, 'FixturesFittingsToolsAndEquipment')
+    aktiver.materielleanlaegsaktiver = getRegnskabstal(nl, ns, 'PropertyPlantAndEquipment')
+    aktiver.andretilgodehavender = getRegnskabstal(nl, ns, 'OtherLongtermReceivables')
+    aktiver.finansielleanlaegsaktiver = getRegnskabstal(nl, ns, 'LongtermInvestmentsAndReceivables')
+    aktiver.anlaegsaktiver = getRegnskabstal(nl, ns, 'NoncurrentAssets')
+    aktiver.erhvervedeimmaterielleanlaegsaktiver = getRegnskabstal(nl, ns, 'AcquiredIntangibleAssets')
+    aktiver.immaterielleanlaegsaktiver = getRegnskabstal(nl, ns, 'IntangibleAssets')
+    aktiver.materielleanlaegsaktiverunderudfoerelse = getRegnskabstal(nl, ns, 'PropertyPlantAndEquipmentInProgressAndPrepaymentsForPropertyPlantAndEquipment')
+
+    aktiver.raavareroghjaelpematerialer = getRegnskabstal(nl, ns, 'RawMaterialsAndConsumables')
+    aktiver.fremstilledevareroghandelsvarer = getRegnskabstal(nl, ns, 'ManufacturedGoodsAndGoodsForResale')
+    aktiver.varebeholdninger = getRegnskabstal(nl, ns, 'ManufacturedGoodsAndGoodsForResale')
+    aktiver.tilgodehavenderfrasalogtjenesteydelser  = getRegnskabstal(nl, ns, 'ShorttermTradeReceivables')
+    aktiver.tilgodehaverhostilknyttedevirksomheder = getRegnskabstal(nl, ns, 'ShorttermReceivablesFromGroupEnterprises')
+    aktiver.andretilgodehavenderomsaetningaktiver = getRegnskabstal(nl, ns, 'OtherShorttermReceivables')
+    aktiver.periodeafgraensningsposter = getRegnskabstal(nl, ns, 'DeferredIncomeAssets')
+    aktiver.tilgodehavenderialt = getRegnskabstal(nl, ns, 'ShorttermReceivables')
+    aktiver.andrevaerdipapirerogkapitalandele = getRegnskabstal(nl, ns, 'OtherShorttermInvestments')
+    aktiver.vaerdipapirerialt = getRegnskabstal(nl, ns, 'ShorttermInvestments')
+    aktiver.likvidebeholdninger = getRegnskabstal(nl, ns, 'CashAndCashEquivalents')
+    aktiver.omsaetningsaktiver = getRegnskabstal(nl, ns, 'CurrentAssets')
+    aktiver.faerdiggjorteudviklingsprojekter = getRegnskabstal(nl, ns, 'CompletedDevelopmentProjects')
+
+    aktiver.aktiver = getRegnskabstal(nl, ns, 'Assets')
+
+    Passiver passiver = data.balance.passiver
+    passiver.gaeldsforpligtelser = getRegnskabstal(nl, ns, 'LiabilitiesOtherThanProvisions','CurrentLiabilities' )
+    passiver.egenkapital = getRegnskabstal(nl, ns, 'Equity' )
+    passiver.udbytte = getRegnskabstal(nl, ns, 'ProposedDividendRecognisedInEquity' )
+    passiver.virksomhedskapital = getRegnskabstal(nl, ns, 'ContributedCapital')
+    passiver.overfoertresultat = getRegnskabstal(nl, ns, 'RetainedEarnings')
+    passiver.hensaettelserforudskudtskat = getRegnskabstal(nl, ns, 'ProvisionsForDeferredTax')
+    passiver.hensatteforpligtelser = getRegnskabstal(nl, ns, 'Provisions')
+    passiver.gaeldtilrealkredit = getRegnskabstal(nl, ns, 'LongtermMortgageDebt')
+    passiver.langfristedegaeldsforpligtelser = getRegnskabstal(nl, ns, 'LongtermLiabilitiesOtherThanProvisions')
+    passiver.kortsigtedegaeldsforpligtelser = getRegnskabstal(nl, ns, 'ShorttermPartOfLongtermLiabilitiesOtherThanProvisions')
+    passiver.gaeldsforpligtelsertilpengeinstitutter = getRegnskabstal(nl, ns, 'ShorttermDebtToBanks')
+    passiver.leverandoereraftjenesteydelser = getRegnskabstal(nl, ns, 'ShorttermTradePayables')
+    passiver.gaeldtiltilknyttedevirksomheder = getRegnskabstal(nl, ns, 'ShorttermPayablesToGroupEnterprises')
+    passiver.kortfristetskyldigskat =  getRegnskabstal(nl, ns, 'ShorttermTaxPayables')
+    passiver.andregaeldsforpligtelser = getRegnskabstal(nl, ns, 'OtherShorttermPayables')
+    passiver.periodeafgraensningsposter = getRegnskabstal(nl, ns, 'ShorttermDeferredIncome')
+    passiver.kortfristedegaeldsforpligtelserialt = getRegnskabstal(nl, ns, 'ShorttermLiabilitiesOtherThanProvisions')
+    passiver.passiverialt = getRegnskabstal(nl, ns, 'LiabilitiesAndEquity')
+    passiver.andrehensaettelser = getRegnskabstal(nl, ns, 'OtherProvisions')
+    passiver.andenlangfristetgaeld = getRegnskabstal(nl, ns, 'OtherLongtermPayables')
+    passiver.modtagneforudbetalingerfrakunder = getRegnskabstal(nl, ns, 'ShorttermPrepaymentsReceivedFromCustomers')
+    passiver.deposita = getRegnskabstal(nl, ns, 'DepositsLongtermLiabilitiesOtherThanProvisions')
+    passiver.igangvaerendearbejderforfremmedregning = getRegnskabstal(nl, ns, 'ShorttermContractWorkInProgressLiabilities')
+
+    // det aktuelle regnskab har også revisionsoplysninger
+    if (nyeste) {
+      berigMedRevision(data, regnskabNodes)
     }
 
+    fixSkat(data)
 
-    /*nl.each {
-      println(it.name())
-    }*/
+    return true
+  }
 
-    if (ns.prefix == 'ifrs-full') {
-      return haandterIFRS(ns, result, nl, data)
-    }
+  private void berigResultatopgoerelse(Regnskab data, NodeList nl, Namespace ns) {
 
     /** Resultatopgørelsen **/
     Resultatopgoerelse r = data.resultatopgoerelse
 
     //Omsætning
-    r.omsaetningTal.omsaetning = getLongValue(nl, ns, "Revenue")
-    r.omsaetningTal.vareforbrug = getLongValue(nl, ns, "CostOfSales")
+    r.omsaetningTal.omsaetning = getRegnskabstal(nl, ns, "Revenue")
+    r.omsaetningTal.vareforbrug = getRegnskabstal(nl, ns, "CostOfSales")
     // driftsindtæger
-    r.omsaetningTal.driftsindtaegter = getLongValue(nl, ns, "OtherOperatingIncome")
+    r.omsaetningTal.driftsindtaegter = getRegnskabstal(nl, ns, "OtherOperatingIncome")
     // andre eksterne omkostninger
-    r.omsaetningTal.andreeksterneomkostninger = getLongValue(nl, ns, "OtherExternalExpenses")
-    r.omsaetningTal.variableomkostninger = getLongValue(nl, ns, "RawMaterialsAndConsumablesUsed")
-    r.omsaetningTal.lokalomkostninger = getLongValue(nl, ns, "PropertyCost")
-    r.omsaetningTal.eksterneomkostninger = getLongValue(nl,ns, "ExternalExpenses")
+    r.omsaetningTal.andreeksterneomkostninger = getRegnskabstal(nl, ns, "OtherExternalExpenses")
+    r.omsaetningTal.variableomkostninger = getRegnskabstal(nl, ns, "RawMaterialsAndConsumablesUsed")
+    r.omsaetningTal.lokalomkostninger = getRegnskabstal(nl, ns, "PropertyCost")
+    r.omsaetningTal.eksterneomkostninger = getRegnskabstal(nl, ns, "ExternalExpenses")
 
     //BruttoresultatTal
-    r.bruttoresultatTal.bruttofortjeneste = getLongValue(nl, ns, "GrossProfitLoss", "GrossResult", "GrossProfit")
-    r.bruttoresultatTal.medarbejderomkostninger = getLongValue(nl, ns, "EmployeeBenefitsExpense")
+    r.bruttoresultatTal.bruttofortjeneste = getRegnskabstal(nl, ns, "GrossProfitLoss", "GrossResult", "GrossProfit")
+    r.bruttoresultatTal.medarbejderomkostninger = getRegnskabstal(nl, ns, "EmployeeBenefitsExpense")
     // regnskabsmæssige afskrivninger
-    r.bruttoresultatTal.regnskabsmaessigeafskrivninger = getLongValue(nl, ns,
+    r.bruttoresultatTal.regnskabsmaessigeafskrivninger = getRegnskabstal(nl, ns,
       "DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss")
-    r.bruttoresultatTal.administrationsomkostninger = getLongValue(nl, ns, "AdministrativeExpenses")
-    r.bruttoresultatTal.kapitalandeleiassocieredevirksomheder = getLongValue(nl, ns, "IncomeFromInvestmentsInAssociates",
-      "IncomeFromInvestmentsInGroupEnterprises")
+    r.bruttoresultatTal.administrationsomkostninger = getRegnskabstal(nl, ns, "AdministrativeExpenses")
+
 
     // NettoresultatTal
-    r.nettoresultatTal.finansielleomkostninger = getLongValue(nl, ns, "OtherFinanceExpenses", "FinanceCosts",
+    r.nettoresultatTal.finansielleomkostninger = getRegnskabstal(nl, ns, "OtherFinanceExpenses", "FinanceCosts",
       "RestOfOtherFinanceExpenses")
-    r.nettoresultatTal.driftsresultat = getLongValue(nl, ns, "ProfitLossFromOrdinaryOperatingActivities",
+    r.nettoresultatTal.driftsresultat = getRegnskabstal(nl, ns, "ProfitLossFromOrdinaryOperatingActivities",
       "ProfitLossFromOperatingActivities")
-    r.nettoresultatTal.finansielleindtaegter = getLongValue(nl, ns, "OtherFinanceIncome", "FinanceIncome")
+    r.nettoresultatTal.finansielleindtaegter = getRegnskabstal(nl, ns, "OtherFinanceIncome", "FinanceIncome", "IncomeFromOtherLongtermInvestmentsAndReceivables")
+    r.nettoresultatTal.kapitalandeleiassocieredevirksomheder = getRegnskabstal(nl, ns, "IncomeFromInvestmentsInAssociates")
+    r.nettoresultatTal.kapitalandeleitilknyttedevirksomheder = getRegnskabstal(nl, ns, "IncomeFromInvestmentsInGroupEnterprises")
 
     // Årets resultat
-    r.aaretsresultatTal.aaretsresultat = getLongValue(nl, ns, "ProfitLoss")
-    r.aaretsresultatTal.resultatfoerskat = getLongValue(nl, ns, "ProfitLossFromOrdinaryActivitiesBeforeTax", "ProfitLossBeforeTax")
-    r.aaretsresultatTal.skatafaaretsresultat = getLongValue(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense",
+    r.aaretsresultatTal.aaretsresultat = getRegnskabstal(nl, ns, "ProfitLoss")
+    r.aaretsresultatTal.resultatfoerskat = getRegnskabstal(nl, ns, "ProfitLossFromOrdinaryActivitiesBeforeTax", "ProfitLossBeforeTax")
+    r.aaretsresultatTal.skatafaaretsresultat = getRegnskabstal(nl, ns, "TaxExpenseOnOrdinaryActivities", "TaxExpense",
       "IncomeTaxExpenseContinuingOperations")
-
-
-    // passiver
-    // findes i hele dokumentet denne har en anden context ref som er slutdato på perioden, skal evt. refactores til at
-    // finde gennem denne
-    data.balance.passiver.gaeldsforpligtelser = getValue(result,ns.LiabilitiesOtherThanProvisions, ns.CurrentLiabilities)
-
-    if (!data.balance.passiver.gaeldsforpligtelser) {
-      data.balance.passiver.gaeldsforpligtelser = getValue(result, ns.ShorttermLiabilitiesOtherThanProvisions)
-    }
-
-    data.balance.passiver.egenkapital = getValue(result, ns.Equity)
-
-    berigRegnskabdataMedManglendeNoegletal(data)
-
-    return data
   }
 
   /**
    * Beriger nøgletal rekursivt indtil der ikke er flere nøgletal at berige
+   * Er p.t. ude af drift, der er for manger usikkerhedsmomenter i disse beregninger.
    * @param data
    */
-  void berigRegnskabdataMedManglendeNoegletal(RegnskabData data) {
+  void berigRegnskabdataMedManglendeNoegletal(Regnskab data) {
     RegnskabBerigelse regnskabBerigelse = new RegnskabBerigelse()
     boolean harBeriget = regnskabBerigelse.berigNoegletal(data)
     while (harBeriget) {
@@ -135,40 +193,150 @@ class RegnskabXmlParser {
     }
   }
 
-  private Namespace hentNamespace(String xml) {
-    String namespace = getFSANamespace(xml)
-    Namespace ns = null
+  private berigMedRevision(Regnskab regnskab, RegnskabNodes regnskabNodes) {
+    XmlParser parser = new XmlParser(false, false)
 
-    if (namespace) {
-      ns = new Namespace("http://xbrl.dcca.dk/fsa", namespace)
-    } else {
-      // prøv ifrs
-      namespace = getIFRSNamespace(xml)
-      ns = new Namespace("http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full", namespace)
-    }
-    ns
-  }
+    Revision revision = new Revision()
+    NodeList nl = regnskabNodes.cmnNodes
+    Namespace ns = regnskabNodes.cmnNamespace
 
-  RegnskabData haandterIFRS(Namespace ns, Node xmlRoot, NodeList nl, RegnskabData data) {
-    // TBD
-    return data
-  }
+    if (ns) {
+      // hent de relevante fra CMN NAMESPACE
 
-  Long getLongValue(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null,
-                    String altNodeName2 =  null){
-    nodeName = "$ns.prefix:$nodeName"
-    Node n = nodeList.find {
-      it.name() == nodeName
+      revision.assistancetype = getStringValue(nl, ns, 'TypeOfAuditorAssistance')
+      revision.revisionsfirmaNavn = getStringValue(nl, ns, 'NameOfAuditFirm')
+      revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditor')
+      revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditor')
+      revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfAuditFirm')
+      revision.mnenummer = getStringValue(nl, ns, 'IdentificationNumberOfAuditor')
     }
 
-    if (n!=null) {
-      return getAmount(n)
-    } else if (altNodename) {
-      Long val = getLongValue(nodeList, ns, altNodename)
-      if (!val) {
-        return getLongValue(nodeList, ns, altNodeName2)
+    ns = regnskabNodes.gsdNamespace
+
+    // hent de relevante fra GSD
+    nl = regnskabNodes.gsdNodes
+
+    // Det er ikke altid felterne ovenfor kommer fra CMN så forsøges GSD
+    revision.assistancetype = !revision.assistancetype? getStringValue(nl, ns, 'TypeOfAuditorAssistance') : revision.assistancetype
+    revision.revisionsfirmaNavn =  !revision.revisionsfirmaNavn? getStringValue(nl, ns, 'NameOfAuditFirm') :revision.revisionsfirmaNavn
+    revision.navnPaaRevisor =  !revision.navnPaaRevisor? getStringValue(nl, ns, 'NameAndSurnameOfAuditor') : revision.navnPaaRevisor
+    revision.beskrivelseAfRevisor =  !revision.beskrivelseAfRevisor? getStringValue(nl, ns, 'DescriptionOfAuditor') : revision.beskrivelseAfRevisor
+    revision.revisionsfirmaCvrnummer =  !revision.revisionsfirmaCvrnummer? getStringValue(nl, ns, 'IdentificationNumberCvrOfAuditFirm') : revision.revisionsfirmaCvrnummer
+    revision.mnenummer =  !revision.mnenummer ? getStringValue(nl, ns, 'IdentificationNumberOfAuditor') : revision.mnenummer
+
+    // hvis der ikke var audit felter, så hent audit fra submitting enterprise
+    if (!revision.revisionsfirmaNavn) {
+      revision.revisionsfirmaNavn = getStringValue(nl, ns, 'NameOfSubmittingEnterprise')
+    }
+
+    if (!revision.revisionsfirmaNavn) {
+      revision.revisionsfirmaNavn = getStringValue(nl, ns, 'NameOfReportingEntity')
+    }
+
+    if (!revision.revisionsfirmaCvrnummer) {
+      revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfSubmittingEnterprise')
+    }
+
+    if (!revision.revisionsfirmaCvrnummer) {
+      revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfReportingEntity')
+    }
+
+    revision.beliggenhedsadresse = new Beliggenhedsadresse()
+    revision.beliggenhedsadresse.vejnavn = getStringValue(nl, ns, 'AddressOfAuditorStreetName')
+    revision.beliggenhedsadresse.husnummerFra = getStringValue(nl, ns, 'AddressOfAuditorStreetBuildingIdentifier')
+    revision.beliggenhedsadresse.postnummer = getStringValue(nl, ns, 'AddressOfAuditorPostCodeIdentifier')
+    revision.beliggenhedsadresse.postdistrikt = getStringValue(nl, ns, 'AddressOfAuditorDistrictName')
+    revision.beliggenhedsadresse.land = getStringValue(nl, ns, 'AddressOfAuditorCountry')
+    revision.telefonnummer = getStringValue(nl, ns, 'TelephoneNumberOfAuditor')
+    revision.email = getStringValue(nl, ns, 'EmailOfAuditor')
+
+    revision.generalforsamling = new Generalforsamling()
+    revision.generalforsamling.dato = getStringValue(nl, ns, 'DateOfGeneralMeeting')
+    revision.generalforsamling.formand = getStringValue(nl, ns, 'NameAndSurnameOfChairmanOfGeneralMeeting')
+
+    ns = regnskabNodes.arrNamespace
+
+    // hent de relevante fra ARR
+    nl = regnskabNodes.arrNodes
+
+    if (ns) {
+      revision.revisionUnderskriftsted = getStringValue(nl, ns, 'SignatureOfAuditorsPlace')
+      revision.revisionUnderskriftdato = getStringValue(nl, ns, 'SignatureOfAuditorsDate')
+      revision.adressant = getStringValue(nl, ns, 'AddresseeOfAuditorsReportOnAuditedFinancialStatements')
+
+      // Hvis revisoren i sig selv ikke lå i CMN/GSD, kan de ligge i ARR
+      if (!revision.navnPaaRevisor) {
+        revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditor')
+        revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditor')
       }
-      return val
+
+      if (!revision.navnPaaRevisor) {
+        // hvis de stadig ikke er der, kan de ligge i nogle andre felter
+        revision.navnPaaRevisor = getStringValue(nl, ns, 'NameAndSurnameOfAuditorAppointedToPerformAudit')
+        revision.beskrivelseAfRevisor = getStringValue(nl, ns, 'DescriptionOfAuditorAppointedToPerformAudit')
+      }
+
+      if (!revision.revisionsfirmaCvrnummer) {
+        revision.revisionsfirmaCvrnummer = getStringValue(nl, ns, 'IdentificationNumberCvrOfAuditFirm')
+      }
+
+      revision.supplerendeInformationOmAndreForhold = getStringValue(nl, ns, 'SupplementaryInformationOnOtherMatters')
+      revision.supplerendeInformationOmAarsrapport = getStringValue(nl, ns, 'SupplementaryInformationOnMattersPertainingToAuditedFinancialStatement')
+      revision.grundlagForKonklusion = getStringValue(nl, ns, 'DescriptionOfQualificationsOfAuditedFinancialStatements')
+      if (revision.grundlagForKonklusion && !revision.grundlagForKonklusion.toLowerCase().contains('forbehold')) {
+        // kun hvis der står noget om forbehold
+        revision.grundlagForKonklusion = null
+      }
+    }
+
+    // findes ikke i IFRS regnskaber
+    ns = regnskabNodes.sobNamespace
+
+    if (ns) {
+      // hent de relevante fra SOB
+      nl = regnskabNodes.sobNodes
+
+      revision.godkendelsesdato = getStringValue(nl, ns, 'DateOfApprovalOfAnnualReport')
+      revision.ingenRevision = getStringValue(nl, ns, 'StatementOnOptingOutOfAuditingFinancialStatementsInNextReportingPeriodDueToExemption')
+
+    }
+
+    regnskab.revision = revision
+  }
+
+  void fixSkat(Regnskab regnskab) {
+    // forsøg at fix skat til at være negativt eller positivt tal
+    if (regnskab.resultatopgoerelse.aaretsresultatTal.resultatfoerskat &&
+      regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat &&
+      regnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat) {
+
+      if (regnskab.resultatopgoerelse.aaretsresultatTal.resultatfoerskat.vaerdi<
+          regnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat.vaerdi) {
+        regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat.vaerdi =
+          Math.abs(regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat.vaerdi)
+      } else {
+        regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat.vaerdi =
+          Math.abs(regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat.vaerdi)*-1
+      }
+    }
+  }
+  Regnskabstal getRegnskabstal(NodeList nodeList, Namespace ns, String ...nodeName){
+    Node node
+
+    nodeName.each {
+      if (node) return
+      String nodenameMedPrefix = "$ns.prefix:$it"
+      node = nodeList.find {
+        it.name().toString() == nodenameMedPrefix
+      }
+    }
+
+    if (node!=null) {
+      String decimaler = node.attribute('decimals')
+      Long decimal = decimaler? Long.valueOf(decimaler) : 0
+      // man kan desværre ikke rigtig regne med de decimaler der.. hmmmm
+
+      return new Regnskabstal(getAmount(node), decimal)
     }
 
     return null
@@ -189,84 +357,6 @@ class RegnskabXmlParser {
     return null
   }
 
-  Integer extractInteger(String s) {
-    String i = ""
-    s.chars.each {
-      if (it.toString().isNumber()) {
-        i+=it.toString()
-      }
-
-    }
-
-    if (i.length()==0) {
-      return 0
-    }
-
-    return i.toInteger()
-  }
-
-  String hentContextRef(Node xmlDokument, Namespace ns, RegnskabData regnskabData) {
-    if (ns.prefix=='fsa') {
-      // så er det noget tricky at finde contexten forsøger med ProfitLoss da den altid er til stede og entydigt svarer til Årets resultat som er krævet i et regnskab
-      NodeList n = xmlDokument[ns.ProfitLoss]
-
-      if (n!=null && n.size()>0) {
-        // som regel altid den mindste contextRef
-        Node node = n.min {extractInteger(it.attribute("contextRef"))}
-        return node.attribute("contextRef")
-      }
-    }
-
-    Namespace c = new Namespace("http://xbrl.dcca.dk/gsd", "c")
-    Namespace gsd = new Namespace("http://xbrl.dcca.dk/gsd", "gsd")
-
-    NodeList n = xmlDokument[c.InformationOnTypeOfSubmittedReport]
-
-    if (n.size()==0) {
-      n = xmlDokument[gsd.InformationOnTypeOfSubmittedReport]
-    }
-    Node n1 = n.get(0)
-    String contextRef = n1.attribute("contextRef")
-
-    return contextRef
-  }
-
-  String findNode(xmlnodes, n) {
-
-    def nodes = xmlnodes[n]
-
-    if (nodes && nodes.size() > 0) {
-      Node node = nodes[0]
-      return node[0]
-    }
-
-    return null
-
-  }
-
-  String getGSDNamespace(String xml) {
-    return getNamespace(xml, "http://xbrl.dcca.dk/gsd")
-  }
-
-  String getFSANamespace(String xml) {
-    return getNamespace(xml, "http://xbrl.dcca.dk/fsa")
-  }
-
-  String getIFRSNamespace(String xml) {
-    return getNamespace(xml, "http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full")
-  }
-
-  String getNamespace(String xml, String ns) {
-    int idx = xml.indexOf(ns)
-    if (idx<0) {
-      return null;
-    }
-    xml = xml.substring(0, idx)
-    idx = xml.lastIndexOf('xmlns:')
-    String namespace = xml.substring(idx + 6, xml.length() - 2)
-    return namespace
-  }
-
   Long getValue(root, nodeName, alternateNodeName = null) {
     def nodes = root[nodeName]
     if (nodes && nodes.size() > 0) {
@@ -281,6 +371,7 @@ class RegnskabXmlParser {
 
   Long getAmount(Node n) {
     String amount = n.text()
-    return Double.valueOf(amount).longValue()
+    Long vaerdi = Double.valueOf(amount).longValue()
+    return vaerdi
   }
 }

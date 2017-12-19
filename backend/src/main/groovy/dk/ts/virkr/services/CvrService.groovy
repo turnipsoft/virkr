@@ -108,4 +108,11 @@ class CvrService {
     DeltagerGraf deltagerGraf = cvrInternalService.hentEjergrafForPerson(enhedsnummer)
     return deltagerGraf
   }
+
+  @RequestMapping(value = "/virksomhedgraf/{cvrnummer}", method = RequestMethod.GET)
+  public DeltagerGraf virksomhedgraf(@PathVariable String cvrnummer) {
+    DeltagerGraf deltagerGraf = cvrInternalService.hentDeltagerGrafForVirksomhed(cvrnummer)
+    return deltagerGraf
+  }
+
 }

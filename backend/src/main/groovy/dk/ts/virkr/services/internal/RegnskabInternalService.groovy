@@ -5,6 +5,7 @@ import dk.ts.virkr.aarsrapporter.integration.OffentliggoerelserClient
 import dk.ts.virkr.aarsrapporter.integration.RegnskabXmlClient
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Offentliggoerelse
+import dk.ts.virkr.aarsrapporter.parser.kontroller.RegnskabsKontroller
 import dk.ts.virkr.services.model.RegnskaberHentResponse
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -52,6 +53,9 @@ class RegnskabInternalService {
         it.id = "regnskab_${it.aar}"
       }
 
+      // berig med kontroller
+      RegnskabsKontroller kontroller = new RegnskabsKontroller()
+      kontroller.kontrollerOgBerig(response.regnskabsdata)
       response.regnskabsdata = response.regnskabsdata.sort { it.aar }
 
     }
@@ -66,6 +70,9 @@ class RegnskabInternalService {
     RegnskabXmlClient rc = new RegnskabXmlClient()
 
     List<Offentliggoerelse> offentliggoerelser = oc.hentOffentliggoerelserForCvrNummer(cvrnummer)
+    offentliggoerelser = offentliggoerelser.findAll{ it.regnskab != null }.unique {
+      it.regnskab.regnskabsperiode.startDato
+    }
     return rc.hentRegnskabData(offentliggoerelser)
   }
 }

@@ -1,9 +1,11 @@
 package dk.ts.virkr.services.model
 
+import dk.ts.virkr.aarsrapporter.util.Utils
 import dk.ts.virkr.cvr.integration.model.virksomhed.Attribut
 import dk.ts.virkr.cvr.integration.model.virksomhed.Beliggenhedsadresse
 import dk.ts.virkr.cvr.integration.model.virksomhed.DeltagerRelation
 import dk.ts.virkr.cvr.integration.model.virksomhed.Medlemsdata
+import dk.ts.virkr.cvr.integration.model.virksomhed.Navn
 import dk.ts.virkr.cvr.integration.model.virksomhed.Organisation
 import dk.ts.virkr.cvr.integration.model.virksomhed.Vaerdi
 
@@ -21,57 +23,121 @@ class Ejer {
   String stemmeprocent
   String stemmeprocentInterval
   String kapitalklasse
+  String ophoersdato
+  boolean ophoert
 
   // level bruges til at styre grafisk hvilket niveau ejeren skal ligge på i grafen
   int level
 
-  List<ReelEjerandel> reelleEjerandele = []
+  List<LegalEjerandel> reelleEjerandele = []
 
   static Ejer from(DeltagerRelation deltagerRelation) {
+
     Ejer ejer = new Ejer()
-    ejer.navn = deltagerRelation.deltager.navne.find {it.periode.gyldigTil==null}?.navn
+    Navn nyesteNavn  = Utils.findNyeste(deltagerRelation.deltager.navne)
+    ejer.navn = nyesteNavn.navn
+
+    if (nyesteNavn.periode.gyldigTil!=null) {
+      ejer.ophoert = true
+    }
+
     ejer.ejertype = deltagerRelation.deltager.enhedstype == 'PERSON'?EjerType.PERSON : EjerType.VIRKSOMHED
 
-    Beliggenhedsadresse aktuelAdresse = deltagerRelation.deltager.beliggenhedsadresse.find{ it.periode.gyldigTil==null }
-    if (aktuelAdresse ) {
-      ejer.adresse = aktuelAdresse.adresselinie
+    Beliggenhedsadresse adresse = Utils.findNyeste(deltagerRelation.deltager.beliggenhedsadresse)
+
+    if (adresse ) {
+      ejer.adresse = adresse.adresselinie
     }
 
     ejer.enhedsnummer = deltagerRelation.deltager.enhedsNummer
     ejer.forretningsnoegle = deltagerRelation.deltager.forretningsnoegle
 
-    Medlemsdata medlemsdata = findAktuelleMedlemsdata(deltagerRelation)
+    boolean aktuel = !ejer.ophoert
+    berigEjerMedEjerAndele(ejer, deltagerRelation, aktuel)
+    if (!ejer.andel) {
+      berigEjerMedEjerAndele(ejer, deltagerRelation, !aktuel)
+    }
 
-    ejer.andel = findAktuelVaerdi(medlemsdata, 'EJERANDEL_PROCENT')
-    ejer.andelInterval = interval(ejer.andel)
-    ejer.stemmeprocent = findAktuelVaerdi(medlemsdata, 'EJERANDEL_STEMMERET_PROCENT')
-    ejer.stemmeprocentInterval = interval(ejer.stemmeprocent)
-    ejer.kapitalklasse = findAktuelVaerdi(medlemsdata,'EJERANDEL_KAPITALKLASSE')
     return ejer
 
   }
 
-  static Medlemsdata findAktuelleMedlemsdata(DeltagerRelation deltagerRelation) {
-    Organisation ejerOrganisation = deltagerRelation.organisationer.find {it.organisationsNavn.find{it.periode.gyldigTil==null}.navn == 'EJERREGISTER'}
-    return findAktuelMedlemsdataFraOrganisation(ejerOrganisation);
+  static void berigEjerMedEjerAndele(Ejer ejer, DeltagerRelation deltagerRelation, boolean aktuel) {
+    Medlemsdata medlemsdata = findMedlemsdata(deltagerRelation, 'EJERREGISTER', aktuel)
+    if (medlemsdata) {
+      // så findes der ejeroplysninger
+      ejer.andel = findVaerdi(medlemsdata, 'EJERANDEL_PROCENT', aktuel)
+      ejer.andelInterval = interval(ejer.andel)
+      ejer.stemmeprocent = findVaerdi(medlemsdata, 'EJERANDEL_STEMMERET_PROCENT', aktuel)
+      ejer.stemmeprocentInterval = interval(ejer.stemmeprocent)
+      ejer.kapitalklasse = findVaerdi(medlemsdata, 'EJERANDEL_KAPITALKLASSE', aktuel)
+      ejer.ophoersdato = findAttributVaerdi(medlemsdata, 'EJERANDEL_MEDDELELSE_DATO', aktuel)?.periode.gyldigTil
+    }
   }
 
-  static Medlemsdata findAktuelMedlemsdataFraOrganisation(Organisation organisation) {
-    Medlemsdata medlemsdata = organisation.medlemsData.find{ it.attributter.find{it.type == 'EJERANDEL_PROCENT'}.vaerdier.find{it.periode.gyldigTil==null}}
+  static Medlemsdata findMedlemsdata(DeltagerRelation deltagerRelation, String navn, boolean aktuel) {
+    Organisation ejerOrganisation = deltagerRelation.organisationer.find {it.organisationsNavn.find{it.periode.gyldigTil==null}.navn == navn}
+    return findAktuelMedlemsdataFraOrganisation(ejerOrganisation, aktuel );
+  }
+
+  static Medlemsdata findAktuelMedlemsdataFraOrganisation(Organisation organisation, boolean aktuel) {
+    Medlemsdata medlemsdata = organisation.medlemsData.find{
+      Attribut attribut = it.attributter.find{it.type == 'EJERANDEL_MEDDELELSE_DATO'}
+      if (attribut) {
+        return attribut.vaerdier.find { (it.periode.gyldigTil == null) == aktuel }
+      }
+
+      return false
+    }
     return  medlemsdata
   }
 
   static String findAktuelVaerdi(Medlemsdata medlemsdata, String v) {
+    return findVaerdi(medlemsdata, v, true)
+  }
+
+  /**
+   * Forsøger at finde en værdi for en given medlemsdata
+   * @param medlemsdata
+   * @param v
+   * @return
+   */
+  static String findVaerdi(Medlemsdata medlemsdata, String v, boolean aktuel) {
     Attribut attribut = medlemsdata.attributter.find{ it.type==v }
     if (attribut) {
-      Vaerdi vaerdi = attribut.vaerdier.find { it.periode.gyldigTil == null }
-      return vaerdi.vaerdi
+      Vaerdi vaerdi = attribut.vaerdier.find { (it.periode.gyldigTil == null) == aktuel }
+      if (vaerdi) {
+        return vaerdi.vaerdi
+      }
     }
 
     return null
   }
 
+  /**
+   * Forsøger at finde en attribut for en given medlemsdata
+   * @param medlemsdata
+   * @param v
+   * @return
+   */
+  static Vaerdi findAttributVaerdi(Medlemsdata medlemsdata, String v, boolean aktuel) {
+    Attribut attribut = medlemsdata.attributter.find{ it.type==v }
+    if (attribut) {
+      Vaerdi vaerdi = attribut.vaerdier.find { (it.periode.gyldigTil == null) == aktuel }
+      if (vaerdi) {
+        return vaerdi
+      }
+    }
+
+    return null
+  }
+
+
   static String interval(String andel) {
+    if (!andel) {
+      return null
+    }
+
     double d = Double.parseDouble(andel)
     if (d==0) {
       return "0%"

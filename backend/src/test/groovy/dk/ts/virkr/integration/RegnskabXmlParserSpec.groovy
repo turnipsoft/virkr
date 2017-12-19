@@ -1,5 +1,7 @@
 package dk.ts.virkr.integration
 
+import dk.ts.virkr.aarsrapporter.model.Regnskab
+import dk.ts.virkr.aarsrapporter.parser.RegnskabNodes
 import dk.ts.virkr.aarsrapporter.parser.RegnskabXmlParser
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.model.Resultatopgoerelse
@@ -12,26 +14,91 @@ import spock.lang.Specification
  */
 class RegnskabXmlParserSpec extends Specification {
 
+  void "test parse nc-2014.xml"() {
+    given:
+    String xml = TestUtil.load("/nc-2014.xml")
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    Resultatopgoerelse ro = regnskabData.resultatopgoerelse
+
+    then:
+    ro.aaretsresultatTal.aaretsresultat.vaerdi == 28686000l
+  }
+
+  void "test parse nc-ifrs.xml"() {
+    given:
+    String xml = TestUtil.load("/nc-ifrs.xml")
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    Resultatopgoerelse ro = regnskabData.resultatopgoerelse
+
+    then:
+    ro.aaretsresultatTal.aaretsresultat.vaerdi == 108187000l
+  }
+
+  void "test csc consulting"() {
+    given:
+    String xml = TestUtil.load("/csc-consulting.xml")
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    Resultatopgoerelse ro = regnskabData.resultatopgoerelse
+
+    then:
+    ro.aaretsresultatTal.aaretsresultat.vaerdi == 149267l
+  }
+
+  void "test csc 2013"() {
+    given:
+    String xml = TestUtil.load("/csc-2013.xml")
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    Resultatopgoerelse ro = regnskabData.resultatopgoerelse
+
+    then:
+    ro.aaretsresultatTal.resultatfoerskat.vaerdi == -210000000l
+    ro.aaretsresultatTal.aaretsresultat.vaerdi == -202000000l
+  }
+
   void "test parse greener pastures"() {
     given:
     String xml = TestUtil.load('/greener_pastures.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
 
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
     then:
-    ro.bruttoresultatTal.bruttofortjeneste == 4100142l
-    ro.aaretsresultatTal.aaretsresultat == 541316l
-    ro.nettoresultatTal.driftsresultat == 727959l
-    ro.aaretsresultatTal.resultatfoerskat == 722363l
-    ro.aaretsresultatTal.skatafaaretsresultat == 181047l
+    ro.bruttoresultatTal.bruttofortjeneste.vaerdi == 4100142l
+    ro.aaretsresultatTal.aaretsresultat.vaerdi == 541316l
+    ro.nettoresultatTal.driftsresultat.vaerdi == 727959l
+    ro.aaretsresultatTal.skatafaaretsresultat.vaerdi == 181047l
 
-    regnskabData.balance.passiver.gaeldsforpligtelser == 1258900l
-    regnskabData.balance.passiver.egenkapital == 1414171l
+    regnskabData.balance.passiver.gaeldsforpligtelser.vaerdi == 1258900l
+    regnskabData.balance.passiver.egenkapital.vaerdi == 1414171l
 
   }
 
@@ -40,20 +107,20 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load('/capgemini.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
-
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
     then:
-    ro.bruttoresultatTal.bruttofortjeneste == 68539000l
-    ro.nettoresultatTal.driftsresultat == 18567000l
-    ro.aaretsresultatTal.resultatfoerskat == 18762000l
-    ro.aaretsresultatTal.skatafaaretsresultat == 4240000l
-    ro.aaretsresultatTal.aaretsresultat == 14522000l
-    regnskabData.balance.passiver.gaeldsforpligtelser == 80864000l
-    regnskabData.balance.passiver.egenkapital == 61554000l
+    ro.bruttoresultatTal.bruttofortjeneste.vaerdi == 68539000l
+    ro.nettoresultatTal.driftsresultat.vaerdi == 18567000l
+    ro.aaretsresultatTal.resultatfoerskat.vaerdi == 18762000l
+    ro.aaretsresultatTal.skatafaaretsresultat.vaerdi == -4240000l
+    ro.aaretsresultatTal.aaretsresultat.vaerdi == 14522000l
+    regnskabData.balance.passiver.gaeldsforpligtelser.vaerdi == 80864000l
+    regnskabData.balance.passiver.egenkapital.vaerdi == 61554000l
 
   }
 
@@ -62,59 +129,107 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load('/nine.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
 
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
     then:
-    ro.bruttoresultatTal.bruttofortjeneste == 87883765l
-    ro.nettoresultatTal.driftsresultat == 19658442l
-    ro.aaretsresultatTal.resultatfoerskat == 19704409l
-    ro.nettoresultatTal.finansielleindtaegter == 63203l
-    ro.nettoresultatTal.finansielleomkostninger == 17236l
-    ro.aaretsresultatTal.skatafaaretsresultat == 4189184l
-    ro.aaretsresultatTal.aaretsresultat == 15515225l
-    regnskabData.balance.passiver.gaeldsforpligtelser == 19030055l
-    regnskabData.balance.passiver.egenkapital == 31210704l
+    ro.bruttoresultatTal.bruttofortjeneste.vaerdi == 87883765l
+    ro.nettoresultatTal.driftsresultat.vaerdi == 19658442l
+    ro.aaretsresultatTal.resultatfoerskat.vaerdi == 19704409l
+    ro.nettoresultatTal.finansielleindtaegter.vaerdi == 63203l
+    ro.nettoresultatTal.finansielleomkostninger.vaerdi == 17236l
+    ro.aaretsresultatTal.skatafaaretsresultat.vaerdi == -4189184l
+    ro.aaretsresultatTal.aaretsresultat.vaerdi == 15515225l
+    regnskabData.balance.passiver.gaeldsforpligtelser.vaerdi == 19030055l
+    regnskabData.balance.passiver.egenkapital.vaerdi == 31210704l
+
+    // revision
+    regnskabData.revision
+    regnskabData.revision.navnPaaRevisor == 'Marian Fruergaard'
+    regnskabData.revision.revisionsfirmaNavn == 'Redmark, Statsautoriseret Revisionspartnerselskab'
+    regnskabData.revision.revisionsfirmaCvrnummer == '29442789'
+    regnskabData.revision.beskrivelseAfRevisor == 'statsautoriseret revisor'
+    regnskabData.revision.beliggenhedsadresse
+    regnskabData.revision.beliggenhedsadresse.vejadresselinie == 'Hasseris Bymidte 6'
+    regnskabData.revision.beliggenhedsadresse.byLinje == '9000 Aalborg'
+    regnskabData.revision.beliggenhedsadresse.land == 'Danmark'
+    regnskabData.revision.telefonnummer == '98183333'
+    regnskabData.revision.email == 'aalborg@redmark.dk'
+    regnskabData.revision.generalforsamling
+    regnskabData.revision.generalforsamling.dato == '2016-10-11'
+    regnskabData.revision.generalforsamling.formand == 'Finn Peder Hove\n  '
+    regnskabData.revision.assistancetype == 'Revisionspåtegning'
+    regnskabData.regnskabsklasse == 'Regnskabsklasse C, mellemstor virksomhed'
+
+    regnskabData.revision.godkendelsesdato == '2016-10-10'
+    regnskabData.revision.revisionUnderskriftsted == 'Aalborg'
+    regnskabData.revision.revisionUnderskriftdato == '2016-10-10'
+    regnskabData.revision.adressant == 'aktionærerne\n  '
 
     when:
-    Virksomhedsdata virksomhedsdata = regnskabXmlParser.hentVirksomhedsdataFraRegnskab(xml, regnskabData)
+    Virksomhedsdata virksomhedsdata = regnskabXmlParser.hentVirksomhedsdataFraRegnskab(regnskabNodes)
 
     then:
     virksomhedsdata
     virksomhedsdata.cvrnummer == '30714024'
     virksomhedsdata.navn == 'NineConsult A/S'
     virksomhedsdata.vejnavn == 'Kongens Nytorv'
-    virksomhedsdata.husnr == '3-5'
     virksomhedsdata.postnr == '1050'
     virksomhedsdata.bynavn == 'København K'
 
-  }
-
-  // FIXME: FSA regnskab... hmmmm how to parse
-  @Ignore
-  void "test parse dagrofa"() {
-    given:
-    String xml = TestUtil.load('/dagrofa.xml')
-    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
-
     when:
-    regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    Regnskab sidsteAar = new Regnskab()
+    regnskabXmlParser.parseOgBerig(sidsteAar, regnskabNodes, false )
 
     then:
-    regnskabData.bruttofortjeneste == 87883765l
+    sidsteAar
 
-    regnskabData.driftsresultat == 50897000l
-    regnskabData.resultatfoerskat == 19704409l
-    regnskabData.finansielleIndtaegter == 63203l
-    regnskabData.finansielleOmkostninger == 17236l
-    regnskabData.skatafaaretsresultat == 4189184l
-    regnskabData.aaretsresultat == 15515225l
-    regnskabData.gaeldsforpligtelser == 19030055l
-    regnskabData.egenkapital == 31210704l
+  }
+
+  void "test mne"() {
+    given:
+    String xml = TestUtil.load('/FR77a_2.xml')
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    then:
+    regnskabData.revision.mnenummer == 'mne33215'
+  }
+
+  void "test assistance"() {
+    given:
+    String xml = TestUtil.load('/ingen_revision.xml')
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    then:
+    regnskabData.revision.assistancetype == 'Ingen bistand'
+  }
+
+  void "test nine 2016 balance"() {
+    given:
+    String xml = TestUtil.load('/nine-2016.xml')
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    then:
+    regnskabData.balance.passiver.udbytte.vaerdi == 15000000l
   }
 
   void "test parse lagkagehuset"() {
@@ -122,28 +237,24 @@ class RegnskabXmlParserSpec extends Specification {
     String xml = TestUtil.load('/lagkagehuset.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
     RegnskabData regnskabData = new RegnskabData()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
-    regnskabData = regnskabXmlParser.parseOgBerig(regnskabData, xml)
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
     Resultatopgoerelse ro = regnskabData.resultatopgoerelse
 
     then:
-    ro.omsaetningTal.omsaetning == 552449000l
-    ro.bruttoresultatTal.bruttofortjeneste == 292764000l
-    ro.bruttoresultatTal.regnskabsmaessigeafskrivninger == 28137000l
-    ro.bruttoresultatTal.medarbejderomkostninger == 213730000l
+    ro.omsaetningTal.omsaetning.vaerdi == 552449000l
+    ro.bruttoresultatTal.regnskabsmaessigeafskrivninger.vaerdi == 28137000l
+    ro.bruttoresultatTal.medarbejderomkostninger.vaerdi == 213730000l
+    ro.nettoresultatTal.finansielleindtaegter.vaerdi == 795000
 
-    ro.nettoresultatTal.driftsresultat == 50897000l
-    ro.nettoresultatTal.finansielleindtaegter == 795000
+    ro.aaretsresultatTal.resultatfoerskat.vaerdi == 47316000l
+    ro.nettoresultatTal.finansielleomkostninger.vaerdi == 4376000l
+    ro.aaretsresultatTal.skatafaaretsresultat.vaerdi == -9175000l
+    ro.aaretsresultatTal.aaretsresultat.vaerdi == 38141000l
+    regnskabData.balance.passiver.gaeldsforpligtelser.vaerdi == 97955000l
 
-    ro.aaretsresultatTal.resultatfoerskat == 47316000l
-    ro.nettoresultatTal.finansielleomkostninger == 4376000l
-    ro.aaretsresultatTal.skatafaaretsresultat == 9175000l
-    ro.aaretsresultatTal.aaretsresultat == 38141000l
-    regnskabData.balance.passiver.gaeldsforpligtelser == 97955000l
-    regnskabData.balance.passiver.egenkapital == 75968l
+    regnskabData.balance.passiver.egenkapital.vaerdi == 135307000l
   }
-
-
-
 }

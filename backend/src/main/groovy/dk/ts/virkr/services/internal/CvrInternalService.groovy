@@ -14,7 +14,7 @@ import dk.ts.virkr.services.model.graf.EjerGraf
 import dk.ts.virkr.services.model.graf.EjerRelation
 import dk.ts.virkr.services.model.EjerType
 import dk.ts.virkr.cvr.integration.model.virksomhed.Navn
-import dk.ts.virkr.services.model.ReelEjerandel
+import dk.ts.virkr.services.model.LegalEjerandel
 import dk.ts.virkr.cvr.integration.model.virksomhed.Vrvirksomhed
 import dk.ts.virkr.services.model.DeltagerSoegeresultat
 import dk.ts.virkr.services.model.DeltagerVirksomhed
@@ -37,6 +37,7 @@ class CvrInternalService {
   EjerGraf hentEjergraf(String cvrnummer) {
     EjerGraf ejerGraf = new EjerGraf()
     Vrvirksomhed vrvirksomhed = cvrClient.hentVirksomhed(cvrnummer)
+    ejerGraf.virksomhed = vrvirksomhed
 
     EjerAfVirksomhed ejerAfVirksomhed = new EjerAfVirksomhed()
     ejerAfVirksomhed.cvrnummer = vrvirksomhed.cvrNummer
@@ -60,14 +61,35 @@ class CvrInternalService {
   DeltagerGraf hentEjergrafForPerson(String enhedsnummer) {
     DeltagerGraf deltagerGraf = new DeltagerGraf()
     Vrdeltagerperson vrdeltagerperson = cvrClient.hentDeltager(enhedsnummer);
+    deltagerGraf.deltager = vrdeltagerperson
 
     // hent alle virksomheder som personen ejer
     List<Vrvirksomhed> virksomheder = cvrClient.hentVirksomhedsDeltagere(enhedsnummer)
 
     virksomheder.each { virksomhed->
       // tager den kun med såfremt deltager faktisk er ejer af virksomheden, hvilket man kan se ved at virksomhedens ejere inkluderer personen
-      if (virksomhed.ejere && virksomhed.ejere.find { it.enhedsnummer == enhedsnummer}) {
-        berigDeltagersVirksomhed(vrdeltagerperson.enhedsNummer, virksomhed, deltagerGraf, 0)
+      if (virksomhed.aktuelleEjere && virksomhed.aktuelleEjere.find { it.enhedsnummer == enhedsnummer}) {
+        berigDeltagersVirksomhed(vrdeltagerperson.enhedsNummer, virksomhed, deltagerGraf, 0, [])
+      }
+    }
+
+    return deltagerGraf
+  }
+
+  DeltagerGraf hentDeltagerGrafForVirksomhed(String cvrnummer) {
+    DeltagerGraf deltagerGraf = new DeltagerGraf()
+    Vrvirksomhed vrvirksomhed = cvrClient.hentVirksomhed(cvrnummer)
+    deltagerGraf.virksomhed = vrvirksomhed
+
+    String enhedsnummer = vrvirksomhed.enhedsNummer
+
+    // hent alle virksomheder som virksomheden ejer
+    List<Vrvirksomhed> virksomheder = cvrClient.hentVirksomhedsDeltagere(enhedsnummer)
+
+    virksomheder.each { virksomhed->
+      // tager den kun med såfremt deltager faktisk er ejer af virksomheden, hvilket man kan se ved at virksomhedens ejere inkluderer personen
+      if (virksomhed.aktuelleEjere && virksomhed.aktuelleEjere.find { it.enhedsnummer == enhedsnummer}) {
+        berigDeltagersVirksomhed(enhedsnummer, virksomhed, deltagerGraf, 0, [])
       }
     }
 
@@ -80,17 +102,18 @@ class CvrInternalService {
     ejerAfVirksomhed.enhedsnummer = virksomhed.enhedsNummer
     ejerAfVirksomhed.virksomhedsnavn = virksomhed.virksomhedMetadata.nyesteNavn.navn
     ejerAfVirksomhed.adresse = virksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse?.adresselinie
-    ejerAfVirksomhed.ejer = virksomhed.ejere.find { it.enhedsnummer == enhedsnummer }
+    ejerAfVirksomhed.ejer = virksomhed.aktuelleEjere.find { it.enhedsnummer == enhedsnummer }
 
     return ejerAfVirksomhed
 
   }
-  void berigDeltagersVirksomhed(String deltagerEnhedsnummer, Vrvirksomhed virksomhed, DeltagerGraf deltagerGraf, int level) {
+  void berigDeltagersVirksomhed(String deltagerEnhedsnummer, Vrvirksomhed virksomhed, DeltagerGraf deltagerGraf,
+                                int level, List<String> virksomhedsGren) {
     EjerAfVirksomhed ejerAfVirksomhed = bygEjerAfVirksomhed(virksomhed, deltagerEnhedsnummer)
     ejerAfVirksomhed.ejer.level = level
 
     deltagerGraf.ejere << ejerAfVirksomhed
-    deltagerGraf.relationer << new DeltagerRelation(deltagerEnhedsnummer, virksomhed.enhedsNummer)
+    deltagerGraf.relationer << new DeltagerRelation(deltagerEnhedsnummer, virksomhed.enhedsNummer, ejerAfVirksomhed.ejer.andelInterval)
 
     // Der skal findes alle de virksomheder som har virkomsheden som deltage relation og dernæst findes de virksomheder som faktisk har
     // en ejerrelation til virksomheden  ved at kigge i hver virksomheds ejere og holde det op i mod enhedsnummeret på virksomheden.
@@ -98,10 +121,16 @@ class CvrInternalService {
     // det betyder også at denne graf kunne laves om til at køre rent på relationer og ikke forholde sig til ejerskab og på den måde kunne man danne sig et
     // komplet overblik over en person engagement
     List<Vrvirksomhed> virksomhederDerEjesAfVirksomhed = cvrClient.hentVirksomhedsDeltagere(virksomhed.enhedsNummer)?.
-      findAll {it.ejere?.find { it.enhedsnummer == virksomhed.enhedsNummer}}
+      findAll {it.aktuelleEjere?.find { it.enhedsnummer == virksomhed.enhedsNummer}}
 
+    virksomhedsGren << virksomhed.cvrNummer
     virksomhederDerEjesAfVirksomhed.each { ejetVirksomhed->
-      berigDeltagersVirksomhed(virksomhed.enhedsNummer, ejetVirksomhed, deltagerGraf, level+1)
+      if (virksomhedsGren.contains(ejetVirksomhed.cvrNummer)) {
+        logger.warn("Virksomheden $ejetVirksomhed.virksomhedMetadata.nyesteNavn.navn med cvrnummer : $ejetVirksomhed.cvrNummer" +
+          " ejer direkte eller indirekte $virksomhed.virksomhedMetadata.nyesteNavn.navn med cvrnummer : $virksomhed.cvrNummer ")
+        return
+      }
+      berigDeltagersVirksomhed(virksomhed.enhedsNummer, ejetVirksomhed, deltagerGraf, level+1, virksomhedsGren)
     }
   }
 
@@ -113,7 +142,7 @@ class CvrInternalService {
    */
   void berigEjergraf(Vrvirksomhed vrvirksomhed, EjerGraf ejerGraf, EjerAfVirksomhed virksomhed, int level) {
 
-    vrvirksomhed.ejere.each { ejer->
+    vrvirksomhed.aktuelleEjere.each { ejer->
       if (ejer.forretningsnoegle && ejer.forretningsnoegle == vrvirksomhed.cvrNummer) {
         // skip den findes jo givetvis allerede
         return
@@ -128,7 +157,7 @@ class CvrInternalService {
       ejerRelation.virksomhed = virksomhed
       ejerRelation.ejer = ejerAfVirksomhed
 
-      List<ReelEjerandel> moderEjere = virksomhed.ejer.reelleEjerandele
+      List<LegalEjerandel> moderEjere = virksomhed.ejer.reelleEjerandele
       ejer.reelleEjerandele = beregnReelleEjerAndele(moderEjere, ejer, ejerAfVirksomhed.cvrnummer, ejerAfVirksomhed.virksomhedsnavn)
 
       ejerGraf.ejerRelationer << ejerRelation
@@ -150,12 +179,12 @@ class CvrInternalService {
    * @param virksomhedsnavn virksomhedsnavn på  ejerens umiddelbare ejerskab
    * @return
    */
-  List<ReelEjerandel> beregnReelleEjerAndele(List<ReelEjerandel> re, Ejer ejer, String cvrnr, String virksomhedsnavn) {
-    List<ReelEjerandel> reelleEjerandele = []
+  List<LegalEjerandel> beregnReelleEjerAndele(List<LegalEjerandel> re, Ejer ejer, String cvrnr, String virksomhedsnavn) {
+    List<LegalEjerandel> reelleEjerandele = []
     re.each { r->
-      reelleEjerandele << beregnReelEjerandel(ejer, r, r.virksomhedsnavn, r.cvrnummer)
+      reelleEjerandele << beregnLegalEjerandel(ejer, r, r.virksomhedsnavn, r.cvrnummer)
     }
-    reelleEjerandele << beregnReelEjerandel(ejer, null,virksomhedsnavn, cvrnr)
+    reelleEjerandele << beregnLegalEjerandel(ejer, null,virksomhedsnavn, cvrnr)
   }
 
   /**
@@ -164,8 +193,8 @@ class CvrInternalService {
    * @param vrvirksomhed
    * @return
    */
-  ReelEjerandel beregnReelEjerandel(Ejer ejer, ReelEjerandel reelEjerandel, String virksomhedsnavn, String cvrnr) {
-    ReelEjerandel beregnetReelEjerandel = new ReelEjerandel()
+  LegalEjerandel beregnLegalEjerandel(Ejer ejer, LegalEjerandel reelEjerandel, String virksomhedsnavn, String cvrnr) {
+    LegalEjerandel beregnetReelEjerandel = new LegalEjerandel()
     beregnetReelEjerandel.cvrnummer = cvrnr
     beregnetReelEjerandel.virksomhedsnavn = virksomhedsnavn
     beregnetReelEjerandel.kapitalklasse = ejer.kapitalklasse
@@ -203,7 +232,10 @@ class CvrInternalService {
     vrdeltagerperson.virksomhedSummariskRelation.each {vsr->
       // arbejder p.t. kun med aktuelle data, så der skal være et livsforløb hvor gyldigtil er null
       if (vsr.virksomhed.livsforloeb.find{ !it.periode.gyldigTil}) {
-        deltagerSoegeresultat.virksomheder << lavDeltagerVirksomhed(vsr)
+        DeltagerVirksomhed dv = lavDeltagerVirksomhed(vsr)
+        if (dv) {
+          deltagerSoegeresultat.virksomheder << dv
+        }
       }
     }
     return deltagerSoegeresultat
@@ -235,8 +267,32 @@ class CvrInternalService {
       deltagerVirksomhed.navn = virksomhedsnavn.navn
     }
 
-    List<String> roller = virksomhedSummariskRelation.organisationer.collect {it->
+    // skal finde de roller hvor personen er aktiv
+    List<Organisation> aktiveOrganisationer = virksomhedSummariskRelation.organisationer.findAll {
+      // find funktion og check udløbsdatoen
+      Medlemsdata medlemsdata = it.medlemsData.find { m->
+        m.attributter.find { attribut->
+          attribut.type == 'FUNKTION' &&
+          attribut.vaerdier.find{ vaerdi->
+            vaerdi.periode.gyldigTil==null
+          }
+        }
+      }
+      // hvis den fandtes er personen aktiv i rollen
+      if (medlemsdata) {
+        return true
+      }
+
+      return false
+    }
+
+    List<String> roller = aktiveOrganisationer.collect {it->
       return it.organisationsNavn.find { !it.periode.gyldigTil }?.navn
+    }
+
+    // hvis der ingen roller er så kan vi lige så godt stoppe her.
+    if (!roller) {
+      return null
     }
 
     roller = konverterRoller(roller)
@@ -253,7 +309,7 @@ class CvrInternalService {
       deltagerVirksomhed.stemmeretiprocent = Ejer.interval(deltagerVirksomhed.stemmeret)
     }
 
-    return deltagerVirksomhed
+      return deltagerVirksomhed
 
   }
 
@@ -271,7 +327,7 @@ class CvrInternalService {
   }
 
   List<Medlemsdata> findAktuelleEjerMedlemsdata(List<Organisation> organisationer) {
-    Organisation ejerOrganisation = organisationer.find {it.organisationsNavn.find{it.periode.gyldigTil==null}.navn.toLowerCase() == 'reelle ejere'}
+    Organisation ejerOrganisation = organisationer.find {it.organisationsNavn.find{it.periode.gyldigTil==null}.navn == 'EJERREGISTER'}
     if (ejerOrganisation) {
       return ejerOrganisation.medlemsData
     }

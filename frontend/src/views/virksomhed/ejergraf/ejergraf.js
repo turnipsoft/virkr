@@ -21,27 +21,36 @@ export default class EjerGraf extends React.Component {
     var map = new Map();
     var allMap = new Map();
 
-    this.props.ejerGraf.ejere.forEach((ejer) =>{
+    this.props.ejerGraf.unikkeEjere.forEach((ejer) =>{
       map.set(ejer.ejer.enhedsnummer, ejer.ejer.forretningsnoegle);
       allMap.set(ejer.ejer.enhedsnummer, ejer);
     });
 
     this.state = {ejerMap: map, ejerAllMap: allMap, isModalOpen: false};
-    this._visVirksomhed = this._visVirksomhed.bind(this);
+    this._visEnhed = this._visEnhed.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-  _visVirksomhed(enhedsnr) {
+  _visEnhed(enhedsnr) {
     const ejer = this.state.ejerAllMap.get(enhedsnr).ejer;
-    this.setState({specifikEjer: ejer});
-    this.openModal();
+    if (ejer.forretningsnoegle != ejer.enhedsnummer && (ejer.ejertype == 'VIRKSOMHED' || ejer.ejertype == 'ROD')) {
+      //this.props.visVirksomhed(ejer.forretningsnoegle, true);
+      window.open('./#/virksomhed/'+ejer.forretningsnoegle,'_blank');
+    } else if ( ejer.ejertype == 'PERSON') {
+      window.open('./#/deltager/'+ejer.enhedsnummer,'_blank');
+      //this.props.visDeltager(ejer.enhedsnummer, true);
+    } else {
+      this.setState({specifikEjer: ejer});
+      this.openModal();
+    }
+
   }
 
   render() {
     const ejergraf = this.props.ejerGraf;
 
-    const n = ejergraf.ejere.map((ejer) => {
+    let n = ejergraf.unikkeEjere.map((ejer) => {
       var group = ejer.ejer.ejertype == 'PERSON' ? 'personer' : 'virksomheder'
       if (ejer.ejer.ejertype == 'ROD') {
         group = 'rod';
@@ -50,9 +59,13 @@ export default class EjerGraf extends React.Component {
       return {id: ejer.ejer.enhedsnummer, label: navn, group: group, level: ejer.ejer.level };
     });
 
+    n = n.sort(function(a,b) {
+      return a.level-b.level
+    });
+
     const e = ejergraf.ejerRelationer.map((er) =>{
       const vnr = (er.virksomhed.ejer ? er.virksomhed.ejer.enhedsnummer:"0");
-      return {from:er.ejer.ejer.enhedsnummer, to: vnr};
+      return {from:er.ejer.ejer.enhedsnummer, to: vnr, label: er.ejer.ejer.andelInterval, font: {align: 'horizontal', size: 8}};
     });
 
     var graph = {
@@ -62,9 +75,12 @@ export default class EjerGraf extends React.Component {
 
 
     var options = {
+      physics: {
+        enabled: false
+      },
       layout: {
         hierarchical: {
-          direction: "UD",
+          direction: "DU",
           blockShifting: true,
           edgeMinimization: true,
           sortMethod: 'directed'
@@ -101,7 +117,7 @@ export default class EjerGraf extends React.Component {
             face: 'FontAwesome',
             code: '\uf0c0',
             size: 50,
-            color: '#2058b2'
+            color: '#336d1a'
           }
         },
         personer: {
@@ -116,9 +132,9 @@ export default class EjerGraf extends React.Component {
       }
     };
 
-    var vv = this._visVirksomhed;
+    const vv = this._visEnhed;
 
-    var events = {
+    const events = {
       click: function(event) {
         var { nodes } = event;
 
@@ -128,7 +144,7 @@ export default class EjerGraf extends React.Component {
       }
     }
 
-    var styles = {
+    const styles = {
       width: '100%', height: '100%'
     }
 
@@ -141,7 +157,7 @@ export default class EjerGraf extends React.Component {
         </div>
         <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} className="card ejercard" width="70%">
           <EjerVisning ejer={this.state.specifikEjer} visVirksomhed={this.props.visVirksomhed}
-                       visDeltager={this.props.visDeltager} />
+                       visDeltager={this.props.visDeltager} fraGraf />
         </Modal>
       </div>
     );

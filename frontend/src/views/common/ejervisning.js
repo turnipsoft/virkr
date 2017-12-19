@@ -4,7 +4,7 @@ import DetaljeLinie from './detaljelinie';
 export default class EjerVisning extends React.Component {
 
   render() {
-    const {ejer, visVirksomhed, visDeltager} = this.props;
+    const {ejer, visVirksomhed, visDeltager, fraGraf} = this.props;
 
     let ejertype = (ejer.ejertype=='ROD' ? 'VIRKSOMHED' : ejer.ejertype);
 
@@ -20,15 +20,20 @@ export default class EjerVisning extends React.Component {
       ejertype = 'UDENLANDSK';
     }
 
+    let href = null;
+    if (fraGraf) {
+      href = ejer.ejertype === 'PERSON' ? './#/deltager/' + ejer.enhedsnummer : './#/virksomhed/' + cvrnummer;
+    }
+
     return(
         <div className="card-block resizable-block">
           {ejer.ejertype==='PERSON'?
             (<div>
-              <DetaljeLinie text="Navn" value={ejer.navn} detalje={ejer.ejertype} link={visDeltager} linkKey={ejer.enhedsnummer} />
+              <DetaljeLinie text="Navn" value={ejer.navn} detalje={ejer.ejertype} link={visDeltager} linkKey={ejer.enhedsnummer} href={href}/>
             </div>) :
             (<div>
               <DetaljeLinie text="Navn" value={ejer.navn} detalje={ejertype} />
-              {ejertype=='VIRKSOMHED' && <DetaljeLinie text="CVR-Nummer" value={cvrnummer} link={visVirksomhed} linkKey={cvrnummer} />}
+              {ejertype=='VIRKSOMHED' && <DetaljeLinie text="CVR-Nummer" value={cvrnummer} link={visVirksomhed} linkKey={cvrnummer} href={href} />}
             </div>)
           }
           <DetaljeLinie text="Adresse" value={ejer.adresse} />
@@ -39,8 +44,9 @@ export default class EjerVisning extends React.Component {
               {ejer.ejedeVirksomheder.map((re) => {
                 return (
                   <div>
-                    <DetaljeLinie text="Virksomhed" value={re.virksomhedsnavn} detalje={re.cvrnummer} key={re.virksomhedsnavn} link={visVirksomhed} linkKey={re.cvrnummer}  />
+                    <DetaljeLinie text="Virksomhed" value={re.virksomhedsnavn} detalje={re.cvrnummer} key={re.virksomhedsnavn} link={visVirksomhed} linkKey={re.cvrnummer} href={href}  />
                     <DetaljeLinie text="Ejerandel" value={re.ejer.andelInterval} key={re.cvrnummer} />
+                    {re.ejer && re.ejer.ophoersdato && <DetaljeLinie text="Ophørsdato" value={re.ejer.ophoersdato} key={re.cvrnummer+re.ejer.ophoersdato} />}
                     <hr/>
                   </div>
                 )
@@ -52,8 +58,9 @@ export default class EjerVisning extends React.Component {
                 {ejer.reelleEjerandele.map((re) => {
                   return (
                     <div key={re.cvrnummer}>
-                      <DetaljeLinie text="Virksomhed" value={re.virksomhedsnavn} detalje={re.cvrnummer} key={re.virksomhedsnavn} link={visVirksomhed} linkKey={re.cvrnummer}  />
+                      <DetaljeLinie text="Virksomhed" value={re.virksomhedsnavn} detalje={re.cvrnummer} key={re.virksomhedsnavn} link={visVirksomhed} linkKey={re.cvrnummer} href={href} />
                       <DetaljeLinie text="Ejerandel" value={re.andelInterval} key={re.cvrnummer} />
+                      {re.ejer && re.ejer.ophoersdato && <DetaljeLinie text="Ophørsdato" value={re.ejer.ophoersdato} key={re.cvrnummer+re.ejer.ophoersdato} />}
                       <hr/>
                     </div>
                   )

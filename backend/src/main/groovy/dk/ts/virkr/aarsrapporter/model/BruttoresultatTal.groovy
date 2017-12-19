@@ -7,32 +7,30 @@ import org.springframework.beans.BeanUtils
  * Created by sorenhartvig on 24/06/2017.
  */
 class BruttoresultatTal extends ModelBase {
-  Long bruttofortjeneste
-  Long medarbejderomkostninger
-  Long administrationsomkostninger
-  Long ejendomsomkostninger
-  Long regnskabsmaessigeafskrivninger //DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
-  Long kapitalandeleiassocieredevirksomheder
+  Regnskabstal bruttofortjeneste
+  Regnskabstal medarbejderomkostninger
+  Regnskabstal administrationsomkostninger
+  Regnskabstal ejendomsomkostninger
+  Regnskabstal regnskabsmaessigeafskrivninger //DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
 
   static BruttoresultatTal from(Regnskabsdata rd) {
     BruttoresultatTal br = new BruttoresultatTal()
 
-    br.bruttofortjeneste = rd.bruttofortjeneste
-    br.medarbejderomkostninger = rd.medarbejderomkostninger
-    br.administrationsomkostninger = rd.administrationsomkostninger
-    br.ejendomsomkostninger = rd.lokalomkostninger
-    br.regnskabsmaessigeafskrivninger = rd.regnskabsmaessigeafskrivninger
-    br.kapitalandeleiassocieredevirksomheder = rd.kapitalandeleiassocieredevirksomheder
+    br.bruttofortjeneste = new Regnskabstal(rd.bruttofortjeneste)
+    br.medarbejderomkostninger = new Regnskabstal(rd.medarbejderomkostninger)
+    br.administrationsomkostninger = new Regnskabstal(rd.administrationsomkostninger)
+    br.ejendomsomkostninger = new Regnskabstal(rd.lokalomkostninger)
+    br.regnskabsmaessigeafskrivninger = new Regnskabstal(rd.regnskabsmaessigeafskrivninger)
+
     return br
   }
 
   void berig(Regnskabsdata br) {
-    br.bruttofortjeneste = this.bruttofortjeneste
-    br.medarbejderomkostninger = this.medarbejderomkostninger
-    br.administrationsomkostninger = this.administrationsomkostninger
-    br.lokalomkostninger = this.ejendomsomkostninger
-    br.regnskabsmaessigeafskrivninger = this.regnskabsmaessigeafskrivninger
-    br.kapitalandeleiassocieredevirksomheder = this.kapitalandeleiassocieredevirksomheder
+    br.bruttofortjeneste = this.bruttofortjeneste.vaerdi
+    br.medarbejderomkostninger = this.medarbejderomkostninger.vaerdi
+    br.administrationsomkostninger = this.administrationsomkostninger.vaerdi
+    br.lokalomkostninger = this.ejendomsomkostninger.vaerdi
+    br.regnskabsmaessigeafskrivninger = this.regnskabsmaessigeafskrivninger.vaerdi
   }
 
 }

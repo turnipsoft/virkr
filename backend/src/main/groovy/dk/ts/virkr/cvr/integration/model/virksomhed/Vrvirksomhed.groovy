@@ -1,5 +1,6 @@
 package dk.ts.virkr.cvr.integration.model.virksomhed
 
+import dk.ts.virkr.aarsrapporter.util.Utils
 import dk.ts.virkr.services.model.Ejer
 
 /**
@@ -26,6 +27,7 @@ class Vrvirksomhed {
   List<Virksomhedsstatus> virksomhedsstatus
 
   List<Livsforloeb> livsforloeb
+
   String getKapital() {
     return getAttributVaerdi('KAPITAL')
   }
@@ -46,7 +48,8 @@ class Vrvirksomhed {
     return null
   }
 
-  List<Ejer> getEjere() {
+  private List<Ejer> getEjere(boolean aktuel) {
+
     List<Ejer> ejere = []
     if (this.deltagerRelation) {
       this.deltagerRelation.each {
@@ -54,7 +57,7 @@ class Vrvirksomhed {
         if (organisation) {
           OrganisationsNavn on = organisation.organisationsNavn.find{it.navn=='EJERREGISTER' && it.periode.gyldigTil==null}
           if (on) {
-            Medlemsdata medlemsdata = Ejer.findAktuelleMedlemsdata(it)
+            Medlemsdata medlemsdata = Ejer.findMedlemsdata(it, 'EJERREGISTER', aktuel)
             if (medlemsdata) {
               ejere << Ejer.from(it)
             }
@@ -64,5 +67,30 @@ class Vrvirksomhed {
     }
 
     return ejere
+  }
+
+  List<Ejer> getAktuelleEjere() {
+    return getEjere(true)
+  }
+
+  List<Ejer> getHistoriskeEjere() {
+    return getEjere(false)
+  }
+
+  String getNyesteStatus() {
+    if (this.virksomhedsstatus) {
+      Virksomhedsstatus status = Utils.findNyeste(this.virksomhedsstatus)
+      if (status) {
+        return status.status
+      }
+    }
+
+    return null
+  }
+
+  Livsforloeb getNyesteLivsforloeb() {
+    if (this.livsforloeb) {
+      return Utils.findNyeste(this.livsforloeb)
+    }
   }
 }

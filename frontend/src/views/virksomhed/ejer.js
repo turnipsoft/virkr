@@ -15,6 +15,7 @@ export default class Ejer extends React.Component {
           <DetaljeLinie text="Adresse" value={ejer.adresse} />
           <DetaljeLinie text="Ejerandel" value={ejer.andelInterval} />
           <DetaljeLinie text="Stemmeandel" value={ejer.stemmeprocentInterval} />
+          <DetaljeLinie text="Ophørsdato" value={ejer.ophoersdato} />
         </div>
       </div>
     )

@@ -1,5 +1,7 @@
 package dk.ts.virkr.aarsrapporter.util
 
+import dk.ts.virkr.cvr.integration.model.virksomhed.Navn
+
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -11,20 +13,33 @@ class Utils {
 
     static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd")
 
-    public static String toString(LocalDate localDate) {
+    static String toString(LocalDate localDate) {
         return dtf.format(localDate)
     }
 
-    public static String toString(LocalDateTime localDateTime) {
+    static String toString(LocalDateTime localDateTime) {
         return DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(localDateTime)
     }
 
-    public static LocalDate toDate(String s) {
+    static LocalDate toDate(String s) {
         return LocalDate.parse(s, dtf)
     }
 
-    public static LocalDateTime toDateTime(String s) {
+    static LocalDateTime toDateTime(String s) {
         s=s.replace(" ","T")
         return LocalDateTime.parse(s, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+    }
+
+    static <T extends Object> T findNyeste(List<T> liste) {
+
+      T fundet=null
+      liste.each { n->
+        if (fundet==null || n.periode.gyldigTil==null ||
+          (n.periode.gyldigTil!=null && fundet.periode.gyldigTil!=null && n.periode.gyldigTil>fundet.periode.gyldigTil) ){
+          fundet = n
+        }
+      }
+
+      return fundet
     }
 }

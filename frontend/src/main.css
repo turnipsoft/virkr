@@ -6,6 +6,11 @@
   margin-top: 2%;
 }
 
+.header-periode {
+  font-size: 10px;
+  font-weight: normal;
+}
+
 .virkr-header h1 {
   font-family: 'Lobster', cursive;
   color: var(--header-color);
@@ -14,7 +19,25 @@
   text-align: center;
 }
 
+.virkr-header-margin {
+  margin-top: 8px
+}
+
+.red {
+  color: red;
+  font-size: 16px;
+}
+
+.noegletal-table-header {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
+}
+
 .virkr-header a {
+  font-family: 'Lobster', cursive;
+  font-weight: bold;
+  font-size: 26px;
   color: var(--header-color);
   text-decoration: none;
 }
@@ -48,6 +71,11 @@
   text-decoration: none;
 }
 
+.header-details {
+  font-size: 14px;
+  font-weight: normal;
+}
+
 .soegeresultatcard {
   margin-bottom: 20px;
 }
@@ -66,7 +94,7 @@
 }
 
 .noegletal-tabel {
-  font-size: 14px;
+  font-size: 13px;
   border: 0px;
 }
 
@@ -79,6 +107,11 @@
   color: red;
 }
 
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index:100;
+}
 /*
   I det følgende låner vi lidt ideer fra Material Design: Cards får en dropshadow for at indikere at man
   kan interagere med dem.
@@ -162,6 +195,7 @@
 }
 
 .section-header {
+  margin-top:5px;
   background-color: azure;
   font-weight: bold;
   font-size: 24px;

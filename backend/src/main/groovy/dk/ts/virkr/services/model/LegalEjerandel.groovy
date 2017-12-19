@@ -3,7 +3,7 @@ package dk.ts.virkr.services.model
 /**
  * Created by sorenhartvig on 25/08/2017.
  */
-class ReelEjerandel {
+class LegalEjerandel {
   String cvrnummer
   String virksomhedsnavn
 

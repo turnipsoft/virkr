@@ -1,0 +1,2957 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbrl xmlns="http://www.xbrl.org/2003/instance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:arr="http://xbrl.dcca.dk/arr" xmlns:mrv="http://xbrl.dcca.dk/mrv" xmlns:cmn="http://xbrl.dcca.dk/cmn"
+      xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
+      xmlns:sob="http://xbrl.dcca.dk/sob" xmlns:link="http://www.xbrl.org/2003/linkbase"
+      xmlns:fsa="http://xbrl.dcca.dk/fsa" xmlns:gsd="http://xbrl.dcca.dk/gsd" xmlns:dst="http://xbrl.dcca.dk/dst"
+      xml:lang="da">
+  <link:schemaRef xlink:type="simple"
+                  xlink:href="http://archprod.service.eogs.dk/taxonomy/20130401/entryDanishGAAPBalanceSheetAccountFormIncomeStatementByNatureIncludingManagementsReviewStatisticsAndTax20130401.xsd"/>
+  <context id="I-2014-E">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+  </context>
+  <context id="I-2013-E">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+  </context>
+  <context id="D-2014">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+  </context>
+  <context id="D-2013">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+  </context>
+  <context id="I-2014-E-dim-InvestmentsInGroupEn">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfInvestmentsDimension">fsa:InvestmentsInGroupEnterprisesMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-InvestmentsInGroupEn">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfInvestmentsDimension">fsa:InvestmentsInGroupEnterprisesMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-ReceivablesFromGroup">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfInvestmentsDimension">fsa:ReceivablesFromGroupEnterprisesMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-InvestmentsInGroupEn">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfInvestmentsDimension">fsa:InvestmentsInGroupEnterprisesMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-ProposedDividendReco">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ResultDistributionDimension">fsa:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-RetainedEarningsMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ResultDistributionDimension">fsa:RetainedEarningsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-RetainedEarningsMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ResultDistributionDimension">fsa:RetainedEarningsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ProposedDividendReco">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-ProposedDividendReco.1">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-RetainedEarningsMemb.1">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-RetainedEarningsMemb.1">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ContributedCapitalMe">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:ContributedCapitalMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-ContributedCapitalMe">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:ContributedCapitalMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-ProposedDividendReco">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-RetainedEarningsMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-RetainedEarningsMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ParentOfLargestGroup">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:TypeOfRelatedEntityDimension">
+        fsa:ParentOfLargestGroupInWhichReportingEntityIsSubsidiaryMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ParentOfSmallestGrou">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="fsa:TypeOfRelatedEntityDimension">
+        fsa:ParentOfSmallestGroupInWhichReportingEntityIsSubsidiaryMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-Kapitalklasse01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfClassOfSharesDimension">
+        <classOfSharesIdentifier xmlns="http://xbrl.dcca.dk/fsa">Kapitalklasse 01</classOfSharesIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-PreviousYearMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:PreviousYearMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-TwoYearsAgoMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:TwoYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ThreeYearsAgoMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:ThreeYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-FourYearsAgoMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:FourYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Direktionsmedlem1">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="cmn:IdentificationOfMemberOfExecutiveBoardDimension">
+        <memberOfBoardIdentifier xmlns="http://xbrl.dcca.dk/cmn">Direktionsmedlem 1</memberOfBoardIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Bestyrelsesmedlem01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="cmn:IdentificationOfMemberOfSupervisoryBoardDimension">
+        <memberOfBoardIdentifier xmlns="http://xbrl.dcca.dk/cmn">Bestyrelsesmedlem 01</memberOfBoardIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Bestyrelsesmedlem02">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="cmn:IdentificationOfMemberOfSupervisoryBoardDimension">
+        <memberOfBoardIdentifier xmlns="http://xbrl.dcca.dk/cmn">Bestyrelsesmedlem 02</memberOfBoardIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Bestyrelsesmedlem03">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="cmn:IdentificationOfMemberOfSupervisoryBoardDimension">
+        <memberOfBoardIdentifier xmlns="http://xbrl.dcca.dk/cmn">Bestyrelsesmedlem 03</memberOfBoardIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-ConsolidatedMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-ConsolidatedMember-ProposedDividendReco">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ResultDistributionDimension">fsa:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-RetainedEarningsMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ResultDistributionDimension">fsa:RetainedEarningsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-ConsolidatedMember-RetainedEarningsMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ResultDistributionDimension">fsa:RetainedEarningsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-ConsolidatedMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-ContributedCapitalMe">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:ContributedCapitalMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-ConsolidatedMember-ContributedCapitalMe">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:ContributedCapitalMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-RetainedEarningsMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-ConsolidatedMember-RetainedEarningsMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-RetainedEarningsMemb.1">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-ConsolidatedMember-RetainedEarningsMemb.1">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:RetainedEarningsMember</xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-OtherReceivablesMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfInvestmentsDimension">fsa:OtherReceivablesMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-ConsolidatedMember-OtherReceivablesMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfInvestmentsDimension">fsa:OtherReceivablesMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-OtherReceivablesMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfInvestmentsDimension">fsa:OtherReceivablesMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-ConsolidatedMember-OtherReceivablesMemb">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfInvestmentsDimension">fsa:OtherReceivablesMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Dattervirksomhed01-SubsidiaryMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:TypeOfRelatedEntityDimension">fsa:SubsidiaryMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfRelatedEntityDimension">
+        <relatedEntityIdentifier xmlns="http://xbrl.dcca.dk/fsa">Dattervirksomhed 01</relatedEntityIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-Dattervirksomhed01-SubsidiaryMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:TypeOfRelatedEntityDimension">fsa:SubsidiaryMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfRelatedEntityDimension">
+        <relatedEntityIdentifier xmlns="http://xbrl.dcca.dk/fsa">Dattervirksomhed 01</relatedEntityIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-FixturesFittingsTool">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfPropertyPlantAndEquipmentDimension">
+        fsa:FixturesFittingsToolsAndEquipmentMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-ConsolidatedMember-FixturesFittingsTool">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfPropertyPlantAndEquipmentDimension">
+        fsa:FixturesFittingsToolsAndEquipmentMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-FixturesFittingsTool">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfPropertyPlantAndEquipmentDimension">
+        fsa:FixturesFittingsToolsAndEquipmentMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-ConsolidatedMember-FixturesFittingsTool">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfPropertyPlantAndEquipmentDimension">
+        fsa:FixturesFittingsToolsAndEquipmentMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-LeaseholdImprovement">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfPropertyPlantAndEquipmentDimension">
+        fsa:LeaseholdImprovementsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-ConsolidatedMember-LeaseholdImprovement">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfPropertyPlantAndEquipmentDimension">
+        fsa:LeaseholdImprovementsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-ConsolidatedMember-ProposedDividendReco">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-ProposedDividendReco">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-ConsolidatedMember-ProposedDividendReco.1">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfEquityDimension">fsa:ProposedDividendRecognisedInEquityMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-LeaseholdImprovement">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfPropertyPlantAndEquipmentDimension">
+        fsa:LeaseholdImprovementsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-ConsolidatedMember-LeaseholdImprovement">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfPropertyPlantAndEquipmentDimension">
+        fsa:LeaseholdImprovementsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Dattervirksomhed02-SubsidiaryMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:TypeOfRelatedEntityDimension">fsa:SubsidiaryMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfRelatedEntityDimension">
+        <relatedEntityIdentifier xmlns="http://xbrl.dcca.dk/fsa">Dattervirksomhed 02</relatedEntityIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-Dattervirksomhed02-SubsidiaryMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:TypeOfRelatedEntityDimension">fsa:SubsidiaryMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfRelatedEntityDimension">
+        <relatedEntityIdentifier xmlns="http://xbrl.dcca.dk/fsa">Dattervirksomhed 02</relatedEntityIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-CompletedDevelopment">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfIntangibleAssetsDimension">fsa:CompletedDevelopmentProjectsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2013-E-dim-ConsolidatedMember-CompletedDevelopment">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2013-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfIntangibleAssetsDimension">fsa:CompletedDevelopmentProjectsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-CompletedDevelopment">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfIntangibleAssetsDimension">fsa:CompletedDevelopmentProjectsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2013-dim-ConsolidatedMember-CompletedDevelopment">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2013-01-01</startDate>
+      <endDate>2013-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="fsa:ClassesOfIntangibleAssetsDimension">fsa:CompletedDevelopmentProjectsMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:FourYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-PreviousYearMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:PreviousYearMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:TwoYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:ThreeYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-PreviousYearMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:PreviousYearMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-TwoYearsAgoMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:TwoYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-ThreeYearsAgoMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:ThreeYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="I-2014-E-dim-ConsolidatedMember-FourYearsAgoMember">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <instant>2014-12-31</instant>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:FourYearsAgoMember
+      </xbrldi:explicitMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Geografiskområde01-">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfOperatingSegmentDimension">
+        <operatingSegmentIdentifier xmlns="http://xbrl.dcca.dk/fsa"/>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfGeographicalMarketDimension">
+        <geographicalMarketIdentifier xmlns="http://xbrl.dcca.dk/fsa">Geografisk område 01
+        </geographicalMarketIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Geografiskområde02-">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfOperatingSegmentDimension">
+        <operatingSegmentIdentifier xmlns="http://xbrl.dcca.dk/fsa"/>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfGeographicalMarketDimension">
+        <geographicalMarketIdentifier xmlns="http://xbrl.dcca.dk/fsa">Geografisk område 02
+        </geographicalMarketIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Geografiskområde03-">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfOperatingSegmentDimension">
+        <operatingSegmentIdentifier xmlns="http://xbrl.dcca.dk/fsa"/>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfGeographicalMarketDimension">
+        <geographicalMarketIdentifier xmlns="http://xbrl.dcca.dk/fsa">Geografisk område 03
+        </geographicalMarketIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Geografiskområde04-">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfOperatingSegmentDimension">
+        <operatingSegmentIdentifier xmlns="http://xbrl.dcca.dk/fsa"/>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfGeographicalMarketDimension">
+        <geographicalMarketIdentifier xmlns="http://xbrl.dcca.dk/fsa">Geografisk område 04
+        </geographicalMarketIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Geografiskområde05-">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfOperatingSegmentDimension">
+        <operatingSegmentIdentifier xmlns="http://xbrl.dcca.dk/fsa"/>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfGeographicalMarketDimension">
+        <geographicalMarketIdentifier xmlns="http://xbrl.dcca.dk/fsa">Geografisk område 05
+        </geographicalMarketIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-Geografiskområde01-">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfOperatingSegmentDimension">
+        <operatingSegmentIdentifier xmlns="http://xbrl.dcca.dk/fsa"/>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfGeographicalMarketDimension">
+        <geographicalMarketIdentifier xmlns="http://xbrl.dcca.dk/fsa">Geografisk område 01
+        </geographicalMarketIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-Geografiskområde02-">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfOperatingSegmentDimension">
+        <operatingSegmentIdentifier xmlns="http://xbrl.dcca.dk/fsa"/>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfGeographicalMarketDimension">
+        <geographicalMarketIdentifier xmlns="http://xbrl.dcca.dk/fsa">Geografisk område 02
+        </geographicalMarketIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-Geografiskområde03-">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfOperatingSegmentDimension">
+        <operatingSegmentIdentifier xmlns="http://xbrl.dcca.dk/fsa"/>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfGeographicalMarketDimension">
+        <geographicalMarketIdentifier xmlns="http://xbrl.dcca.dk/fsa">Geografisk område 03
+        </geographicalMarketIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-Geografiskområde04-">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfOperatingSegmentDimension">
+        <operatingSegmentIdentifier xmlns="http://xbrl.dcca.dk/fsa"/>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfGeographicalMarketDimension">
+        <geographicalMarketIdentifier xmlns="http://xbrl.dcca.dk/fsa">Geografisk område 04
+        </geographicalMarketIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-Geografiskområde05-">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfOperatingSegmentDimension">
+        <operatingSegmentIdentifier xmlns="http://xbrl.dcca.dk/fsa"/>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="fsa:IdentificationOfGeographicalMarketDimension">
+        <geographicalMarketIdentifier xmlns="http://xbrl.dcca.dk/fsa">Geografisk område 05
+        </geographicalMarketIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="cmn:IdentificationOfAuditorDimension">
+        <auditorIdentifier xmlns="http://xbrl.dcca.dk/cmn">Revisionsvirksomhed 01</auditorIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0.1">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="cmn:IdentificationOfAuditorDimension">
+        <auditorIdentifier xmlns="http://xbrl.dcca.dk/cmn">Revisionsvirksomhed 01 Revisor 01</auditorIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-NettoomsætningInvest">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Nettoomsætning Investeret kapital inkl
+          goodwill
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-NettoomsætningInvest">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:FourYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Nettoomsætning Investeret kapital inkl
+          goodwill
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-PreviousYearMember-NettoomsætningInvest">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:PreviousYearMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Nettoomsætning Investeret kapital inkl
+          goodwill
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-NettoomsætningInvest">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:ThreeYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Nettoomsætning Investeret kapital inkl
+          goodwill
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-NettoomsætningInvest">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:TwoYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Nettoomsætning Investeret kapital inkl
+          goodwill
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Valgfrithovedtal01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit hovedtal 01
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-Valgfrithovedtal01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:FourYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit hovedtal 01
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-PreviousYearMember-Valgfrithovedtal01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:PreviousYearMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit hovedtal 01
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-Valgfrithovedtal01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:ThreeYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit hovedtal 01
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-Valgfrithovedtal01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:TwoYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit hovedtal 01
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Valgfritnøgletal01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit nøgletal 01
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-Valgfritnøgletal01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:FourYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit nøgletal 01
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-PreviousYearMember-Valgfritnøgletal01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:PreviousYearMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit nøgletal 01
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-Valgfritnøgletal01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:ThreeYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit nøgletal 01
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-Valgfritnøgletal01">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:TwoYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit nøgletal 01
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-Valgfritnøgletal02">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit nøgletal 02
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-Valgfritnøgletal02">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:FourYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit nøgletal 02
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-PreviousYearMember-Valgfritnøgletal02">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:PreviousYearMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit nøgletal 02
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-Valgfritnøgletal02">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:ThreeYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit nøgletal 02
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <context id="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-Valgfritnøgletal02">
+    <entity>
+      <identifier scheme="http://www.dcca.dk/cvr">21783684</identifier>
+    </entity>
+    <period>
+      <startDate>2014-01-01</startDate>
+      <endDate>2014-12-31</endDate>
+    </period>
+    <scenario>
+      <xbrldi:explicitMember dimension="cmn:ConsolidatedSoloDimension">cmn:ConsolidatedMember</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="cmn:RetrospectiveInformationDimension">cmn:TwoYearsAgoMember
+      </xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="mrv:IdentificationOfKeyFigureOrFinancialRatioDimension">
+        <keyFigureOrFinancialRatioIdentifier xmlns="http://xbrl.dcca.dk/mrv">Valgfrit nøgletal 02
+        </keyFigureOrFinancialRatioIdentifier>
+      </xbrldi:typedMember>
+    </scenario>
+  </context>
+  <unit id="u-DKK">
+    <measure>iso4217:DKK</measure>
+  </unit>
+  <unit id="u-pure">
+    <measure>pure</measure>
+  </unit>
+  <unit id="u-shares">
+    <measure>shares</measure>
+  </unit>
+  <fsa:LongtermInvestmentsAndReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">118950000
+  </fsa:LongtermInvestmentsAndReceivables>
+  <fsa:LongtermInvestmentsAndReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">177172000
+  </fsa:LongtermInvestmentsAndReceivables>
+  <fsa:ShorttermReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">38827000</fsa:ShorttermReceivables>
+  <fsa:ShorttermReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">7987000</fsa:ShorttermReceivables>
+  <fsa:Assets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">157777000</fsa:Assets>
+  <fsa:Assets unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">185159000</fsa:Assets>
+  <fsa:NoncurrentAssets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">118950000</fsa:NoncurrentAssets>
+  <fsa:NoncurrentAssets unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">177172000</fsa:NoncurrentAssets>
+  <fsa:CurrentAssets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">38827000</fsa:CurrentAssets>
+  <fsa:CurrentAssets unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">7987000</fsa:CurrentAssets>
+  <fsa:LongtermInvestmentsInGroupEnterprises unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">118950000
+  </fsa:LongtermInvestmentsInGroupEnterprises>
+  <fsa:LongtermInvestmentsInGroupEnterprises unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">118950000
+  </fsa:LongtermInvestmentsInGroupEnterprises>
+  <fsa:LongtermReceivablesFromGroupEnterprises unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">58222000
+  </fsa:LongtermReceivablesFromGroupEnterprises>
+  <fsa:ShorttermReceivablesFromGroupEnterprises unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">38374000
+  </fsa:ShorttermReceivablesFromGroupEnterprises>
+  <fsa:ShorttermReceivablesFromGroupEnterprises unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">7987000
+  </fsa:ShorttermReceivablesFromGroupEnterprises>
+  <fsa:ShorttermTaxReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">453000</fsa:ShorttermTaxReceivables>
+  <fsa:LiabilitiesOtherThanProvisions unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">104082000
+  </fsa:LiabilitiesOtherThanProvisions>
+  <fsa:LiabilitiesOtherThanProvisions unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">130150000
+  </fsa:LiabilitiesOtherThanProvisions>
+  <fsa:LongtermTaxPayables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">6833000</fsa:LongtermTaxPayables>
+  <fsa:ShorttermDebtToBanks unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">2000</fsa:ShorttermDebtToBanks>
+  <fsa:ShorttermPayablesToGroupEnterprises unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">97212000
+  </fsa:ShorttermPayablesToGroupEnterprises>
+  <fsa:ShorttermPayablesToGroupEnterprises unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">113532000
+  </fsa:ShorttermPayablesToGroupEnterprises>
+  <fsa:ShorttermTaxPayables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">6833000</fsa:ShorttermTaxPayables>
+  <fsa:ShorttermTaxPayables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">9749000</fsa:ShorttermTaxPayables>
+  <fsa:OtherShorttermPayables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">35000</fsa:OtherShorttermPayables>
+  <fsa:OtherShorttermPayables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">36000</fsa:OtherShorttermPayables>
+  <fsa:OtherFinanceIncome unitRef="u-DKK" decimals="-3" contextRef="D-2014">260000</fsa:OtherFinanceIncome>
+  <fsa:OtherFinanceIncome unitRef="u-DKK" decimals="-3" contextRef="D-2013">3687000</fsa:OtherFinanceIncome>
+  <fsa:RestOfOtherFinanceExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2014">1807000
+  </fsa:RestOfOtherFinanceExpenses>
+  <fsa:RestOfOtherFinanceExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2013">586000
+  </fsa:RestOfOtherFinanceExpenses>
+  <fsa:IncomeFromInvestmentsInGroupEnterprises unitRef="u-DKK" decimals="-3" contextRef="D-2014">30000000
+  </fsa:IncomeFromInvestmentsInGroupEnterprises>
+  <fsa:IncomeFromInvestmentsInGroupEnterprises unitRef="u-DKK" decimals="-3" contextRef="D-2013">7300000
+  </fsa:IncomeFromInvestmentsInGroupEnterprises>
+  <fsa:GrossResult unitRef="u-DKK" decimals="-3" contextRef="D-2014">-200000</fsa:GrossResult>
+  <fsa:GrossResult unitRef="u-DKK" decimals="-3" contextRef="D-2013">-35000</fsa:GrossResult>
+  <fsa:ProfitLossFromOrdinaryOperatingActivities unitRef="u-DKK" decimals="-3" contextRef="D-2014">-200000
+  </fsa:ProfitLossFromOrdinaryOperatingActivities>
+  <fsa:ProfitLossFromOrdinaryOperatingActivities unitRef="u-DKK" decimals="-3" contextRef="D-2013">-35000
+  </fsa:ProfitLossFromOrdinaryOperatingActivities>
+  <fsa:ProfitLossFromOrdinaryActivitiesBeforeTax unitRef="u-DKK" decimals="-3" contextRef="D-2014">28253000
+  </fsa:ProfitLossFromOrdinaryActivitiesBeforeTax>
+  <fsa:ProfitLossFromOrdinaryActivitiesBeforeTax unitRef="u-DKK" decimals="-3" contextRef="D-2013">10366000
+  </fsa:ProfitLossFromOrdinaryActivitiesBeforeTax>
+  <fsa:ProfitLossFromOrdinaryActivitiesAfterTax unitRef="u-DKK" decimals="-3" contextRef="D-2014">28686000
+  </fsa:ProfitLossFromOrdinaryActivitiesAfterTax>
+  <fsa:ProfitLossFromOrdinaryActivitiesAfterTax unitRef="u-DKK" decimals="-3" contextRef="D-2013">6468000
+  </fsa:ProfitLossFromOrdinaryActivitiesAfterTax>
+  <fsa:DisclosureOfInvestments contextRef="D-2014">
+    Kapitalandele i tilknyttede virksomheder er specificeret i note 8 til koncernregnskabet.
+  </fsa:DisclosureOfInvestments>
+  <fsa:InvestmentsGross unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-InvestmentsInGroupEn">118950000
+  </fsa:InvestmentsGross>
+  <fsa:InvestmentsGross unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-InvestmentsInGroupEn">118950000
+  </fsa:InvestmentsGross>
+  <fsa:InvestmentsGross unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ReceivablesFromGroup">58222000
+  </fsa:InvestmentsGross>
+  <fsa:CurrentTaxExpense unitRef="u-DKK" decimals="-3" contextRef="D-2014">433000</fsa:CurrentTaxExpense>
+  <fsa:CurrentTaxExpense unitRef="u-DKK" decimals="-3" contextRef="D-2013">-2499000</fsa:CurrentTaxExpense>
+  <fsa:AdjustmentsForCurrentTaxOfPriorPeriod unitRef="u-DKK" decimals="-3" contextRef="D-2013">-1399000
+  </fsa:AdjustmentsForCurrentTaxOfPriorPeriod>
+  <fsa:AverageNumberOfEmployees unitRef="u-pure" decimals="0" contextRef="D-2014">0</fsa:AverageNumberOfEmployees>
+  <fsa:AverageNumberOfEmployees unitRef="u-pure" decimals="0" contextRef="D-2013">87</fsa:AverageNumberOfEmployees>
+  <fsa:DisclosureOfReceivables contextRef="D-2014">I tilgodehavender hos tilknyttede virksomheder indgår 30.148 t.kr.,
+    der udgør andel af vederlag for overdragelse af virksomhed til Netcompany IT and Business Consulting A/S, der
+    vederlægges som en variabel ydelse baseret på fremtidig indtjening i årene 2012-2015. Det anførte beløb udgør den
+    skønnede kapitaliserede værdi af den uafregnede variable ydelse. Det faktiske beløb kan afvige i positiv såvel som
+    negativ retning.
+  </fsa:DisclosureOfReceivables>
+  <fsa:DisclosureOfShorttermLiabilities contextRef="D-2014"/>
+  <fsa:DisclosureOfContingentLiabilities contextRef="D-2014">Selskabet har overfor koncernens bankforbindelse stillet
+    selvskyldnerkaution for Netcompany IT and Business Consulting A/S og NC AX 3 ApS for maksimum 205.000 t.kr..
+
+    Selskabets aktier i Netcompany IT and Business Consulting A/S med en regnskabsmæssig værdi på 16.000 t.kr. er
+    pantsat til sikkerhed for lån optaget af NC AX 3 ApS.
+
+    Selskabet indgår i en dansk sambeskatning med Netcompany Holdning ApS som administationsselskab. Selskabet hæfter
+    derfor fra og med regnskabsåret 2013 solidarisk med de øvrige sambeskattede selskaber for indkomstskatter mv. for de
+    sambeskattede selskaber og fra og med 1. juli 2012 ligeledes solidarisk for eventuelle forpligtelser til at
+    indeholde kildeskat på renter, royalties og udbytter for disse selskaber.
+  </fsa:DisclosureOfContingentLiabilities>
+  <fsa:InformationOnContentOfSpecialRegisterOfShareholders contextRef="D-2014">Selskabet har registreret følgende
+    aktionærer med mere end 5% af aktiekapitalens stemmerettigheder eller pålydende værdi pr. 31. december 2014:
+    NC AX3 ApS, KøbenhavnNetcompany A/S indgår i koncernregnskaberne for NC AX3 ApS (CVR-nr. 33 39 39 62) og Netcompany
+    Holding ApS (CVR-nr. 25 53 29 53).
+  </fsa:InformationOnContentOfSpecialRegisterOfShareholders>
+  <fsa:DisclosureOfOtherFinanceIncome contextRef="D-2014">Renter af koncerninterne mellemværender indgår i finansielle
+    indtægter med t.kr. 240 (2013: t.kr. 3.687).
+  </fsa:DisclosureOfOtherFinanceIncome>
+  <fsa:DisclosureOfOtherFinanceExpenses contextRef="D-2014">Renter af koncerninterne mellemværender indgår i finansielle
+    omkostninger med t.kr. 1.807 (2013: t.kr. 586).
+  </fsa:DisclosureOfOtherFinanceExpenses>
+  <fsa:DisclosureOfContributedCapital contextRef="D-2014">Aktierne er ikke opdelt i klasser.
+
+    Der har ikke været ændring i aktiekapitalen de seneste fem år.
+
+  </fsa:DisclosureOfContributedCapital>
+  <fsa:LiabilitiesAndEquity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">157777000</fsa:LiabilitiesAndEquity>
+  <fsa:LiabilitiesAndEquity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">185159000</fsa:LiabilitiesAndEquity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">53695000</fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">55009000</fsa:Equity>
+  <fsa:ContributedCapital unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">553000</fsa:ContributedCapital>
+  <fsa:ContributedCapital unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">553000</fsa:ContributedCapital>
+  <fsa:RetainedEarnings unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">53142000</fsa:RetainedEarnings>
+  <fsa:RetainedEarnings unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">24456000</fsa:RetainedEarnings>
+  <fsa:ProposedDividendRecognisedInEquity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">30000000
+  </fsa:ProposedDividendRecognisedInEquity>
+  <fsa:LongtermLiabilitiesOtherThanProvisions unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">6833000
+  </fsa:LongtermLiabilitiesOtherThanProvisions>
+  <fsa:ShorttermLiabilitiesOtherThanProvisions unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">104082000
+  </fsa:ShorttermLiabilitiesOtherThanProvisions>
+  <fsa:ShorttermLiabilitiesOtherThanProvisions unitRef="u-DKK" decimals="-3" contextRef="I-2013-E">123317000
+  </fsa:ShorttermLiabilitiesOtherThanProvisions>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014">28686000</fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013">6468000</fsa:ProfitLoss>
+  <fsa:OtherExternalExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2014">200000</fsa:OtherExternalExpenses>
+  <fsa:OtherExternalExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2013">35000</fsa:OtherExternalExpenses>
+  <fsa:TaxExpenseOnOrdinaryActivities unitRef="u-DKK" decimals="-3" contextRef="D-2014">433000
+  </fsa:TaxExpenseOnOrdinaryActivities>
+  <fsa:TaxExpenseOnOrdinaryActivities unitRef="u-DKK" decimals="-3" contextRef="D-2013">-3898000
+  </fsa:TaxExpenseOnOrdinaryActivities>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ProposedDividendReco">30000000</fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-RetainedEarningsMemb">28686000</fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-RetainedEarningsMemb">-23532000</fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014">28686000</fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013">6468000</fsa:ProfitLoss>
+  <fsa:DividendPaid unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ProposedDividendReco">-30000000
+  </fsa:DividendPaid>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-RetainedEarningsMemb.1">28686000</fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-RetainedEarningsMemb.1">-23532000
+  </fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ProposedDividendReco.1">30000000</fsa:ProfitLoss>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ContributedCapitalMe">553000</fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ContributedCapitalMe">553000</fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ProposedDividendReco">30000000</fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-RetainedEarningsMemb">53142000</fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-RetainedEarningsMemb">24456000</fsa:Equity>
+  <fsa:RelatedEntityNameConsolidatedFinancialStatements contextRef="D-2014-dim-ParentOfLargestGroup">Netcompany Holding
+    ApS (CVR-nr. 25 53 2953), København
+  </fsa:RelatedEntityNameConsolidatedFinancialStatements>
+  <fsa:RelatedEntityNameConsolidatedFinancialStatements contextRef="D-2014-dim-ParentOfSmallestGrou">NC AX3 ApS (CVR-nr.
+    33 39 39 62), København
+  </fsa:RelatedEntityNameConsolidatedFinancialStatements>
+  <fsa:RelatedEntityRegisteredOfficeConsolidatedFinancialStatements contextRef="D-2014-dim-ParentOfSmallestGrou">NC AX3
+    ApS (CVR-nr. 33 39 39 62), København
+  </fsa:RelatedEntityRegisteredOfficeConsolidatedFinancialStatements>
+  <fsa:RelatedEntityRegisteredOfficeConsolidatedFinancialStatements contextRef="D-2014-dim-ParentOfLargestGroup">
+    Netcompany Holding ApS (CVR-nr. 25 53 2953), København
+  </fsa:RelatedEntityRegisteredOfficeConsolidatedFinancialStatements>
+  <fsa:DescriptionOfClassOfIssuedShares contextRef="I-2014-E-dim-Kapitalklasse01">Aktiekapital
+  </fsa:DescriptionOfClassOfIssuedShares>
+  <fsa:NumberOfIssuedShares unitRef="u-shares" decimals="0" contextRef="I-2014-E-dim-Kapitalklasse01">553
+  </fsa:NumberOfIssuedShares>
+  <fsa:NominalValueOfIssuedShares unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-Kapitalklasse01">553000
+  </fsa:NominalValueOfIssuedShares>
+  <fsa:InformationOnRelatedEntities contextRef="D-2014">Nærtstående parter med bestemmende indflydelse på Netcompany A/S
+    pr. 31. december 2014:
+    NC AX3 ApS, København
+
+    Øverste enkeltstående ultimative ejer pr. statusdagen:
+    Netcompany Holding ApS, København
+  </fsa:InformationOnRelatedEntities>
+  <fsa:LongtermInvestmentsAndReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-InvestmentsInGroupEn">
+    118950000
+  </fsa:LongtermInvestmentsAndReceivables>
+  <fsa:LongtermInvestmentsAndReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-InvestmentsInGroupEn">
+    118950000
+  </fsa:LongtermInvestmentsAndReceivables>
+  <fsa:LongtermInvestmentsAndReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ReceivablesFromGroup">
+    58222000
+  </fsa:LongtermInvestmentsAndReceivables>
+  <fsa:OtherFinanceExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2014">1807000</fsa:OtherFinanceExpenses>
+  <fsa:OtherFinanceExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2013">586000</fsa:OtherFinanceExpenses>
+  <fsa:AverageNumberOfEmployees unitRef="u-pure" decimals="0" contextRef="D-2014">485</fsa:AverageNumberOfEmployees>
+  <fsa:AverageNumberOfEmployees unitRef="u-pure" decimals="0" contextRef="D-2014-dim-PreviousYearMember">366
+  </fsa:AverageNumberOfEmployees>
+  <fsa:AverageNumberOfEmployees unitRef="u-pure" decimals="0" contextRef="D-2014-dim-TwoYearsAgoMember">309
+  </fsa:AverageNumberOfEmployees>
+  <fsa:AverageNumberOfEmployees unitRef="u-pure" decimals="0" contextRef="D-2014-dim-ThreeYearsAgoMember">249
+  </fsa:AverageNumberOfEmployees>
+  <fsa:AverageNumberOfEmployees unitRef="u-pure" decimals="0" contextRef="D-2014-dim-FourYearsAgoMember">200
+  </fsa:AverageNumberOfEmployees>
+  <gsd:InformationOnTypeOfSubmittedReport contextRef="D-2014-dim-ConsolidatedMember">Årsrapport
+  </gsd:InformationOnTypeOfSubmittedReport>
+  <gsd:IdentificationNumberCvrOfSubmittingEnterprise contextRef="D-2014-dim-ConsolidatedMember">33963556
+  </gsd:IdentificationNumberCvrOfSubmittingEnterprise>
+  <gsd:NameOfSubmittingEnterprise contextRef="D-2014-dim-ConsolidatedMember">Deloitte Statsautoriseret
+    Revisionspartnerselskab
+  </gsd:NameOfSubmittingEnterprise>
+  <gsd:AddressOfSubmittingEnterpriseStreetAndNumber contextRef="D-2014-dim-ConsolidatedMember">Weidekampsgade Postboks
+    1600
+  </gsd:AddressOfSubmittingEnterpriseStreetAndNumber>
+  <gsd:AddressOfSubmittingEnterprisePostcodeAndTown contextRef="D-2014-dim-ConsolidatedMember">0900 København C
+  </gsd:AddressOfSubmittingEnterprisePostcodeAndTown>
+  <gsd:ReportingPeriodStartDate contextRef="D-2014-dim-ConsolidatedMember">2014-01-01</gsd:ReportingPeriodStartDate>
+  <gsd:ReportingPeriodEndDate contextRef="D-2014-dim-ConsolidatedMember">2014-12-31</gsd:ReportingPeriodEndDate>
+  <gsd:DateOfApprovalOfReport contextRef="D-2014-dim-ConsolidatedMember">2015-04-28</gsd:DateOfApprovalOfReport>
+  <gsd:IdentificationNumberCvrOfReportingEntity contextRef="D-2014-dim-ConsolidatedMember">21783684
+  </gsd:IdentificationNumberCvrOfReportingEntity>
+  <gsd:NameOfReportingEntity contextRef="D-2014-dim-ConsolidatedMember">Netcompany A/S</gsd:NameOfReportingEntity>
+  <gsd:RegisteredOfficeOfReportingEntity contextRef="D-2014-dim-ConsolidatedMember">København
+  </gsd:RegisteredOfficeOfReportingEntity>
+  <gsd:DateOfGeneralMeeting contextRef="D-2014-dim-ConsolidatedMember">2015-04-28</gsd:DateOfGeneralMeeting>
+  <gsd:NameAndSurnameOfChairmanOfGeneralMeeting contextRef="D-2014-dim-ConsolidatedMember">Carsten Gomard
+  </gsd:NameAndSurnameOfChairmanOfGeneralMeeting>
+  <cmn:NameAndSurnameOfMemberOfExecutiveBoard contextRef="D-2014-dim-ConsolidatedMember-Direktionsmedlem1">André
+    Rogaczewski
+  </cmn:NameAndSurnameOfMemberOfExecutiveBoard>
+  <cmn:TitleOfMemberOfExecutiveBoard contextRef="D-2014-dim-ConsolidatedMember-Direktionsmedlem1">adm. direktør
+  </cmn:TitleOfMemberOfExecutiveBoard>
+  <cmn:NameAndSurnameOfMemberOfSupervisoryBoard contextRef="D-2014-dim-ConsolidatedMember-Bestyrelsesmedlem01">Carsten
+    Gomard
+  </cmn:NameAndSurnameOfMemberOfSupervisoryBoard>
+  <cmn:NameAndSurnameOfMemberOfSupervisoryBoard contextRef="D-2014-dim-ConsolidatedMember-Bestyrelsesmedlem02">Claus
+    Jørgensen
+  </cmn:NameAndSurnameOfMemberOfSupervisoryBoard>
+  <cmn:NameAndSurnameOfMemberOfSupervisoryBoard contextRef="D-2014-dim-ConsolidatedMember-Bestyrelsesmedlem03">André
+    Rogaczewski
+  </cmn:NameAndSurnameOfMemberOfSupervisoryBoard>
+  <cmn:TitleOfMemberOfSupervisoryBoard contextRef="D-2014-dim-ConsolidatedMember-Bestyrelsesmedlem01">formand
+  </cmn:TitleOfMemberOfSupervisoryBoard>
+  <cmn:TitleOfMemberOfSupervisoryBoard contextRef="D-2014-dim-ConsolidatedMember-Bestyrelsesmedlem02">næstformand
+  </cmn:TitleOfMemberOfSupervisoryBoard>
+  <arr:AddresseeOfAuditorsReportOnAuditedFinancialStatements contextRef="D-2014-dim-ConsolidatedMember">Til
+    kapitalejeren i Netcompany A/S
+  </arr:AddresseeOfAuditorsReportOnAuditedFinancialStatements>
+  <arr:IdentificationOfAuditedFinancialStatements contextRef="D-2014-dim-ConsolidatedMember">Vi har revideret
+    koncernregnskabet og årsregnskabet for Netcompany A/S for regnskabsåret 01.01.2014 - 31.12.2014, der omfatter
+    anvendt regnskabspraksis, resultatopgørelse, balance, egenkapitalopgørelse og noter for såvel koncernen som
+    selskabet. Koncernregnskabet og årsregnskabet udarbejdes efter årsregnskabsloven.
+  </arr:IdentificationOfAuditedFinancialStatements>
+  <arr:StatementOfExecutiveAndSupervisoryBoardsResponsibilityForFinancialStatements
+    contextRef="D-2014-dim-ConsolidatedMember">Ledelsen har ansvaret for udarbejdelsen af et koncernregnskab og et
+    årsregnskab, der giver et retvisende billede i overens-stemmelse med årsregnskabsloven. Ledelsen har endvidere
+    ansvaret for den interne kontrol, som ledelsen anser for nødvendig for at udarbejde et koncernregnskab og et
+    årsregnskab uden væsentlig fejlinformation, uanset om denne skyldes besvigelser eller fejl.
+  </arr:StatementOfExecutiveAndSupervisoryBoardsResponsibilityForFinancialStatements>
+  <arr:SignatureOfAuditorsPlace contextRef="D-2014-dim-ConsolidatedMember">København</arr:SignatureOfAuditorsPlace>
+  <arr:SignatureOfAuditorsDate contextRef="D-2014-dim-ConsolidatedMember">2015-04-28</arr:SignatureOfAuditorsDate>
+  <mrv:DescriptionOfPrimaryActivitiesOfEntity contextRef="D-2014-dim-ConsolidatedMember">Koncernens hovedaktivitet er at
+    drive it-konsulentvirksomhed samt nært beslægtet virksomhed.
+  </mrv:DescriptionOfPrimaryActivitiesOfEntity>
+  <mrv:DescriptionOfDevelopmentInActivitiesAndFinancialAffairs contextRef="D-2014-dim-ConsolidatedMember">Koncernen
+    leverer forretningskritiske it-løsninger og rådgivning. Vi hjælper kunderne med at opnå markante forretningsfordele
+    og effektiviseringer ved at udnytte den nyeste teknologi. Vores fokusområder er forretningsapplikationer, portaler
+    og systemintegration, systemforvaltning og drift, og vi dækker førende teknologier og standardpakker inden for
+    Microsoft .NET og J2EE.
+
+    Hos Netcompany kombinerer vi professionelt håndværk med hurtighed og fleksibilitet. Vores brede it-tekniske,
+    metodiske og forretningsmæssige kompetence sikrer, at it-løsningerne er teknisk solide, organisatorisk forankrede og
+    leverer de ønskede økonomiske resultater. Leverancerne bliver til ved en kontrolleret og produktiv proces i
+    samarbejde med vores kunder – og baseret på en enkel filosofi. Herved har koncernen i 2013 fastholdt sin position
+    som Danmarks førende it-konsulentvirksomhed.
+
+    Selskabets ydelser spænder bl.a. over fagsystemer, CRM, xRM, e-handel og digital marketing, systemintegration,
+    enterprise architecture, web og portaler, procesunderstøttelse og samarbejdsløsninger, ECM, BI, ERP, Hosting, Cloud
+    Computing, forbunds- og A-kasseløsningen Modulus samt sags – og dokumenthåndtering med GetOrganized. Hertil kommer
+    en række specifikke og individuelle forretningsapplikationer samt løsninger til konkrete kundebehov.
+
+    Årets koncernomsætning udgør t.kr. 629.211 og koncernens resultatet udgør t.kr. 134.404. Omsætningen og resultatet
+    anses for tilfredsstillende og indfrier forventninger til året i lyset af et højt investeringsniveau med en samlet
+    stigning i omsætningen på 27 % i forhold til 2013.
+  </mrv:DescriptionOfDevelopmentInActivitiesAndFinancialAffairs>
+  <mrv:DescriptionOfSignificantEventsOccurringAfterEndOfReportingPeriod contextRef="D-2014-dim-ConsolidatedMember">Der
+    er efter statusdagen ikke indtrådt forhold, der er væsentligt forrykker vurderingen af årsrapporten.
+  </mrv:DescriptionOfSignificantEventsOccurringAfterEndOfReportingPeriod>
+  <sob:IdentificationOfApprovedAnnualReport contextRef="D-2014-dim-ConsolidatedMember">Bestyrelsen og direktionen har
+    dags dato behandlet og godkendt årsrapporten for regnskabsåret 01.01.2014 - 31.12.2014 for Netcompany A/S.
+  </sob:IdentificationOfApprovedAnnualReport>
+  <sob:ConfirmationThatAnnualReportIsPresentedInAccordanceWithRequirementsProvidedForByLegislationAnyStandardsAndRequirementsProvidedByArticlesOfAssociationOrByAgreement
+    contextRef="D-2014-dim-ConsolidatedMember">Årsrapporten aflægges i overensstemmelse med årsregnskabsloven.
+  </sob:ConfirmationThatAnnualReportIsPresentedInAccordanceWithRequirementsProvidedForByLegislationAnyStandardsAndRequirementsProvidedByArticlesOfAssociationOrByAgreement>
+  <sob:ConfirmationThatFinancialStatementGivesTrueAndFairViewOfAssetsLiabilitiesEquityFinancialPositionAndResults
+    contextRef="D-2014-dim-ConsolidatedMember">Det er vores opfattelse, at koncernregnskabet og årsregnskabet giver et
+    retvisende billede af koncernens og selskabets aktiver, passiver og finansielle stilling pr. 31.12.2014 samt af
+    resultatet af koncernens og selskabets aktiviteter og koncernens pengestrømme for regnskabsåret 01.01.2014 -
+    31.12.2014.
+  </sob:ConfirmationThatFinancialStatementGivesTrueAndFairViewOfAssetsLiabilitiesEquityFinancialPositionAndResults>
+  <sob:RecommendationForApprovalOfAnnualReportByGeneralMeeting contextRef="D-2014-dim-ConsolidatedMember">Årsrapporten
+    indstilles til generalforsamlingens god kendelse.
+  </sob:RecommendationForApprovalOfAnnualReportByGeneralMeeting>
+  <sob:ManagementsStatementAboutManagementsReview contextRef="D-2014-dim-ConsolidatedMember">Ledelsesberetningen
+    indeholder efter vores opfattelse en retvisende redegørelse for de forhold, beretningen omhandler.
+  </sob:ManagementsStatementAboutManagementsReview>
+  <sob:DateOfApprovalOfAnnualReport contextRef="D-2014-dim-ConsolidatedMember">2015-04-28
+  </sob:DateOfApprovalOfAnnualReport>
+  <sob:PlaceOfSignatureOfStatement contextRef="D-2014-dim-ConsolidatedMember">København
+  </sob:PlaceOfSignatureOfStatement>
+  <fsa:DisclosureOfAccountingPolicies contextRef="D-2014-dim-ConsolidatedMember">Koncernregnskabet og årsregnskabet er
+    aflagt efter samme regnskabspraksis som sidste år.
+  </fsa:DisclosureOfAccountingPolicies>
+  <fsa:InformationOnReportingClassOfEntity contextRef="D-2014-dim-ConsolidatedMember">Årsrapporten er aflagt i
+    overensstemmelse med årsregnskabslovens bestemmelser for regnskabsklasse C (stor).
+  </fsa:InformationOnReportingClassOfEntity>
+  <fsa:ClassOfReportingEntity contextRef="D-2014-dim-ConsolidatedMember">Regnskabsklasse C, mellemstor virksomhed
+  </fsa:ClassOfReportingEntity>
+  <fsa:DescriptionOfGeneralMattersRelatedToRecognitionMeasurementAndChangesInAccountingPolicies
+    contextRef="D-2014-dim-ConsolidatedMember">Aktiver indregnes i balancen, når det som følge af en tidligere
+    begivenhed er sandsynligt, at fremtidige økonomiske fordele vil tilflyde virksomheden, og aktivets værdi kan måles
+    pålideligt.
+    Forpligtelser indregnes i balancen, når virksomheden som følge af en tidligere begivenhed har en retlig eller
+    faktisk forpligtelse, og det er sandsynligt, at fremtidige økonomiske fordele vil fragå virksomheden, og
+    forpligtelsens værdi kan måles pålideligt.
+    Ved første indregning måles aktiver og forpligtelser til kostpris. Måling efter første indregning sker som beskrevet
+    for hver enkelt regnskabspost nedenfor.
+    Ved indregning og måling tages hensyn til forudsigelige risici og tab, der fremkommer, inden årsrapporten aflægges,
+    og som be- eller afkræfter forhold, der eksisterede på balancedagen.
+    I resultatopgørelsen indregnes indtægter, i takt med at de indtjenes, mens omkostninger indregnes med de beløb, der
+    vedrører regnskabsåret.
+  </fsa:DescriptionOfGeneralMattersRelatedToRecognitionMeasurementAndChangesInAccountingPolicies>
+  <fsa:InformationOnConsolidations contextRef="D-2014-dim-ConsolidatedMember">Koncernregnskabet omfatter
+    modervirksomheden Netcompany A/S samt virksomheder, hvori moderselskabet direkte eller indirekte besidder flertallet
+    af stemmerettighederne, eller hvori moderselskabet gennem aktiebesiddelser eller på anden måde har en bestemmende
+    indflydelse.Ved konsolideringen sammendrages poster af ensartet karakter. Koncerninterne indtægter og omkostninger,
+    aktiebesiddelser, udbytter og mellemværender samt realiserede og urealiserede interne gevinster og tab ved
+    transaktioner mellem de konsoliderede virksomheder elimineres.
+  </fsa:InformationOnConsolidations>
+  <fsa:DescriptionOfMethodsOfStatingKeyFiguresAndFinancialRatiosIncludedInManagementReview
+    contextRef="D-2014-dim-ConsolidatedMember">Hoved- og nøgletal er defineret og beregnet i overensstemmelse med Den
+    Danske Finansanalytikerforenings “Anbefalinger &amp; Nøgletal 2010”.
+    Nøgletal
+    Beregningsformel
+    Nøgletal udtrykker
+    Egenkapitalens forrentning (%)
+    Årets resultat ekskl. minoriteter x 100
+    Gns. egenkapital ekskl. minoriteter
+    Virksomhedens forrentning af den kapital, som ejerne har investeret i virksomheden.
+    Soliditetsgrad (%)
+    Egenkapital ekskl. minoriteter x 100
+    Samlede aktiver
+    Virksomhedens finansielle styrke.
+
+    Overskudsgrad (%)
+    Resultat af ordinær primær drift (EBIT)
+    Nettoomsætning
+
+    Virksomhedens indtjeningsevne.
+    Afkastningsgrad (%)
+    Resultat af ordinær primær drift (EBIT)
+    Samlede aktiver
+    Virksomhedens evne til at skabe overskud.
+    Nettoomsætning pr. medarbejder
+    Nettoomsætning
+    Gns. antal medarbejdere
+    Virksomhedens produktivitet
+  </fsa:DescriptionOfMethodsOfStatingKeyFiguresAndFinancialRatiosIncludedInManagementReview>
+  <fsa:Revenue unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">629211000</fsa:Revenue>
+  <fsa:Revenue unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">460671000</fsa:Revenue>
+  <fsa:OtherExternalExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">136851000
+  </fsa:OtherExternalExpenses>
+  <fsa:OtherExternalExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">115085000
+  </fsa:OtherExternalExpenses>
+  <fsa:GrossResult unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">492360000</fsa:GrossResult>
+  <fsa:GrossResult unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">345586000</fsa:GrossResult>
+  <fsa:EmployeeBenefitsExpense unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">335410000
+  </fsa:EmployeeBenefitsExpense>
+  <fsa:EmployeeBenefitsExpense unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">254598000
+  </fsa:EmployeeBenefitsExpense>
+  <fsa:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
+    unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">8335000
+  </fsa:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss>
+  <fsa:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
+    unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">11116000
+  </fsa:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss>
+  <fsa:OtherFinanceIncome unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">3538000
+  </fsa:OtherFinanceIncome>
+  <fsa:OtherFinanceIncome unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">2288000
+  </fsa:OtherFinanceIncome>
+  <fsa:OtherFinanceExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">2478000
+  </fsa:OtherFinanceExpenses>
+  <fsa:OtherFinanceExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">1116000
+  </fsa:OtherFinanceExpenses>
+  <fsa:ProfitLossFromOrdinaryOperatingActivities unitRef="u-DKK" decimals="-3"
+                                                 contextRef="D-2014-dim-ConsolidatedMember">148615000
+  </fsa:ProfitLossFromOrdinaryOperatingActivities>
+  <fsa:ProfitLossFromOrdinaryOperatingActivities unitRef="u-DKK" decimals="-3"
+                                                 contextRef="D-2013-dim-ConsolidatedMember">79872000
+  </fsa:ProfitLossFromOrdinaryOperatingActivities>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">134404000</fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">73511000</fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember-ProposedDividendReco">
+    30000000
+  </fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-RetainedEarningsMemb">
+    134404000
+  </fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember-RetainedEarningsMemb">
+    43511000
+  </fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">134404000</fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">73511000</fsa:ProfitLoss>
+  <fsa:Assets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">378948000</fsa:Assets>
+  <fsa:Assets unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">246142000</fsa:Assets>
+  <fsa:NoncurrentAssets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">29924000
+  </fsa:NoncurrentAssets>
+  <fsa:NoncurrentAssets unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">36645000
+  </fsa:NoncurrentAssets>
+  <fsa:LongtermInvestmentsAndReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">
+    14387000
+  </fsa:LongtermInvestmentsAndReceivables>
+  <fsa:LongtermInvestmentsAndReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">
+    14963000
+  </fsa:LongtermInvestmentsAndReceivables>
+  <fsa:OtherLongtermReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">3367000
+  </fsa:OtherLongtermReceivables>
+  <fsa:OtherLongtermReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">3943000
+  </fsa:OtherLongtermReceivables>
+  <fsa:CurrentAssets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">349024000
+  </fsa:CurrentAssets>
+  <fsa:CurrentAssets unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">209497000
+  </fsa:CurrentAssets>
+  <fsa:ShorttermReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">336149000
+  </fsa:ShorttermReceivables>
+  <fsa:ShorttermReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">208340000
+  </fsa:ShorttermReceivables>
+  <fsa:ShorttermTradeReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">146342000
+  </fsa:ShorttermTradeReceivables>
+  <fsa:ShorttermTradeReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">107127000
+  </fsa:ShorttermTradeReceivables>
+  <fsa:ShorttermReceivablesFromGroupEnterprises unitRef="u-DKK" decimals="-3"
+                                                contextRef="I-2014-E-dim-ConsolidatedMember">128126000
+  </fsa:ShorttermReceivablesFromGroupEnterprises>
+  <fsa:ShorttermReceivablesFromGroupEnterprises unitRef="u-DKK" decimals="-3"
+                                                contextRef="I-2013-E-dim-ConsolidatedMember">67805000
+  </fsa:ShorttermReceivablesFromGroupEnterprises>
+  <fsa:OtherShorttermReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">2952000
+  </fsa:OtherShorttermReceivables>
+  <fsa:OtherShorttermReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">7740000
+  </fsa:OtherShorttermReceivables>
+  <fsa:DeferredIncomeAssets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">6581000
+  </fsa:DeferredIncomeAssets>
+  <fsa:DeferredIncomeAssets unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">3252000
+  </fsa:DeferredIncomeAssets>
+  <fsa:CashAndCashEquivalents unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">12875000
+  </fsa:CashAndCashEquivalents>
+  <fsa:CashAndCashEquivalents unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">1157000
+  </fsa:CashAndCashEquivalents>
+  <fsa:LiabilitiesAndEquity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">378948000
+  </fsa:LiabilitiesAndEquity>
+  <fsa:LiabilitiesAndEquity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">246142000
+  </fsa:LiabilitiesAndEquity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">212592000</fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">108188000</fsa:Equity>
+  <fsa:ContributedCapital unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">553000
+  </fsa:ContributedCapital>
+  <fsa:ContributedCapital unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">553000
+  </fsa:ContributedCapital>
+  <fsa:RetainedEarnings unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">212039000
+  </fsa:RetainedEarnings>
+  <fsa:RetainedEarnings unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">77635000
+  </fsa:RetainedEarnings>
+  <fsa:LiabilitiesOtherThanProvisions unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">
+    166356000
+  </fsa:LiabilitiesOtherThanProvisions>
+  <fsa:LiabilitiesOtherThanProvisions unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">
+    137954000
+  </fsa:LiabilitiesOtherThanProvisions>
+  <fsa:LongtermLiabilitiesOtherThanProvisions unitRef="u-DKK" decimals="-3"
+                                              contextRef="I-2013-E-dim-ConsolidatedMember">13036000
+  </fsa:LongtermLiabilitiesOtherThanProvisions>
+  <fsa:ShorttermLiabilitiesOtherThanProvisions unitRef="u-DKK" decimals="-3"
+                                               contextRef="I-2014-E-dim-ConsolidatedMember">166356000
+  </fsa:ShorttermLiabilitiesOtherThanProvisions>
+  <fsa:ShorttermLiabilitiesOtherThanProvisions unitRef="u-DKK" decimals="-3"
+                                               contextRef="I-2013-E-dim-ConsolidatedMember">124918000
+  </fsa:ShorttermLiabilitiesOtherThanProvisions>
+  <fsa:ShorttermTradePayables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">11932000
+  </fsa:ShorttermTradePayables>
+  <fsa:ShorttermTradePayables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">13958000
+  </fsa:ShorttermTradePayables>
+  <fsa:OtherShorttermPayables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">64180000
+  </fsa:OtherShorttermPayables>
+  <fsa:OtherShorttermPayables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">45323000
+  </fsa:OtherShorttermPayables>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-ContributedCapitalMe">553000
+  </fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember-ContributedCapitalMe">553000
+  </fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-RetainedEarningsMemb">
+    212039000
+  </fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember-RetainedEarningsMemb">77635000
+  </fsa:Equity>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-RetainedEarningsMemb.1">
+    134404000
+  </fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember-RetainedEarningsMemb.1">
+    43511000
+  </fsa:ProfitLoss>
+  <fsa:InvestmentsGross unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-OtherReceivablesMemb">
+    3367000
+  </fsa:InvestmentsGross>
+  <fsa:InvestmentsGross unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember-OtherReceivablesMemb">
+    3943000
+  </fsa:InvestmentsGross>
+  <fsa:AdditionsToInvestments unitRef="u-DKK" decimals="-3"
+                              contextRef="D-2014-dim-ConsolidatedMember-OtherReceivablesMemb">140000
+  </fsa:AdditionsToInvestments>
+  <fsa:RelatedEntityName contextRef="D-2014-dim-ConsolidatedMember-Dattervirksomhed01-SubsidiaryMember">Netcompany IT
+    and Businesss Consulting A/S
+  </fsa:RelatedEntityName>
+  <fsa:RelatedEntityRegisteredOffice contextRef="D-2014-dim-ConsolidatedMember-Dattervirksomhed01-SubsidiaryMember">
+    København
+  </fsa:RelatedEntityRegisteredOffice>
+  <fsa:RelatedEntityLegalForm contextRef="D-2014-dim-ConsolidatedMember-Dattervirksomhed01-SubsidiaryMember">A/S
+  </fsa:RelatedEntityLegalForm>
+  <fsa:ShareHeldByEntityOrConsolidatedEnterprisesInRelatedEntity unitRef="u-pure" decimals="2"
+                                                                 contextRef="I-2014-E-dim-ConsolidatedMember-Dattervirksomhed01-SubsidiaryMember">
+    100
+  </fsa:ShareHeldByEntityOrConsolidatedEnterprisesInRelatedEntity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3"
+              contextRef="I-2014-E-dim-ConsolidatedMember-Dattervirksomhed01-SubsidiaryMember">263922000
+  </fsa:Equity>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3"
+                  contextRef="D-2014-dim-ConsolidatedMember-Dattervirksomhed01-SubsidiaryMember">133212000
+  </fsa:ProfitLoss>
+  <arr:StatementOfAuditorsResponsibilityForAuditAndAuditPerformed contextRef="D-2014-dim-ConsolidatedMember">Vores
+    ansvar er at udtrykke en konklusion om koncernregnskabet og årsregnskabet på grundlag af vores revision. Vi har
+    udført revisionen i overensstemmelse med internationale standarder om revision og yderligere krav ifølge dansk
+    revisor-lovgivning. Dette kræver, at vi overholder etiske krav samt planlægger og udfører revisionen for at opnå høj
+    grad af sik-kerhed for, om koncernregnskabet og årsregnskabet er uden væsentlig fejlinformation.En revision omfatter
+    udførelse af revisionshandlinger for at opnå revisionsbevis for beløb og oplysninger i koncernregnskabet og
+    årsregnskabet. De valgte revisionshandlinger afhænger af revisors vurdering, herunder vurdering af risici for
+    væsentlig fejlinformation i koncernregnskabet og årsregnskabet, uanset om denne skyldes besvigelser eller fejl. Ved
+    risikovurderingen overvejer revisor intern kontrol, der er relevant for virksomhedens udarbejdelse af et
+    koncernregnskab og et årsregnskab, der giver et retvisende billede. Formålet hermed er at udforme
+    revisionshandlinger, der er passende efter omstændighederne, men ikke at udtrykke en konklusion om effektiviteten af
+    virksomhedens interne kontrol. En revision omfatter endvidere vurdering af, om ledelsens valg af regnskabspraksis er
+    passende, om ledelsens regnskabsmæssige skøn er rimelige samt den samlede præsentation af koncernregnskabet og
+    årsregnskabet.Det er vores opfattelse, at det opnåede revisionsbevis er tilstrækkeligt og egnet som grundlag for
+    vores konklusionRevisionen har ikke givet anledning til forbehold.
+  </arr:StatementOfAuditorsResponsibilityForAuditAndAuditPerformed>
+  <arr:OpinionOnAuditedFinancialStatements contextRef="D-2014-dim-ConsolidatedMember">Det er vores opfattelse, at
+    koncernregnskabet og årsregnskabet giver et retvisende billede af koncernens og selskabets aktiver, passiver og
+    finansielle stilling pr. 31.12.2014 samt af resultatet af koncernens og selskabets aktiviteter for regnskabsåret
+    01.01.2014 - 31.12.2014 i overensstemmelse med årsregnskabsloven.
+
+
+  </arr:OpinionOnAuditedFinancialStatements>
+  <arr:StatementOnManagementsReviewAuditorsReportOnAuditedFinancialStatements
+    contextRef="D-2014-dim-ConsolidatedMember">Vi har i henhold til årsregnskabsloven gennemlæst ledelsesberetningen. Vi
+    har ikke foretaget yderligere handlinger i tillæg til den udførte revision af koncernregnskabet og årsregnskabet.Det
+    er på denne baggrund vores opfattelse, at oplysningerne i ledelsesberetningen er i overensstemmelse med
+    koncernregnskabet og årsregnskabet.
+  </arr:StatementOnManagementsReviewAuditorsReportOnAuditedFinancialStatements>
+  <fsa:PropertyPlantAndEquipment unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">14457000
+  </fsa:PropertyPlantAndEquipment>
+  <fsa:PropertyPlantAndEquipment unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">19895000
+  </fsa:PropertyPlantAndEquipment>
+  <fsa:FixturesFittingsToolsAndEquipment unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">
+    11820000
+  </fsa:FixturesFittingsToolsAndEquipment>
+  <fsa:FixturesFittingsToolsAndEquipment unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">
+    17045000
+  </fsa:FixturesFittingsToolsAndEquipment>
+  <fsa:NoncurrentDeferredTaxAssets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">11020000
+  </fsa:NoncurrentDeferredTaxAssets>
+  <fsa:NoncurrentDeferredTaxAssets unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">11020000
+  </fsa:NoncurrentDeferredTaxAssets>
+  <fsa:ProposedDividendRecognisedInEquity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">
+    30000000
+  </fsa:ProposedDividendRecognisedInEquity>
+  <fsa:LongtermTaxPayables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">6833000
+  </fsa:LongtermTaxPayables>
+  <fsa:ShorttermTaxPayables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">23115000
+  </fsa:ShorttermTaxPayables>
+  <fsa:ShorttermTaxPayables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">13786000
+  </fsa:ShorttermTaxPayables>
+  <fsa:ShorttermTaxReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">453000
+  </fsa:ShorttermTaxReceivables>
+  <fsa:RestOfOtherFinanceExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">2478000
+  </fsa:RestOfOtherFinanceExpenses>
+  <fsa:RestOfOtherFinanceExpenses unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">1116000
+  </fsa:RestOfOtherFinanceExpenses>
+  <fsa:ProfitLossFromOrdinaryActivitiesBeforeTax unitRef="u-DKK" decimals="-3"
+                                                 contextRef="D-2014-dim-ConsolidatedMember">149675000
+  </fsa:ProfitLossFromOrdinaryActivitiesBeforeTax>
+  <fsa:ProfitLossFromOrdinaryActivitiesBeforeTax unitRef="u-DKK" decimals="-3"
+                                                 contextRef="D-2013-dim-ConsolidatedMember">81044000
+  </fsa:ProfitLossFromOrdinaryActivitiesBeforeTax>
+  <fsa:TaxExpenseOnOrdinaryActivities unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">
+    -15271000
+  </fsa:TaxExpenseOnOrdinaryActivities>
+  <fsa:TaxExpenseOnOrdinaryActivities unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">
+    -7533000
+  </fsa:TaxExpenseOnOrdinaryActivities>
+  <fsa:PropertyPlantAndEquipmentGross unitRef="u-DKK" decimals="-3"
+                                      contextRef="I-2014-E-dim-ConsolidatedMember-FixturesFittingsTool">35943000
+  </fsa:PropertyPlantAndEquipmentGross>
+  <fsa:PropertyPlantAndEquipmentGross unitRef="u-DKK" decimals="-3"
+                                      contextRef="I-2013-E-dim-ConsolidatedMember-FixturesFittingsTool">45470000
+  </fsa:PropertyPlantAndEquipmentGross>
+  <fsa:AdditionsToPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                            contextRef="D-2014-dim-ConsolidatedMember-FixturesFittingsTool">6473000
+  </fsa:AdditionsToPropertyPlantAndEquipment>
+  <fsa:AdditionsToPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                            contextRef="D-2014-dim-ConsolidatedMember-LeaseholdImprovement">566000
+  </fsa:AdditionsToPropertyPlantAndEquipment>
+  <fsa:DisposalsOfPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                            contextRef="D-2014-dim-ConsolidatedMember-FixturesFittingsTool">-16000000
+  </fsa:DisposalsOfPropertyPlantAndEquipment>
+  <fsa:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                                                             contextRef="I-2014-E-dim-ConsolidatedMember-FixturesFittingsTool">
+    -24123000
+  </fsa:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment>
+  <fsa:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                                                             contextRef="I-2013-E-dim-ConsolidatedMember-FixturesFittingsTool">
+    -28425000
+  </fsa:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment>
+  <fsa:DepreciationOfPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                               contextRef="D-2014-dim-ConsolidatedMember-FixturesFittingsTool">7557000
+  </fsa:DepreciationOfPropertyPlantAndEquipment>
+  <fsa:DepreciationOfPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                               contextRef="D-2014-dim-ConsolidatedMember-LeaseholdImprovement">779000
+  </fsa:DepreciationOfPropertyPlantAndEquipment>
+  <fsa:ReversalsOfImpairmentLossesAndDepreciationOfDisposedPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                                                                     contextRef="D-2014-dim-ConsolidatedMember-FixturesFittingsTool">
+    11859000
+  </fsa:ReversalsOfImpairmentLossesAndDepreciationOfDisposedPropertyPlantAndEquipment>
+  <fsa:DisclosureOfContingentLiabilities contextRef="D-2014-dim-ConsolidatedMember">Koncernen har pr. statusdagen
+    huslejeforpligtelser på i alt t.kr. 6.664 (2013: t.kr. 8.718) og operationelle leasingaftaler på t.kr. 3.805 (2013:
+    t.kr. 718).
+
+    Selskabet har overfor koncernens bankforbindelse stillet selvskyldnerkaution for NC AX 3 ApS for maksimum 165.000
+    t.kr..
+
+    Selskabet indgår i en dansk sambeskatning med Netcompany Holdning ApS som administationsselskab. Selskabet hæfter
+    derfor fra og med regnskabsåret 2013 solidarisk med de øvrige sambeskattede selskaber for indkomstskatter mv. for de
+    sambeskattede selskaber og fra og med 1. juli 2012 ligeledes solidarisk for eventuelle forpligtelser til at
+    indeholde kildeskat på renter, royalties og udbytter for disse selskaber.
+  </fsa:DisclosureOfContingentLiabilities>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember-ProposedDividendReco">30000000
+  </fsa:Equity>
+  <fsa:DividendPaid unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-ProposedDividendReco">
+    -30000000
+  </fsa:DividendPaid>
+  <fsa:IntangibleAssets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">1080000
+  </fsa:IntangibleAssets>
+  <fsa:IntangibleAssets unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">1787000
+  </fsa:IntangibleAssets>
+  <fsa:CompletedDevelopmentProjects unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">1080000
+  </fsa:CompletedDevelopmentProjects>
+  <fsa:CompletedDevelopmentProjects unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">1787000
+  </fsa:CompletedDevelopmentProjects>
+  <fsa:LeaseholdImprovements unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">2637000
+  </fsa:LeaseholdImprovements>
+  <fsa:LeaseholdImprovements unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">2850000
+  </fsa:LeaseholdImprovements>
+  <fsa:ContractWorkInProgress unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">51695000
+  </fsa:ContractWorkInProgress>
+  <fsa:ContractWorkInProgress unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">22416000
+  </fsa:ContractWorkInProgress>
+  <fsa:LongtermLeaseCommitments unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">1734000
+  </fsa:LongtermLeaseCommitments>
+  <fsa:ShorttermPrepaymentsReceivedFromCustomers unitRef="u-DKK" decimals="-3"
+                                                 contextRef="I-2014-E-dim-ConsolidatedMember">20098000
+  </fsa:ShorttermPrepaymentsReceivedFromCustomers>
+  <fsa:ShorttermPrepaymentsReceivedFromCustomers unitRef="u-DKK" decimals="-3"
+                                                 contextRef="I-2013-E-dim-ConsolidatedMember">12612000
+  </fsa:ShorttermPrepaymentsReceivedFromCustomers>
+  <fsa:ProfitLossAfterAttributableToMinorityInterest unitRef="u-DKK" decimals="-3"
+                                                     contextRef="D-2014-dim-ConsolidatedMember">134404000
+  </fsa:ProfitLossAfterAttributableToMinorityInterest>
+  <fsa:ProfitLossAfterAttributableToMinorityInterest unitRef="u-DKK" decimals="-3"
+                                                     contextRef="D-2013-dim-ConsolidatedMember">73511000
+  </fsa:ProfitLossAfterAttributableToMinorityInterest>
+  <fsa:AverageNumberOfEmployees unitRef="u-pure" decimals="0" contextRef="D-2014-dim-ConsolidatedMember">485
+  </fsa:AverageNumberOfEmployees>
+  <fsa:AverageNumberOfEmployees unitRef="u-pure" decimals="0" contextRef="D-2013-dim-ConsolidatedMember">366
+  </fsa:AverageNumberOfEmployees>
+  <fsa:InformationOnContractWorkInProgress contextRef="D-2014-dim-ConsolidatedMember">I balancen er præsenteret
+    nettoværdien af igangværende arbejder og modtagne forudbetalinger fra kunder, der er opgjort til henholdsvis 51.695
+    t.kr. (2013: 22.416 t kr.) og 20.098 t.kr. (2013: 12.616 t.kr.).
+
+    Pr. 31.12.2014 udgør salgsværdien af igangværende arbejder 105.720 t.kr. (2013: 143.698 t.kr.), mens modtagne
+    forudbetalinger vedrørende uafsluttede projekter udgør 74.123 t.kr. (2013: 133.895 t.kr.).
+  </fsa:InformationOnContractWorkInProgress>
+  <fsa:ShorttermDebtToOtherCreditInstitutions unitRef="u-DKK" decimals="-3"
+                                              contextRef="I-2014-E-dim-ConsolidatedMember">2000
+  </fsa:ShorttermDebtToOtherCreditInstitutions>
+  <fsa:ShorttermDebtToOtherCreditInstitutions unitRef="u-DKK" decimals="-3"
+                                              contextRef="I-2013-E-dim-ConsolidatedMember">22092000
+  </fsa:ShorttermDebtToOtherCreditInstitutions>
+  <fsa:CurrentTaxExpense unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">-15271000
+  </fsa:CurrentTaxExpense>
+  <fsa:CurrentTaxExpense unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">-6223000
+  </fsa:CurrentTaxExpense>
+  <fsa:AdjustmentsForDeferredTax unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">18000
+  </fsa:AdjustmentsForDeferredTax>
+  <fsa:AdjustmentsForCurrentTaxOfPriorPeriod unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember">
+    -1328000
+  </fsa:AdjustmentsForCurrentTaxOfPriorPeriod>
+  <fsa:PropertyPlantAndEquipmentGross unitRef="u-DKK" decimals="-3"
+                                      contextRef="I-2014-E-dim-ConsolidatedMember-LeaseholdImprovement">4137000
+  </fsa:PropertyPlantAndEquipmentGross>
+  <fsa:PropertyPlantAndEquipmentGross unitRef="u-DKK" decimals="-3"
+                                      contextRef="I-2013-E-dim-ConsolidatedMember-LeaseholdImprovement">3571000
+  </fsa:PropertyPlantAndEquipmentGross>
+  <fsa:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                                                             contextRef="I-2014-E-dim-ConsolidatedMember-LeaseholdImprovement">
+    -1500000
+  </fsa:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment>
+  <fsa:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                                                             contextRef="I-2013-E-dim-ConsolidatedMember-LeaseholdImprovement">
+    -721000
+  </fsa:AccumulatedImpairmentLossesAndDepreciationOfPropertyPlantAndEquipment>
+  <fsa:OtherReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">2952000
+  </fsa:OtherReceivables>
+  <fsa:OtherReceivables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">7740000
+  </fsa:OtherReceivables>
+  <fsa:RelatedEntityName contextRef="D-2014-dim-ConsolidatedMember-Dattervirksomhed02-SubsidiaryMember">Netcompany
+    Solutions Sp. zo.o.
+  </fsa:RelatedEntityName>
+  <fsa:RelatedEntityRegisteredOffice contextRef="D-2014-dim-ConsolidatedMember-Dattervirksomhed02-SubsidiaryMember">
+    Polen
+  </fsa:RelatedEntityRegisteredOffice>
+  <fsa:RelatedEntityLegalForm contextRef="D-2014-dim-ConsolidatedMember-Dattervirksomhed02-SubsidiaryMember">Sp. zo.o.
+  </fsa:RelatedEntityLegalForm>
+  <fsa:ShareHeldByEntityOrConsolidatedEnterprisesInRelatedEntity unitRef="u-pure" decimals="2"
+                                                                 contextRef="I-2014-E-dim-ConsolidatedMember-Dattervirksomhed02-SubsidiaryMember">
+    100
+  </fsa:ShareHeldByEntityOrConsolidatedEnterprisesInRelatedEntity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3"
+              contextRef="I-2014-E-dim-ConsolidatedMember-Dattervirksomhed02-SubsidiaryMember">6081000
+  </fsa:Equity>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3"
+                  contextRef="D-2014-dim-ConsolidatedMember-Dattervirksomhed02-SubsidiaryMember">3939000
+  </fsa:ProfitLoss>
+  <fsa:ShorttermPayablesToGroupEnterprises unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">
+    41855000
+  </fsa:ShorttermPayablesToGroupEnterprises>
+  <fsa:ShorttermPayablesToGroupEnterprises unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">
+    7723000
+  </fsa:ShorttermPayablesToGroupEnterprises>
+  <mrv:DescriptionOfExpectedDevelopment contextRef="D-2014-dim-ConsolidatedMember">Koncernen har en solid og
+    tilfredsstillende ordrebeholdning, samtidigt med at kunderelationerne og positionen i markedet bliver stadig
+    stærkere. På baggrund af dette forventes en tilfredsstillende udvikling i 2015.
+  </mrv:DescriptionOfExpectedDevelopment>
+  <mrv:DescriptionOfSpecificRisksInAdditionToCommonlyOccurringHazardsInIndustry
+    contextRef="D-2014-dim-ConsolidatedMember">Koncernens forretningsmæssige risikoprofil er uændret og vurderes som på
+    niveau med god standard for en it-konsulentvirksomhed.
+
+    Koncernen er i begrænset omfang eksponeret for valutarisici. Hovedparten af køb og salg er i DKK. Netcompany
+    Solutions Sp. Z o.o. er lokaliseret i Polen, hvorfor der en valutakursrisiko i relation hertil. Risikoen er ikke
+    væsentlig.
+  </mrv:DescriptionOfSpecificRisksInAdditionToCommonlyOccurringHazardsInIndustry>
+  <mrv:ExplanationThatEntityHasNoPoliciesOnSocialResponsibility contextRef="D-2014-dim-ConsolidatedMember">For fortsat
+    at kunne udvikle og levere konkurrencedygtige it-løsninger, er det afgørende for koncernen, at kunne rekruttere og
+    fastholde medarbejdere med et højt uddannelsesniveau.
+
+    Koncernen foretager fortsat væsentlige investeringer i løbende rekruttering, opkvalificering og certificering af
+    såvel nye som erfarne konsulenter og udviklere. Også i 2015 vil koncernen fokusere på at bevare og videreudvikle sit
+    kompetenceniveau inden for bl.a. salg, leverance, projektstyring og tekniske spidskompetencer.
+
+    Koncernen bestræber sig på at drive sin virksomhed på en forsvarlig måde og ønsker at leve op til lovgivningen.
+    Koncernen forsøger herunder at minimere de miljømæssige implikationer af virksomhedernes drift, ligesom koncernen
+    arbejder med sit samfundsansvar indenfor bl.a. korruptionsbekæmpelse, menneske- og arbejdstagerrettigheder.
+    Koncernen har derfor tilsluttet sig FN’s Global Compact. Rapporten er tilgængelig på:
+    http://www.unglobalcompact.org/.
+
+    Redegørelse for det underrepræsenteret køn
+    Ultimo december 2014 var den kønsmæssige fordeling i koncernen 13% kvinder og 87% mænd. Af koncernens samlede
+    ledergruppe bestod 6,3% af kvinder. Heraf var der ingen kvinder i direktionen eller bestyrelsen.
+
+    Kønsfordelingen i koncernen skal ses i sammenhæng med, at rekrutteringen foregår ud fra et meget snævert udsnit af
+    uddannelser på de danske universiteter, der alle har fokus på dybe tekniske kompetencer inden for it, datalogi og
+    softwareudvikling. Således består størstedelen af rekrutteringspuljen årligt af ca. 1200 dimittender, hvoraf de 10%
+    bedste dimittender fra hver årgang er relevante. Den kønsmæssige fordeling på ovenstående studier udgøres i snit af
+    92% mænd og 8% kvinder. Sammenholdt med kriteriet om, at det er studiets 10% bedste studerende som er relevante, er
+    der årligt ca. 9,6 kvindelige studerende, der er en del af koncernens rekrutteringspulje. Der afholdes årligt
+    tiltrækningsarrangementer med eksklusivt fokus på kvinder for at tiltrække de kvindelige kandidater.
+    Det er koncernens overordnede og langsigtede mål at tilvejebringe en mere ligelig fordeling mellem kønnene i
+    ledelsen. Koncernen vil også fremadrettet have fokus på at tiltrække flere kvinder til virksomheden, men realistisk
+    set bliver det en udfordring at øge andelen af kvinder i koncernens ledelse markant på grund af kønssammensætningen
+    i den eksterne rekrutteringspulje.
+    På baggrund af ovenstående har koncernen sat som mål at øge antallet af kvinder i virksomhedens ledelse med 0,2%
+    over en 4-årig periode således, at kønsfordelingen i koncernens ledergruppe pr. ultimo december 2017 udgøres af 6,5%
+    kvinder. Koncernen ønsker at kunne følge op på udviklingen af kønsfordelingen i ledelsen samt have mulighed for at
+    justere indsatsen undervejs i forhold til de mål, der er sat.
+  </mrv:ExplanationThatEntityHasNoPoliciesOnSocialResponsibility>
+  <fsa:DescriptionOfMethodsOfTranslationOfForeignCurrencies contextRef="D-2014-dim-ConsolidatedMember">Transaktioner i
+    fremmed valuta omregnes til transaktionsdagens kurs. Gevinster og tab, der opstår mellem transaktionsdagens kurs og
+    kursen på betalingsdagen indregnes i resultatopgørelsen som en finansiel post.
+    Ved indregning af udenlandske dattervirksomheder, der er selvstæn dige enheder, omregnes resultatopgørelserne til
+    gen nem snitlige valutakurser for månederne, som ikke afviger væsentligt fra transaktionsdagens kurser.
+    Balanceposterne omregnes til balancedagens va lutakurser.
+    Tilgodehavender og gældsforpligtelser i fremmed valuta omregnes til balancedagens kurs. Forskellen mellem
+    balancedagens og transaktionsdagens kurs indregnes i resultatopgørelsen som en finansiel post.
+  </fsa:DescriptionOfMethodsOfTranslationOfForeignCurrencies>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfRevenue contextRef="D-2014-dim-ConsolidatedMember">
+    Produktionskriteriet anvendes som indtægtskriterium. Nettoomsætning omfatter således salgsværdien af årets udførte
+    konsulentarbejder.Driftsopgaver periodiseres over opgavernes løbetid.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfRevenue>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfIncomeAndExpensesFromInvestmentsInGroupEnterprisesAndAssociates
+    contextRef="D-2014-dim-ConsolidatedMember">Indtægter af kapitalandele i tilknyttede virksomheder omfatter udbytter,
+    som indtægtsføres, når der er erhvervet endelig ret.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfIncomeAndExpensesFromInvestmentsInGroupEnterprisesAndAssociates>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfFinanceIncomeAndExpenses
+    contextRef="D-2014-dim-ConsolidatedMember">Andre finansielle indtægter omfatter renteindtægter samt øvrige
+    finansielle indtægter.Andre finansielle omkostninger omfatter renteomkostninger, rentedelen af finansielle
+    leasingydelser samt øvrige finansielle omkostninger.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfFinanceIncomeAndExpenses>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfExternalExpenses
+    contextRef="D-2014-dim-ConsolidatedMember">Andre eksterne omkostninger omfatter omkostninger til fremmed assistance,
+    salg, administration, lokaler m.v.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfExternalExpenses>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfTaxExpenses contextRef="D-2014-dim-ConsolidatedMember">
+    Årets skat, der består af årets aktuelle skat og ændring i udskudt skat, indregnes i resultatopgørelsen med den del,
+    der kan henføres til årets resultat og direkte på egenkapitalen med den del, der kan henføres til posteringer
+    direkte på egenkapitalen.
+    Selskabet indgår i en sambeskatning. Den aktuelle selskabsskat fordeles mellem de sambeskattede danske selskaber i
+    forhold til disses skattepligtige indkomst (fuld fordeling med refusion vedrørende skattemæssige underskud.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfTaxExpenses>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfEmployeeBenefitExpense
+    contextRef="D-2014-dim-ConsolidatedMember">Personaleomkostninger omfatter lønninger, gager, pensioner og andre
+    sociale omkostninger m.v. til selskabets ansatte.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfEmployeeBenefitExpense>
+  <fsa:DescriptionOfMethodsOfImpairmentLossesAndDepreciation contextRef="D-2014-dim-ConsolidatedMember">
+    Afskrivningsgrundlaget for materielle anlægsaktiver er kostpris med fradrag af forventet restværdi efter afsluttet
+    brugstid. Der foretages lineære afskrivninger baseret på aktivernes forventede brugstid.
+    Afskrivningsgrundlaget er aktivets kostpris fratrukket restværdien. Restværdien er det forventede beløb, som vil
+    kunne opnås ved salg af aktivet efter fradrag af salgsomkostninger.
+    Driftsmateriel og inventar 2-5 år Indretning af lejede lokaler 2-7 år
+    Afskrivningsmetoder, brugstider og restværdier revurderes årligt.
+    Færdiggjorte udviklingsprojekter afskrives lineært over den forventede brugstid. Afskrivningsperioden udgør
+    sædvanligvis 5 år.
+  </fsa:DescriptionOfMethodsOfImpairmentLossesAndDepreciation>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfIntangibleAssets
+    contextRef="D-2014-dim-ConsolidatedMember">Immaterielle anlægsaktiver omfatter igangværende og færdiggjorte
+    udviklingsprojekter.Kostprisen for udviklingsprojekter omfatter omkostninger, herunder gager og afskrivninger, der
+    direkte og indirekte kan henføres til udviklingsprojekterne.
+    Immaterielle anlægsaktiver nedskrives til genindvindingsværdi, såfremt denne er lavere end den regnskabsmæssige
+    værdi.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfIntangibleAssets>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfPropertyPlantAndEquipment
+    contextRef="D-2014-dim-ConsolidatedMember">Driftsmateriel og inventar samt indretning af lejede lokaler måles til
+    kostpris med fradrag af akkumulerede af- og nedskrivninger.
+    Kostprisen omfatter anskaffelsesprisen, omkostninger direkte tilknyttet anskaffelsen og omkostninger til klargøring
+    af aktivet indtil det tidspunkt, hvor aktivet bliver taget i brug.
+    For finansielt leasede aktiver udgør kostprisen den laveste værdi af dagsværdien af aktivet og nutidsværdien af de
+    fremtidige leasingydelser.
+    Materielle anlægsaktiver nedskrives til genindvindingsværdi, hvis denne er lavere end den regnskabsmæssige værdi.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfPropertyPlantAndEquipment>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfInvestments contextRef="D-2014-dim-ConsolidatedMember">
+    Tilgodehavender måles til amortiseret kostpris, der sædvanligvis svarer til nominel værdi, med fradrag for
+    nedskrivning til imødegåelse af forventet tab.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfInvestments>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfInvestments contextRef="D-2014">Kapitalandele i tilknyttede
+    virksomheder indregnes og måles til kostpris.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfInvestments>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfReceivables contextRef="D-2014-dim-ConsolidatedMember">
+    Tilgodehavender måles til amortiseret kostpris, der sædvanligvis svarer til nominel værdi, med fradrag for
+    nedskrivning til imødegåelse af forventet tab.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfReceivables>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfContractWorkInProgress
+    contextRef="D-2014-dim-ConsolidatedMember">Igangværende arbejder for fremmed regning er optaget til den opgjorte
+    salgsværdi af den udførte andel af arbejdet, med fradrag af modtagne forudbetalinger.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfContractWorkInProgress>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfDeferredIncomeAssets
+    contextRef="D-2014-dim-ConsolidatedMember">Periodeafgrænsningsposter indregnet under aktiver omfatter afholdte
+    omkostninger, der vedrører efterfølgende regnskabsår. Periodeafgrænsningsposter måles til kostpris.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfDeferredIncomeAssets>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfCashAndCashEquivalents
+    contextRef="D-2014-dim-ConsolidatedMember">Likvide beholdninger omfatter kontante beholdninger og bankindeståender.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfCashAndCashEquivalents>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfLiabilitiesOtherThanProvisions
+    contextRef="D-2014-dim-ConsolidatedMember">Andre finansielle forpligtelser måles til amortiseret kostpris, der
+    sædvanligvis svarer til nominel værdi.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfLiabilitiesOtherThanProvisions>
+  <fsa:DescriptionOfMethodsOfCurrentTaxReceivablesAndLiabilities contextRef="D-2014-dim-ConsolidatedMember">Aktuelle
+    skatteforpligtelser eller tilgodehavende aktuel skat indregnes i balancen opgjort som beregnet skat af årets
+    skattepligtige indkomst, der er reguleret for betalt acontoskat.
+  </fsa:DescriptionOfMethodsOfCurrentTaxReceivablesAndLiabilities>
+  <fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfTaxPayablesAndDeferredTax
+    contextRef="D-2014-dim-ConsolidatedMember">Udskudt skat indregnes af alle midlertidige forskelle mellem
+    regnskabsmæssige og skattemæssige værdier af aktiver og forpligtelser.
+    Udskudte skatteaktiver, herunder skatteværdien af fremførbare skattemæssige underskud, indregnes i balancen med den
+    værdi, hvortil aktivet forventes at kunne realiseres, enten ved modregning i udskudte skatteforpligtelser eller som
+    nettoskatteaktiver.
+  </fsa:DescriptionOfMethodsOfRecognitionAndMeasurementBasisOfTaxPayablesAndDeferredTax>
+  <fsa:DescriptionOfMethodsOfPrepayments contextRef="D-2014-dim-ConsolidatedMember">Modtagne forudbetalinger fra kunder
+    er modregnet i værdien af de igangværende arbejder. Hvis modtagne forudbetalinger for den enkelte kundeopgave
+    overstiger værdien af igangværende arbejder, præsenteres det overskydende beløb under forpligtelser.
+  </fsa:DescriptionOfMethodsOfPrepayments>
+  <fsa:DescriptionOfMethodsOfDividends contextRef="D-2014-dim-ConsolidatedMember">Udbytte indregnes som en
+    gældsforpligtelse på tidspunktet for vedtagelse på generalforsamlingen. Det foreslåede udbytte for regnskabsåret
+    vises som en særskilt post i egenkapitalen.
+  </fsa:DescriptionOfMethodsOfDividends>
+  <fsa:InformationOnLeasingContracts contextRef="D-2014-dim-ConsolidatedMember">Leasingforpligtelser vedrørende
+    finansielt leasede aktiver måles på tidspunktet for indgåelse af kontrakten til nutidsværdien af de fremtidige
+    leasingydelser. Efter første indregning måles leasingforpligtelserne til amortiseret kostpris. Forskellen mellem
+    nutidsværdien og den nominelle værdi af leasingydelserne indregnes i resultatopgørelsen over kontrakternes løbetid
+    som en finansiel omkostning.Leasingydelser vedrørende operationelle leasingaftaler indregnes lineært i
+    resultatopgørelsen over leasingperioden.
+  </fsa:InformationOnLeasingContracts>
+  <fsa:DisclosureOfEmployeeBenefitsExpense contextRef="D-2014-dim-ConsolidatedMember">
+    Vederlag til direktionen er ikke oplyst under henvisning til årsregnskabslovens § 98b, stk. 3 nr. 2.
+
+    Der er ikke betalt bestyrelseshonorar. Bestyrelsen modtager almindeligt arbejdsvederlag for opgaver udført for
+    selskabet.
+  </fsa:DisclosureOfEmployeeBenefitsExpense>
+  <fsa:DisclosureOfOtherFinanceIncome contextRef="D-2014-dim-ConsolidatedMember">Renter af koncerninterne mellemværender
+    indgår i finansielle indtægter med t.kr. 3.455 (2013: t.kr. 2.288).
+  </fsa:DisclosureOfOtherFinanceIncome>
+  <fsa:DisclosureOfOtherFinanceExpenses contextRef="D-2014-dim-ConsolidatedMember">Renter af koncerninterne
+    mellemværender indgår i finansielle omkostninger med t.kr. 790 (2013: t.kr. 1.116).
+  </fsa:DisclosureOfOtherFinanceExpenses>
+  <fsa:DisclosureOfPropertyPlantAndEquipment contextRef="D-2014-dim-ConsolidatedMember">
+    Af koncernens driftsmidler udgør finansielle leasingaktiver t.kr. 3.805 (2013: t.kr. 5.529).
+  </fsa:DisclosureOfPropertyPlantAndEquipment>
+  <fsa:ExplanationOfNotDisclosingInformationOnConsolidatedAndNonconsolidatedSubsidiariesAssociatesAndEntitiesWhoseFinancialStatementsFormPartOfProportionateConsolidation
+    contextRef="D-2014-dim-ConsolidatedMember"/>
+  <fsa:DisclosureOfDeferredTaxAssetsAndLiabilities contextRef="D-2014-dim-ConsolidatedMember">Udskudt skat udgør et
+    aktiv pr. 31. december 2014, der påhviler værdien af andel af fremførbare skattemæssige underskud, der forventes
+    anvendt inden for de kommende år. Herudover har koncernen et ikke-indregnet skatteaktiv på 25.555 t.kr., der hviler
+    på fremførbare skattemæssige underskud og midlertidige forskelle mellem regnskabsmæssige og skattemæssige værdier,
+    der først forventes anvendt på længere sigt.
+  </fsa:DisclosureOfDeferredTaxAssetsAndLiabilities>
+  <fsa:DisclosureOfReceivables contextRef="D-2014-dim-ConsolidatedMember">Tilgodehavende selskabsskat består af
+    tilgodehavende sambeskatningsbidrag.
+  </fsa:DisclosureOfReceivables>
+  <fsa:OtherLongtermDebtRaisedByIssuanceOfBonds unitRef="u-DKK" decimals="-3"
+                                                contextRef="I-2013-E-dim-ConsolidatedMember">4469000
+  </fsa:OtherLongtermDebtRaisedByIssuanceOfBonds>
+  <fsa:OtherShorttermDebtRaisedByIssuanceOfBonds unitRef="u-DKK" decimals="-3"
+                                                 contextRef="I-2014-E-dim-ConsolidatedMember">4571000
+  </fsa:OtherShorttermDebtRaisedByIssuanceOfBonds>
+  <fsa:OtherShorttermDebtRaisedByIssuanceOfBonds unitRef="u-DKK" decimals="-3"
+                                                 contextRef="I-2013-E-dim-ConsolidatedMember">5629000
+  </fsa:OtherShorttermDebtRaisedByIssuanceOfBonds>
+  <fsa:ShorttermLeaseCommitments unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">603000
+  </fsa:ShorttermLeaseCommitments>
+  <fsa:ShorttermLeaseCommitments unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">3795000
+  </fsa:ShorttermLeaseCommitments>
+  <fsa:ProfitLossFromOrdinaryActivitiesAfterTax unitRef="u-DKK" decimals="-3"
+                                                contextRef="D-2014-dim-ConsolidatedMember">134404000
+  </fsa:ProfitLossFromOrdinaryActivitiesAfterTax>
+  <fsa:ProfitLossFromOrdinaryActivitiesAfterTax unitRef="u-DKK" decimals="-3"
+                                                contextRef="D-2013-dim-ConsolidatedMember">73511000
+  </fsa:ProfitLossFromOrdinaryActivitiesAfterTax>
+  <mrv:InformationOnCalculationOfKeyFiguresAndFinancialRatios contextRef="D-2014-dim-ConsolidatedMember">
+    Koncernoversigt
+
+
+  </mrv:InformationOnCalculationOfKeyFiguresAndFinancialRatios>
+  <fsa:IntangibleAssetsGross unitRef="u-DKK" decimals="-3"
+                             contextRef="I-2014-E-dim-ConsolidatedMember-CompletedDevelopment">8261000
+  </fsa:IntangibleAssetsGross>
+  <fsa:IntangibleAssetsGross unitRef="u-DKK" decimals="-3"
+                             contextRef="I-2013-E-dim-ConsolidatedMember-CompletedDevelopment">8897000
+  </fsa:IntangibleAssetsGross>
+  <fsa:IncreaseDecreaseOfIntangibleAssetsThroughTransfers unitRef="u-DKK" decimals="-3"
+                                                          contextRef="D-2014-dim-ConsolidatedMember-CompletedDevelopment">
+    -1438000
+  </fsa:IncreaseDecreaseOfIntangibleAssetsThroughTransfers>
+  <fsa:AdditionsToIntangibleAssets unitRef="u-DKK" decimals="-3"
+                                   contextRef="D-2014-dim-ConsolidatedMember-CompletedDevelopment">802000
+  </fsa:AdditionsToIntangibleAssets>
+  <fsa:AccumulatedImpairmentLossesAndAmortisationOfIntangibleAssets unitRef="u-DKK" decimals="-3"
+                                                                    contextRef="I-2014-E-dim-ConsolidatedMember-CompletedDevelopment">
+    -7181000
+  </fsa:AccumulatedImpairmentLossesAndAmortisationOfIntangibleAssets>
+  <fsa:AccumulatedImpairmentLossesAndAmortisationOfIntangibleAssets unitRef="u-DKK" decimals="-3"
+                                                                    contextRef="I-2013-E-dim-ConsolidatedMember-CompletedDevelopment">
+    -7110000
+  </fsa:AccumulatedImpairmentLossesAndAmortisationOfIntangibleAssets>
+  <fsa:AmortisationOfIntangibleAssets unitRef="u-DKK" decimals="-3"
+                                      contextRef="D-2014-dim-ConsolidatedMember-CompletedDevelopment">1509000
+  </fsa:AmortisationOfIntangibleAssets>
+  <fsa:IntangibleAssets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-CompletedDevelopment">
+    1080000
+  </fsa:IntangibleAssets>
+  <fsa:IntangibleAssets unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember-CompletedDevelopment">
+    1787000
+  </fsa:IntangibleAssets>
+  <fsa:PropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                 contextRef="I-2014-E-dim-ConsolidatedMember-FixturesFittingsTool">11820000
+  </fsa:PropertyPlantAndEquipment>
+  <fsa:PropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                 contextRef="I-2013-E-dim-ConsolidatedMember-FixturesFittingsTool">17045000
+  </fsa:PropertyPlantAndEquipment>
+  <fsa:PropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                 contextRef="I-2014-E-dim-ConsolidatedMember-LeaseholdImprovement">2637000
+  </fsa:PropertyPlantAndEquipment>
+  <fsa:PropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                 contextRef="I-2013-E-dim-ConsolidatedMember-LeaseholdImprovement">2850000
+  </fsa:PropertyPlantAndEquipment>
+  <fsa:DisposalsOfInvestments unitRef="u-DKK" decimals="-3"
+                              contextRef="D-2014-dim-ConsolidatedMember-OtherReceivablesMemb">-716000
+  </fsa:DisposalsOfInvestments>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2013-dim-ConsolidatedMember-ProposedDividendReco.1">
+    30000000
+  </fsa:ProfitLoss>
+  <fsa:LongtermInvestmentsAndReceivables unitRef="u-DKK" decimals="-3"
+                                         contextRef="I-2014-E-dim-ConsolidatedMember-OtherReceivablesMemb">3367000
+  </fsa:LongtermInvestmentsAndReceivables>
+  <fsa:LongtermInvestmentsAndReceivables unitRef="u-DKK" decimals="-3"
+                                         contextRef="I-2013-E-dim-ConsolidatedMember-OtherReceivablesMemb">3943000
+  </fsa:LongtermInvestmentsAndReceivables>
+  <mrv:GrossMargin unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember">78.3</mrv:GrossMargin>
+  <mrv:GrossMargin unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">82.2
+  </mrv:GrossMargin>
+  <mrv:GrossMargin unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">75.0
+  </mrv:GrossMargin>
+  <mrv:GrossMargin unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">79.4
+  </mrv:GrossMargin>
+  <mrv:GrossMargin unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">81.6
+  </mrv:GrossMargin>
+  <mrv:OperatingMargin unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember">21.4
+  </mrv:OperatingMargin>
+  <mrv:OperatingMargin unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">
+    16.0
+  </mrv:OperatingMargin>
+  <mrv:OperatingMargin unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">0
+  </mrv:OperatingMargin>
+  <mrv:OperatingMargin unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">
+    24.0
+  </mrv:OperatingMargin>
+  <mrv:OperatingMargin unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">
+    24.7
+  </mrv:OperatingMargin>
+  <mrv:EquityRatio unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember">56.1</mrv:EquityRatio>
+  <mrv:EquityRatio unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">44.0
+  </mrv:EquityRatio>
+  <mrv:EquityRatio unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">0
+  </mrv:EquityRatio>
+  <mrv:EquityRatio unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">0
+  </mrv:EquityRatio>
+  <mrv:EquityRatio unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">0
+  </mrv:EquityRatio>
+  <mrv:ReturnOnEquity unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember">83.8</mrv:ReturnOnEquity>
+  <mrv:ReturnOnEquity unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">83.6
+  </mrv:ReturnOnEquity>
+  <mrv:ReturnOnEquity unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">100.8
+  </mrv:ReturnOnEquity>
+  <mrv:ReturnOnEquity unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">
+    65.1
+  </mrv:ReturnOnEquity>
+  <mrv:ReturnOnEquity unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">47.6
+  </mrv:ReturnOnEquity>
+  <mrv:ReturnOnInvestedCapital unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember">0
+  </mrv:ReturnOnInvestedCapital>
+  <mrv:ReturnOnInvestedCapital unitRef="u-pure" decimals="1"
+                               contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">0
+  </mrv:ReturnOnInvestedCapital>
+  <mrv:ReturnOnInvestedCapital unitRef="u-pure" decimals="1"
+                               contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">0
+  </mrv:ReturnOnInvestedCapital>
+  <mrv:ReturnOnInvestedCapital unitRef="u-pure" decimals="1"
+                               contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">0
+  </mrv:ReturnOnInvestedCapital>
+  <mrv:ReturnOnInvestedCapital unitRef="u-pure" decimals="1"
+                               contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">0
+  </mrv:ReturnOnInvestedCapital>
+  <mrv:FinancialGearing unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember">0
+  </mrv:FinancialGearing>
+  <mrv:FinancialGearing unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">0
+  </mrv:FinancialGearing>
+  <mrv:FinancialGearing unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">0
+  </mrv:FinancialGearing>
+  <mrv:FinancialGearing unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">0
+  </mrv:FinancialGearing>
+  <mrv:FinancialGearing unitRef="u-pure" decimals="1" contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">0
+  </mrv:FinancialGearing>
+  <fsa:Revenue unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">629211000</fsa:Revenue>
+  <fsa:Revenue unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">460671000
+  </fsa:Revenue>
+  <fsa:Revenue unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">400487000
+  </fsa:Revenue>
+  <fsa:Revenue unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">327416000
+  </fsa:Revenue>
+  <fsa:Revenue unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">261328000
+  </fsa:Revenue>
+  <fsa:GrossResult unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">492360000</fsa:GrossResult>
+  <fsa:GrossResult unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">
+    345586000
+  </fsa:GrossResult>
+  <fsa:GrossResult unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">
+    317882000
+  </fsa:GrossResult>
+  <fsa:GrossResult unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">
+    267249000
+  </fsa:GrossResult>
+  <fsa:GrossResult unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">
+    214908000
+  </fsa:GrossResult>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">212592000</fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-PreviousYearMember">108188000
+  </fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-TwoYearsAgoMember">67677000
+  </fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-ThreeYearsAgoMember">106328000
+  </fsa:Equity>
+  <fsa:Equity unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-FourYearsAgoMember">135586000
+  </fsa:Equity>
+  <fsa:InvestmentInPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">
+    7039000
+  </fsa:InvestmentInPropertyPlantAndEquipment>
+  <fsa:InvestmentInPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                             contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">14506000
+  </fsa:InvestmentInPropertyPlantAndEquipment>
+  <fsa:InvestmentInPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                             contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">12639000
+  </fsa:InvestmentInPropertyPlantAndEquipment>
+  <fsa:InvestmentInPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                             contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">5162000
+  </fsa:InvestmentInPropertyPlantAndEquipment>
+  <fsa:InvestmentInPropertyPlantAndEquipment unitRef="u-DKK" decimals="-3"
+                                             contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">4648000
+  </fsa:InvestmentInPropertyPlantAndEquipment>
+  <fsa:Assets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">378948000</fsa:Assets>
+  <fsa:Assets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-PreviousYearMember">246142000
+  </fsa:Assets>
+  <fsa:Assets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-TwoYearsAgoMember">236362000
+  </fsa:Assets>
+  <fsa:Assets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-ThreeYearsAgoMember">203096000
+  </fsa:Assets>
+  <fsa:Assets unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember-FourYearsAgoMember">210631000
+  </fsa:Assets>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">134404000</fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">73511000
+  </fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">87701000
+  </fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">
+    78730000
+  </fsa:ProfitLoss>
+  <fsa:ProfitLoss unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">64570000
+  </fsa:ProfitLoss>
+  <fsa:ResultsFromNetFinancials unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">1060000
+  </fsa:ResultsFromNetFinancials>
+  <fsa:ResultsFromNetFinancials unitRef="u-DKK" decimals="-3"
+                                contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">1172000
+  </fsa:ResultsFromNetFinancials>
+  <fsa:ResultsFromNetFinancials unitRef="u-DKK" decimals="-3"
+                                contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">-1829000
+  </fsa:ResultsFromNetFinancials>
+  <fsa:ResultsFromNetFinancials unitRef="u-DKK" decimals="-3"
+                                contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">248000
+  </fsa:ResultsFromNetFinancials>
+  <fsa:ResultsFromNetFinancials unitRef="u-DKK" decimals="-3"
+                                contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">988000
+  </fsa:ResultsFromNetFinancials>
+  <fsa:ProfitLossFromOrdinaryOperatingActivities unitRef="u-DKK" decimals="-3"
+                                                 contextRef="D-2014-dim-ConsolidatedMember">148615000
+  </fsa:ProfitLossFromOrdinaryOperatingActivities>
+  <fsa:ProfitLossFromOrdinaryOperatingActivities unitRef="u-DKK" decimals="-3"
+                                                 contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">79872000
+  </fsa:ProfitLossFromOrdinaryOperatingActivities>
+  <fsa:ProfitLossFromOrdinaryOperatingActivities unitRef="u-DKK" decimals="-3"
+                                                 contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">96125000
+  </fsa:ProfitLossFromOrdinaryOperatingActivities>
+  <fsa:ProfitLossFromOrdinaryOperatingActivities unitRef="u-DKK" decimals="-3"
+                                                 contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">
+    104690000
+  </fsa:ProfitLossFromOrdinaryOperatingActivities>
+  <fsa:ProfitLossFromOrdinaryOperatingActivities unitRef="u-DKK" decimals="-3"
+                                                 contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">85715000
+  </fsa:ProfitLossFromOrdinaryOperatingActivities>
+  <fsa:NameOfGeographicalMarket contextRef="D-2014-dim-ConsolidatedMember-Geografiskområde01-">Geografisk område 01
+  </fsa:NameOfGeographicalMarket>
+  <fsa:NameOfGeographicalMarket contextRef="D-2014-dim-ConsolidatedMember-Geografiskområde02-">Geografisk område 02
+  </fsa:NameOfGeographicalMarket>
+  <fsa:NameOfGeographicalMarket contextRef="D-2014-dim-ConsolidatedMember-Geografiskområde03-">Geografisk område 03
+  </fsa:NameOfGeographicalMarket>
+  <fsa:NameOfGeographicalMarket contextRef="D-2014-dim-ConsolidatedMember-Geografiskområde04-">Geografisk område 04
+  </fsa:NameOfGeographicalMarket>
+  <fsa:NameOfGeographicalMarket contextRef="D-2014-dim-ConsolidatedMember-Geografiskområde05-">Geografisk område 05
+  </fsa:NameOfGeographicalMarket>
+  <fsa:NameOfGeographicalMarket contextRef="D-2014-dim-Geografiskområde01-">Geografisk område 01
+  </fsa:NameOfGeographicalMarket>
+  <fsa:NameOfGeographicalMarket contextRef="D-2014-dim-Geografiskområde02-">Geografisk område 02
+  </fsa:NameOfGeographicalMarket>
+  <fsa:NameOfGeographicalMarket contextRef="D-2014-dim-Geografiskområde03-">Geografisk område 03
+  </fsa:NameOfGeographicalMarket>
+  <fsa:NameOfGeographicalMarket contextRef="D-2014-dim-Geografiskområde04-">Geografisk område 04
+  </fsa:NameOfGeographicalMarket>
+  <fsa:NameOfGeographicalMarket contextRef="D-2014-dim-Geografiskområde05-">Geografisk område 05
+  </fsa:NameOfGeographicalMarket>
+  <fsa:OtherPayables unitRef="u-DKK" decimals="-3" contextRef="I-2014-E-dim-ConsolidatedMember">64180000
+  </fsa:OtherPayables>
+  <fsa:OtherPayables unitRef="u-DKK" decimals="-3" contextRef="I-2013-E-dim-ConsolidatedMember">45323000
+  </fsa:OtherPayables>
+  <fsa:NumberOfIssuedShares unitRef="u-shares" decimals="0" contextRef="I-2014-E">553</fsa:NumberOfIssuedShares>
+  <fsa:NominalValueOfIssuedShares unitRef="u-DKK" decimals="-3" contextRef="I-2014-E">553000
+  </fsa:NominalValueOfIssuedShares>
+  <gsd:AddressOfReportingEntityStreetName contextRef="D-2014-dim-ConsolidatedMember">Grønningen
+  </gsd:AddressOfReportingEntityStreetName>
+  <gsd:AddressOfReportingEntityStreetBuildingIdentifier contextRef="D-2014-dim-ConsolidatedMember">17
+  </gsd:AddressOfReportingEntityStreetBuildingIdentifier>
+  <gsd:AddressOfReportingEntityPostCodeIdentifier contextRef="D-2014-dim-ConsolidatedMember">1270
+  </gsd:AddressOfReportingEntityPostCodeIdentifier>
+  <gsd:AddressOfReportingEntityDistrictName contextRef="D-2014-dim-ConsolidatedMember">København K
+  </gsd:AddressOfReportingEntityDistrictName>
+  <cmn:IdentificationNumberCvrOfAuditFirm contextRef="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0">33963556
+  </cmn:IdentificationNumberCvrOfAuditFirm>
+  <cmn:NameOfAuditFirm contextRef="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0">Deloitte Statsautoriseret
+    Revisionspartnerselskab
+  </cmn:NameOfAuditFirm>
+  <gsd:AddressOfAuditorStreetName contextRef="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0">Weidekampsgade
+  </gsd:AddressOfAuditorStreetName>
+  <gsd:AddressOfAuditorStreetBuildingIdentifier contextRef="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0">6
+  </gsd:AddressOfAuditorStreetBuildingIdentifier>
+  <gsd:AddressOfAuditorPostCodeIdentifier contextRef="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0">0900
+  </gsd:AddressOfAuditorPostCodeIdentifier>
+  <gsd:AddressOfAuditorDistrictName contextRef="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0">København C
+  </gsd:AddressOfAuditorDistrictName>
+  <gsd:AddressOfAuditorCountry contextRef="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0">Denmark
+  </gsd:AddressOfAuditorCountry>
+  <gsd:TelephoneNumberOfAuditor contextRef="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0">36 10 20 30
+  </gsd:TelephoneNumberOfAuditor>
+  <cmn:NameAndSurnameOfAuditor contextRef="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0.1">Kim Mücke
+  </cmn:NameAndSurnameOfAuditor>
+  <cmn:DescriptionOfAuditor contextRef="D-2014-dim-ConsolidatedMember-Revisionsvirksomhed0.1">statsautoriseret revisor
+  </cmn:DescriptionOfAuditor>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-NettoomsætningInvest">
+    Nettoomsætning/Investeret kapital inkl goodwill
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio
+    contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-NettoomsætningInvest">Nettoomsætning/Investeret kapital
+    inkl goodwill
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio
+    contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember-NettoomsætningInvest">Nettoomsætning/Investeret kapital
+    inkl goodwill
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio
+    contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-NettoomsætningInvest">Nettoomsætning/Investeret
+    kapital inkl goodwill
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio
+    contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-NettoomsætningInvest">Nettoomsætning/Investeret kapital
+    inkl goodwill
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-Valgfrithovedtal01">Indtjeningsbidrag
+    (EBITDA)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-Valgfrithovedtal01">
+    Indtjeningsbidrag (EBITDA)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember-Valgfrithovedtal01">
+    Indtjeningsbidrag (EBITDA)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio
+    contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-Valgfrithovedtal01">Indtjeningsbidrag (EBITDA)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-Valgfrithovedtal01">
+    Indtjeningsbidrag (EBITDA)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-Valgfritnøgletal01">Overskudsgrad (%)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-Valgfritnøgletal01">
+    Overskudsgrad (%)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember-Valgfritnøgletal01">
+    Overskudsgrad (%)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio
+    contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-Valgfritnøgletal01">Overskudsgrad (%)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-Valgfritnøgletal01">
+    Overskudsgrad (%)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-Valgfritnøgletal02">Afkastningsgrad
+    (%)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-Valgfritnøgletal02">
+    Afkastningsgrad (%)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember-Valgfritnøgletal02">
+    Afkastningsgrad (%)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio
+    contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-Valgfritnøgletal02">Afkastningsgrad (%)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:NameOfKeyFigureOrFinancialRatio contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-Valgfritnøgletal02">
+    Afkastningsgrad (%)
+  </mrv:NameOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-NettoomsætningInvest">0
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-NettoomsætningInvest">
+    0
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember-NettoomsætningInvest">
+    0
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-NettoomsætningInvest">
+    0
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-NettoomsætningInvest">
+    0
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="0"
+                                        contextRef="D-2014-dim-ConsolidatedMember-Valgfrithovedtal01">156950
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="0"
+                                        contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-Valgfrithovedtal01">
+    89259
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="0"
+                                        contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember-Valgfrithovedtal01">
+    90988
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="0"
+                                        contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-Valgfrithovedtal01">
+    108385
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="0"
+                                        contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-Valgfrithovedtal01">
+    103390
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-Valgfritnøgletal01">23.6
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-Valgfritnøgletal02">39.2
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-Valgfritnøgletal01">
+    33
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember-Valgfritnøgletal02">
+    41
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember-Valgfritnøgletal01">
+    17
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember-Valgfritnøgletal02">
+    32
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-Valgfritnøgletal01">
+    32
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember-Valgfritnøgletal02">
+    52
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-Valgfritnøgletal01">
+    24
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:ValueOfKeyFigureOrFinancialRatio unitRef="u-pure" decimals="1"
+                                        contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember-Valgfritnøgletal02">
+    41
+  </mrv:ValueOfKeyFigureOrFinancialRatio>
+  <mrv:EmployeeTurnover unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember">1297000
+  </mrv:EmployeeTurnover>
+  <mrv:EmployeeTurnover unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-FourYearsAgoMember">
+    1306640
+  </mrv:EmployeeTurnover>
+  <mrv:EmployeeTurnover unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-PreviousYearMember">
+    1259000
+  </mrv:EmployeeTurnover>
+  <mrv:EmployeeTurnover unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-TwoYearsAgoMember">
+    1296000
+  </mrv:EmployeeTurnover>
+  <mrv:EmployeeTurnover unitRef="u-DKK" decimals="-3" contextRef="D-2014-dim-ConsolidatedMember-ThreeYearsAgoMember">
+    1315000
+  </mrv:EmployeeTurnover>
+  <cmn:TypeOfAuditorAssistance contextRef="D-2014-dim-ConsolidatedMember">Revisionspåtegning
+  </cmn:TypeOfAuditorAssistance>
+</xbrl>

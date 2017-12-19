@@ -8,10 +8,10 @@ import org.springframework.beans.BeanUtils
  */
 class Resultatopgoerelse extends ModelBase {
 
-  public OmsaetningTal omsaetningTal
-  public BruttoresultatTal bruttoresultatTal
-  public NettoresultatTal nettoresultatTal
-  public AaretsresultatTal aaretsresultatTal
+  OmsaetningTal omsaetningTal
+  BruttoresultatTal bruttoresultatTal
+  NettoresultatTal nettoresultatTal
+  AaretsresultatTal aaretsresultatTal
 
   Resultatopgoerelse() {
     this.omsaetningTal = new OmsaetningTal()

@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 import NoegletalRaekke from './noegletalraekke';
 import RegnskabLinkRaekke from './regnskablinkraekke';
+import RevisionsRaekke from './revisionsraekke';
 import NoegletalGraf from './noegletalgraf';
 
 export default class NoegletalTabel extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { selectedFelt: null }
+    this.state = { selectedFelt: null,
+      resultatopgoerelseVis: true,
+      aktiverVis: true,
+      passiverVis: true,
+      revisionVis: true
+    }
     this.selectNoegletal = this.selectNoegletal.bind(this);
   }
 
@@ -19,178 +25,224 @@ export default class NoegletalTabel extends Component {
     }
   }
 
-  render() {
-
+  _renderNoegletal(felt, label, style=null, negative=false, skat=false) {
     const {regnskaber} = this.props;
+
+
+    const graf = this._renderNoegletalGraf(regnskaber, label, felt)
+    return (
+      [
+        <NoegletalRaekke felt={felt}
+                         label={label}
+                         style={style}
+                         regnskaber={regnskaber}
+                         negative={negative}
+                         skat={skat}
+                         key={felt}
+                         onClick={()=>this.selectNoegletal(felt)} />,
+        graf
+      ]
+    )
+  }
+
+  _renderNoegletalGraf(regnskaber, label, felt) {
     const selected = this.state.selectedFelt;
 
+    if (selected === felt) {
+      return <NoegletalGraf regnskaber={regnskaber} label={label}
+                            felt={felt} key={label}/>;
+    }
+
+    return null;
+
+  }
+
+  render() {
+    const {regnskaber} = this.props;
+
+    const roClass = this.state.resultatopgoerelseVis ? 'fa fa-minus' : 'fa fa-plus';
+    const aClass = this.state.aktiverVis ? 'fa fa-minus' : 'fa fa-plus';
+    const pClass = this.state.passiverVis ? 'fa fa-minus' : 'fa fa-plus';
+    const rClass = this.state.revisionVis ? 'fa fa-minus' : 'fa fa-plus';
+
     return (
-      <div className="card noegletal-tabel-card">
-        <div className="card-block table-responsive">
-          <table className="table table-hover noegletal-tabel">
-            <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber}/>
-            <tbody>
+      <div className="aarsregnskab">
+        <div className="card noegletal-tabel-card">
+          <div className="card-block table-responsive">
+            <h4> <span className={roClass} onClick={()=> this.setState({resultatopgoerelseVis : !this.state.resultatopgoerelseVis})} /> Resultatopgørelse </h4>
 
-            <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.omsaetning"
-                             label="Omsætning"
-                             style="noegletal-label-bold"
-                             regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.omsaetningTal.omsaetning')} />
-            {selected==='resultatopgoerelse.omsaetningTal.omsaetning' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Omsætning"
-                           felt="resultatopgoerelse.omsaetningTal.omsaetning"/>}
+            {this.state.resultatopgoerelseVis &&
+            <table className="table table-hover noegletal-tabel">
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse />
+              <tbody>
 
-            <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.vareforbrug" label="Vareforbrug" negative={true}
-                             regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.omsaetningTal.vareforbrug')} />
-            {selected==='resultatopgoerelse.omsaetningTal.vareforbrug' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Vareforbrug"
-                           felt="resultatopgoerelse.omsaetningTal.vareforbrug"/>}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.omsaetning","Omsætning","noegletal-label-bold")}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.vareforbrug","Vareforbrug",null, true)}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.andreeksterneomkostninger","Andre Eksterne omkostninger",null, true)}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.driftsindtaegter","Andre driftsindtægter")}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.eksterneomkostninger","Eksterne omkostninger", null, true)}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.variableomkostninger","Variable omkostninger", null, true)}
 
-            <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.driftsindtaegter" label="Andre driftsindtægter"
-                             regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.omsaetningTal.driftsindtaegter')} />
-            {selected==='resultatopgoerelse.omsaetningTal.driftsindtaegter' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Andre driftsindtægter"
-                           felt="resultatopgoerelse.omsaetningTal.driftsindtaegter"/>}
+              {this.emptyRow()}
 
-            <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.eksterneomkostninger" label="Eksterne omkostninger"
-                             negative={true}
-                             regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.omsaetningTal.eksterneomkostninger')} />
-            {selected==='resultatopgoerelse.omsaetningTal.eksterneomkostninger' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Eksterne omkostninger"
-                           felt="resultatopgoerelse.omsaetningTal.eksterneomkostninger"/>}
+              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.bruttofortjeneste","Bruttofortjeneste","noegletal-label-bold")}
+              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger","Personaleomkostninger",null, true)}
+              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.regnskabsmaessigeafskrivninger","Afskrivninger",null, true)}
+              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.lokalomkostninger","Ejendomsomkostninger",null, true)}
+              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.administrationsomkostninger","Administrative omkostninger",null, true)}
 
+              {this.emptyRow()}
+              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.driftsresultat","Resultat før finansielle poster","noegletal-label-bold")}
+              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.kapitalandeleiassocieredevirksomheder","Kapitalandele i associerede virksomheder")}
+              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.kapitalandeleitilknyttedevirksomheder","Kapitalandele i tilknyttede virksomheder")}
+              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.finansielleindtaegter","Finansielle indtægter")}
+              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.finansielleomkostninger","Finansielle omkostninger", null, true)}
 
-            <NoegletalRaekke felt="resultatopgoerelse.omsaetningTal.variableomkostninger" label="Variable omkostninger"
-                             negative={true}
-                             regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.omsaetningTal.variableomkostninger')} />
-            {selected==='resultatopgoerelse.omsaetningTal.variableomkostninger' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Variable omkostninger"
-                           felt="resultatopgoerelse.omsaetningTal.variableomkostninger"/>}
+              {this.emptyRow()}
+              {this._renderNoegletal("resultatopgoerelse.aaretsresultatTal.resultatfoerskat","Årets resultat før skat","noegletal-label-bold")}
+              {this._renderNoegletal("resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat","Skat af årets resultat", null, false, true)}
+              {this.emptyRow()}
+              {this._renderNoegletal("resultatopgoerelse.aaretsresultatTal.aaretsresultat","Årets resultat","noegletal-label-bold")}
+              {this.emptyRow()}
+              <RegnskabLinkRaekke regnskaber={regnskaber} />
+              </tbody>
 
-            {this.emptyRow()}
-
-            <NoegletalRaekke style="noegletal-label-bold" label="Bruttofortjeneste"
-                             felt="resultatopgoerelse.bruttoresultatTal.bruttofortjeneste"
-                             regnskaber={regnskaber} highlight={true} onClick={()=>this.selectNoegletal('resultatopgoerelse.bruttoresultatTal.bruttofortjeneste')} />
-            {selected==='resultatopgoerelse.bruttoresultatTal.bruttofortjeneste' && <NoegletalGraf regnskaber={regnskaber} label="Bruttofortjeneste"
-                           felt="resultatopgoerelse.bruttoresultatTal.bruttofortjeneste"/>}
-
-            <NoegletalRaekke felt="resultatopgoerelse.bruttoresultatTal.kapitalandeleiassocieredevirksomheder"
-                             label="Indtægter af kapitalandele" regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.bruttoresultatTal.kapitalandeleiassocieredevirksomheder')} />
-            {selected==='resultatopgoerelse.bruttoresultatTal.kapitalandeleiassocieredevirksomheder' &&
-                  <NoegletalGraf regnskaber={regnskaber} label="Indtægter af kapitalandele"
-                                 felt="resultatopgoerelse.bruttoresultatTal.kapitalandeleiassocieredevirksomheder"/>}
-
-            <NoegletalRaekke felt="resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger"
-                             label="Kapacitetsomkostninger" regnskaber={regnskaber} negative={true}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger')} />
-            {selected==='resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Kapacitetsomkostninger"
-                           felt="resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger"/>}
-
-
-            <NoegletalRaekke felt="resultatopgoerelse.bruttoresultatTal.regnskabsmaessigeafskrivninger"
-                             label="Afskrivninger" regnskaber={regnskaber} negative={true}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.bruttoresultatTal.regnskabsmaessigeafskrivninger')} />
-            {selected==='resultatopgoerelse.bruttoresultatTal.regnskabsmaessigeafskrivninger' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Afskrivninger"
-                           felt="resultatopgoerelse.bruttoresultatTal.regnskabsmaessigeafskrivninger"/>}
-
-            <NoegletalRaekke felt="resultatopgoerelse.bruttoresultatTal.lokalomkostninger"
-                             label="Ejendomsomkostninger" regnskaber={regnskaber} negative={true}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.bruttoresultatTal.lokalomkostninger')}/>
-            {selected==='resultatopgoerelse.bruttoresultatTal.lokalomkostninger' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Ejendomsomkostninger"
-                           felt="resultatopgoerelse.bruttoresultatTal.lokalomkostninger"/>}
-
-            <NoegletalRaekke felt="resultatopgoerelse.bruttoresultatTal.administrationsomkostninger"
-                             label="Administrative omkostninger" regnskaber={regnskaber} negative={true}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.bruttoresultatTal.administrationsomkostninger')}/>
-            {selected==='resultatopgoerelse.bruttoresultatTal.administrationsomkostninger' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Administrative omkostninger"
-                           felt="resultatopgoerelse.bruttoresultatTal.administrationsomkostninger"/>}
-
-
-            {this.emptyRow()}
-
-            <NoegletalRaekke felt="resultatopgoerelse.nettoresultatTal.driftsresultat"
-                             style="noegletal-label-bold" highlight={true}
-                             label="Resultat før finansielle poster" regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.nettoresultatTal.driftsresultat')}/>
-            {selected==='resultatopgoerelse.nettoresultatTal.driftsresultat' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Resultat før finansielle poster"
-                           felt="resultatopgoerelse.nettoresultatTal.driftsresultat"/>}
-
-            <NoegletalRaekke felt="resultatopgoerelse.nettoresultatTal.finansielleindtaegter"
-                             label="Finansielle indtægter" regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.nettoresultatTal.finansielleindtaegter')}/>
-            {selected==='resultatopgoerelse.nettoresultatTal.finansielleindtaegter' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Finansielle indtægter"
-                           felt="resultatopgoerelse.nettoresultatTal.finansielleindtaegter"/>}
-
-            <NoegletalRaekke felt="resultatopgoerelse.nettoresultatTal.finansielleomkostninger"
-                             label="Finansielle omkostninger" regnskaber={regnskaber} negative={true}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.nettoresultatTal.finansielleomkostninger')} />
-            {selected==='resultatopgoerelse.nettoresultatTal.finansielleomkostninger' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Finansielle omkostninger"
-                           felt="resultatopgoerelse.nettoresultatTal.finansielleomkostninger"/>}
-
-            {this.emptyRow()}
-
-            <NoegletalRaekke felt="resultatopgoerelse.aaretsresultatTal.resultatfoerskat"
-                             style="noegletal-label-bold" highlight={true}
-                             label="Årets resultat før skat" regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.aaretsresultatTal.resultatfoerskat')}/>
-            {selected==='resultatopgoerelse.aaretsresultatTal.resultatfoerskat' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Årets resultat før skat"
-                           felt="resultatopgoerelse.aaretsresultatTal.resultatfoerskat"/>}
-
-            <NoegletalRaekke felt="resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat"
-                             label="Skat af årets resultat" regnskaber={regnskaber} negative={true}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat')} />
-            {selected==='resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Skat af årets resultat"
-                           felt="resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat"/>}
-
-            {this.emptyRow()}
-
-            <NoegletalRaekke felt="resultatopgoerelse.aaretsresultatTal.aaretsresultat"
-                             style="noegletal-label-bold"
-                             label="Årets resultat" regnskaber={regnskaber} highlight={true}
-                             onClick={()=>this.selectNoegletal('resultatopgoerelse.aaretsresultatTal.aaretsresultat')} />
-            {selected==='resultatopgoerelse.aaretsresultatTal.aaretsresultat' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Årets resultat"
-                           felt="resultatopgoerelse.aaretsresultatTal.aaretsresultat"/>}
-
-            {this.emptyRow()}
-            <NoegletalRaekke felt="balance.passiver.egenkapital"
-                             label="Egenkapital" regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('balance.passiver.egenkapital')} />
-            {selected==='balance.passiver.egenkapital' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Egenkapital"
-                           felt="balance.passiver.egenkapital"/>}
-
-            <NoegletalRaekke felt="balance.passiver.gaeldsforpligtelser"
-                             label="Gældsforpligtelser" regnskaber={regnskaber}
-                             onClick={()=>this.selectNoegletal('balance.passiver.gaeldsforpligtelser')} />
-            {selected==='balance.passiver.gaeldsforpligtelser' &&
-            <NoegletalGraf regnskaber={regnskaber} label="Gældsforpligtelser"
-                           felt="balance.passiver.gaeldsforpligtelser"/>}
-
-            {this.emptyRow()}
-
-            <RegnskabLinkRaekke regnskaber={regnskaber}/>
-            </tbody>
-
-          </table>
+            </table>}
+          </div>
         </div>
+
+        <br/>
+
+        <div className="card noegletal-tabel-card">
+          <div className="card-block table-responsive">
+            <h4> <span className={aClass} onClick={()=> this.setState({aktiverVis : !this.state.aktiverVis})} />Aktiver </h4>
+
+            {this.state.aktiverVis && <table className="table table-hover noegletal-tabel">
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse/>
+              <tbody>
+
+              {this.header('Anlægsaktiver')}
+              {this.emptyRow()}
+
+              {this._renderNoegletal("balance.aktiver.faerdiggjorteudviklingsprojekter","Færdiggjorte udviklingsprojekter")}
+              {this._renderNoegletal("balance.aktiver.erhvervedeimmaterielleanlaegsaktiver","Erhvervede immaterielle anlægsaktiver")}
+              {this._renderNoegletal("balance.aktiver.materielleanlaegsaktiverunderudfoerelse","Materielle anlægsaktiver under udførelse")}
+              {this._renderNoegletal("balance.aktiver.immaterielleanlaegsaktiver","Immaterielle anlægsaktiver ialt","noegletal-label-bold")}
+              {this._renderNoegletal("balance.aktiver.andreanlaegdriftoginventar","Andre anlæg, driftsmateriel, inventar")}
+              {this._renderNoegletal("balance.aktiver.materielleanlaegsaktiver","Materielle anlægsaktiver","noegletal-label-bold")}
+              {this._renderNoegletal("balance.aktiver.langsigtedekapitalandeleitilknyttedevirksomheder","Kapitalandele")}
+              {this._renderNoegletal("balance.aktiver.andretilgodehavender","Andre tilgodehavender")}
+              {this._renderNoegletal("balance.aktiver.finansielleanlaegsaktiver","Finansielle anlægsaktiver ialt", "noegletal-label-bold")}
+
+              {this.emptyRow()}
+
+              {this._renderNoegletal("balance.aktiver.anlaegsaktiver","Anlægsaktiver ialt", "noegletal-label-bold")}
+
+              {this.emptyRow()}
+              {this.header('Omsætningsaktiver')}
+              {this._renderNoegletal("balance.aktiver.raavareroghjaelpematerialer","Råvarer og hjælpematerialer")}
+              {this._renderNoegletal("balance.aktiver.fremstilledevareroghandelsvarer","Fremstillede varer og handelsvarer")}
+              {this._renderNoegletal("balance.aktiver.varebeholdninger","Varebeholdninger ialt",'noegletal-label-bold')}
+              {this._renderNoegletal("balance.aktiver.tilgodehavenderfrasalogtjenesteydelser","Tilgodehavende fra salg og tjenesteydelser")}
+              {this._renderNoegletal("balance.aktiver.tilgodehaverhostilknyttedevirksomheder","Tilgodehavende fra tilknyttede virksomheder")}
+              {this._renderNoegletal("balance.aktiver.andretilgodehavenderomsaetningaktiver","Andre tilgodehavender")}
+              {this._renderNoegletal("balance.aktiver.periodeafgraensningsposter","Periodeafgrænsningsposter")}
+              {this._renderNoegletal("balance.aktiver.tilgodehavenderialt","Tilgodehavender ialt",'noegletal-label-bold')}
+              {this._renderNoegletal("balance.aktiver.andrevaerdipapirerogkapitalandele","Andre værdipapirer og kapitalandele")}
+              {this._renderNoegletal("balance.aktiver.vaerdipapirerialt","Værdipapirer ialt","noegletal-label-bold")}
+              {this._renderNoegletal("balance.aktiver.likvidebeholdninger","Likvide beholdninger")}
+              {this.emptyRow()}
+              {this._renderNoegletal("balance.aktiver.omsaetningsaktiver","Omsætningsaktiver ialt", 'noegletal-label-bold')}
+              {this._renderNoegletal("balance.aktiver.aktiver","Aktiver ialt", 'noegletal-label-bold')}
+
+              </tbody>
+
+            </table>}
+          </div>
+        </div>
+
+        <br />
+
+        <div className="card noegletal-tabel-card">
+          <div className="card-block table-responsive">
+            <h4><span className={pClass} onClick={()=> this.setState({passiverVis : !this.state.passiverVis})} /> Passiver </h4>
+
+            {this.state.passiverVis && <table className="table table-hover noegletal-tabel">
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse/>
+              <tbody>
+
+              {this.header('Egenkapital')}
+              {this.emptyRow()}
+
+              {this._renderNoegletal("balance.passiver.virksomhedskapital","Virksomhedskapital")}
+              {this._renderNoegletal("balance.passiver.overfoertresultat","Overført resultat")}
+              {this._renderNoegletal("balance.passiver.udbytte","Foreslået udbytte")}
+
+              {this.emptyRow()}
+              {this._renderNoegletal("balance.passiver.egenkapital","Egenkapital ialt", "noegletal-label-bold")}
+
+              {this.emptyRow()}
+              {this.header('Hensatte Forpligtelser')}
+              {this.emptyRow()}
+              {this._renderNoegletal("balance.passiver.hensaettelserforudskudtskat","Hensættelser til udskudt skat")}
+              {this._renderNoegletal("balance.passiver.andrehensaettelser","Andre hensatte forpligtelser")}
+
+              {this._renderNoegletal("balance.passiver.hensatteforpligtelser","Hensatte forpligtelser ialt", "noegletal-label-bold")}
+              {this.emptyRow()}
+
+              {this.header('Gældsforpligtelser')}
+              {this._renderNoegletal("balance.passiver.gaeldtilrealkredit","Gæld til realkreditinstitutter")}
+              {this._renderNoegletal("balance.passiver.andenlangfristetgaeld","Anden langfristet gæld")}
+              {this._renderNoegletal("balance.passiver.deposita","Deposita")}
+              {this._renderNoegletal("balance.passiver.langfristedegaeldsforpligtelser","Langfristede gældsforpligtelser ialt","noegletal-label-bold")}
+              {this.emptyRow()}
+
+              {this._renderNoegletal("balance.passiver.igangvaerendearbejderforfremmedregning","Igangværende arbejde for fremmed regning")}
+              {this._renderNoegletal("balance.passiver.kortsigtedegaeldsforpligtelser","Gældsforpligtelser")}
+              {this._renderNoegletal("balance.passiver.gaeldsforpligtelsertilpengeinstitutter","Gældsforpligtelser til pengeinsitutter")}
+              {this._renderNoegletal("balance.passiver.leverandoereraftjenesteydelser","Leverandører af tjenester og ydelser")}
+              {this._renderNoegletal("balance.passiver.gaeldtiltilknyttedevirksomheder","Gæld til tilknyttede virksomheder")}
+              {this._renderNoegletal("balance.passiver.kortfristetskyldigskat","Kortfristet skyldig til skat")}
+              {this._renderNoegletal("balance.passiver.andregaeldsforpligtelser","Anden gæld")}
+              {this._renderNoegletal("balance.passiver.modtagneforudbetalingerfrakunder","Modtagne forudbetalinger")}
+
+              {this._renderNoegletal("balance.passiver.periodeafgraensningsposter","Periodeafgrænsningsposter")}
+              {this._renderNoegletal("balance.passiver.kortfristedegaeldsforpligtelserialt","Kortfristede gældsforpligtelser i alt")}
+              {this._renderNoegletal("balance.passiver.gaeldsforpligtelser","Gældsforpligtelser ialt","noegletal-label-bold")}
+              {this.emptyRow()}
+              {this._renderNoegletal("balance.passiver.passiverialt","Passiver ialt","noegletal-label-bold")}
+
+              </tbody>
+
+            </table>}
+          </div>
+        </div>
+
+        <br />
+
+        <div className="card noegletal-tabel-card">
+          <div className="card-block table-responsive">
+            <h4><span className={rClass} onClick={()=> this.setState({revisionVis : !this.state.revisionVis})} /> Revision </h4>
+
+            {this.state.revisionVis && <table className="table table-hover noegletal-tabel">
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse/>
+              <tbody>
+              {this.state.revisionVis && <RevisionsRaekke regnskaber={regnskaber} />}
+              </tbody>
+
+            </table>}
+          </div>
+        </div>
+
+
       </div>
     )
+  }
+
+  header(header) {
+    return (
+      <tr><td className="noegletal-table-header">{header}</td><td>&nbsp;</td></tr>
+    );
   }
 
   emptyRow() {

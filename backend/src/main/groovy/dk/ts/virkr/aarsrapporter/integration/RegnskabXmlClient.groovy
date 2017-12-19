@@ -1,8 +1,10 @@
 package dk.ts.virkr.aarsrapporter.integration
 
+import dk.ts.virkr.aarsrapporter.model.Regnskab
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Dokument
 import dk.ts.virkr.aarsrapporter.integration.model.regnskaber.Offentliggoerelse
+import dk.ts.virkr.aarsrapporter.parser.RegnskabNodes
 import dk.ts.virkr.aarsrapporter.parser.RegnskabXmlParser
 
 import java.text.SimpleDateFormat
@@ -41,8 +43,18 @@ class RegnskabXmlClient {
           data.startdato = offentliggoerelse.regnskab.regnskabsperiode.startDato
           data.slutdato = offentliggoerelse.regnskab.regnskabsperiode.slutDato
           data.sidsteopdatering = sdf.format(offentliggoerelse.sidstOpdateret)
-          data = parser.parseOgBerig(data, unzippedData)
-          data.virksomhedsdata = parser.hentVirksomhedsdataFraRegnskab(unzippedData, data)
+          RegnskabNodes regnskabNodes = new RegnskabNodes(unzippedData)
+
+          //parser.parseOgBerig(data, regnskabNodes)
+          data.virksomhedsdata = parser.hentVirksomhedsdataFraRegnskab(regnskabNodes)
+
+          data.aktueltAarsregnskab = new Regnskab()
+          parser.parseOgBerig(data.aktueltAarsregnskab, regnskabNodes)
+
+          // forrige aar det findes ikke nødvendigvis
+          data.sidsteAarsregnskab = new Regnskab()
+          data.findesTal = parser.parseOgBerig(data.sidsteAarsregnskab, regnskabNodes, false)
+
           regnskabdata << data
         }
       }
