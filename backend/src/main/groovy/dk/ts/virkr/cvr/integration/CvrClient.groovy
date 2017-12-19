@@ -8,7 +8,6 @@ import dk.ts.virkr.cvr.integration.model.virksomhed.elasticsearch.ElasticResult
 import org.slf4j.Logger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
-import org.apache.commons.codec.binary.Base64
 
 /**
  * Created by sorenhartvig on 29/05/2017.
@@ -166,7 +165,7 @@ class CvrClient {
 
     HttpURLConnection uc = (HttpURLConnection) u.openConnection()
     String userpass = username + ":" + password
-    String basicAuth = "Basic " + new String(Base64.encodeBase64(userpass.bytes))
+    String basicAuth = "Basic " + new String(Base64.encoder.encode(userpass.bytes))
     uc.setRequestProperty("Authorization", basicAuth)
     if (body) {
       uc.doOutput = true
