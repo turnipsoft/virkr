@@ -1,6 +1,8 @@
 package dk.ts.virkr.aarsrapporter.parser
 
+import dk.ts.virkr.aarsrapporter.model.Aktiver
 import dk.ts.virkr.aarsrapporter.model.Generalforsamling
+import dk.ts.virkr.aarsrapporter.model.Passiver
 import dk.ts.virkr.aarsrapporter.model.Regnskab
 import dk.ts.virkr.aarsrapporter.model.Regnskabstal
 import dk.ts.virkr.aarsrapporter.model.Revision
@@ -75,9 +77,57 @@ class RegnskabXmlParser {
 
     nl = nyeste ? regnskabNodes.aktuelleBalanceNodes : regnskabNodes.sidsteAarsBalanceNodes
 
-    data.balance.passiver.gaeldsforpligtelser = getRegnskabstal(nl, ns, 'LiabilitiesOtherThanProvisions','CurrentLiabilities', 'ShorttermLiabilitiesOtherThanProvisions' )
-    data.balance.passiver.egenkapital = getRegnskabstal(nl, ns, 'Equity' )
-    data.balance.passiver.udbytte = getRegnskabstal(nl, ns, 'ProposedDividendRecognisedInEquity' )
+    Aktiver aktiver = data.balance.aktiver
+    aktiver.langsigtedekapitalandeleitilknyttedevirksomheder = getRegnskabstal(nl, ns, 'LongtermInvestmentsInGroupEnterprises')
+    aktiver.andreanlaegdriftoginventar = getRegnskabstal(nl, ns, 'FixturesFittingsToolsAndEquipment')
+    aktiver.materielleanlaegsaktiver = getRegnskabstal(nl, ns, 'PropertyPlantAndEquipment')
+    aktiver.andretilgodehavender = getRegnskabstal(nl, ns, 'OtherLongtermReceivables')
+    aktiver.finansielleanlaegsaktiver = getRegnskabstal(nl, ns, 'LongtermInvestmentsAndReceivables')
+    aktiver.anlaegsaktiver = getRegnskabstal(nl, ns, 'NoncurrentAssets')
+    aktiver.erhvervedeimmaterielleanlaegsaktiver = getRegnskabstal(nl, ns, 'AcquiredIntangibleAssets')
+    aktiver.immaterielleanlaegsaktiver = getRegnskabstal(nl, ns, 'IntangibleAssets')
+    aktiver.materielleanlaegsaktiverunderudfoerelse = getRegnskabstal(nl, ns, 'PropertyPlantAndEquipmentInProgressAndPrepaymentsForPropertyPlantAndEquipment')
+
+    aktiver.raavareroghjaelpematerialer = getRegnskabstal(nl, ns, 'RawMaterialsAndConsumables')
+    aktiver.fremstilledevareroghandelsvarer = getRegnskabstal(nl, ns, 'ManufacturedGoodsAndGoodsForResale')
+    aktiver.varebeholdninger = getRegnskabstal(nl, ns, 'ManufacturedGoodsAndGoodsForResale')
+    aktiver.tilgodehavenderfrasalogtjenesteydelser  = getRegnskabstal(nl, ns, 'ShorttermTradeReceivables')
+    aktiver.tilgodehaverhostilknyttedevirksomheder = getRegnskabstal(nl, ns, 'ShorttermReceivablesFromGroupEnterprises')
+    aktiver.andretilgodehavenderomsaetningaktiver = getRegnskabstal(nl, ns, 'OtherShorttermReceivables')
+    aktiver.periodeafgraensningsposter = getRegnskabstal(nl, ns, 'DeferredIncomeAssets')
+    aktiver.tilgodehavenderialt = getRegnskabstal(nl, ns, 'ShorttermReceivables')
+    aktiver.andrevaerdipapirerogkapitalandele = getRegnskabstal(nl, ns, 'OtherShorttermInvestments')
+    aktiver.vaerdipapirerialt = getRegnskabstal(nl, ns, 'ShorttermInvestments')
+    aktiver.likvidebeholdninger = getRegnskabstal(nl, ns, 'CashAndCashEquivalents')
+    aktiver.omsaetningsaktiver = getRegnskabstal(nl, ns, 'CurrentAssets')
+    aktiver.faerdiggjorteudviklingsprojekter = getRegnskabstal(nl, ns, 'CompletedDevelopmentProjects')
+
+    aktiver.aktiver = getRegnskabstal(nl, ns, 'Assets')
+
+    Passiver passiver = data.balance.passiver
+    passiver.gaeldsforpligtelser = getRegnskabstal(nl, ns, 'LiabilitiesOtherThanProvisions','CurrentLiabilities' )
+    passiver.egenkapital = getRegnskabstal(nl, ns, 'Equity' )
+    passiver.udbytte = getRegnskabstal(nl, ns, 'ProposedDividendRecognisedInEquity' )
+    passiver.virksomhedskapital = getRegnskabstal(nl, ns, 'ContributedCapital')
+    passiver.overfoertresultat = getRegnskabstal(nl, ns, 'RetainedEarnings')
+    passiver.hensaettelserforudskudtskat = getRegnskabstal(nl, ns, 'ProvisionsForDeferredTax')
+    passiver.hensatteforpligtelser = getRegnskabstal(nl, ns, 'Provisions')
+    passiver.gaeldtilrealkredit = getRegnskabstal(nl, ns, 'LongtermMortgageDebt')
+    passiver.langfristedegaeldsforpligtelser = getRegnskabstal(nl, ns, 'LongtermLiabilitiesOtherThanProvisions')
+    passiver.kortsigtedegaeldsforpligtelser = getRegnskabstal(nl, ns, 'ShorttermPartOfLongtermLiabilitiesOtherThanProvisions')
+    passiver.gaeldsforpligtelsertilpengeinstitutter = getRegnskabstal(nl, ns, 'ShorttermDebtToBanks')
+    passiver.leverandoereraftjenesteydelser = getRegnskabstal(nl, ns, 'ShorttermTradePayables')
+    passiver.gaeldtiltilknyttedevirksomheder = getRegnskabstal(nl, ns, 'ShorttermPayablesToGroupEnterprises')
+    passiver.kortfristetskyldigskat =  getRegnskabstal(nl, ns, 'ShorttermTaxPayables')
+    passiver.andregaeldsforpligtelser = getRegnskabstal(nl, ns, 'OtherShorttermPayables')
+    passiver.periodeafgraensningsposter = getRegnskabstal(nl, ns, 'ShorttermDeferredIncome')
+    passiver.kortfristedegaeldsforpligtelserialt = getRegnskabstal(nl, ns, 'ShorttermLiabilitiesOtherThanProvisions')
+    passiver.passiverialt = getRegnskabstal(nl, ns, 'LiabilitiesAndEquity')
+    passiver.andrehensaettelser = getRegnskabstal(nl, ns, 'OtherProvisions')
+    passiver.andenlangfristetgaeld = getRegnskabstal(nl, ns, 'OtherLongtermPayables')
+    passiver.modtagneforudbetalingerfrakunder = getRegnskabstal(nl, ns, 'ShorttermPrepaymentsReceivedFromCustomers')
+    passiver.deposita = getRegnskabstal(nl, ns, 'DepositsLongtermLiabilitiesOtherThanProvisions')
+    passiver.igangvaerendearbejderforfremmedregning = getRegnskabstal(nl, ns, 'ShorttermContractWorkInProgressLiabilities')
 
     // det aktuelle regnskab har også revisionsoplysninger
     if (nyeste) {

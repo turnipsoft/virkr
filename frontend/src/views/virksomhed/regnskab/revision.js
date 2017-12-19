@@ -25,7 +25,7 @@ export default class Revision extends Component {
   _renderTooltipRow(vaerdi, tooltip) {
     if (tooltip) {
       return (
-        <div className="row"><div className="col"><span title={tooltip}>{vaerdi}&nbsp;</span><span title={tooltip} className="fa fa-exclamation red" /></div></div>
+        <div className="row"><div className="col"><span title={tooltip}>{vaerdi}&nbsp;</span><span title={tooltip} className="fa fa-exclamation fa-lg red" /></div></div>
       )
     }
   }

@@ -4,14 +4,21 @@ import { resolveJsonValue, komma } from '../../../utils/utils';
 export default class NoegletalRaekke extends Component {
 
   render() {
-    const { regnskaber, label, felt, style, header, negative, highlight, onClick, skat } = this.props;
+    const { regnskaber, label, felt, style, header, negative, highlight, onClick, skat, inkluderRegnksabsklasse } = this.props;
 
     const feltvaerdier = regnskaber.map((regnskab) => {
       const aktueltRegnskab = regnskab.aktueltAarsregnskab;
 
       let vaerdi = resolveJsonValue(felt, aktueltRegnskab);
       if (header) {
-        return { vaerdi: vaerdi, start: aktueltRegnskab.startdato, slut: aktueltRegnskab.slutdato };
+
+        let regnskabsklasse = aktueltRegnskab.regnskabsklasse;
+        if (regnskabsklasse && regnskabsklasse.indexOf(',')!==-1) {
+          regnskabsklasse = regnskabsklasse.substring(0, regnskabsklasse.indexOf(','));
+        }
+
+        return { vaerdi: vaerdi, start: aktueltRegnskab.startdato, slut: aktueltRegnskab.slutdato, regnskabsklasse:
+          inkluderRegnksabsklasse? regnskabsklasse: null };
       }
 
       // skat er lidt specielt så det hackes ind her, hved ikke hvordan vi ellers skal håndterer, pointen er jo at man kan have tilgodehavende hos skat
@@ -69,10 +76,15 @@ export default class NoegletalRaekke extends Component {
         }
 
         if (header) {
+          const startaar = vaerdi.start.substring(0,4);
+          const slutaar = vaerdi.slut.substring(0,4);
+
+          const aar = (startaar!=slutaar) ? `${startaar}/${slutaar}` : slutaar
           return (
-            <th key={col} className={className}>{komma(vaerdi.vaerdi)}
+            <th key={col} className={className}>{aar}
               <div className="header-periode">{vaerdi.start}</div>
               <div className="header-periode">{vaerdi.slut}</div>
+              {vaerdi.regnskabsklasse && <div className="header-periode">{vaerdi.regnskabsklasse}</div>}
             </th>
           );
         }
@@ -86,7 +98,7 @@ export default class NoegletalRaekke extends Component {
 
         if (warningText) {
           return (<td className={cname} key={col} >
-                    <span title={warningText} >{komma(vaerdi.vaerdi.vaerdi)}<span>&nbsp;<span className="fa fa-exclamation red" title={warningText} /></span></span>
+                    <span title={warningText} >{komma(vaerdi.vaerdi.vaerdi)}<span>&nbsp;<span className="fa fa-exclamation fa-lg red" title={warningText} /></span></span>
                  </td>)
         }
 

@@ -25,6 +25,13 @@
 
 .red {
   color: red;
+  font-size: 16px;
+}
+
+.noegletal-table-header {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
 }
 
 .virkr-header a {

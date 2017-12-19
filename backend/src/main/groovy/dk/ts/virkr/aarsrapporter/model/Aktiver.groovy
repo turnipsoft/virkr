@@ -7,6 +7,33 @@ import dk.ts.virkr.aarsrapporter.db.Regnskabsdata
  */
 class Aktiver extends ModelBase {
 
+  // Anlægsaktiver
+  Regnskabstal langsigtedekapitalandeleitilknyttedevirksomheder //LongtermInvestmentsInGroupEnterprises
+  Regnskabstal andreanlaegdriftoginventar //FixturesFittingsToolsAndEquipment
+  Regnskabstal materielleanlaegsaktiver //PropertyPlantAndEquipment
+  Regnskabstal andretilgodehavender //OtherLongtermReceivables
+  Regnskabstal finansielleanlaegsaktiver //LongtermInvestmentsAndReceivables
+  Regnskabstal anlaegsaktiver //NoncurrentAssets
+  Regnskabstal faerdiggjorteudviklingsprojekter
+  Regnskabstal erhvervedeimmaterielleanlaegsaktiver // AcquiredIntangibleAssets
+  Regnskabstal immaterielleanlaegsaktiver // IntangibleAssets
+  Regnskabstal materielleanlaegsaktiverunderudfoerelse // PropertyPlantAndEquipmentInProgressAndPrepaymentsForPropertyPlantAndEquipment
+
+  // Omsætningsaktiver
+  Regnskabstal raavareroghjaelpematerialer // RawMaterialsAndConsumables
+  Regnskabstal fremstilledevareroghandelsvarer // ManufacturedGoodsAndGoodsForResale
+  Regnskabstal varebeholdninger //ManufacturedGoodsAndGoodsForResale
+  Regnskabstal tilgodehavenderfrasalogtjenesteydelser // ShorttermTradeReceivables
+  Regnskabstal tilgodehaverhostilknyttedevirksomheder //ShorttermReceivablesFromGroupEnterprises
+  Regnskabstal andretilgodehavenderomsaetningaktiver //OtherShorttermReceivables
+  Regnskabstal periodeafgraensningsposter // DeferredIncomeAssets
+  Regnskabstal tilgodehavenderialt // ShorttermReceivables
+  Regnskabstal andrevaerdipapirerogkapitalandele // OtherShorttermInvestments
+  Regnskabstal vaerdipapirerialt // ShorttermInvestments
+  Regnskabstal likvidebeholdninger // CashAndCashEquivalents
+  Regnskabstal omsaetningsaktiver // CurrentAssets
+  Regnskabstal aktiver // Assets
+
   static Aktiver from(Regnskabsdata rd) {
     Aktiver aktiver = new Aktiver()
     return aktiver
