@@ -53,16 +53,45 @@ class RegnskabInternalService {
         it.id = "regnskab_${it.aar}"
       }
 
+      response.regnskabsdata = response.regnskabsdata.sort { it.aar }
+      response.regnskabsdata = frasorter(response.regnskabsdata)
+
       // berig med kontroller
       RegnskabsKontroller kontroller = new RegnskabsKontroller()
       kontroller.kontrollerOgBerig(response.regnskabsdata)
-      response.regnskabsdata = response.regnskabsdata.sort { it.aar }
-
     }
 
-    response.regnskabsdata = response.regnskabsdata.unique { it.aar }.sort { it.aar }
-
     return response
+  }
+
+  // skal finde de nyeste regnskaber indenfor hvert år
+  List<RegnskabData> frasorter(List<RegnskabData> list) {
+    List<RegnskabData> resultat = []
+    RegnskabData currentRegnskabData
+    int count=0
+    list.each {
+      if (!currentRegnskabData) {
+        currentRegnskabData = it
+        count++
+      } else {
+        if (it.aar == currentRegnskabData.aar) {
+          if (it.sidsteopdatering>currentRegnskabData.sidsteopdatering) {
+            currentRegnskabData = it
+          }
+          count++
+        } else {
+          currentRegnskabData.antalRegnskaber = count
+          resultat << currentRegnskabData
+          count = 1
+          currentRegnskabData = it
+        }
+      }
+    }
+
+    currentRegnskabData.antalRegnskaber = count
+    resultat << currentRegnskabData
+
+    return resultat
   }
 
   List<RegnskabData> hentRegnskaberFraOffentliggoerelse(String cvrnummer) {
@@ -70,9 +99,7 @@ class RegnskabInternalService {
     RegnskabXmlClient rc = new RegnskabXmlClient()
 
     List<Offentliggoerelse> offentliggoerelser = oc.hentOffentliggoerelserForCvrNummer(cvrnummer)
-    offentliggoerelser = offentliggoerelser.findAll{ it.regnskab != null }.unique {
-      it.regnskab.regnskabsperiode.startDato
-    }
+    offentliggoerelser = offentliggoerelser.findAll{ it.regnskab != null }
     return rc.hentRegnskabData(offentliggoerelser)
   }
 }

@@ -87,6 +87,7 @@ class RegnskabXmlParser {
     aktiver.erhvervedeimmaterielleanlaegsaktiver = getRegnskabstal(nl, ns, 'AcquiredIntangibleAssets')
     aktiver.immaterielleanlaegsaktiver = getRegnskabstal(nl, ns, 'IntangibleAssets')
     aktiver.materielleanlaegsaktiverunderudfoerelse = getRegnskabstal(nl, ns, 'PropertyPlantAndEquipmentInProgressAndPrepaymentsForPropertyPlantAndEquipment')
+    aktiver.grundeogbygninger = getRegnskabstal(nl, ns, 'LandAndBuildings')
 
     aktiver.raavareroghjaelpematerialer = getRegnskabstal(nl, ns, 'RawMaterialsAndConsumables')
     aktiver.fremstilledevareroghandelsvarer = getRegnskabstal(nl, ns, 'ManufacturedGoodsAndGoodsForResale')

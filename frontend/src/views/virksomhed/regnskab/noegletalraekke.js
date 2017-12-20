@@ -4,7 +4,7 @@ import { resolveJsonValue, komma } from '../../../utils/utils';
 export default class NoegletalRaekke extends Component {
 
   render() {
-    const { regnskaber, label, felt, style, header, negative, highlight, onClick, skat, inkluderRegnksabsklasse } = this.props;
+    const { regnskaber, label, felt, style, header, negative, highlight, onClick, skat, inkluderRegnksabsklasse, sz } = this.props;
 
     const feltvaerdier = regnskaber.map((regnskab) => {
       const aktueltRegnskab = regnskab.aktueltAarsregnskab;
@@ -18,7 +18,7 @@ export default class NoegletalRaekke extends Component {
         }
 
         return { vaerdi: vaerdi, start: aktueltRegnskab.startdato, slut: aktueltRegnskab.slutdato, regnskabsklasse:
-          inkluderRegnksabsklasse? regnskabsklasse: null };
+          inkluderRegnksabsklasse? regnskabsklasse: null, omgoerelse: regnskab.omgoerelse, antal: regnskab.antalRegnskaber };
       }
 
       // skat er lidt specielt så det hackes ind her, hved ikke hvordan vi ellers skal håndterer, pointen er jo at man kan have tilgodehavende hos skat
@@ -43,10 +43,10 @@ export default class NoegletalRaekke extends Component {
       return (
         <thead className="noegletal-header">
           <tr>
-            <th>
+            <th width="20%">
               {label}
             </th>
-            {this._renderVaerdier(feltvaerdier, header)}
+            {this._renderVaerdier(feltvaerdier, header, sz)}
           </tr>
         </thead>
       );
@@ -54,25 +54,26 @@ export default class NoegletalRaekke extends Component {
 
     return (
       <tr className="noegletal-row" onClick={onClick} >
-        <td className={style?style:''}>
+        <td width="20%" className={style?style:''}>
           {label}
         </td>
-        {this._renderVaerdier(feltvaerdier, header, highlight, style)}
+        {this._renderVaerdier(feltvaerdier, header, sz, highlight, style)}
       </tr>
     );
   }
 
-  _renderVaerdier(vaerdier, header, highlight, style) {
+  _renderVaerdier(vaerdier, header, sz, highlight, style) {
 
     const className='noegletal-vaerdi '+style;
 
     let col = 0;
+    const szp = `${sz}%`;
 
     return (
       vaerdier.map((vaerdi) => {
         col++;
         if (!vaerdi.vaerdi) {
-          return <td key={col}></td>;
+          return <td key={col} width={szp} ></td>;
         }
 
         if (header) {
@@ -80,8 +81,10 @@ export default class NoegletalRaekke extends Component {
           const slutaar = vaerdi.slut.substring(0,4);
 
           const aar = (startaar!=slutaar) ? `${startaar}/${slutaar}` : slutaar
+          const title = `${vaerdi.antal} regnskaber registreret`;
+          const exclamation = vaerdi.antal>1? <span title={title} className="fa fa-exclamation fa-lg red"/> : ''
           return (
-            <th key={col} className={className}>{aar}
+            <th width={szp} key={col} className={className}>{aar}{exclamation}
               <div className="header-periode">{vaerdi.start}</div>
               <div className="header-periode">{vaerdi.slut}</div>
               {vaerdi.regnskabsklasse && <div className="header-periode">{vaerdi.regnskabsklasse}</div>}
@@ -97,12 +100,12 @@ export default class NoegletalRaekke extends Component {
         const warningText = this._warningText(vaerdi.vaerdi);
 
         if (warningText) {
-          return (<td className={cname} key={col} >
+          return (<td width={szp} className={cname} key={col} >
                     <span title={warningText} >{komma(vaerdi.vaerdi.vaerdi)}<span>&nbsp;<span className="fa fa-exclamation fa-lg red" title={warningText} /></span></span>
                  </td>)
         }
 
-        return <td className={cname} key={col} >
+        return <td width={szp} className={cname} key={col} >
           {komma(vaerdi.vaerdi.vaerdi)}
           </td>
       })

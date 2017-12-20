@@ -11,12 +11,10 @@ import org.springframework.beans.BeanUtils
 class RegnskabData extends Regnskab {
 
   RegnskabData() {
-    resultatopgoerelse = new Resultatopgoerelse()
-    balance = new Balance()
-    noter =  new Noter()
     virksomhedsdata = new Virksomhedsdata()
   }
 
+  int antalRegnskaber
   String id
   String cvrnummer
   String sidsteopdatering

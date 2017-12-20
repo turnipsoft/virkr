@@ -25,7 +25,7 @@ export default class NoegletalTabel extends Component {
     }
   }
 
-  _renderNoegletal(felt, label, style=null, negative=false, skat=false) {
+  _renderNoegletal(felt, label, sz, style=null, negative=false, skat=false) {
     const {regnskaber} = this.props;
 
 
@@ -39,6 +39,7 @@ export default class NoegletalTabel extends Component {
                          negative={negative}
                          skat={skat}
                          key={felt}
+                         sz={sz}
                          onClick={()=>this.selectNoegletal(felt)} />,
         graf
       ]
@@ -64,6 +65,7 @@ export default class NoegletalTabel extends Component {
     const aClass = this.state.aktiverVis ? 'fa fa-minus' : 'fa fa-plus';
     const pClass = this.state.passiverVis ? 'fa fa-minus' : 'fa fa-plus';
     const rClass = this.state.revisionVis ? 'fa fa-minus' : 'fa fa-plus';
+    const sz = 80/regnskaber.length;
 
     return (
       <div className="aarsregnskab">
@@ -73,36 +75,36 @@ export default class NoegletalTabel extends Component {
 
             {this.state.resultatopgoerelseVis &&
             <table className="table table-hover noegletal-tabel">
-              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse />
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz} />
               <tbody>
 
-              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.omsaetning","Omsætning","noegletal-label-bold")}
-              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.vareforbrug","Vareforbrug",null, true)}
-              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.andreeksterneomkostninger","Andre Eksterne omkostninger",null, true)}
-              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.driftsindtaegter","Andre driftsindtægter")}
-              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.eksterneomkostninger","Eksterne omkostninger", null, true)}
-              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.variableomkostninger","Variable omkostninger", null, true)}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.omsaetning","Omsætning",sz,"noegletal-label-bold")}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.vareforbrug","Vareforbrug",sz,null, true)}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.andreeksterneomkostninger","Andre Eksterne omkostninger",sz,null, true)}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.driftsindtaegter","Andre driftsindtægter",sz)}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.eksterneomkostninger","Eksterne omkostninger",sz, null, true)}
+              {this._renderNoegletal("resultatopgoerelse.omsaetningTal.variableomkostninger","Variable omkostninger",sz, null, true)}
 
               {this.emptyRow()}
 
-              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.bruttofortjeneste","Bruttofortjeneste","noegletal-label-bold")}
-              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger","Personaleomkostninger",null, true)}
-              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.regnskabsmaessigeafskrivninger","Afskrivninger",null, true)}
-              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.lokalomkostninger","Ejendomsomkostninger",null, true)}
-              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.administrationsomkostninger","Administrative omkostninger",null, true)}
+              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.bruttofortjeneste","Bruttofortjeneste",sz,"noegletal-label-bold")}
+              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.medarbejderomkostninger","Personaleomkostninger",sz,null, true)}
+              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.regnskabsmaessigeafskrivninger","Afskrivninger",sz,null, true)}
+              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.lokalomkostninger","Ejendomsomkostninger",sz,null, true)}
+              {this._renderNoegletal("resultatopgoerelse.bruttoresultatTal.administrationsomkostninger","Administrative omkostninger",sz,null, true)}
 
               {this.emptyRow()}
-              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.driftsresultat","Resultat før finansielle poster","noegletal-label-bold")}
-              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.kapitalandeleiassocieredevirksomheder","Kapitalandele i associerede virksomheder")}
-              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.kapitalandeleitilknyttedevirksomheder","Kapitalandele i tilknyttede virksomheder")}
-              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.finansielleindtaegter","Finansielle indtægter")}
-              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.finansielleomkostninger","Finansielle omkostninger", null, true)}
+              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.driftsresultat","Resultat før finansielle poster",sz,"noegletal-label-bold")}
+              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.kapitalandeleiassocieredevirksomheder","Kapitalandele i associerede virksomheder",sz)}
+              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.kapitalandeleitilknyttedevirksomheder","Kapitalandele i tilknyttede virksomheder",sz)}
+              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.finansielleindtaegter","Finansielle indtægter",sz)}
+              {this._renderNoegletal("resultatopgoerelse.nettoresultatTal.finansielleomkostninger","Finansielle omkostninger",sz, null, true)}
 
               {this.emptyRow()}
-              {this._renderNoegletal("resultatopgoerelse.aaretsresultatTal.resultatfoerskat","Årets resultat før skat","noegletal-label-bold")}
-              {this._renderNoegletal("resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat","Skat af årets resultat", null, false, true)}
+              {this._renderNoegletal("resultatopgoerelse.aaretsresultatTal.resultatfoerskat","Årets resultat før skat",sz,"noegletal-label-bold")}
+              {this._renderNoegletal("resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat","Skat af årets resultat",sz, null, false, true)}
               {this.emptyRow()}
-              {this._renderNoegletal("resultatopgoerelse.aaretsresultatTal.aaretsresultat","Årets resultat","noegletal-label-bold")}
+              {this._renderNoegletal("resultatopgoerelse.aaretsresultatTal.aaretsresultat","Årets resultat",sz,"noegletal-label-bold")}
               {this.emptyRow()}
               <RegnskabLinkRaekke regnskaber={regnskaber} />
               </tbody>
@@ -118,42 +120,43 @@ export default class NoegletalTabel extends Component {
             <h4> <span className={aClass} onClick={()=> this.setState({aktiverVis : !this.state.aktiverVis})} />Aktiver </h4>
 
             {this.state.aktiverVis && <table className="table table-hover noegletal-tabel">
-              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse/>
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz} />
               <tbody>
 
               {this.header('Anlægsaktiver')}
               {this.emptyRow()}
 
-              {this._renderNoegletal("balance.aktiver.faerdiggjorteudviklingsprojekter","Færdiggjorte udviklingsprojekter")}
-              {this._renderNoegletal("balance.aktiver.erhvervedeimmaterielleanlaegsaktiver","Erhvervede immaterielle anlægsaktiver")}
-              {this._renderNoegletal("balance.aktiver.materielleanlaegsaktiverunderudfoerelse","Materielle anlægsaktiver under udførelse")}
-              {this._renderNoegletal("balance.aktiver.immaterielleanlaegsaktiver","Immaterielle anlægsaktiver ialt","noegletal-label-bold")}
-              {this._renderNoegletal("balance.aktiver.andreanlaegdriftoginventar","Andre anlæg, driftsmateriel, inventar")}
-              {this._renderNoegletal("balance.aktiver.materielleanlaegsaktiver","Materielle anlægsaktiver","noegletal-label-bold")}
-              {this._renderNoegletal("balance.aktiver.langsigtedekapitalandeleitilknyttedevirksomheder","Kapitalandele")}
-              {this._renderNoegletal("balance.aktiver.andretilgodehavender","Andre tilgodehavender")}
-              {this._renderNoegletal("balance.aktiver.finansielleanlaegsaktiver","Finansielle anlægsaktiver ialt", "noegletal-label-bold")}
+              {this._renderNoegletal("balance.aktiver.faerdiggjorteudviklingsprojekter","Færdiggjorte udviklingsprojekter",sz)}
+              {this._renderNoegletal("balance.aktiver.erhvervedeimmaterielleanlaegsaktiver","Erhvervede immaterielle anlægsaktiver",sz)}
+              {this._renderNoegletal("balance.aktiver.materielleanlaegsaktiverunderudfoerelse","Materielle anlægsaktiver under udførelse",sz)}
+              {this._renderNoegletal("balance.aktiver.immaterielleanlaegsaktiver","Immaterielle anlægsaktiver ialt",sz,"noegletal-label-bold")}
+              {this._renderNoegletal("balance.aktiver.andreanlaegdriftoginventar","Andre anlæg, driftsmateriel, inventar",sz)}
+              {this._renderNoegletal("balance.aktiver.grundeogbygninger","Grunde og bygninger",sz)}
+              {this._renderNoegletal("balance.aktiver.materielleanlaegsaktiver","Materielle anlægsaktiver",sz,"noegletal-label-bold")}
+              {this._renderNoegletal("balance.aktiver.langsigtedekapitalandeleitilknyttedevirksomheder","Kapitalandele",sz)}
+              {this._renderNoegletal("balance.aktiver.andretilgodehavender","Andre tilgodehavender",sz)}
+              {this._renderNoegletal("balance.aktiver.finansielleanlaegsaktiver","Finansielle anlægsaktiver ialt",sz, "noegletal-label-bold")}
 
               {this.emptyRow()}
 
-              {this._renderNoegletal("balance.aktiver.anlaegsaktiver","Anlægsaktiver ialt", "noegletal-label-bold")}
+              {this._renderNoegletal("balance.aktiver.anlaegsaktiver","Anlægsaktiver ialt",sz, "noegletal-label-bold")}
 
               {this.emptyRow()}
               {this.header('Omsætningsaktiver')}
-              {this._renderNoegletal("balance.aktiver.raavareroghjaelpematerialer","Råvarer og hjælpematerialer")}
-              {this._renderNoegletal("balance.aktiver.fremstilledevareroghandelsvarer","Fremstillede varer og handelsvarer")}
-              {this._renderNoegletal("balance.aktiver.varebeholdninger","Varebeholdninger ialt",'noegletal-label-bold')}
-              {this._renderNoegletal("balance.aktiver.tilgodehavenderfrasalogtjenesteydelser","Tilgodehavende fra salg og tjenesteydelser")}
-              {this._renderNoegletal("balance.aktiver.tilgodehaverhostilknyttedevirksomheder","Tilgodehavende fra tilknyttede virksomheder")}
-              {this._renderNoegletal("balance.aktiver.andretilgodehavenderomsaetningaktiver","Andre tilgodehavender")}
-              {this._renderNoegletal("balance.aktiver.periodeafgraensningsposter","Periodeafgrænsningsposter")}
-              {this._renderNoegletal("balance.aktiver.tilgodehavenderialt","Tilgodehavender ialt",'noegletal-label-bold')}
-              {this._renderNoegletal("balance.aktiver.andrevaerdipapirerogkapitalandele","Andre værdipapirer og kapitalandele")}
-              {this._renderNoegletal("balance.aktiver.vaerdipapirerialt","Værdipapirer ialt","noegletal-label-bold")}
-              {this._renderNoegletal("balance.aktiver.likvidebeholdninger","Likvide beholdninger")}
+              {this._renderNoegletal("balance.aktiver.raavareroghjaelpematerialer","Råvarer og hjælpematerialer",sz)}
+              {this._renderNoegletal("balance.aktiver.fremstilledevareroghandelsvarer","Fremstillede varer og handelsvarer",sz)}
+              {this._renderNoegletal("balance.aktiver.varebeholdninger","Varebeholdninger ialt",sz,'noegletal-label-bold')}
+              {this._renderNoegletal("balance.aktiver.tilgodehavenderfrasalogtjenesteydelser","Tilgodehavende fra salg og tjenesteydelser",sz)}
+              {this._renderNoegletal("balance.aktiver.tilgodehaverhostilknyttedevirksomheder","Tilgodehavende fra tilknyttede virksomheder",sz)}
+              {this._renderNoegletal("balance.aktiver.andretilgodehavenderomsaetningaktiver","Andre tilgodehavender",sz)}
+              {this._renderNoegletal("balance.aktiver.periodeafgraensningsposter","Periodeafgrænsningsposter",sz)}
+              {this._renderNoegletal("balance.aktiver.tilgodehavenderialt","Tilgodehavender ialt",sz,'noegletal-label-bold')}
+              {this._renderNoegletal("balance.aktiver.andrevaerdipapirerogkapitalandele","Andre værdipapirer og kapitalandele",sz)}
+              {this._renderNoegletal("balance.aktiver.vaerdipapirerialt","Værdipapirer ialt",sz,"noegletal-label-bold")}
+              {this._renderNoegletal("balance.aktiver.likvidebeholdninger","Likvide beholdninger",sz)}
               {this.emptyRow()}
-              {this._renderNoegletal("balance.aktiver.omsaetningsaktiver","Omsætningsaktiver ialt", 'noegletal-label-bold')}
-              {this._renderNoegletal("balance.aktiver.aktiver","Aktiver ialt", 'noegletal-label-bold')}
+              {this._renderNoegletal("balance.aktiver.omsaetningsaktiver","Omsætningsaktiver ialt",sz, 'noegletal-label-bold')}
+              {this._renderNoegletal("balance.aktiver.aktiver","Aktiver ialt",sz, 'noegletal-label-bold')}
 
               </tbody>
 
@@ -168,49 +171,49 @@ export default class NoegletalTabel extends Component {
             <h4><span className={pClass} onClick={()=> this.setState({passiverVis : !this.state.passiverVis})} /> Passiver </h4>
 
             {this.state.passiverVis && <table className="table table-hover noegletal-tabel">
-              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse/>
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz}/>
               <tbody>
 
               {this.header('Egenkapital')}
               {this.emptyRow()}
 
-              {this._renderNoegletal("balance.passiver.virksomhedskapital","Virksomhedskapital")}
-              {this._renderNoegletal("balance.passiver.overfoertresultat","Overført resultat")}
-              {this._renderNoegletal("balance.passiver.udbytte","Foreslået udbytte")}
+              {this._renderNoegletal("balance.passiver.virksomhedskapital","Virksomhedskapital",sz)}
+              {this._renderNoegletal("balance.passiver.overfoertresultat","Overført resultat",sz)}
+              {this._renderNoegletal("balance.passiver.udbytte","Foreslået udbytte",sz)}
 
               {this.emptyRow()}
-              {this._renderNoegletal("balance.passiver.egenkapital","Egenkapital ialt", "noegletal-label-bold")}
+              {this._renderNoegletal("balance.passiver.egenkapital","Egenkapital ialt",sz, "noegletal-label-bold")}
 
               {this.emptyRow()}
               {this.header('Hensatte Forpligtelser')}
               {this.emptyRow()}
-              {this._renderNoegletal("balance.passiver.hensaettelserforudskudtskat","Hensættelser til udskudt skat")}
-              {this._renderNoegletal("balance.passiver.andrehensaettelser","Andre hensatte forpligtelser")}
+              {this._renderNoegletal("balance.passiver.hensaettelserforudskudtskat","Hensættelser til udskudt skat",sz)}
+              {this._renderNoegletal("balance.passiver.andrehensaettelser","Andre hensatte forpligtelser",sz)}
 
-              {this._renderNoegletal("balance.passiver.hensatteforpligtelser","Hensatte forpligtelser ialt", "noegletal-label-bold")}
+              {this._renderNoegletal("balance.passiver.hensatteforpligtelser","Hensatte forpligtelser ialt",sz, "noegletal-label-bold")}
               {this.emptyRow()}
 
               {this.header('Gældsforpligtelser')}
-              {this._renderNoegletal("balance.passiver.gaeldtilrealkredit","Gæld til realkreditinstitutter")}
-              {this._renderNoegletal("balance.passiver.andenlangfristetgaeld","Anden langfristet gæld")}
-              {this._renderNoegletal("balance.passiver.deposita","Deposita")}
-              {this._renderNoegletal("balance.passiver.langfristedegaeldsforpligtelser","Langfristede gældsforpligtelser ialt","noegletal-label-bold")}
+              {this._renderNoegletal("balance.passiver.gaeldtilrealkredit","Gæld til realkreditinstitutter",sz)}
+              {this._renderNoegletal("balance.passiver.andenlangfristetgaeld","Anden langfristet gæld",sz)}
+              {this._renderNoegletal("balance.passiver.deposita","Deposita",sz)}
+              {this._renderNoegletal("balance.passiver.langfristedegaeldsforpligtelser","Langfristede gældsforpligtelser ialt",sz,"noegletal-label-bold")}
               {this.emptyRow()}
 
-              {this._renderNoegletal("balance.passiver.igangvaerendearbejderforfremmedregning","Igangværende arbejde for fremmed regning")}
-              {this._renderNoegletal("balance.passiver.kortsigtedegaeldsforpligtelser","Gældsforpligtelser")}
-              {this._renderNoegletal("balance.passiver.gaeldsforpligtelsertilpengeinstitutter","Gældsforpligtelser til pengeinsitutter")}
-              {this._renderNoegletal("balance.passiver.leverandoereraftjenesteydelser","Leverandører af tjenester og ydelser")}
-              {this._renderNoegletal("balance.passiver.gaeldtiltilknyttedevirksomheder","Gæld til tilknyttede virksomheder")}
-              {this._renderNoegletal("balance.passiver.kortfristetskyldigskat","Kortfristet skyldig til skat")}
-              {this._renderNoegletal("balance.passiver.andregaeldsforpligtelser","Anden gæld")}
-              {this._renderNoegletal("balance.passiver.modtagneforudbetalingerfrakunder","Modtagne forudbetalinger")}
+              {this._renderNoegletal("balance.passiver.igangvaerendearbejderforfremmedregning","Igangværende arbejde for fremmed regning",sz)}
+              {this._renderNoegletal("balance.passiver.kortsigtedegaeldsforpligtelser","Gældsforpligtelser",sz)}
+              {this._renderNoegletal("balance.passiver.gaeldsforpligtelsertilpengeinstitutter","Gældsforpligtelser til pengeinsitutter",sz)}
+              {this._renderNoegletal("balance.passiver.leverandoereraftjenesteydelser","Leverandører af tjenester og ydelser",sz)}
+              {this._renderNoegletal("balance.passiver.gaeldtiltilknyttedevirksomheder","Gæld til tilknyttede virksomheder",sz)}
+              {this._renderNoegletal("balance.passiver.kortfristetskyldigskat","Kortfristet skyldig til skat",sz)}
+              {this._renderNoegletal("balance.passiver.andregaeldsforpligtelser","Anden gæld",sz)}
+              {this._renderNoegletal("balance.passiver.modtagneforudbetalingerfrakunder","Modtagne forudbetalinger",sz)}
 
-              {this._renderNoegletal("balance.passiver.periodeafgraensningsposter","Periodeafgrænsningsposter")}
-              {this._renderNoegletal("balance.passiver.kortfristedegaeldsforpligtelserialt","Kortfristede gældsforpligtelser i alt")}
-              {this._renderNoegletal("balance.passiver.gaeldsforpligtelser","Gældsforpligtelser ialt","noegletal-label-bold")}
+              {this._renderNoegletal("balance.passiver.periodeafgraensningsposter","Periodeafgrænsningsposter",sz)}
+              {this._renderNoegletal("balance.passiver.kortfristedegaeldsforpligtelserialt","Kortfristede gældsforpligtelser i alt",sz)}
+              {this._renderNoegletal("balance.passiver.gaeldsforpligtelser","Gældsforpligtelser ialt",sz,"noegletal-label-bold")}
               {this.emptyRow()}
-              {this._renderNoegletal("balance.passiver.passiverialt","Passiver ialt","noegletal-label-bold")}
+              {this._renderNoegletal("balance.passiver.passiverialt","Passiver ialt",sz,"noegletal-label-bold")}
 
               </tbody>
 
@@ -225,9 +228,9 @@ export default class NoegletalTabel extends Component {
             <h4><span className={rClass} onClick={()=> this.setState({revisionVis : !this.state.revisionVis})} /> Revision </h4>
 
             {this.state.revisionVis && <table className="table table-hover noegletal-tabel">
-              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse/>
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz} />
               <tbody>
-              {this.state.revisionVis && <RevisionsRaekke regnskaber={regnskaber} />}
+              {this.state.revisionVis && <RevisionsRaekke regnskaber={regnskaber} sz={sz} />}
               </tbody>
 
             </table>}

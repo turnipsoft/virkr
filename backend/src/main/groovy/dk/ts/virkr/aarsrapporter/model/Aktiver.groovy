@@ -18,6 +18,7 @@ class Aktiver extends ModelBase {
   Regnskabstal erhvervedeimmaterielleanlaegsaktiver // AcquiredIntangibleAssets
   Regnskabstal immaterielleanlaegsaktiver // IntangibleAssets
   Regnskabstal materielleanlaegsaktiverunderudfoerelse // PropertyPlantAndEquipmentInProgressAndPrepaymentsForPropertyPlantAndEquipment
+  Regnskabstal grundeogbygninger // LandAndBuildings
 
   // Omsætningsaktiver
   Regnskabstal raavareroghjaelpematerialer // RawMaterialsAndConsumables

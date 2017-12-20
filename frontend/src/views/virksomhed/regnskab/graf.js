@@ -26,7 +26,11 @@ export default class Graf extends Component {
     });
 
     const bruttofortjenester = regnskaber.map((regnskab) => {
-      return regnskab.aktueltAarsregnskab.resultatopgoerelse.bruttoresultatTal.bruttofortjeneste.vaerdi;
+      if (regnskab.aktueltAarsregnskab.resultatopgoerelse.bruttoresultatTal.bruttofortjeneste) {
+        return regnskab.aktueltAarsregnskab.resultatopgoerelse.bruttoresultatTal.bruttofortjeneste.vaerdi;
+      } else {
+        return null
+      }
     });
 
     const egenkapitaler = regnskaber.map((regnskab) => {
