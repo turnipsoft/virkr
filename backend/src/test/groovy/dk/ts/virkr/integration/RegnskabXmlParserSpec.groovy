@@ -18,7 +18,7 @@ class RegnskabXmlParserSpec extends Specification {
     given:
     String xml = TestUtil.load("/nc-2014.xml")
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
+    Regnskab regnskabData = new Regnskab()
     RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
@@ -34,7 +34,7 @@ class RegnskabXmlParserSpec extends Specification {
     given:
     String xml = TestUtil.load("/nc-ifrs.xml")
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
+    Regnskab regnskabData = new Regnskab()
     RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
@@ -50,7 +50,7 @@ class RegnskabXmlParserSpec extends Specification {
     given:
     String xml = TestUtil.load("/csc-consulting.xml")
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
+    Regnskab regnskabData = new Regnskab()
     RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
@@ -66,7 +66,7 @@ class RegnskabXmlParserSpec extends Specification {
     given:
     String xml = TestUtil.load("/csc-2013.xml")
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
+    Regnskab regnskabData = new Regnskab()
     RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
@@ -83,7 +83,7 @@ class RegnskabXmlParserSpec extends Specification {
     given:
     String xml = TestUtil.load('/greener_pastures.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
+    Regnskab regnskabData = new Regnskab()
     RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
@@ -106,7 +106,7 @@ class RegnskabXmlParserSpec extends Specification {
     given:
     String xml = TestUtil.load('/capgemini.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
+    Regnskab regnskabData = new Regnskab()
     RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
@@ -128,7 +128,7 @@ class RegnskabXmlParserSpec extends Specification {
     given:
     String xml = TestUtil.load('/nine.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
+    Regnskab regnskabData = new Regnskab()
     RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
@@ -194,7 +194,7 @@ class RegnskabXmlParserSpec extends Specification {
     given:
     String xml = TestUtil.load('/FR77a_2.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
+    Regnskab regnskabData = new Regnskab()
     RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
@@ -208,7 +208,7 @@ class RegnskabXmlParserSpec extends Specification {
     given:
     String xml = TestUtil.load('/ingen_revision.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
+    Regnskab regnskabData = new Regnskab()
     RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
@@ -222,7 +222,7 @@ class RegnskabXmlParserSpec extends Specification {
     given:
     String xml = TestUtil.load('/nine-2016.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
+    Regnskab regnskabData = new Regnskab()
     RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
@@ -236,7 +236,7 @@ class RegnskabXmlParserSpec extends Specification {
     given:
     String xml = TestUtil.load('/lagkagehuset.xml')
     RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
-    RegnskabData regnskabData = new RegnskabData()
+    Regnskab regnskabData = new Regnskab()
     RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
 
     when:
