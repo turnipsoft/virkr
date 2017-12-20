@@ -88,8 +88,10 @@ class RegnskabInternalService {
       }
     }
 
-    currentRegnskabData.antalRegnskaber = count
-    resultat << currentRegnskabData
+    if (currentRegnskabData) {
+      currentRegnskabData.antalRegnskaber = count
+      resultat << currentRegnskabData
+    }
 
     return resultat
   }
