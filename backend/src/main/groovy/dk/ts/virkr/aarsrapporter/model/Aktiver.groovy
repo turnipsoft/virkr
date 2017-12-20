@@ -28,6 +28,10 @@ class Aktiver extends ModelBase {
   Regnskabstal tilgodehaverhostilknyttedevirksomheder //ShorttermReceivablesFromGroupEnterprises
   Regnskabstal andretilgodehavenderomsaetningaktiver //OtherShorttermReceivables
   Regnskabstal periodeafgraensningsposter // DeferredIncomeAssets
+  Regnskabstal langfristedetilgodehavenderhosvirksomhedsdeltagereogledelse //LongtermReceivablesFromOwnersAndManagement
+  Regnskabstal kortfristedetilgodehavenderhosvirksomhedsdeltagereogledelse //ShorttermReceivablesFromOwnersAndManagement
+  Regnskabstal tilgodehavenderfravirksomhedsdeltagereogledelse //ReceivablesFromOwnersAndManagementMember
+
   Regnskabstal tilgodehavenderialt // ShorttermReceivables
   Regnskabstal andrevaerdipapirerogkapitalandele // OtherShorttermInvestments
   Regnskabstal vaerdipapirerialt // ShorttermInvestments

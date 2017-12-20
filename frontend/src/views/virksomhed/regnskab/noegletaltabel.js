@@ -148,6 +148,10 @@ export default class NoegletalTabel extends Component {
               {this._renderNoegletal("balance.aktiver.varebeholdninger","Varebeholdninger ialt",sz,'noegletal-label-bold')}
               {this._renderNoegletal("balance.aktiver.tilgodehavenderfrasalogtjenesteydelser","Tilgodehavende fra salg og tjenesteydelser",sz)}
               {this._renderNoegletal("balance.aktiver.tilgodehaverhostilknyttedevirksomheder","Tilgodehavende fra tilknyttede virksomheder",sz)}
+              {this._renderNoegletal("balance.aktiver.langfristedetilgodehavenderhosvirksomhedsdeltagereogledelse","Langfristede tilgodehavener fra virksomhed og ledelse",sz)}
+              {this._renderNoegletal("balance.aktiver.kortfristedetilgodehavenderhosvirksomhedsdeltagereogledelse","Kortfristede tilgodehavener fra virksomhed og ledelse",sz)}
+              {this._renderNoegletal("balance.aktiver.tilgodehavenderfravirksomhedsdeltagereogledelse","Tilgodehavener fra virksomhed og ledelse",sz)}
+
               {this._renderNoegletal("balance.aktiver.andretilgodehavenderomsaetningaktiver","Andre tilgodehavender",sz)}
               {this._renderNoegletal("balance.aktiver.periodeafgraensningsposter","Periodeafgrænsningsposter",sz)}
               {this._renderNoegletal("balance.aktiver.tilgodehavenderialt","Tilgodehavender ialt",sz,'noegletal-label-bold')}

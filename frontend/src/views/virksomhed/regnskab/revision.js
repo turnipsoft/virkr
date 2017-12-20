@@ -23,8 +23,18 @@ export default class Revision extends Component {
       {this._renderTooltipRow('Fremhævelse af forhold vedrørende revisionen', revision.supplerendeInformationOmRevision)}
       {this._renderTooltipRow('Væsentligt usikkerhed  vedr. fortsat drift', revision.vaesentligUsikkerhedVedrFortsatDrift)}
       {this._renderTooltipRow('Fravalg af revision', revision.ingenRevision)}
-
+      {this._renderEmptyRow()}
+      {this._renderUnderskrivere(revision)}
     </div>)
+  }
+
+  _renderUnderskrivere(revision) {
+    return [
+      this._renderRow(null, 'Underskrivere:', true),
+      ...revision.underskrivere.map((u)=>{
+        return this._renderRow(null, u);
+      })
+    ];
   }
 
   _renderTooltipRow(vaerdi, tooltip) {
@@ -39,12 +49,14 @@ export default class Revision extends Component {
     return (<div className="row"><div className="col">&nbsp;</div> </div> )
   }
 
-  _renderRow(label, vaerdi) {
+  _renderRow(label, vaerdi, bold) {
     const labelMarkup = label? <div className="col"><b>{label}</b></div>:'';
+
+    const v = bold?<b>{vaerdi}</b>:vaerdi
 
     if (vaerdi) {
       return (
-        <div className="row">{labelMarkup}<div className="col">{vaerdi}</div></div>
+        <div className="row" key={vaerdi}>{labelMarkup}<div className="col">{v}</div></div>
       )
     }
   }

@@ -55,6 +55,17 @@ class RegnskabXmlParser {
     regnskab.aar = startDate.substring(0,4)
   }
 
+  void berigUnderskrivere(Revision revision, RegnskabNodes nodes) {
+    List<Node> nl = nodes.cmnNodes
+    Namespace ns = nodes.cmnNamespace
+
+    List<Node> direktionNodes = nl.findAll {it.name().toString() == "$ns.prefix:NameAndSurnameOfMemberOfExecutiveBoard"}
+    List<Node> bestyrelseNodes = nl.findAll {it.name().toString() == "$ns.prefix:NameAndSurnameOfMemberOfSupervisoryBoard"}
+
+    revision.direktion = direktionNodes.collect {it.text()}
+    revision.bestyrelse = bestyrelseNodes.collect{it.text()}
+  }
+
   boolean parseOgBerig(Regnskab data, RegnskabNodes regnskabNodes, boolean nyeste = true) {
     Namespace ns = regnskabNodes.noegletalNamespace()
 
@@ -95,6 +106,10 @@ class RegnskabXmlParser {
     aktiver.tilgodehavenderfrasalogtjenesteydelser  = getRegnskabstal(nl, ns, 'ShorttermTradeReceivables')
     aktiver.tilgodehaverhostilknyttedevirksomheder = getRegnskabstal(nl, ns, 'ShorttermReceivablesFromGroupEnterprises')
     aktiver.andretilgodehavenderomsaetningaktiver = getRegnskabstal(nl, ns, 'OtherShorttermReceivables')
+    aktiver.langfristedetilgodehavenderhosvirksomhedsdeltagereogledelse = getRegnskabstal(nl, ns, 'LongtermReceivablesFromOwnersAndManagement')
+    aktiver.kortfristedetilgodehavenderhosvirksomhedsdeltagereogledelse = getRegnskabstal(nl, ns, 'ShorttermReceivablesFromOwnersAndManagement')
+    aktiver.tilgodehavenderfravirksomhedsdeltagereogledelse = getRegnskabstal(nl, ns, 'ReceivablesFromOwnersAndManagementMember')
+
     aktiver.periodeafgraensningsposter = getRegnskabstal(nl, ns, 'DeferredIncomeAssets')
     aktiver.tilgodehavenderialt = getRegnskabstal(nl, ns, 'ShorttermReceivables')
     aktiver.andrevaerdipapirerogkapitalandele = getRegnskabstal(nl, ns, 'OtherShorttermInvestments')
@@ -133,6 +148,7 @@ class RegnskabXmlParser {
     // det aktuelle regnskab har også revisionsoplysninger
     if (nyeste) {
       berigMedRevision(data, regnskabNodes)
+      berigUnderskrivere(data.revision, regnskabNodes)
     }
 
     fixSkat(data)

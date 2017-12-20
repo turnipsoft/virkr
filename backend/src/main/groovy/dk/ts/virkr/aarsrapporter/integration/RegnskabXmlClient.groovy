@@ -43,6 +43,8 @@ class RegnskabXmlClient {
           data.startdato = offentliggoerelse.regnskab.regnskabsperiode.startDato
           data.slutdato = offentliggoerelse.regnskab.regnskabsperiode.slutDato
           data.sidsteopdatering = sdf.format(offentliggoerelse.sidstOpdateret)
+          data.indlaesningstidspunkt = sdf.format(offentliggoerelse.indlaesningsTidspunkt)
+          data.offentliggoerelsestidspunkt = sdf.format(offentliggoerelse.offentliggoerelsesTidspunkt)
           RegnskabNodes regnskabNodes = new RegnskabNodes(unzippedData)
 
           //parser.parseOgBerig(data, regnskabNodes)

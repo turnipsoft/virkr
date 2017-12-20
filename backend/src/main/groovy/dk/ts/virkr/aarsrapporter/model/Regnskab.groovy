@@ -24,4 +24,5 @@ class Regnskab extends ModelBase {
   Noter noter
 
   Revision revision
+
 }

@@ -30,4 +30,15 @@ class Revision {
   String vaesentligUsikkerhedVedrFortsatDrift
 
   Generalforsamling generalforsamling
+
+  List<String> direktion = []
+  List<String> bestyrelse = []
+
+  List<String> getUnderskrivere() {
+    List<String> alle = []
+    alle.addAll(direktion)
+    alle.addAll(bestyrelse)
+
+    return alle.sort{it}.unique{it}
+  }
 }
