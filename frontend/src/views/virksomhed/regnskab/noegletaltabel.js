@@ -59,7 +59,7 @@ export default class NoegletalTabel extends Component {
   }
 
   render() {
-    const {regnskaber} = this.props;
+    const {regnskaber, revisorer} = this.props;
 
     const roClass = this.state.resultatopgoerelseVis ? 'fa fa-minus' : 'fa fa-plus';
     const aClass = this.state.aktiverVis ? 'fa fa-minus' : 'fa fa-plus';
@@ -234,7 +234,7 @@ export default class NoegletalTabel extends Component {
             {this.state.revisionVis && <table className="table table-hover noegletal-tabel">
               <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz} />
               <tbody>
-              {this.state.revisionVis && <RevisionsRaekke regnskaber={regnskaber} sz={sz} />}
+              {this.state.revisionVis && <RevisionsRaekke regnskaber={regnskaber} sz={sz} revisorer={revisorer} />}
               </tbody>
 
             </table>}

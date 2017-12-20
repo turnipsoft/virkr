@@ -19,7 +19,7 @@ export default class CvrVisning extends Component {
     return (
       <div className="top-margin">
         {this._renderVirksomhedsInfo(cvrdata)}
-        {this._renderRegnskaber(regnskaber.regnskabsdata)}
+        {this._renderRegnskaber(regnskaber.regnskabsdata, cvrdata.alleRevisorer)}
         {this._renderEjere(cvrdata)}
         {this._renderCvrData(cvrdata)}
         <br />
@@ -54,7 +54,7 @@ export default class CvrVisning extends Component {
       </div>);
   }
 
-  _renderRegnskaber(regnskaber) {
+  _renderRegnskaber(regnskaber, alleRevisorer) {
     if (regnskaber === null) {
       return null;
     }
@@ -72,7 +72,7 @@ export default class CvrVisning extends Component {
 
           <br />
           <div className="hide-on-portrait">
-            <NoegletalTabel regnskaber={sorteredeRegnskaber} />
+            <NoegletalTabel regnskaber={sorteredeRegnskaber} revisorer={alleRevisorer}/>
           </div>
 
           <br/>

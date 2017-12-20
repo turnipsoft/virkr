@@ -4,10 +4,10 @@ import Revision from './revision';
 export default class RevisionsRaekke extends Component {
 
   render () {
-    const {regnskaber, sz} = this.props;
+    const {regnskaber, sz, revisorer} = this.props;
 
     const revisionsMarkup = regnskaber.map((regnskab)=> {
-      return this._renderRevision(regnskab.aktueltAarsregnskab, sz)
+      return this._renderRevision(regnskab.aktueltAarsregnskab, sz, revisorer)
     });
 
     return (
@@ -18,13 +18,13 @@ export default class RevisionsRaekke extends Component {
     )
   }
 
-  _renderRevision(regnskab, sz) {
+  _renderRevision(regnskab, sz, revisorer) {
 
     const revision = regnskab.revision
     const szp = `${sz}%`;
     return (
       <td width={szp} className="noegletal-vaerdi" key={regnskab.aar}>
-        <Revision revision={revision} />
+        <Revision revision={revision} revisorer={revisorer} regnskab={regnskab} />
       </td>
     );
   }

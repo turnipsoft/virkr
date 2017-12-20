@@ -1,5 +1,7 @@
 package dk.ts.virkr.cvr.integration.model.virksomhed
 
+import dk.ts.virkr.aarsrapporter.model.RegnskabData
+import dk.ts.virkr.aarsrapporter.model.Revision
 import dk.ts.virkr.aarsrapporter.util.Utils
 import dk.ts.virkr.services.model.Ejer
 
@@ -67,6 +69,56 @@ class Vrvirksomhed {
     }
 
     return ejere
+  }
+
+  private List<Revisor> getRevisorer(boolean aktuel) {
+    List<Revisor> revisorer = []
+
+    if (this.deltagerRelation) {
+      this.deltagerRelation.each { dr ->
+        Periode periode
+        dr.organisationer.each { o->
+          if (o.hovedtype=='REVISION') {
+            o.medlemsData.each  {m->
+              m.attributter.each { attr->
+                if (attr.type=='FUNKTION') {
+                  attr.vaerdier.each{ vaerdi->
+                    if (vaerdi.vaerdi == 'REVISION') {
+                      periode=vaerdi.periode
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        if (periode && ((periode.gyldigTil==null && aktuel) || !aktuel)) {
+          Revisor revisor = new Revisor()
+          revisor.periode = periode
+          revisor.beliggenhedsadresse = Utils.findNyeste(dr.deltager.beliggenhedsadresse)
+          revisor.navn = Utils.findNyeste(dr.deltager.navne).navn
+          revisor.cvrnummer = dr.deltager.forretningsnoegle
+          revisorer << revisor
+        }
+
+      }
+    }
+
+    return revisorer
+  }
+
+  Revisor getAktuelRevisor() {
+    List<Revisor> r = getRevisorer(true)
+    if (r) {
+      return r[0]
+    }
+
+    return null
+  }
+
+  List<Revisor> getAlleRevisorer() {
+    List<Revisor> r = getRevisorer(false)
+    return r
   }
 
   List<Ejer> getAktuelleEjere() {
