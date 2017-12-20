@@ -28,17 +28,27 @@ export default class Graf extends Component {
     const bruttofortjenester = regnskaber.map((regnskab) => {
       if (regnskab.aktueltAarsregnskab.resultatopgoerelse.bruttoresultatTal.bruttofortjeneste) {
         return regnskab.aktueltAarsregnskab.resultatopgoerelse.bruttoresultatTal.bruttofortjeneste.vaerdi;
-      } else {
-        return null
       }
+
+      return null;
+
     });
 
     const egenkapitaler = regnskaber.map((regnskab) => {
-      return regnskab.aktueltAarsregnskab.balance.passiver.egenkapital.vaerdi;
+      if (regnskab.aktueltAarsregnskab.balance.passiver.egenkapital) {
+        return regnskab.aktueltAarsregnskab.balance.passiver.egenkapital.vaerdi;
+      }
+
+      return null;
+
     });
 
     const aaretsresultater = regnskaber.map((regnskab) => {
-      return regnskab.aktueltAarsregnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat.vaerdi;
+      if (regnskab.aktueltAarsregnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat) {
+        return regnskab.aktueltAarsregnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat.vaerdi;
+      }
+
+      return null;
     });
 
     const options = {
