@@ -194,8 +194,6 @@ class RegnskabXmlParser {
   }
 
   private berigMedRevision(Regnskab regnskab, RegnskabNodes regnskabNodes) {
-    XmlParser parser = new XmlParser(false, false)
-
     Revision revision = new Revision()
     NodeList nl = regnskabNodes.cmnNodes
     Namespace ns = regnskabNodes.cmnNamespace
@@ -282,11 +280,12 @@ class RegnskabXmlParser {
 
       revision.supplerendeInformationOmAndreForhold = getStringValue(nl, ns, 'SupplementaryInformationOnOtherMatters')
       revision.supplerendeInformationOmAarsrapport = getStringValue(nl, ns, 'SupplementaryInformationOnMattersPertainingToAuditedFinancialStatement')
-      revision.grundlagForKonklusion = getStringValue(nl, ns, 'DescriptionOfQualificationsOfAuditedFinancialStatements')
-      if (revision.grundlagForKonklusion && !revision.grundlagForKonklusion.toLowerCase().contains('forbehold')) {
-        // kun hvis der står noget om forbehold
-        revision.grundlagForKonklusion = null
-      }
+      revision.supplerendeInformationOmRevision = getStringValue(nl, ns, 'SupplementaryInformationOnAudit')
+      revision.vaesentligUsikkerhedVedrFortsatDrift = getStringValue(nl, ns, 'MaterialUncertaintyConcerningGoingConcernAudit')
+
+      revision.grundlagForKonklusion = getStringValue(nl, ns, 'DescriptionOfQualificationsOfAuditedFinancialStatements','OpinionOnAuditedFinancialStatements')
+      revision.konklusionMedForbehold = getStringValue(nl, ns, 'TypeOfModifiedOpinionOnAuditedFinancialStatements', 'TypeOfBasisForModifiedOpinionOnAuditedFinancialStatements ')
+
     }
 
     // findes ikke i IFRS regnskaber

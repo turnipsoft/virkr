@@ -25,6 +25,9 @@ class Revision {
   String supplerendeInformationOmAndreForhold
   String supplerendeInformationOmAarsrapport
   String grundlagForKonklusion
+  String konklusionMedForbehold
+  String supplerendeInformationOmRevision
+  String vaesentligUsikkerhedVedrFortsatDrift
 
   Generalforsamling generalforsamling
 }
