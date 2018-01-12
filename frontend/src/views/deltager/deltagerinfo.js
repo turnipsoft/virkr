@@ -1,4 +1,5 @@
 import React from 'react';
+import SectionHeader from '../common/sectionheader';
 
 const DeltagerInfo = (props) => {
 
@@ -11,15 +12,13 @@ const DeltagerInfo = (props) => {
     postnr
   } = deltager;
 
+  let detail = adresselinie?adresselinie:'';
+  detail += (postnr && postnr!=='0' && adresselinie)?', ':'';
+  detail += (postnr && postnr!=='0')?bylinie:'';
+
   return (
-    <div className="row justify-content-center">
-      <div className="col justify-content-center">
-
-        <p><strong>{navn}</strong></p>
-          {adresselinie?<div>{adresselinie}</div>:null}
-          {postnr && postnr!='0'?<div>{bylinie}</div>:null}
-
-      </div>
+    <div className="info-card">
+      <SectionHeader iconClass="fa fa-user" label={navn} detail={detail} headerClass="vheader-orange" headerClassCircle="vheader-icon-circle-orange" labelClass="vheader-label-orange"/>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Ejer from './ejer';
+import SectionHeader from '../common/sectionheader';
 
 export default class Ejere extends React.Component {
 
@@ -16,12 +17,10 @@ export default class Ejere extends React.Component {
       return(
         <div>
           <div className="ejere">
-            <div className="row">
-              <div className="col-12 section-header">
-                <span className="btn-link fa fa-sitemap" onClick={ () => visEjerGraf(cvrdata.cvrNummer, true)} /> &nbsp; Legale Ejere &nbsp;
-                <span className="btn-link" onClick={ () => visEjerGraf(cvrdata.cvrNummer, true)} >(Se komplet ejergraf)</span>
-              </div>
-            </div>
+            <SectionHeader iconClass="fa fa-sitemap white"
+                           onClick={ () => visEjerGraf(cvrdata.cvrNummer, true)}
+                           label="Legale Ejere" detail="Tryk for at se komplet ejergraf"/>
+
             <br/>
             {ejere.map((ejer) => {
               return (<Ejer key={ejer.enhedsnummer} ejer={ejer} visVirksomhed={visVirksomhed} visDeltager={visDeltager} />)
@@ -42,11 +41,8 @@ export default class Ejere extends React.Component {
 
       return (
         <div className="ejere">
-          <div className="row">
-            <div className="col-12 section-header">
-              Historisk Legale Ejere
-            </div>
-          </div>
+          <SectionHeader iconClass="fa fa-sitemap white"
+                         label="Historisk Legale Ejere" detail="Ejere der tidligere har haft andel i virksomheden"/>
           <br/>
           {ejere.map((ejer) => {
             return (<Ejer key={ejer.enhedsnummer} ejer={ejer} visVirksomhed={visVirksomhed} visDeltager={visDeltager} />)

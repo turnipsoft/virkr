@@ -20,11 +20,11 @@ export default class Revision extends Component {
       {this._renderTooltipRow(revision.konklusionMedForbehold, revision.konklusionMedForbehold)}
 
       {(revision.konklusionMedForbehold!==null && revision.konklusionMedForbehold!==undefined ) && this._renderTooltipRow('Grundlag for konklusion', revision.grundlagForKonklusion)}
-      {this._renderTooltipRow('Fremhævelse af andre forhold', revision.supplerendeInformationOmAndreForhold)}
-      {this._renderTooltipRow('Fremhævelse af forhold i regnskabet', revision.supplerendeInformationOmAarsrapport)}
-      {this._renderTooltipRow('Fremhævelse af forhold vedrørende revisionen', revision.supplerendeInformationOmRevision)}
-      {this._renderTooltipRow('Væsentligt usikkerhed  vedr. fortsat drift', revision.vaesentligUsikkerhedVedrFortsatDrift)}
-      {this._renderTooltipRow('Fravalg af revision', revision.ingenRevision)}
+      {this._renderTooltipRow2('Fremhævelse af andre forhold', revision.supplerendeInformationOmAndreForhold, 1)}
+      {this._renderTooltipRow2('Fremhævelse af forhold i regnskabet', revision.supplerendeInformationOmAarsrapport, 2)}
+      {this._renderTooltipRow2('Fremhævelse af forhold vedrørende revisionen', revision.supplerendeInformationOmRevision, 3)}
+      {this._renderTooltipRow2('Væsentligt usikkerhed  vedr. fortsat drift', revision.vaesentligUsikkerhedVedrFortsatDrift, 4)}
+      {this._renderTooltipRow2('Fravalg af revision', revision.ingenRevision, 5)}
       {this._renderEmptyRow(7)}
       {this._renderUnderskrivere(revision)}
 
@@ -65,6 +65,42 @@ export default class Revision extends Component {
     if (tooltip) {
       return (
         <div className="row"><div className="col"><span title={tooltip}>{vaerdi}&nbsp;</span><span title={tooltip} className="fa fa-exclamation fa-lg red" /></div></div>
+      )
+    }
+  }
+
+
+  _showPopup(elementId) {
+    let elem = document.getElementById(elementId);
+    elem.style.visibility = 'visible';
+    elem.style.opacity = 1;
+  }
+
+  _hidePopup(elementId) {
+    let elem = document.getElementById(elementId);
+    elem.style.visibility = 'hidden';
+    elem.style.opacity = 0;
+  }
+
+  _renderTooltipRow2(vaerdi, tooltip, n) {
+    const id = 'popup_'+n;
+    if (tooltip) {
+      return (
+        <div className="row"><div className="col">
+          <div className="clickable">
+            <span title={tooltip} onClick={() => this._showPopup(id)}>{vaerdi}&nbsp;</span><span title={tooltip} onClick={() => this._showPopup(id)} className="fa fa-exclamation fa-lg red" />
+          </div>
+          <div id={id} className="overlay">
+            <div className="popup">
+              <h2>{vaerdi}</h2>
+              <span className="close" onClick={() => this._hidePopup(id)}>&times;</span>
+              <div className="content">
+                <br/>
+                {tooltip}
+              </div>
+            </div>
+          </div>
+        </div></div>
       )
     }
   }

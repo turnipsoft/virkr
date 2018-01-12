@@ -9,9 +9,9 @@ import createHistory from 'history/createHashHistory'
 //import createHistory from 'history/createBrowserHistory'
 import Main from './containers/main';
 import './images/regnskab-baggrund.png'
-import './main.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome-webpack'
+import './main.css';
 import virkrReducers from './reducers';
 
 export const history = createHistory();

@@ -39,7 +39,7 @@ const PageHeader = ({ headerText, iconClassName, cvrdata, deltager, context }) =
               <span className={iconClassName} /> &nbsp; {headerText?headerText:null}
               {details && <div className="header-details">
                 {details}
-                &nbsp; <a href={externalLink} target="_blank">{externalLinkText}</a>
+                &nbsp; <a href={externalLink} target="_blank">{externalLinkText}</a> &nbsp;
                 | &nbsp;
                 <a href={tabLink} target="_blank">{tabText}</a>
               </div>}

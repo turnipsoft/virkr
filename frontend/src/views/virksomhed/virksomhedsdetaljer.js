@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DetaljeLinie from '../common/detaljelinie';
+import SectionHeader from '../common/sectionheader';
 
 export default class VirksomhedsDetaljer extends Component {
 
@@ -45,11 +46,7 @@ export default class VirksomhedsDetaljer extends Component {
 
     return (
       <div>
-        <div className="row">
-          <div className="col-12 section-header">
-            <span className="fa fa-industry" /> &nbsp; Stamdata
-          </div>
-        </div>
+        <SectionHeader label="Stamdata" detail="Stamdata om virksomheden" iconClass="fa fa-industry white"/>
         <br/>
         <div className="card">
           <div className="virksomhedsdetaljer">

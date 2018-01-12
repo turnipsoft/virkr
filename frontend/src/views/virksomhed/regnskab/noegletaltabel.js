@@ -61,10 +61,10 @@ export default class NoegletalTabel extends Component {
   render() {
     const {regnskaber, revisorer} = this.props;
 
-    const roClass = this.state.resultatopgoerelseVis ? 'fa fa-minus' : 'fa fa-plus';
-    const aClass = this.state.aktiverVis ? 'fa fa-minus' : 'fa fa-plus';
-    const pClass = this.state.passiverVis ? 'fa fa-minus' : 'fa fa-plus';
-    const rClass = this.state.revisionVis ? 'fa fa-minus' : 'fa fa-plus';
+    const roClass = this.state.resultatopgoerelseVis ? 'fa fa-minus o-fold' : 'fa fa-plus o-fold';
+    const aClass = this.state.aktiverVis ? 'fa fa-minus o-fold' : 'fa fa-plus o-fold';
+    const pClass = this.state.passiverVis ? 'fa fa-minus o-fold' : 'fa fa-plus o-fold';
+    const rClass = this.state.revisionVis ? 'fa fa-minus o-fold' : 'fa fa-plus o-fold';
     const sz = 80/regnskaber.length;
 
     return (
@@ -117,7 +117,7 @@ export default class NoegletalTabel extends Component {
 
         <div className="card noegletal-tabel-card">
           <div className="card-block table-responsive">
-            <h4> <span className={aClass} onClick={()=> this.setState({aktiverVis : !this.state.aktiverVis})} />Aktiver </h4>
+            <h4> <span className={aClass} onClick={()=> this.setState({aktiverVis : !this.state.aktiverVis})} /> Aktiver </h4>
 
             {this.state.aktiverVis && <table className="table table-hover noegletal-tabel">
               <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz} />

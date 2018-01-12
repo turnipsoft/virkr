@@ -100,9 +100,22 @@ export default class NoegletalRaekke extends Component {
         const warningText = this._warningText(vaerdi.vaerdi);
 
         if (warningText) {
+          const id = 'id_'+Math.abs(vaerdi.vaerdi.vaerdi);
+          console.log(vaerdi);
+
           return (<td width={szp} className={cname} key={col} >
-                    <span title={warningText} >{komma(vaerdi.vaerdi.vaerdi)}<span>&nbsp;<span className="fa fa-exclamation fa-lg red" title={warningText} /></span></span>
-                 </td>)
+                    <span className="clickable" title={warningText} onClick={(e) => this._showPopup(id,e)}>{komma(vaerdi.vaerdi.vaerdi)}<span>&nbsp;<span onClick={(e) => this._showPopup(id,e)} className="clickable fa fa-exclamation fa-lg red" title={warningText} /></span></span>
+                    <div id={id} className="overlay">
+                      <div className="popup">
+                        <h2>Afvigelse i nøgletal</h2>
+                        <span className="close" onClick={() => this._hidePopup(id)}>&times;</span>
+                        <div className="content">
+                          <br/>
+                          {warningText}
+                        </div>
+                      </div>
+                    </div>
+                  </td>)
         }
 
         return <td width={szp} className={cname} key={col} >
@@ -110,6 +123,19 @@ export default class NoegletalRaekke extends Component {
           </td>
       })
     );
+  }
+
+  _showPopup(elementId, e) {
+    e.preventDefault();
+    let elem = document.getElementById(elementId);
+    elem.style.visibility = 'visible';
+    elem.style.opacity = 1;
+  }
+
+  _hidePopup(elementId) {
+    let elem = document.getElementById(elementId);
+    elem.style.visibility = 'hidden';
+    elem.style.opacity = 0;
   }
 
   _warningText(regnskabstal) {

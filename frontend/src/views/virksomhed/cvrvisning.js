@@ -5,6 +5,7 @@ import VirksomhedsInfo from './virksomhedsinfo';
 import VirksomhedsDetaljer from './virksomhedsdetaljer';
 import Ejere from './ejere';
 import Graf from './regnskab/graf';
+import SectionHeader from '../common/sectionheader';
 
 export default class CvrVisning extends Component {
 
@@ -19,6 +20,7 @@ export default class CvrVisning extends Component {
     return (
       <div className="top-margin">
         {this._renderVirksomhedsInfo(cvrdata)}
+        <br/>
         {this._renderRegnskaber(regnskaber.regnskabsdata, cvrdata.alleRevisorer)}
         {this._renderEjere(cvrdata)}
         {this._renderCvrData(cvrdata)}
@@ -44,14 +46,14 @@ export default class CvrVisning extends Component {
   _renderNoegletalHeader() {
     const viserGraf = this.state.visGraf;
 
-    const icon = viserGraf? 'fa-minus' : 'fa-plus';
-    const className = 'btn-link fa '+icon;
+    const icon = viserGraf? 'fa-minus' : 'fa-line-chart';
+    const className = 'fa '+icon;
+    const detail = viserGraf? 'Tryk for at folde grafen ind' : 'Tryk for at folde grafen ud';
+
     return (
-      <div className="row">
-        <div className="col-12 section-header">
-          <span className={className} onClick={ () => this.setState({visGraf: !viserGraf})} /> &nbsp; Nøgletalsgraf &nbsp;
-        </div>
-      </div>);
+      <SectionHeader iconClass={className} onClick={ () => this.setState({visGraf: !viserGraf})}
+       label="Nøgletalsgraf" detail={detail} />
+    );
   }
 
   _renderRegnskaber(regnskaber, alleRevisorer) {
@@ -62,14 +64,13 @@ export default class CvrVisning extends Component {
     const sorteredeRegnskaber = regnskaber.slice().reverse();
 
     if (regnskaber.length > 0) {
+      const start = regnskaber[0].aar;
+      const slut = regnskaber[regnskaber.length-1].aar;
+
+      const detail = "Virksomhedens indberettede digitale regnskaber for perioden "+ start+" - "+slut;
       return (
         <div>
-          <div className="row">
-            <div className="col-12 section-header">
-              <span className="fa fa-file-pdf-o" /> &nbsp; Regnskaber
-            </div>
-          </div>
-
+          <SectionHeader label="Regnskaber" detail={detail} iconClass="fa fa-file-pdf-o white"/>
           <br />
           <div className="hide-on-portrait">
             <NoegletalTabel regnskaber={sorteredeRegnskaber} revisorer={alleRevisorer}/>

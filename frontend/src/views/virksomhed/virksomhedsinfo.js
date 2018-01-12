@@ -1,4 +1,5 @@
 import React from 'react';
+import SectionHeader from '../common/sectionheader';
 
 const VirksomhedsInfo = (props) => {
 
@@ -11,17 +12,12 @@ const VirksomhedsInfo = (props) => {
     byLinje
   } = vdata.nyesteBeliggenhedsadresse;
 
+  let detail = vejadresselinie?vejadresselinie:'';
+  detail += byLinje?', '+byLinje:'';
+
   return (
-    <div className="row justify-content-center">
-      <div className="col justify-content-center">
-        <p>
-          <strong>{navn}</strong>
-          <br/>
-          {vejadresselinie}
-          <br />
-          {byLinje}
-        </p>
-      </div>
+    <div className="info-card">
+      <SectionHeader iconClass="fa fa-building" label={navn} detail={detail} headerClass="vheader-orange" headerClassCircle="vheader-icon-circle-orange" labelClass="vheader-label-orange"/>
     </div>
   );
 }

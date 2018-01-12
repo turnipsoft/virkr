@@ -1,5 +1,8 @@
 :root {
-  --header-color: #4e22a5;
+  --header-color: #52767c;
+  --lightblue: #CADADE;
+  --orange: #F19D4B;
+  --darkblue: #52767c;
 }
 
 .top-margin {
@@ -24,8 +27,14 @@
 }
 
 .red {
-  color: red;
+  color: var(--orange);
   font-size: 16px;
+  transition: font-size .3s;
+}
+
+.red:hover {
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .noegletal-table-header {
@@ -61,14 +70,17 @@
 
 .section-header a {
   text-decoration: none;
+  color: var(--darkblue);
 }
 
 .section-header a:hover {
   text-decoration: none;
+  color: var(--orange);
 }
 
 .section-header a:visited {
   text-decoration: none;
+  color: var(--darkblue);
 }
 
 .header-details {
@@ -102,6 +114,8 @@
 .noegletal-tabel {
   font-size: 13px;
   border: 0px;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
 }
 
 .table tr td {
@@ -110,7 +124,7 @@
 }
 
 .noegletal-color-negative {
-  color: red;
+  color: var(--orange);
 }
 
 .top-bar {
@@ -202,11 +216,11 @@
 
 .section-header {
   margin-top:5px;
-  background-color: azure;
+  background-color: var(--lightblue);
   font-weight: bold;
   font-size: 24px;
   text-align: center;
-  border: 1px solid lightgrey;
+  border: 1px solid var(--lightblue);
 }
 
 @media(min-width: 1000px) {
@@ -228,7 +242,7 @@
 }
 
 .regnskabscard > .card-header {
-  background-color: #e0eeff;
+  background-color: var(--lightblue);
 }
 
 .regnskabsgruppe .row:last-of-type .col-4:last-of-type {
@@ -275,4 +289,194 @@ table tr td:last-child {
 
 .justify-content-center {
   text-align: center;
+}
+
+.vheader {
+  transition: all 1.5s;
+}
+
+.vheader-icon-circle {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background-color: var(--darkblue);
+  transition: background-color .5s;
+  position: relative;
+}
+
+.vheader-icon-circle-orange {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background-color:var(--orange);
+  transition: background-color .5s;
+  position: relative;
+}
+
+.vheader:hover {
+  cursor: pointer;
+}
+.vheader:hover .row .col-1 .vheader-icon-circle {
+  background-color: var(--orange);
+}
+
+.vheader:hover .row .col .row .vheader-label {
+  color: var(--orange);
+}
+
+.vheader-icon {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.white {
+  color: white;
+}
+
+.vheader-label {
+  font-size: 20px;
+  font-weight: bold;
+  transition: all .5s;
+  color: var(--darkblue);
+}
+
+.vheader-label-orange {
+  font-size: 20px;
+  font-weight: bold;
+  transition: all .5s;
+  color: var(--orange);
+}
+
+.vheader-desc {
+  font-size: 14px;
+}
+
+.btn-link {
+  color: var(--darkblue);
+}
+
+a {
+  color: var(--darkblue);
+}
+
+orange {
+  color: var(--orange);
+}
+
+.colors {
+  lightblue: #CADADE;
+  orange: #F19D4B;
+  darkblue: #52767c;
+}
+
+.btn-primary {
+  background-color: black;
+  border-color: black;
+}
+
+.btn-primary:hover {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+.resizable-block {
+  width: 86%;
+}
+
+.o-fold {
+  cursor: pointer;
+  color: var(--orange);
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+h4 {
+  color: var(--darkblue);
+}
+
+.c {
+  background-color: var(--darkblue);
+  min-height: 100vh; /* min. height for modern browser */
+  height:auto;
+}
+
+body {
+  height: 100%;
+}
+
+.container {
+  min-height: 100vh; /* min. height for modern browser */
+  height:auto;
+  background-color: white;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 90;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 30% auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+  text-align: left;
+}
+
+.popup h2 {
+  font-size: 22px;
+  margin-top: 0;
+  color: var(--darkblue);
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--darkblue);
+}
+
+.popup .close:hover {
+  color: var(--orange);
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
 }
