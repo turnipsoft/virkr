@@ -150,17 +150,17 @@
 
 @media(min-width: 992px) {
   .soegeresultatcard:hover {
-    box-shadow: 8px 8px 3px lightgray;
+    box-shadow: 3px 3px 2px var(--lightblue);
     cursor: pointer;
   }
 
   .ejercard:hover {
-     box-shadow: 8px 8px 3px lightgray;
+     box-shadow: 3px 3px 2px var(--lightblue);
      cursor: pointer;
    }
 
   .virksomhedcard:hover {
-    box-shadow: 8px 8px 3px lightgray;
+    box-shadow: 3px 3px 2px var(--lightblue);
     cursor: pointer;
   }
 
@@ -179,15 +179,15 @@
 @media(max-width: 991px) {
   .soegeresultatcard {
     margin-bottom: 20px;
-    box-shadow: 8px 8px 3px lightgray;
+    box-shadow: 3px 3px 2px var(--lightblue);
   }
   .ejercard:hover {
     margin-bottom: 20px;
-    box-shadow: 8px 8px 3px lightgray;
+    box-shadow: 3px 3px 2px var(--lightblue);
   }
   .virksomhedcard:hover {
     margin-bottom: 20px;
-    box-shadow: 8px 8px 3px lightgray;
+    box-shadow: 3px 3px 2px var(--lightblue);
   }
 
   .noegletal-tabel {

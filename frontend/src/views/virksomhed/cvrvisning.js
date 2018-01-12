@@ -70,7 +70,7 @@ export default class CvrVisning extends Component {
       const detail = "Virksomhedens indberettede digitale regnskaber for perioden "+ start+" - "+slut;
       return (
         <div>
-          <SectionHeader label="Regnskaber" detail={detail} iconClass="fa fa-file-pdf-o white"/>
+          <SectionHeader label="Regnskaber" detail={detail} iconClass="fa fa-files-o white"/>
           <br />
           <div className="hide-on-portrait">
             <NoegletalTabel regnskaber={sorteredeRegnskaber} revisorer={alleRevisorer}/>
