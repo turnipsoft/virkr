@@ -17,9 +17,9 @@ export default class Revision extends Component {
       {this._renderRow(null, revision.navnPaaRevisor)}
       {this._renderRow(null, revision.mnenummer)}
       {this._renderEmptyRow(8)}
-      {this._renderTooltipRow(revision.konklusionMedForbehold, revision.konklusionMedForbehold)}
+      {this._renderTooltipRow2(revision.konklusionMedForbehold, revision.konklusionMedForbehold,6)}
 
-      {(revision.konklusionMedForbehold!==null && revision.konklusionMedForbehold!==undefined ) && this._renderTooltipRow('Grundlag for konklusion', revision.grundlagForKonklusion)}
+      {(revision.konklusionMedForbehold!==null && revision.konklusionMedForbehold!==undefined ) && this._renderTooltipRow2('Grundlag for konklusion', revision.grundlagForKonklusion,5)}
       {this._renderTooltipRow2('Fremhævelse af andre forhold', revision.supplerendeInformationOmAndreForhold, 1)}
       {this._renderTooltipRow2('Fremhævelse af forhold i regnskabet', revision.supplerendeInformationOmAarsrapport, 2)}
       {this._renderTooltipRow2('Fremhævelse af forhold vedrørende revisionen', revision.supplerendeInformationOmRevision, 3)}

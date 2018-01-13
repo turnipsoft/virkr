@@ -11,7 +11,7 @@ export default class CvrVisning extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {visGraf: false};
+    this.state = {visGraf: false, visRegnskaber: true};
   }
 
   render() {
@@ -48,7 +48,7 @@ export default class CvrVisning extends Component {
 
     const icon = viserGraf? 'fa-minus' : 'fa-line-chart';
     const className = 'fa '+icon;
-    const detail = viserGraf? 'Tryk for at folde grafen ind' : 'Tryk for at folde grafen ud';
+    const detail = viserGraf? 'Tryk for at folde grafen ind' : 'Tryk for at se udvalgte nøgletals udvikling';
 
     return (
       <SectionHeader iconClass={className} onClick={ () => this.setState({visGraf: !viserGraf})}
@@ -68,9 +68,21 @@ export default class CvrVisning extends Component {
       const slut = regnskaber[regnskaber.length-1].aar;
 
       const detail = "Virksomhedens indberettede digitale regnskaber for perioden "+ start+" - "+slut;
+
+      if (!this.state.visRegnskaber) {
+        return(
+          <div>
+            <SectionHeader label="Regnskaber" detail={detail} iconClass="fa fa-files-o white"
+                           onClick={ () => this.setState({visRegnskaber: !this.state.visRegnskaber})} />
+            <br/>
+          </div>
+        );
+      }
+
       return (
         <div>
-          <SectionHeader label="Regnskaber" detail={detail} iconClass="fa fa-files-o white"/>
+          <SectionHeader label="Regnskaber" detail={detail} iconClass="fa fa-files-o white"
+                         onClick={ () => this.setState({visRegnskaber: !this.state.visRegnskaber})} />
           <br />
           <div className="hide-on-portrait">
             <NoegletalTabel regnskaber={sorteredeRegnskaber} revisorer={alleRevisorer}/>

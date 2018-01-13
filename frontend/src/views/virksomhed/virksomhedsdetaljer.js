@@ -4,7 +4,23 @@ import SectionHeader from '../common/sectionheader';
 
 export default class VirksomhedsDetaljer extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = { visStamdata: true };
+  }
+
   render() {
+
+    if (!this.state.visStamdata) {
+      return (
+        <div>
+          <SectionHeader label="Stamdata" detail="Stamdata om virksomheden" iconClass="fa fa-industry white"
+                         onClick={() => this.setState({visStamdata: !this.state.visStamdata})} />
+          <br/>
+        </div>
+      );
+    }
 
     const cvrdata = this.props.cvrdata;
 
@@ -46,7 +62,8 @@ export default class VirksomhedsDetaljer extends Component {
 
     return (
       <div>
-        <SectionHeader label="Stamdata" detail="Stamdata om virksomheden" iconClass="fa fa-industry white"/>
+        <SectionHeader label="Stamdata" detail="Stamdata om virksomheden" iconClass="fa fa-industry white"
+                       onClick={() => this.setState({visStamdata: !this.state.visStamdata})} />
         <br/>
         <div className="card">
           <div className="virksomhedsdetaljer">

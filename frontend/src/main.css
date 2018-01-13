@@ -118,6 +118,16 @@
   animation: fadeIn 1s;
 }
 
+.virksomhedsdetaljer {
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+.historiske-ejere {
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
 .table tr td {
   border: 0;
   padding: 0.25rem;
@@ -313,6 +323,15 @@ table tr td:last-child {
   position: relative;
 }
 
+.vheader-icon-circle-darkblue {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background-color:var(--darkblue);
+  transition: background-color .5s;
+  position: relative;
+}
+
 .vheader:hover {
   cursor: pointer;
 }
@@ -433,7 +452,7 @@ body {
   transition: opacity 500ms;
   visibility: hidden;
   opacity: 0;
-  z-index: 90;
+  z-index: 900;
 }
 .overlay:target {
   visibility: visible;
@@ -466,6 +485,7 @@ body {
   font-weight: bold;
   text-decoration: none;
   color: var(--darkblue);
+  line-height: .6;
 }
 
 .popup .close:hover {

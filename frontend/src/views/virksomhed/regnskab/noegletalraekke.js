@@ -81,10 +81,27 @@ export default class NoegletalRaekke extends Component {
           const slutaar = vaerdi.slut.substring(0,4);
 
           const aar = (startaar!=slutaar) ? `${startaar}/${slutaar}` : slutaar
-          const title = `${vaerdi.antal} regnskaber registreret`;
-          const exclamation = vaerdi.antal>1? <span title={title} className="fa fa-exclamation fa-lg red"/> : ''
+          const title = `Der er registreret ${vaerdi.antal} regnskaber for ${aar}, tallene herunder er for det senest registrerede`;
+          const exclamation = vaerdi.antal>1? <span title={title} className="fa fa-exclamation fa-lg red"/> : null;
+
+          const id = 'id_'+startaar;
+          const aarlinje = (exclamation!==null) ? [<span className="clickable" onClick={(e) => this._showPopup(id,e)} key={id}>
+                                                    {aar}{exclamation}
+                                                    </span>,
+                                                    <div id={id} className="overlay" key={startaar}>
+                                                      <div className="popup">
+                                                        <h2>Flere regnskaber for året</h2>
+                                                        <span className="close" onClick={() => this._hidePopup(id)}>&times;</span>
+                                                        <div className="content">
+                                                          <br/>
+                                                          {title}
+                                                        </div>
+                                                      </div>
+                                                    </div>]
+                                         : aar;
+
           return (
-            <th width={szp} key={col} className={className}>{aar}{exclamation}
+            <th width={szp} key={col} className={className}>{aarlinje}
               <div className="header-periode">{vaerdi.start}</div>
               <div className="header-periode">{vaerdi.slut}</div>
               {vaerdi.regnskabsklasse && <div className="header-periode">{vaerdi.regnskabsklasse}</div>}
@@ -101,7 +118,6 @@ export default class NoegletalRaekke extends Component {
 
         if (warningText) {
           const id = 'id_'+Math.abs(vaerdi.vaerdi.vaerdi);
-          console.log(vaerdi);
 
           return (<td width={szp} className={cname} key={col} >
                     <span className="clickable" title={warningText} onClick={(e) => this._showPopup(id,e)}>{komma(vaerdi.vaerdi.vaerdi)}<span>&nbsp;<span onClick={(e) => this._showPopup(id,e)} className="clickable fa fa-exclamation fa-lg red" title={warningText} /></span></span>
