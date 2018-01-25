@@ -68,7 +68,7 @@ export default class DeltagerGraf extends React.Component {
       edges: e
     };
 
-    const lightblue = '#CADADE';
+    //const lightblue = '#CADADE';
     const orange = '#F19D4B';
     const darkblue = '#52767c';
     const purple = '#97578F';
