@@ -71,7 +71,11 @@ class Ejer {
       ejer.stemmeprocent = findVaerdi(medlemsdata, 'EJERANDEL_STEMMERET_PROCENT', aktuel)
       ejer.stemmeprocentInterval = interval(ejer.stemmeprocent)
       ejer.kapitalklasse = findVaerdi(medlemsdata, 'EJERANDEL_KAPITALKLASSE', aktuel)
-      ejer.ophoersdato = findAttributVaerdi(medlemsdata, 'EJERANDEL_MEDDELELSE_DATO', aktuel)?.periode.gyldigTil
+      Vaerdi meddelelseDato = findAttributVaerdi(medlemsdata, 'EJERANDEL_MEDDELELSE_DATO', aktuel)
+      if (!meddelelseDato) {
+        meddelelseDato = findAttributVaerdi(medlemsdata, 'EJERANDEL_PROCENT', aktuel)
+      }
+      ejer.ophoersdato = meddelelseDato.periode.gyldigTil
     }
   }
 
@@ -82,9 +86,12 @@ class Ejer {
 
   static Medlemsdata findAktuelMedlemsdataFraOrganisation(Organisation organisation, boolean aktuel) {
     Medlemsdata medlemsdata = organisation.medlemsData.find{
-      Attribut attribut = it.attributter.find{it.type == 'EJERANDEL_MEDDELELSE_DATO'}
+      Attribut attribut = it.attributter.find{a-> a.type == 'EJERANDEL_MEDDELELSE_DATO'}
+      if (!attribut) {
+        attribut = it.attributter.find{a-> a.type == 'EJERANDEL_PROCENT'}
+      }
       if (attribut) {
-        return attribut.vaerdier.find { (it.periode.gyldigTil == null) == aktuel }
+        return attribut.vaerdier.find { v-> (v.periode.gyldigTil == null) == aktuel }
       }
 
       return false

@@ -42,6 +42,8 @@ dependencies {
   compile "org.springframework.boot:spring-boot-starter-actuator"
 
   testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+
+  compile 'com.google.guava:guava:23.6-jre'
 }
 
 task start {}

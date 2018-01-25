@@ -5,12 +5,14 @@ virkr:
   aarsrapporter:
     url: http://distribution.virk.dk/offentliggoerelser/_search
     caching: true
-    cachefactory: memorymap
+    cachefactory: guavacache
   cvr:
     url: http://distribution.virk.dk/cvr-permanent/_search
     deltagerurl: http://distribution.virk.dk/cvr-permanent/deltager
     username: Søren_Hartvig_CVR_I_SKYEN
     password: PASSWD_TIL_SKYEN
+    caching: true
+    cachefactory: guavacache
   maps:
     url: https://maps.googleapis.com/maps/api/geocode/json
     apikey: APIKEY_TIL_GOOGLE

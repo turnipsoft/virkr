@@ -6,6 +6,7 @@ import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
 import dk.ts.virkr.cvr.integration.model.virksomhed.Medlemsdata
 import dk.ts.virkr.cvr.integration.model.virksomhed.Organisation
 import dk.ts.virkr.cvr.integration.model.virksomhed.Virksomhedsstatus
+import dk.ts.virkr.services.cache.CvrCacheFactory
 import dk.ts.virkr.services.model.Ejer
 import dk.ts.virkr.services.model.graf.DeltagerGraf
 import dk.ts.virkr.services.model.graf.DeltagerRelation
@@ -21,6 +22,7 @@ import dk.ts.virkr.services.model.DeltagerVirksomhed
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
 /**
@@ -34,7 +36,20 @@ class CvrInternalService {
   @Autowired
   CvrClient cvrClient
 
+  @Autowired
+  CvrCacheFactory cvrCacheFactory
+
+  @Value('${virkr.cvr.caching}')
+  Boolean useCaching;
+
   EjerGraf hentEjergraf(String cvrnummer) {
+    if (useCaching) {
+      EjerGraf ejerGraf = cvrCacheFactory.cache.hentEjerGraf(cvrnummer);
+      if (ejerGraf) {
+        return ejerGraf;
+      }
+    }
+
     EjerGraf ejerGraf = new EjerGraf()
     Vrvirksomhed vrvirksomhed = cvrClient.hentVirksomhed(cvrnummer)
     ejerGraf.virksomhed = vrvirksomhed
@@ -55,10 +70,20 @@ class CvrInternalService {
 
     berigEjergraf(vrvirksomhed, ejerGraf, ejerAfVirksomhed, 1)
 
+    if (useCaching) {
+      cvrCacheFactory.cache.gemEjerGraf(cvrnummer, ejerGraf)
+    }
     return ejerGraf
   }
 
   DeltagerGraf hentEjergrafForPerson(String enhedsnummer) {
+    if (useCaching) {
+      DeltagerGraf deltagerGraf = cvrCacheFactory.cache.hentDeltagerGraf(enhedsnummer)
+      if (deltagerGraf) {
+        return deltagerGraf
+      }
+    }
+
     DeltagerGraf deltagerGraf = new DeltagerGraf()
     Vrdeltagerperson vrdeltagerperson = cvrClient.hentDeltager(enhedsnummer);
     deltagerGraf.deltager = vrdeltagerperson
@@ -73,10 +98,20 @@ class CvrInternalService {
       }
     }
 
+    if (useCaching) {
+      cvrCacheFactory.cache.gemDeltagerGraf(enhedsnummer, deltagerGraf)
+    }
     return deltagerGraf
   }
 
   DeltagerGraf hentDeltagerGrafForVirksomhed(String cvrnummer) {
+    if (useCaching) {
+      DeltagerGraf deltagerGraf = cvrCacheFactory.cache.hentDeltagerGraf(cvrnummer)
+      if (deltagerGraf) {
+        return deltagerGraf
+      }
+    }
+
     DeltagerGraf deltagerGraf = new DeltagerGraf()
     Vrvirksomhed vrvirksomhed = cvrClient.hentVirksomhed(cvrnummer)
     deltagerGraf.virksomhed = vrvirksomhed
@@ -93,8 +128,12 @@ class CvrInternalService {
       }
     }
 
+    if (useCaching) {
+      cvrCacheFactory.cache.gemDeltagerGraf(cvrnummer, deltagerGraf)
+    }
     return deltagerGraf
   }
+
 
   EjerAfVirksomhed bygEjerAfVirksomhed(Vrvirksomhed virksomhed, String enhedsnummer){
     EjerAfVirksomhed ejerAfVirksomhed = new EjerAfVirksomhed()

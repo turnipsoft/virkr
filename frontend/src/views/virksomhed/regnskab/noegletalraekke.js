@@ -3,6 +3,11 @@ import { resolveJsonValue, komma } from '../../../utils/utils';
 
 export default class NoegletalRaekke extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state={viserModal: props.viserModal};
+  }
+
   render() {
     const { regnskaber, label, felt, style, header, negative, highlight, onClick, skat, inkluderRegnksabsklasse, sz } = this.props;
 
@@ -146,12 +151,14 @@ export default class NoegletalRaekke extends Component {
     let elem = document.getElementById(elementId);
     elem.style.visibility = 'visible';
     elem.style.opacity = 1;
+    this.state.viserModal(true);
   }
 
   _hidePopup(elementId) {
     let elem = document.getElementById(elementId);
     elem.style.visibility = 'hidden';
     elem.style.opacity = 0;
+    this.state.viserModal(false);
   }
 
   _warningText(regnskabstal) {

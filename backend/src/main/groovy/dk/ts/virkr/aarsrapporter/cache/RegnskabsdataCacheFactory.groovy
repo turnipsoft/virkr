@@ -18,12 +18,15 @@ class RegnskabsdataCacheFactory {
 
   @Autowired
   MemoryMapCache memoryMapCache
+  GuavaCache guavaCache = new GuavaCache()
 
   RegnskabsdataCache getRegnskabsdataCache() {
     if (cacheFactory.equalsIgnoreCase('jpa')) {
       return jpaRegnskabsdataCache
     } else if (cacheFactory.equalsIgnoreCase('memorymap')) {
       return memoryMapCache
+    } else if (cacheFactory.equalsIgnoreCase('guavacache')) {
+      return guavaCache
     }
 
     return new NoOpRegnskabsdataCache()

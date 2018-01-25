@@ -45,6 +45,8 @@ function deltagerResultat(enhedsnummer, deltager) {
 export function visDeltager(enhedsnummer, navigate) {
   return dispatch => {
     dispatch(henterDeltager(enhedsnummer))
+    // henter graf i baggrund så den bliver cachet, uden promise da vi er ligeglad med resultatet p.t.
+    api.hentDeltagerGraf(enhedsnummer);
     if (navigate) {
       dispatch(push(`/deltager/${enhedsnummer}`));
     }
@@ -88,7 +90,10 @@ function ejerGrafError(cvrnummer, error) {
 
 export function visVirksomhed(cvrnummer, navigate) {
   return dispatch => {
-    dispatch(henterVirksomhed(cvrnummer))
+    dispatch(henterVirksomhed(cvrnummer));
+    // henter ejergraf og virksomhedsgraf i baggrund, men er ligeglad med promiset.. TODO, gem graferne så den kan bruges senere
+    api.hentEjerGraf(cvrnummer);
+    api.hentVirksomhedGraf(cvrnummer);
     if (navigate) {
       dispatch(push(`/virksomhed/${cvrnummer}`));
     }

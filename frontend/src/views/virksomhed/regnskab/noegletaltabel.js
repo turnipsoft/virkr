@@ -12,9 +12,12 @@ export default class NoegletalTabel extends Component {
       resultatopgoerelseVis: true,
       aktiverVis: true,
       passiverVis: true,
-      revisionVis: true
+      revisionVis: true,
+      viserModal: false
     }
+
     this.selectNoegletal = this.selectNoegletal.bind(this);
+    this._viserModal = this._viserModal.bind(this);
   }
 
   selectNoegletal(felt) {
@@ -40,7 +43,8 @@ export default class NoegletalTabel extends Component {
                          skat={skat}
                          key={felt}
                          sz={sz}
-                         onClick={()=>this.selectNoegletal(felt)} />,
+                         onClick={()=>this.selectNoegletal(felt)}
+                         viserModal={this._viserModal} />,
         graf
       ]
     )
@@ -49,14 +53,18 @@ export default class NoegletalTabel extends Component {
   _renderNoegletalGraf(regnskaber, label, felt) {
     const selected = this.state.selectedFelt;
 
-    if (selected === felt) {
+    if (selected === felt && !this.state.viserModal) {
       return <NoegletalGraf regnskaber={regnskaber} label={label}
                             felt={felt} key={label}/>;
     }
 
     return null;
-
   }
+
+  _viserModal(v) {
+    this.setState({viserModal: v});
+  }
+
 
   render() {
     const {regnskaber, revisorer} = this.props;
@@ -75,7 +83,8 @@ export default class NoegletalTabel extends Component {
 
             {this.state.resultatopgoerelseVis &&
             <table className="table table-hover noegletal-tabel">
-              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz} />
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz}
+                               viserModal={this._viserModal} />
               <tbody>
 
               {this._renderNoegletal("resultatopgoerelse.omsaetningTal.omsaetning","Omsætning",sz,"noegletal-label-bold")}
@@ -120,7 +129,8 @@ export default class NoegletalTabel extends Component {
             <h4> <span className={aClass} onClick={()=> this.setState({aktiverVis : !this.state.aktiverVis})} /> Aktiver </h4>
 
             {this.state.aktiverVis && <table className="table table-hover noegletal-tabel">
-              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz} />
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz}
+                               viserModal={this._viserModal} />
               <tbody>
 
               {this.header('Anlægsaktiver')}
@@ -175,7 +185,8 @@ export default class NoegletalTabel extends Component {
             <h4><span className={pClass} onClick={()=> this.setState({passiverVis : !this.state.passiverVis})} /> Passiver </h4>
 
             {this.state.passiverVis && <table className="table table-hover noegletal-tabel">
-              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz}/>
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz}
+                               viserModal={this._viserModal} />
               <tbody>
 
               {this.header('Egenkapital')}
@@ -232,7 +243,8 @@ export default class NoegletalTabel extends Component {
             <h4><span className={rClass} onClick={()=> this.setState({revisionVis : !this.state.revisionVis})} /> Revision </h4>
 
             {this.state.revisionVis && <table className="table table-hover noegletal-tabel">
-              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz} />
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz}
+                               viserModal={this._viserModal} />
               <tbody>
               {this.state.revisionVis && <RevisionsRaekke regnskaber={regnskaber} sz={sz} revisorer={revisorer} />}
               </tbody>

@@ -44,10 +44,6 @@ class RegnskabInternalService {
     } else {
       response.regnskabsdata = hentRegnskaberFraOffentliggoerelse(cvrnummer)
       // Der fandtes ikke regnskabsdata i forvejen så de gemmes i databasen, med mindre caching er slået fra
-      if (useCaching) {
-        logger.info("Using cache to store regnskaber for ${cvrnummer}")
-        regnskabsdataCacheFactory.getRegnskabsdataCache().gemRegnskabsdata(response.regnskabsdata)
-      }
       response.regnskabsdata.each {
         it.aar = it.slutdato.substring(0, 4)
         it.id = "regnskab_${it.aar}"
@@ -55,6 +51,11 @@ class RegnskabInternalService {
 
       response.regnskabsdata = response.regnskabsdata.sort { it.aar }
       response.regnskabsdata = frasorter(response.regnskabsdata)
+
+      if (useCaching) {
+        logger.info("Using cache to store regnskaber for ${cvrnummer}")
+        regnskabsdataCacheFactory.getRegnskabsdataCache().gemRegnskabsdata(response.regnskabsdata)
+      }
 
       // berig med kontroller
       RegnskabsKontroller kontroller = new RegnskabsKontroller()
@@ -93,6 +94,7 @@ class RegnskabInternalService {
       resultat << currentRegnskabData
     }
 
+    logger.info("Ialt: "+resultat.size()+ "regnskaber");
     return resultat
   }
 

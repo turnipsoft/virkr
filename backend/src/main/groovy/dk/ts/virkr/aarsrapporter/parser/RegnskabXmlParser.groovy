@@ -336,6 +336,7 @@ class RegnskabXmlParser {
       }
     }
   }
+
   Regnskabstal getRegnskabstal(NodeList nodeList, Namespace ns, String ...nodeName){
     Node node
 
@@ -349,9 +350,18 @@ class RegnskabXmlParser {
 
     if (node!=null) {
       String decimaler = node.attribute('decimals')
-      Long decimal = decimaler? Long.valueOf(decimaler) : 0
-      // man kan desværre ikke rigtig regne med de decimaler der.. hmmmm
 
+      Long decimal = 0;
+
+      if (decimaler) {
+        try {
+          decimal = decimaler ? Long.valueOf(decimaler) : 0
+        } catch (Exception e) {
+          decimal = 0;
+        }
+      }
+
+      // man kan desværre ikke rigtig regne med de decimaler der.. hmmmm, nu kan der tilmed stå INF
       return new Regnskabstal(getAmount(node), decimal)
     }
 
