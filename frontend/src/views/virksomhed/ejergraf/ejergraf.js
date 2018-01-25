@@ -76,6 +76,7 @@ export default class EjerGraf extends React.Component {
     const lightblue = '#CADADE';
     const orange = '#F19D4B';
     const darkblue = '#52767c';
+    const purple = '#97578F';
 
     var options = {
       physics: {
@@ -120,7 +121,7 @@ export default class EjerGraf extends React.Component {
             face: 'FontAwesome',
             code: '\uf0c0',
             size: 50,
-            color: lightblue
+            color: purple
           }
         },
         personer: {
