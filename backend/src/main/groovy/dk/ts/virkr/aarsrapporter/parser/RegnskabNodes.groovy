@@ -43,11 +43,11 @@ class RegnskabNodes {
   public String sidsteAarsBalanceContext
 
   Namespace noegletalNamespace() {
-    return this.fsaNamespace ? this.fsaNamespace : this.ifrsNamespace
+    return this.ifrsNamespace ? this.ifrsNamespace : this.fsaNamespace
   }
 
   List<Node> noegletalNodes() {
-    return this.fsaNodes ? this.fsaNodes : this.ifrsNodes
+    return this.ifrsNodes ? this.ifrsNodes : this.ifrsNamespace
   }
 
   RegnskabNodes(String xml) {
@@ -120,7 +120,8 @@ class RegnskabNodes {
   public static List<String> BALANCE_IDENTER = ['Equity','Assets','Provisions']
 
   public static final List<String> IFRS_NAMESPACE_LIST = ["http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full",
-                                                    "http://xbrl.dcca.dk/ifrs-dk-cor_2013-12-20"]
+                                                          "http://xbrl.ifrs.org/taxonomy/2011-03-25/ifrs",
+                                                          "http://xbrl.dcca.dk/ifrs-dk-cor_2013-12-20" ]
   Namespace hentIFRSNamespace(String xml)  {
 
     for (String namespaceUrl: IFRS_NAMESPACE_LIST) {
@@ -181,6 +182,37 @@ class RegnskabNodes {
     return contextNodes
   }
 
+  String getNameWithNamespaceOf(Node n, String name) {
+    String nodeName = n.name()
+    String ens = nodeName.contains(':')? nodeName.substring(0, nodeName.indexOf(':')+1) : ''
+    String result = ens+'scenario'
+
+    return result;
+  }
+
+  boolean erContextRefFsaOgKonsolideret(Node n) {
+    String scenario = getNameWithNamespaceOf(n, 'scenario');
+
+    boolean soloDimensionFound = false;
+    if (n[scenario]) {
+      NodeList scenarios = n[scenario];
+      scenarios.each { Node scenarioNode->
+        scenarioNode.children().each { Node childNode->
+          if (childNode.name().contains('explicitMember')) {
+            if (childNode.attribute('dimension')!=null &&
+              childNode.attribute('dimension').contains('ConsolidatedSoloDimension')) {
+              soloDimensionFound = true;
+            } else {
+              soloDimensionFound = false;
+            }
+          }
+        }
+      }
+    }
+
+    return soloDimensionFound;
+  }
+
   String hentContextRef(Node xmlDokument,
                         Namespace ns,
                         NodeList contextNodes,
@@ -203,8 +235,15 @@ class RegnskabNodes {
         String contextRefCandidate = it.attribute("contextRef")
         Node contextRefNodeCandidate = contextNodes.find { it.attribute('id') == contextRefCandidate }
         // skal ikke have dem der har scenario på i FSA og ikke have de konsoliderede i IFRS'erne
+
+        // men man skal have de konsoliderede i FSA hvis det er.
         String contextRefNodeCandidateName = contextRefNodeCandidate.attribute('id')
-        if (contextRefNodeCandidate && !contextRefNodeCandidate.scenario && !contextRefNodeCandidateName.contains('_C_')) {
+
+        boolean erFsaOgKonsolideret = erContextRefFsaOgKonsolideret(contextRefNodeCandidate);
+
+        String scenario = getNameWithNamespaceOf(contextRefNodeCandidate, 'scenario');
+
+        if (erFsaOgKonsolideret || (contextRefNodeCandidate && !contextRefNodeCandidate[scenario] && !contextRefNodeCandidateName.contains('_C_'))) {
           Node existing = contextRefNodeCandidates.find {
             String name = it.name()
             String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
