@@ -1,5 +1,6 @@
 package dk.ts.virkr.integration
 
+import dk.ts.virkr.aarsrapporter.model.Balance
 import dk.ts.virkr.aarsrapporter.model.Regnskab
 import dk.ts.virkr.aarsrapporter.parser.RegnskabNodes
 import dk.ts.virkr.aarsrapporter.parser.RegnskabXmlParser
@@ -28,6 +29,38 @@ class RegnskabXmlParserSpec extends Specification {
 
     then:
     ro.aaretsresultatTal.aaretsresultat.vaerdi == 28686000l
+  }
+
+  void "test parse miracle"() {
+    given:
+    String xml = TestUtil.load("/miracle.xml")
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    Regnskab regnskabData = new Regnskab()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    Resultatopgoerelse ro = regnskabData.resultatopgoerelse
+
+    then:
+    ro.aaretsresultatTal.aaretsresultat.vaerdi == 10798462l
+  }
+
+  void "test parse rest"() {
+    given:
+    String xml = TestUtil.load("/balance-hoeker.xml")
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    Regnskab regnskabData = new Regnskab()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    Balance balance = regnskabData.balance
+
+    then:
+    balance.aktiver.tilgodehavenderialt.vaerdi == 162461l
   }
 
   void "test parse nc-ifrs.xml"() {

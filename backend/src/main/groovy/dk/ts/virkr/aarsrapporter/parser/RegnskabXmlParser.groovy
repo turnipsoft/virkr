@@ -43,7 +43,7 @@ class RegnskabXmlParser {
     return resultat
   }
 
-  void berigMedPeriode(Regnskab regnskab, RegnskabNodes regnskabNodes, Namespace ns, String contextRefName) {
+  void berigMedPeriode(Regnskab regnskab, RegnskabNodes regnskabNodes, String contextRefName) {
     List<Node> contextNodes = regnskabNodes.contextNodes
     Node contextRefNode = contextNodes.find { it.attribute('id') == contextRefName }
     String nsPrefix = getNSPrefix(contextRefNode)
@@ -67,7 +67,7 @@ class RegnskabXmlParser {
   }
 
   boolean parseOgBerig(Regnskab data, RegnskabNodes regnskabNodes, boolean nyeste = true) {
-    Namespace ns = regnskabNodes.noegletalNamespace()
+    List<Namespace> ns = regnskabNodes.noegletalNamespace()
 
     // bemærk at contextref siger noget om hvilken periode man henter tal for
     String contextRef = nyeste?regnskabNodes.aktuelContext : regnskabNodes.sidsteAarsContext
@@ -80,7 +80,7 @@ class RegnskabXmlParser {
     NodeList nl = nyeste ? regnskabNodes.aktuelleNoegletalNodes : regnskabNodes.sidsteAarsNoegletalNodes
 
     /* periode dato år */
-    berigMedPeriode(data, regnskabNodes, ns, contextRef)
+    berigMedPeriode(data, regnskabNodes, contextRef)
     // regnskabsklasse
     data.regnskabsklasse = getStringValue(nl, ns,'ClassOfReportingEntity' )
 
@@ -156,7 +156,7 @@ class RegnskabXmlParser {
     return true
   }
 
-  private void berigResultatopgoerelse(Regnskab data, NodeList nl, Namespace ns) {
+  private void berigResultatopgoerelse(Regnskab data, NodeList nl, List<Namespace> ns) {
 
     /** Resultatopgørelsen **/
     Resultatopgoerelse r = data.resultatopgoerelse
@@ -327,7 +327,7 @@ class RegnskabXmlParser {
       regnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat) {
 
       if (regnskab.resultatopgoerelse.aaretsresultatTal.resultatfoerskat.vaerdi<
-          regnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat.vaerdi) {
+        regnskab.resultatopgoerelse.aaretsresultatTal.aaretsresultat.vaerdi) {
         regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat.vaerdi =
           Math.abs(regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat.vaerdi)
       } else {
@@ -335,6 +335,18 @@ class RegnskabXmlParser {
           Math.abs(regnskab.resultatopgoerelse.aaretsresultatTal.skatafaaretsresultat.vaerdi)*-1
       }
     }
+  }
+
+  Regnskabstal getRegnskabstal(NodeList nodeList, List<Namespace> ns, String ...nodeName) {
+
+    for (Namespace n: ns) {
+      Regnskabstal regnskabstal = getRegnskabstal(nodeList, n, nodeName)
+      if (regnskabstal) {
+        return regnskabstal;
+      }
+    }
+
+    return null;
   }
 
   Regnskabstal getRegnskabstal(NodeList nodeList, Namespace ns, String ...nodeName){
@@ -367,6 +379,17 @@ class RegnskabXmlParser {
 
     return null
   }
+
+  String getStringValue(NodeList nodeList, List<Namespace> ns, String nodeName, String altNodename = null){
+    for (Namespace n: ns) {
+      String value = getStringValue(nodeList, n, nodeName, altNodename)
+      if (value) {
+        return value
+      }
+    }
+    return null
+  }
+
 
   String getStringValue(NodeList nodeList, Namespace ns, String nodeName, String altNodename = null){
     nodeName = "$ns.prefix:$nodeName"

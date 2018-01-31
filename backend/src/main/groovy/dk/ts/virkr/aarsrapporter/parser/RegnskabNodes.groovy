@@ -1,6 +1,5 @@
 package dk.ts.virkr.aarsrapporter.parser
 
-import dk.ts.virkr.aarsrapporter.model.Regnskab
 import groovy.xml.Namespace
 
 /**
@@ -23,6 +22,7 @@ class RegnskabNodes {
   public List<Node> sobNodes
   public List<Node> gsdNodes
   public List<Node> ifrsNodes
+  public List<Node> ifrsDkNodes
   public List<Node> aktuelleNoegletalNodes
   public List<Node> sidsteAarsNoegletalNodes
   public List<Node> aktuelleBalanceNodes
@@ -35,6 +35,7 @@ class RegnskabNodes {
   public Namespace gsdNamespace
   public Namespace sobNamespace
   public Namespace ifrsNamespace
+  public Namespace ifrsDkNamespace
 
   public String aktuelContext
   public String sidsteAarsContext
@@ -42,8 +43,18 @@ class RegnskabNodes {
   public String aktuelBalanceContext
   public String sidsteAarsBalanceContext
 
-  Namespace noegletalNamespace() {
-    return this.ifrsNamespace ? this.ifrsNamespace : this.fsaNamespace
+  List<Namespace> noegletalNamespace() {
+    List<Namespace> result = []
+    if (this.ifrsNamespace) {
+      result << this.ifrsNamespace
+      if (this.ifrsDkNamespace) {
+        result << this.ifrsDkNamespace
+      }
+    } else {
+      result << fsaNamespace
+    }
+
+    return result
   }
 
   List<Node> noegletalNodes() {
@@ -62,6 +73,7 @@ class RegnskabNodes {
     this.gsdNamespace = hentNamespace(xml, GSD_NAMESPACE)
     this.cmnNamespace = hentNamespace(xml, CMN_NAMESPACE)
     this.ifrsNamespace = hentIFRSNamespace(xml)
+    this.ifrsDkNamespace = hentIFRDKSNamespace(xml)
 
     if (this.fsaNamespace) {
       this.fsaNodes = hentNodes(xmlDokument, this.fsaNamespace)
@@ -87,7 +99,11 @@ class RegnskabNodes {
       this.ifrsNodes = hentNodes(xmlDokument, this.ifrsNamespace)
     }
 
-    this.contextNodes = hentContextNodes(xmlDokument, noegletalNamespace())
+    if (this.ifrsDkNamespace) {
+      this.ifrsDkNodes = hentNodes(xmlDokument, this.ifrsDkNamespace)
+    }
+
+    this.contextNodes = hentContextNodes(xmlDokument)
     this.aktuelContext = hentContextRef(xmlDokument, noegletalNamespace(), this.contextNodes, NOEGLETAL_IDENTER, true)
     this.sidsteAarsContext = hentContextRef(xmlDokument, noegletalNamespace(), this.contextNodes, NOEGLETAL_IDENTER, false)
 
@@ -122,9 +138,23 @@ class RegnskabNodes {
   public static final List<String> IFRS_NAMESPACE_LIST = ["http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full",
                                                           "http://xbrl.ifrs.org/taxonomy/2011-03-25/ifrs",
                                                           "http://xbrl.dcca.dk/ifrs-dk-cor_2013-12-20" ]
+
+  public static final List<String> IFRS_DK_NAMESPACE_LIST = ["http://xbrl.dcca.dk/ifrs-dk-cor_2014-12-20",
+                                                             "http://xbrl.dcca.dk/ifrs-dk-cor_2013-12-20" ]
   Namespace hentIFRSNamespace(String xml)  {
 
     for (String namespaceUrl: IFRS_NAMESPACE_LIST) {
+      String namespace = getNamespace(xml, namespaceUrl)
+      if (namespace) {
+        return new Namespace(namespaceUrl, namespace)
+      }
+    }
+
+    return null
+  }
+
+  Namespace hentIFRDKSNamespace(String xml) {
+    for (String namespaceUrl: IFRS_DK_NAMESPACE_LIST) {
       String namespace = getNamespace(xml, namespaceUrl)
       if (namespace) {
         return new Namespace(namespaceUrl, namespace)
@@ -171,7 +201,7 @@ class RegnskabNodes {
     return ns.substring(6)
   }
 
-  NodeList hentContextNodes(Node xmlDokument, Namespace ns) {
+  NodeList hentContextNodes(Node xmlDokument) {
     NodeList contextNodes = xmlDokument['context'];
     if (!contextNodes) {
       String namespacenavn = hentNamespaceNavn(xmlDokument,XBRL_NS)
@@ -190,6 +220,11 @@ class RegnskabNodes {
     return result;
   }
 
+  /**
+   * Anvendes til at finde ud af om der er tale om et FSA regnskab for et solo consolidated virksomhed
+   * @param n
+   * @return
+   */
   boolean erContextRefFsaOgKonsolideret(Node n) {
     String scenario = getNameWithNamespaceOf(n, 'scenario');
 
@@ -211,6 +246,29 @@ class RegnskabNodes {
     }
 
     return soloDimensionFound;
+  }
+
+  /**
+   * Anvendes til at finde slutdato på en contextnode. denne kan både ligge som endDate og som instant
+   * @param node
+   * @param nsPrefix
+   * @return
+   */
+  String getEndDate(Node node, String nsPrefix) {
+    NodeList endDate = node[nsPrefix+'period'][nsPrefix+'endDate'];
+    if (endDate) {
+      return endDate.text();
+    }
+    NodeList instant = node[nsPrefix+'period'][nsPrefix+'instant'];
+    return instant.text();
+  }
+
+  String hentContextRef(Node xmlDokument,
+                        List<Namespace> ns,
+                        NodeList contextNodes,
+                        List<String> identificerendeElementer,
+                        boolean nyeste = true) {
+    return hentContextRef(xmlDokument, ns.get(0), contextNodes, identificerendeElementer, nyeste)
   }
 
   String hentContextRef(Node xmlDokument,
@@ -247,8 +305,8 @@ class RegnskabNodes {
           Node existing = contextRefNodeCandidates.find {
             String name = it.name()
             String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
-            String e1 = it[ens+'period'][ens+'endDate'].text()
-            String e2 = contextRefNodeCandidate[ens+'period'][ens+'endDate'].text()
+            String e1 = getEndDate(it, ens)
+            String e2 = getEndDate(contextRefNodeCandidate, ens)
             e1==e2
           }
           // tilføjer kun hvis den ikke allerede eksisterer i forvejen
@@ -261,7 +319,7 @@ class RegnskabNodes {
       String name = contextRefNodeCandidates[0].name()
       String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
 
-      contextRefNodeCandidates = contextRefNodeCandidates.sort {it[ens+'period'][ens+'endDate'].text() }
+      contextRefNodeCandidates = contextRefNodeCandidates.sort { getEndDate(it, ens) }
       if (nyeste) {
         return contextRefNodeCandidates.last().attribute('id')
       } else {
