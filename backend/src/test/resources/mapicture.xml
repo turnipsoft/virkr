@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Magnus:Årsafslutning-->
+<xbrli:xbrl xmlns:arr="http://xbrl.dcca.dk/arr" xmlns:cmn="http://xbrl.dcca.dk/cmn" xmlns:dst="http://xbrl.dcca.dk/dst"
+            xmlns:entry="http://xbrl.dcca.dk/entryBalanceSheetAccountFormIncomeStatementByNature"
+            xmlns:eogs="http://xbrl.dcca.dk/eogs" xmlns:fsa="http://xbrl.dcca.dk/fsa"
+            xmlns:gsd="http://xbrl.dcca.dk/gsd" xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
+            xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:mrv="http://xbrl.dcca.dk/mrv"
+            xmlns:sob="http://xbrl.dcca.dk/sob" xmlns:tax="http://xbrl.dcca.dk/tax" xmlns:tch="http://xbrl.dcca.dk/tch"
+            xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:xbrli="http://www.xbrl.org/2003/instance"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+  <link:schemaRef xlink:type="simple"
+                  xlink:href="http://archprod.service.eogs.dk/taxonomy/20130401/entryDanishGAAPBalanceSheetAccountFormIncomeStatementByNatureIncludingManagementsReviewStatisticsAndTax20130401.xsd"/>
+  <xbrli:context id="ID_0">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_2">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:typedMember dimension="cmn:IdentificationOfMemberOfExecutiveBoardDimension">
+        <cmn:memberOfBoardIdentifier>1</cmn:memberOfBoardIdentifier>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <xbrli:context id="ID_1">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_17">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_15">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_16">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:typedMember dimension="cmn:IdentificationOfMemberOfExecutiveBoardDimension">
+        <cmn:memberOfBoardIdentifier></cmn:memberOfBoardIdentifier>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <xbrli:context id="ID_7">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_9">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="fsa:ResultDistributionDimension">fsa:RetainedEarningsMember
+      </xbrldi:explicitMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <xbrli:context id="ID_11">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_18">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_4">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_5">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_3">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_6">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2014-01-01</xbrli:startDate>
+      <xbrli:endDate>2014-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_8">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2013-01-01</xbrli:startDate>
+      <xbrli:endDate>2013-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_10">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2013-01-01</xbrli:startDate>
+      <xbrli:endDate>2013-12-31</xbrli:endDate>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="fsa:ResultDistributionDimension">fsa:RetainedEarningsMember
+      </xbrldi:explicitMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <xbrli:context id="ID_12">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:startDate>2013-01-01</xbrli:startDate>
+      <xbrli:endDate>2013-12-31</xbrli:endDate>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_13">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2014-12-31</xbrli:instant>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="ID_14">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://www.dcca.dk/cvr">29835217</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2013-12-31</xbrli:instant>
+    </xbrli:period>
+  </xbrli:context>
+  <xbrli:unit id="percent">
+    <xbrli:measure>xbrli:pure</xbrli:measure>
+  </xbrli:unit>
+  <xbrli:unit id="decimal">
+    <xbrli:measure>xbrli:pure</xbrli:measure>
+  </xbrli:unit>
+  <xbrli:unit id="DKK">
+    <xbrli:measure>iso4217:DKK</xbrli:measure>
+  </xbrli:unit>
+  <xbrli:unit id="share">
+    <xbrli:measure>xbrli:shares</xbrli:measure>
+  </xbrli:unit>
+  <arr:AddresseeOfAuditorsReportOnAuditedFinancialStatements contextRef="ID_1">Til kapitalejerne i Mapicture ApS
+  </arr:AddresseeOfAuditorsReportOnAuditedFinancialStatements>
+  <arr:AuditorsReportOnFinancialStatements contextRef="ID_1">Påtegning på årsregnskabet
+  </arr:AuditorsReportOnFinancialStatements>
+  <arr:IdentificationOfAuditedFinancialStatements contextRef="ID_1">Vi har revideret årsregnskabet for Mapicture ApS for
+    regnskabsåret 1. januar 2014 - 31. december 2014, der omfatter anvendt regnskabspraksis, resultatopgørelse, balance
+    og noter. Årsregnskabet udarbejdes efter årsregnskabsloven.
+  </arr:IdentificationOfAuditedFinancialStatements>
+  <arr:InformationOnSignatureOfAuditors contextRef="ID_1">
+    Kastrup, den 16. februar 2015
+
+    Revisionsfirmaet Gutfelt A/S
+
+
+    Gitte Vang
+    Registreret revisor
+  </arr:InformationOnSignatureOfAuditors>
+  <arr:OpinionOnAuditedFinancialStatements contextRef="ID_1">Konklusion
+    Det er vores opfattelse, at årsregnskabet giver et retvisende billede af selskabets aktiver, passiver og finansielle
+    stilling pr. 31. december 2014 samt af resultatet af selskabets aktiviteter for regnskabsåret 1. januar 2014 - 31.
+    december 2014 i overensstemmelse med årsregnskabsloven.
+  </arr:OpinionOnAuditedFinancialStatements>
+  <arr:SignatureOfAuditorsDate contextRef="ID_1">2015-02-16</arr:SignatureOfAuditorsDate>
+  <arr:SignatureOfAuditorsPlace contextRef="ID_1">Kastrup</arr:SignatureOfAuditorsPlace>
+  <arr:StatementOfAuditorsResponsibilityForAuditAndAuditPerformed contextRef="ID_1">Vores ansvar er at udtrykke en
+    konklusion om årsregnskabet på grundlag af vores revision. Vi har udført revisionen i overensstemmelse med
+    internationale standarder om revision og yderligere krav ifølge dansk revisorlovgivning. Dette kræver, at vi
+    overholder etiske krav samt planlægger og udfører revisionen for at opnå høj grad af sikkerhed for, om årsregnskabet
+    er uden væsentlig fejlinformation.
+
+    En revision omfatter udførelse af revisionshandlinger for at opnå revisionsbevis for beløb og oplysninger i
+    årsregnskabet. De valgte revisionshandlinger afhænger af revisors vurdering, herunder vurdering af risici for
+    væsentlig fejlinformation i årsregnskabet, uanset om denne skyldes besvigelser eller fejl. Ved risikovurderingen
+    overvejer revisor intern kontrol, der er relevant for virksomhedens udarbejdelse af et årsregnskab, der giver et
+    retvisende billede. Formålet hermed er at udforme revisionshandlinger, der er passende efter omstændighederne, men
+    ikke at udtrykke en konklusion om effektiviteten af virksomhedens interne kontrol. En revision omfatter endvidere
+    vurdering af, om ledelsens valg af regnskabspraksis er passende, om ledelsens regnskabsmæssige skøn er rimelige samt
+    den samlede præsentation af årsregnskabet.
+    , Det er vores opfattelse, at det opnåede revisionsbevis er tilstrækkeligt og egnet som grundlag for vores
+    konklusion.
+
+    Revisionen har ikke givet anledning til forbehold.
+    , Revisors ansvar
+    Vores ansvar er at udtrykke en konklusion om årsregnskabet på grundlag af vores revision. Vi har udført revisionen i
+    overensstemmelse med internationale standarder om revision og yderligere krav ifølge dansk revisorlovgivning. Dette
+    kræver, at vi overholder etiske krav samt planlægger og udfører revisionen for at opnå høj grad af sikkerhed for, om
+    årsregnskabet er uden væsentlig fejlinformation.
+
+    En revision omfatter udførelse af revisionshandlinger for at opnå revisionsbevis for beløb og oplysninger i
+    årsregnskabet. De valgte revisionshandlinger afhænger af revisors vurdering, herunder vurdering af risici for
+    væsentlig fejlinformation i årsregnskabet, uanset om denne skyldes besvigelser eller fejl. Ved risikovurderingen
+    overvejer revisor intern kontrol, der er relevant for virksomhedens udarbejdelse af et årsregnskab, der giver et
+    retvisende billede. Formålet hermed er at udforme revisionshandlinger, der er passende efter omstændighederne, men
+    ikke at udtrykke en konklusion om effektiviteten af virksomhedens interne kontrol. En revision omfatter endvidere
+    vurdering af, om ledelsens valg af regnskabspraksis er passende, om ledelsens regnskabsmæssige skøn er rimelige samt
+    den samlede præsentation af årsregnskabet.
+
+    Det er vores opfattelse, at det opnåede revisionsbevis er tilstrækkeligt og egnet som grundlag for vores konklusion.
+
+    Revisionen har ikke givet anledning til forbehold.
+  </arr:StatementOfAuditorsResponsibilityForAuditAndAuditPerformed>
+  <arr:StatementOfExecutiveAndSupervisoryBoardsResponsibilityForFinancialStatements contextRef="ID_1">Ledelsens ansvar
+    for årsregnskabet
+    Ledelsen har ansvaret for udarbejdelsen af et årsregnskab, der giver et retvisende billede i overensstemmelse med
+    årsregnskabsloven. Ledelsen har endvidere ansvaret for den interne kontrol, som ledelsen anser nødvendig for at
+    udarbejde et årsregnskab uden væsentlig fejlinformation, uanset om denne skyldes besvigelser eller fejl.
+  </arr:StatementOfExecutiveAndSupervisoryBoardsResponsibilityForFinancialStatements>
+  <arr:StatementOnManagementsReviewAuditorsReportOnAuditedFinancialStatements contextRef="ID_1">Vi har i henhold til
+    årsregnskabsloven gennemlæst ledelsesberetningen. Vi har ikke foretaget yderligere handlinger i tillæg til den
+    udførte revision af årsregnskabet. Det er på denne baggrund vores opfattelse, at oplysningerne i ledelsesberetningen
+    er i overensstemmelse med årsregnskabet.
+    ,
+    Udtalelse om ledelsesberetningen
+    Vi har i henhold til årsregnskabsloven gennemlæst ledelsesberetningen. Vi har ikke foretaget yderligere handlinger i
+    tillæg til den udførte revision af årsregnskabet. Det er på denne baggrund vores opfattelse, at oplysningerne i
+    ledelsesberetningen er i overensstemmelse med årsregnskabet.
+  </arr:StatementOnManagementsReviewAuditorsReportOnAuditedFinancialStatements>
+  <cmn:NameAndSurnameOfMemberOfExecutiveBoard contextRef="ID_16">
+    Direktion
+
+
+    Samo Olsen
+
+
+    Direktør
+
+  </cmn:NameAndSurnameOfMemberOfExecutiveBoard>
+  <cmn:NameAndSurnameOfMemberOfExecutiveBoard contextRef="ID_2">Samo Olsen</cmn:NameAndSurnameOfMemberOfExecutiveBoard>
+  <cmn:TitleOfMemberOfExecutiveBoard contextRef="ID_2">Direktør</cmn:TitleOfMemberOfExecutiveBoard>
+  <cmn:TypeOfAuditorAssistance contextRef="ID_1">Revisionspåtegning</cmn:TypeOfAuditorAssistance>
+  <fsa:Assets contextRef="ID_13" unitRef="DKK" decimals="0">2598690</fsa:Assets>
+  <fsa:Assets contextRef="ID_14" unitRef="DKK" decimals="0">2480520</fsa:Assets>
+  <fsa:CashAndCashEquivalents contextRef="ID_13" unitRef="DKK" decimals="0">2201260</fsa:CashAndCashEquivalents>
+  <fsa:CashAndCashEquivalents contextRef="ID_14" unitRef="DKK" decimals="0">1712226</fsa:CashAndCashEquivalents>
+  <fsa:ClassOfReportingEntity contextRef="ID_18">Regnskabsklasse B</fsa:ClassOfReportingEntity>
+  <fsa:CompletedDevelopmentProjects contextRef="ID_13" unitRef="DKK" decimals="0">345738
+  </fsa:CompletedDevelopmentProjects>
+  <fsa:CompletedDevelopmentProjects contextRef="ID_14" unitRef="DKK" decimals="0">683950
+  </fsa:CompletedDevelopmentProjects>
+  <fsa:ContributedCapital contextRef="ID_13" unitRef="DKK" decimals="0">208330</fsa:ContributedCapital>
+  <fsa:ContributedCapital contextRef="ID_14" unitRef="DKK" decimals="0">208330</fsa:ContributedCapital>
+  <fsa:CostOfSales contextRef="ID_7" unitRef="DKK" decimals="0">273704</fsa:CostOfSales>
+  <fsa:CostOfSales contextRef="ID_8" unitRef="DKK" decimals="0">2389</fsa:CostOfSales>
+  <fsa:CurrentAssets contextRef="ID_13" unitRef="DKK" decimals="0">2242112</fsa:CurrentAssets>
+  <fsa:CurrentAssets contextRef="ID_14" unitRef="DKK" decimals="0">1776209</fsa:CurrentAssets>
+  <fsa:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
+    contextRef="ID_7" unitRef="DKK" decimals="0">365891
+  </fsa:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss>
+  <fsa:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss
+    contextRef="ID_8" unitRef="DKK" decimals="0">284262
+  </fsa:DepreciationAmortisationExpenseAndImpairmentLossesOfPropertyPlantAndEquipmentAndIntangibleAssetsRecognisedInProfitOrLoss>
+  <fsa:DisclosureOfAccountingPolicies contextRef="ID_18">
+
+    Regnskabsklasse
+    Årsrapporten for Mapicture ApS for 2014 er aflagt i overensstemmelse med årsregnskabslovens bestemmelser for
+    virksomheder i regnskabsklasse B.
+
+    Den anvendte regnskabspraksis er uændret i forhold til tidligere år.
+
+    Rapporteringsvaluta
+    Årsrapporten er aflagt i danske kroner.
+
+    Omregning af fremmed valuta
+    Transaktioner i fremmed valuta omregnes til danske kroner efter transaktionsdagens kurs. Monetære aktiver og
+    forpligtelser i fremmed valuta omregnes til danske kroner efter balancedagens valutakurser. Realiserede og
+    urealiserede valutakursgevinster og -tab indgår i resultatopgørelsen under finansielle poster.
+
+    Generelt
+
+    Generelt om indregning og måling
+    Indtægter indregnes i resultatopgørelsen i takt med, at de indtjenes, herunder indregnes værdireguleringer af
+    finansielle aktiver og forpligtelser, der måles til dagsværdi eller amortiseret kostpris. Endvidere indregnes i
+    resultatopgørelsen alle omkostninger, der er afholdt for at opnå årets indtjening, herunder afskrivninger,
+    nedskrivninger og hensatte forpligtelser samt tilbageførsler som følge af ændrede regnskabsmæssige skøn af beløb,
+    der tidligere har været indregnet i resultatopgørelsen.
+
+    Aktiver indregnes i balancen, når det er sandsynligt, at fremtidige økonomiske fordele vil tilflyde selskabet, og
+    aktivets værdi kan måles pålideligt.
+
+    Forpligtelser indregnes i balancen, når det er sandsynligt, at fremtidige økonomiske fordele vil fragå selskabet, og
+    forpligtelsens værdi kan måles pålideligt.
+
+    Ved første indregning måles aktiver og forpligtelser til kostpris. Efterfølgende måles aktiver og forpligtelser som
+    beskrevet for hver enkelt regnskabspost nedenfor.
+
+    Visse finansielle aktiver og forpligtelser måles til amortiseret kostpris, hvorved der indregnes en konstant
+    effektiv rente over løbetiden. Amortiseret kostpris opgøres som oprindelig kostpris med fradrag af afdrag og
+    tillæg/fradrag af den akkumulerede afskrivning af forskellen mellem kostprisen og det nominelle beløb. Herved
+    fordeles kurstab og -gevinst over løbetiden.
+
+    Ved indregning og måling tages hensyn til forudsigelige tab og risici, der fremkommer, inden årsrapporten aflægges,
+    og som be- eller afkræfter forhold, der eksisterer på balancedagen.
+
+    Resultatopgørelsen
+
+    Nettoomsætning
+    Indtægter ved salg af varer indregnes i resultatopgørelsen på tidspunktet for levering og risikoens overgang,
+    såfremt indtægten kan opgøres pålideligt. Omsætningen opgøres efter fradrag af moms, afgifter og rabatter.
+
+    Indtægter ved levering af serviceydelser indregnes som omsætning i takt med leveringen af ydelsen.
+
+    Andre eksterne omkostninger
+    Andre eksterne omkostninger omfatter omkostninger vedrørende salg og administration.
+
+    Personaleomkostninger
+    Personaleomkostninger omfatter lønninger og gager, pensioner samt omkostninger til social sikring.
+
+    Andre personaleomkostninger indregnes under andre eksterne omkostninger.
+
+    Af- og nedskrivninger på immaterielle og materielle anlægsaktiver
+    Af- og nedskrivninger på immaterielle og materielle anlægsaktiver er foretaget ud fra en løbende vurdering af
+    aktivernes brugstid i virksomheden. Anlægsaktiverne afskrives lineært på grundlag af kostprisen, baseret på følgende
+    vurdering af brugstider og restværdier:
+
+    Brugstid Restværdi
+    Færdiggjorte udviklingsprojekter 3 år 0%
+    Andre anlæg, driftsmateriel og inventar 3-8 år 0%
+
+    Nyanskaffelser med en kostpris under kr. 12.600 omkostningsføres fuldt ud i anskaffelsesåret.
+
+    Finansielle indtægter og omkostninger
+    Finansielle indtægter og omkostninger indregnes i resultatopgørelsen med de beløb, der vedrører regnskabsåret.
+    Finansielle indtægter og omkostninger indeholder renteindtægter og -omkostninger, realiserede og urealiserede
+    kursgevinster og -tab vedrørende værdipapirer, gæld og transaktioner i fremmed valuta, modtaget udbytte fra andre
+    kapitalandele, amortisering af finansielle aktiver og forpligtelser samt tillæg og godtgørelser under
+    acontoskatteordningen.
+
+    Skat af årets resultat
+    Skat af årets resultat omfatter aktuel skat af årets forventede skattepligtige indkomst og årets regulering af
+    udskudt skat med fradrag af den del af årets skat, der vedrører egenkapitalbevægelser. Aktuel og udskudt skat
+    vedrørende egenkapitalbevægelser indregnes direkte i egenkapitalen. Selskabet og de danske tilknyttede virksomheder
+    er sambeskattede. Den danske selskabsskat fordeles mellem overskuds- og underskudsgivende danske selskaber i forhold
+    til disses skattepligtige indkomst (fuld fordeling).
+
+    Balancen
+
+    Immaterielle anlægsaktiver
+    Udviklingsprojekter, der er klart definerede og identificerbare, og hvor den tekniske udnyttelsesgrad,
+    tilstrækkelige ressourcer og et potentielt fremtidigt marked eller udviklingsmulighed i virksomheden kan påvises, og
+    hvor det er hensigten at fremstille, markedsføre eller anvende produktet eller processen, indregnes som immaterielle
+    anlægsaktiver, såfremt der er tilstrækkelig sikkerhed for, at kapitalværdien af den fremtidige indtjening kan dække
+    produktions-, salgs- og administrative omkostninger samt de samlede udviklingsomkostninger.
+
+    Øvrige udviklingsomkostninger indregnes som omkostninger i resultatopgørelsen i takt med, at de afholdes.
+
+    Udviklingsomkostninger opgøres til de direkte medgåede omkostninger samt en andel af de omkostninger, der indirekte
+    kan henføres til de enkelte udviklingsprojekter.
+
+    Materielle anlægsaktiver
+    Materielle anlægsaktiver måles til kostpris med tillæg af eventuelle opskrivninger og med fradrag af akkumulerede
+    af- og nedskrivninger. Kostpris omfatter anskaffelsesprisen og omkostninger direkte tilknyttet anskaffelsen indtil
+    det tidspunkt, hvor aktivet er klart til at blive taget i brug.
+
+    Kapitalandele i tilknyttede og associerede virksomheder
+    Kapitalandele i tilknyttede og associerede virksomheder måles til kostpris. Udbytte, der overstiger den akkumulerede
+    indtjening i den tilknyttede eller den associerede virksomhed i ejerperioden, behandles som en reduktion af
+    kostprisen. I tilfælde, hvor kostprisen overstiger nettorealisationsværdien, nedskrives til denne lavere værdi.
+
+    Tilgodehavender
+    Tilgodehavender måles til amortiseret kostpris, der almindeligvis svarer til nominel værdi. Værdien reduceres med
+    nedskrivninger til imødegåelse af forventede tab.
+
+    Periodeafgrænsningsposter, aktiver
+    Periodeafgrænsningsposter indregnet under aktiver omfatter forudbetalte omkostninger vedrørende efterfølgende
+    regnskabsår.
+
+    Likvider
+    Likvider omfatter likvide beholdninger og kortfristede værdipapirer med en løbetid under 3 måneder, og som uden
+    hindring kan omsættes til likvide beholdninger, og hvorpå der kun er ubetydelige risici for værdiændringer.
+
+    Hensatte forpligtelser
+    Udskudt skat
+    Udskudt skat og årets regulering heraf opgøres efter den balanceorienterede gældsmetode som skatteværdien af alle
+    midlertidige forskelle mellem regnskabsmæssige og skattemæssige værdier af aktiver og forpligtelser.
+
+    Udskudte skatteaktiver, herunder skatteværdien af fremførselsberettigede skattemæssige underskud, indregnes med den
+    værdi, hvortil de forventes at blive anvendt, enten ved udligning i skat af fremtidig indtjening eller ved
+    modregning i udskudte skatteforpligtelser i virksomheder inden for samme juridiske skatteenhed og jurisdiktion.
+
+    Udskudt skat måles på grundlag af de skatteregler og skattesatser, der med balancedagens lovgivning vil være
+    gældende, når den udskudte skat forventes udløst som aktuel skat.
+
+    Finansielle gældsforpligtelser
+    Fastforrentede lån som realkreditlån og lån hos kreditinstitutter indregnes ved lånoptagelsen til det modtagne
+    provenu med fradrag af afholdte transaktionsomkostninger. I efterfølgende perioder måles lånene til amortiseret
+    kostpris, således at forskellen mellem provenuet og den nominelle værdi indregnes i resultatopgørelsen som en
+    renteomkostning over låneperioden.
+
+    Øvrige gældsforpligtelser måles til amortiseret kostpris, hvilket almindeligvis svarer til nominel værdi.
+
+    Aktuelle skatteforpligtelser
+    Aktuelle skatteforpligtelser og tilgodehavende aktuel skat indregnes i balancen som beregnet skat af årets
+    forventede skattepligtige indkomst, reguleret for skat af tidligere års skattepligtige indkomster samt betalte
+    acontoskatter.
+
+    Udbytte for regnskabsåret
+    Foreslået udbytte for regnskabsåret indregnes som en gældsforpligtelse.
+
+    Eventualaktiver og -forpligtelser
+    Eventualaktiver og -forpligtelser indregnes ikke i balancen, men oplyses alene i noterne.
+  </fsa:DisclosureOfAccountingPolicies>
+  <fsa:DisclosureOfCollateralsAndAssetsPledgesAsSecurity contextRef="ID_6">9. Sikkerhedsstillelser og pantsætninger
+    Der er ingen sikkerhedsstillelser eller pantsætninger pr. statusdagen udover dem, der fremgår af årsregnskabet.
+
+  </fsa:DisclosureOfCollateralsAndAssetsPledgesAsSecurity>
+  <fsa:DisclosureOfContingentLiabilities contextRef="ID_6">
+
+    8. Eventualforpligtelser
+    Der er ingen eventualforpligtelser pr. statusdagen udover dem, der fremgår af årsregnskabet.
+
+
+  </fsa:DisclosureOfContingentLiabilities>
+  <fsa:DisclosureOfContributedCapital contextRef="ID_5">
+    6. Virksomhedskapital
+    2014 2013
+    Saldo primo 208.330 125.000
+    Årets tilgang 0 83.330
+    Saldo ultimo 208.330 208.330
+
+    Selskabskapitalen er fordelt i 20.833 anparter á kr. 10.
+
+    Virksomhedskapitalen har udviklet sig således:
+    2014 2013 2012 2011 2010
+    Saldo primo 208.330 125.000 125.000 125.000 125.000
+    Korrektion primo 0 0 0 0 0
+    Årets tilgang 0 83.330 0 0 0
+    Årets afgang 0 0 0 0 0
+    Andre reguleringer 0 0 0 0 0
+    Saldo ultimo 208.330 208.330 125.000 125.000 125.000
+
+  </fsa:DisclosureOfContributedCapital>
+  <fsa:DisclosureOfEmployeeBenefitsExpense contextRef="ID_3">1. Personaleomkostninger
+    2014 2013
+    Lønninger 1.001.647 1.134.240
+    Pensioner 2.430 1.980
+    Omkostninger til social sikring 1.801 1.003
+    1.005.878 1.137.223
+
+  </fsa:DisclosureOfEmployeeBenefitsExpense>
+  <fsa:DisclosureOfEquity contextRef="ID_5">
+    7. Overført resultat
+    2014 2013
+    Saldo primo 368.964 300.555
+    Årets tilgang -588.224 68.409
+    Overkurs ved kapitalforhøjelse 916.670 916.670
+    Saldo ultimo 697.410 1.285.634
+
+  </fsa:DisclosureOfEquity>
+  <fsa:DisclosureOfInvestments contextRef="ID_4">
+
+    5. Oplysninger om kapitalandele i tilknyttede og associerede virksomheder
+    Tilknyttede virksomheder
+    Navn Hjemsted Ejerandel i % Egenkapital Resultat
+    Mapicture UG Berlin 100,00 81.297 146.097
+    81.297 146.097
+
+    Der foreligger ikke et endeligt revideret regnskab for Mapicture UG på tidpunktet for aflæggelse af Mapicture ApS
+    regnskab for 2014.
+
+  </fsa:DisclosureOfInvestments>
+  <fsa:DisclosureOfPropertyPlantAndEquipment contextRef="ID_4">3. Færdiggjorte udviklingsprojekter
+    2014 2013
+    Kostpris primo 1.687.250 1.201.676
+    Tilgang i årets løb, herunder forbedringer 18.157 485.574
+    Kostpris ultimo 1.705.407 1.687.250
+
+    Af- og nedskrivninger primo -1.003.300 -728.326
+    Årets nedskrivninger -356.369 -274.974
+    Af- og nedskrivninger ultimo -1.359.669 -1.003.300
+
+    Regnskabsmæssig værdi ultimo 345.738 683.950
+
+    , 4. Andre anlæg, driftsmateriel og inventar
+    2014 2013
+    Kostpris primo 106.557 106.557
+    Kostpris ultimo 106.557 106.557
+
+    Af- og nedskrivninger primo -88.430 -79.142
+    Årets afskrivninger -9.522 -9.289
+    Af- og nedskrivninger ultimo -97.952 -88.431
+
+    Regnskabsmæssig værdi ultimo 8.605 18.126
+
+  </fsa:DisclosureOfPropertyPlantAndEquipment>
+  <fsa:DisclosureOfTaxExpenseOnOrdinaryActivities contextRef="ID_3">2. Skat af årets resultat
+    2014 2013
+    Regulering udskudt skat -67.601 -5.607
+    -67.601 -5.607
+
+  </fsa:DisclosureOfTaxExpenseOnOrdinaryActivities>
+  <fsa:EmployeeBenefitsExpense contextRef="ID_7" unitRef="DKK" decimals="0">1005878</fsa:EmployeeBenefitsExpense>
+  <fsa:EmployeeBenefitsExpense contextRef="ID_8" unitRef="DKK" decimals="0">1137223</fsa:EmployeeBenefitsExpense>
+  <fsa:Equity contextRef="ID_13" unitRef="DKK" decimals="0">905740</fsa:Equity>
+  <fsa:Equity contextRef="ID_14" unitRef="DKK" decimals="0">1493964</fsa:Equity>
+  <fsa:FixturesFittingsToolsAndEquipment contextRef="ID_13" unitRef="DKK" decimals="0">8605
+  </fsa:FixturesFittingsToolsAndEquipment>
+  <fsa:FixturesFittingsToolsAndEquipment contextRef="ID_14" unitRef="DKK" decimals="0">18127
+  </fsa:FixturesFittingsToolsAndEquipment>
+  <fsa:GrossResult contextRef="ID_7" unitRef="DKK" decimals="0">713762</fsa:GrossResult>
+  <fsa:GrossResult contextRef="ID_8" unitRef="DKK" decimals="0">1483153</fsa:GrossResult>
+  <fsa:IntangibleAssets contextRef="ID_13" unitRef="DKK" decimals="0">345738</fsa:IntangibleAssets>
+  <fsa:IntangibleAssets contextRef="ID_14" unitRef="DKK" decimals="0">683950</fsa:IntangibleAssets>
+  <fsa:LiabilitiesAndEquity contextRef="ID_13" unitRef="DKK" decimals="0">2598690</fsa:LiabilitiesAndEquity>
+  <fsa:LiabilitiesAndEquity contextRef="ID_14" unitRef="DKK" decimals="0">2480520</fsa:LiabilitiesAndEquity>
+  <fsa:LiabilitiesOtherThanProvisions contextRef="ID_13" unitRef="DKK" decimals="0">1692949
+  </fsa:LiabilitiesOtherThanProvisions>
+  <fsa:LiabilitiesOtherThanProvisions contextRef="ID_14" unitRef="DKK" decimals="0">918955
+  </fsa:LiabilitiesOtherThanProvisions>
+  <fsa:LongtermInvestmentsAndReceivables contextRef="ID_13" unitRef="DKK" decimals="0">2235
+  </fsa:LongtermInvestmentsAndReceivables>
+  <fsa:LongtermInvestmentsAndReceivables contextRef="ID_14" unitRef="DKK" decimals="0">2235
+  </fsa:LongtermInvestmentsAndReceivables>
+  <fsa:LongtermInvestmentsInGroupEnterprises contextRef="ID_13" unitRef="DKK" decimals="0">2235
+  </fsa:LongtermInvestmentsInGroupEnterprises>
+  <fsa:LongtermInvestmentsInGroupEnterprises contextRef="ID_14" unitRef="DKK" decimals="0">2235
+  </fsa:LongtermInvestmentsInGroupEnterprises>
+  <fsa:NoncurrentAssets contextRef="ID_13" unitRef="DKK" decimals="0">356578</fsa:NoncurrentAssets>
+  <fsa:NoncurrentAssets contextRef="ID_14" unitRef="DKK" decimals="0">704311</fsa:NoncurrentAssets>
+  <fsa:OtherExternalExpenses contextRef="ID_7" unitRef="DKK" decimals="0">1381901</fsa:OtherExternalExpenses>
+  <fsa:OtherExternalExpenses contextRef="ID_8" unitRef="DKK" decimals="0">406008</fsa:OtherExternalExpenses>
+  <fsa:OtherShorttermPayables contextRef="ID_13" unitRef="DKK" decimals="0">570197</fsa:OtherShorttermPayables>
+  <fsa:OtherShorttermPayables contextRef="ID_14" unitRef="DKK" decimals="0">377235</fsa:OtherShorttermPayables>
+  <fsa:ProfitLoss contextRef="ID_10" unitRef="DKK" decimals="0">-68409</fsa:ProfitLoss>
+  <fsa:ProfitLoss contextRef="ID_11" unitRef="DKK" decimals="0">588224</fsa:ProfitLoss>
+  <fsa:ProfitLoss contextRef="ID_12" unitRef="DKK" decimals="0">-68409</fsa:ProfitLoss>
+  <fsa:ProfitLoss contextRef="ID_7" unitRef="DKK" decimals="0">-588223</fsa:ProfitLoss>
+  <fsa:ProfitLoss contextRef="ID_8" unitRef="DKK" decimals="0">68409</fsa:ProfitLoss>
+  <fsa:ProfitLoss contextRef="ID_9" unitRef="DKK" decimals="0">588224</fsa:ProfitLoss>
+  <fsa:ProfitLossFromOrdinaryActivitiesBeforeTax contextRef="ID_7" unitRef="DKK" decimals="0">-655824
+  </fsa:ProfitLossFromOrdinaryActivitiesBeforeTax>
+  <fsa:ProfitLossFromOrdinaryActivitiesBeforeTax contextRef="ID_8" unitRef="DKK" decimals="0">62802
+  </fsa:ProfitLossFromOrdinaryActivitiesBeforeTax>
+  <fsa:ProfitLossFromOrdinaryOperatingActivities contextRef="ID_7" unitRef="DKK" decimals="0">-658006
+  </fsa:ProfitLossFromOrdinaryOperatingActivities>
+  <fsa:ProfitLossFromOrdinaryOperatingActivities contextRef="ID_8" unitRef="DKK" decimals="0">61668
+  </fsa:ProfitLossFromOrdinaryOperatingActivities>
+  <fsa:PropertyPlantAndEquipment contextRef="ID_13" unitRef="DKK" decimals="0">8605</fsa:PropertyPlantAndEquipment>
+  <fsa:PropertyPlantAndEquipment contextRef="ID_14" unitRef="DKK" decimals="0">18127</fsa:PropertyPlantAndEquipment>
+  <fsa:Provisions contextRef="ID_13" unitRef="DKK" decimals="0">0</fsa:Provisions>
+  <fsa:Provisions contextRef="ID_14" unitRef="DKK" decimals="0">67601</fsa:Provisions>
+  <fsa:ProvisionsForDeferredTax contextRef="ID_13" unitRef="DKK" decimals="0">0</fsa:ProvisionsForDeferredTax>
+  <fsa:ProvisionsForDeferredTax contextRef="ID_14" unitRef="DKK" decimals="0">67601</fsa:ProvisionsForDeferredTax>
+  <fsa:RetainedEarnings contextRef="ID_13" unitRef="DKK" decimals="0">697410</fsa:RetainedEarnings>
+  <fsa:RetainedEarnings contextRef="ID_14" unitRef="DKK" decimals="0">1285634</fsa:RetainedEarnings>
+  <fsa:Revenue contextRef="ID_7" unitRef="DKK" decimals="0">2369367</fsa:Revenue>
+  <fsa:Revenue contextRef="ID_8" unitRef="DKK" decimals="0">1891550</fsa:Revenue>
+  <fsa:ShorttermLiabilitiesOtherThanProvisions contextRef="ID_13" unitRef="DKK" decimals="0">1692949
+  </fsa:ShorttermLiabilitiesOtherThanProvisions>
+  <fsa:ShorttermLiabilitiesOtherThanProvisions contextRef="ID_14" unitRef="DKK" decimals="0">918955
+  </fsa:ShorttermLiabilitiesOtherThanProvisions>
+  <fsa:ShorttermPrepaymentsReceivedFromCustomers contextRef="ID_13" unitRef="DKK" decimals="0">1096582
+  </fsa:ShorttermPrepaymentsReceivedFromCustomers>
+  <fsa:ShorttermPrepaymentsReceivedFromCustomers contextRef="ID_14" unitRef="DKK" decimals="0">516050
+  </fsa:ShorttermPrepaymentsReceivedFromCustomers>
+  <fsa:ShorttermReceivables contextRef="ID_13" unitRef="DKK" decimals="0">40852</fsa:ShorttermReceivables>
+  <fsa:ShorttermReceivables contextRef="ID_14" unitRef="DKK" decimals="0">63983</fsa:ShorttermReceivables>
+  <fsa:ShorttermReceivablesFromGroupEnterprises contextRef="ID_13" unitRef="DKK" decimals="0">40852
+  </fsa:ShorttermReceivablesFromGroupEnterprises>
+  <fsa:ShorttermReceivablesFromGroupEnterprises contextRef="ID_14" unitRef="DKK" decimals="0">30233
+  </fsa:ShorttermReceivablesFromGroupEnterprises>
+  <fsa:ShorttermTradePayables contextRef="ID_13" unitRef="DKK" decimals="0">26170</fsa:ShorttermTradePayables>
+  <fsa:ShorttermTradePayables contextRef="ID_14" unitRef="DKK" decimals="0">25670</fsa:ShorttermTradePayables>
+  <fsa:ShorttermTradeReceivables contextRef="ID_13" unitRef="DKK" decimals="0">0</fsa:ShorttermTradeReceivables>
+  <fsa:ShorttermTradeReceivables contextRef="ID_14" unitRef="DKK" decimals="0">33750</fsa:ShorttermTradeReceivables>
+  <fsa:TaxExpenseOnOrdinaryActivities contextRef="ID_7" unitRef="DKK" decimals="0">-67601
+  </fsa:TaxExpenseOnOrdinaryActivities>
+  <fsa:TaxExpenseOnOrdinaryActivities contextRef="ID_8" unitRef="DKK" decimals="0">-5607
+  </fsa:TaxExpenseOnOrdinaryActivities>
+  <gsd:AddressOfSubmittingEnterprisePostcodeAndTown contextRef="ID_0">Kastrup, 2770
+  </gsd:AddressOfSubmittingEnterprisePostcodeAndTown>
+  <gsd:AddressOfSubmittingEnterpriseStreetAndNumber contextRef="ID_0">Tømmerupvej 75
+  </gsd:AddressOfSubmittingEnterpriseStreetAndNumber>
+  <gsd:DateOfApprovalOfReport contextRef="ID_0">2015-02-13</gsd:DateOfApprovalOfReport>
+  <gsd:DateOfGeneralMeeting contextRef="ID_0">2015-02-13</gsd:DateOfGeneralMeeting>
+  <gsd:EmailOfReportingEntity contextRef="ID_0">mapicture@mapicture.dk</gsd:EmailOfReportingEntity>
+  <gsd:HomepageOfReportingEntity contextRef="ID_0">www.mapicture.dk</gsd:HomepageOfReportingEntity>
+  <gsd:IdentificationNumberCvrOfReportingEntity contextRef="ID_0">29835217
+  </gsd:IdentificationNumberCvrOfReportingEntity>
+  <gsd:IdentificationNumberCvrOfSubmittingEnterprise contextRef="ID_0">13254192
+  </gsd:IdentificationNumberCvrOfSubmittingEnterprise>
+  <gsd:InformationOnTypeOfSubmittedReport contextRef="ID_0">Årsrapport</gsd:InformationOnTypeOfSubmittedReport>
+  <gsd:NameAndSurnameOfChairmanOfGeneralMeeting contextRef="ID_0">Samo Olsen
+  </gsd:NameAndSurnameOfChairmanOfGeneralMeeting>
+  <gsd:NameOfReportingEntity contextRef="ID_0">Mapicture ApS</gsd:NameOfReportingEntity>
+  <gsd:NameOfSubmittingEnterprise contextRef="ID_0">Revisionsfirmaet Gutfelt A/S</gsd:NameOfSubmittingEnterprise>
+  <gsd:ReportingPeriodEndDate contextRef="ID_0">2014-12-31</gsd:ReportingPeriodEndDate>
+  <gsd:ReportingPeriodStartDate contextRef="ID_0">2014-01-01</gsd:ReportingPeriodStartDate>
+  <gsd:TelephoneNumberOfReportingEntity contextRef="ID_0">31 77 44 00</gsd:TelephoneNumberOfReportingEntity>
+  <mrv:DescriptionOfPrimaryActivitiesOfEntity contextRef="ID_17">Selskabets væsentligste aktiviteter
+    Selskabets væsentligste aktiviteter består i at drive konsulentvirksomhed inden for IT branchen.
+  </mrv:DescriptionOfPrimaryActivitiesOfEntity>
+  <mrv:DescriptionOfSignificantEventsOccurringAfterEndOfReportingPeriod contextRef="ID_17">Begivenheder efter
+    regnskabsårets afslutning
+    Der er efter regnskabsårets afslutning ikke indtruffet begivenheder af væsentlig betydning for selskabets
+    finansielle stilling.
+  </mrv:DescriptionOfSignificantEventsOccurringAfterEndOfReportingPeriod>
+  <mrv:ManagementsReview contextRef="ID_17">
+    Selskabets væsentligste aktiviteter
+    Selskabets væsentligste aktiviteter består i at drive konsulentvirksomhed inden for IT branchen.
+
+    Udviklingen i aktiviteter og økonomiske forhold
+    Selskabets resultatopgørelse for regnskabsåret 1. januar 2014 - 31. december 2014 udviser et resultat på kr.
+    -588.224, og selskabets balance pr. 31. december 2014 udviser en balancesum på kr. 2.598.690, og en egenkapital på
+    kr. 905.740.
+
+    Begivenheder efter regnskabsårets afslutning
+    Der er efter regnskabsårets afslutning ikke indtruffet begivenheder af væsentlig betydning for selskabets
+    finansielle stilling.
+  </mrv:ManagementsReview>
+  <sob:ConfirmationThatAnnualReportIsPresentedInAccordanceWithRequirementsProvidedForByLegislationAnyStandardsAndRequirementsProvidedByArticlesOfAssociationOrByAgreement
+    contextRef="ID_15">Årsrapporten aflægges i overensstemmelse med årsregnskabsloven.
+  </sob:ConfirmationThatAnnualReportIsPresentedInAccordanceWithRequirementsProvidedForByLegislationAnyStandardsAndRequirementsProvidedByArticlesOfAssociationOrByAgreement>
+  <sob:ConfirmationThatFinancialStatementGivesTrueAndFairViewOfAssetsLiabilitiesEquityFinancialPositionAndResults
+    contextRef="ID_15">Det er min opfattelse, at årsregnskabet giver et retvisende billede af selskabets aktiver,
+    passiver og finansielle stilling pr. 31. december 2014 samt af resultatet af selskabets aktiviteter for
+    regnskabsåret 1. januar 2014 - 31. december 2014.
+  </sob:ConfirmationThatFinancialStatementGivesTrueAndFairViewOfAssetsLiabilitiesEquityFinancialPositionAndResults>
+  <sob:IdentificationOfApprovedAnnualReport contextRef="ID_15">
+    Ledelsen har dags dato behandlet og godkendt årsrapporten for regnskabsåret 1. januar 2014 - 31. december 2014 for
+    Mapicture ApS.
+  </sob:IdentificationOfApprovedAnnualReport>
+  <sob:ManagementsStatementAboutManagementsReview contextRef="ID_15">Ledelsesberetningen indeholder efter min opfattelse
+    en retvisende redegørelse for de forhold, beretningen omhandler.
+  </sob:ManagementsStatementAboutManagementsReview>
+  <sob:PlaceOfSignatureOfStatement contextRef="ID_15">
+    København, den 13. februar 2015
+  </sob:PlaceOfSignatureOfStatement>
+  <sob:RecommendationForApprovalOfAnnualReportByGeneralMeeting contextRef="ID_15">Årsrapporten indstilles til
+    generalforsamlingens godkendelse.
+  </sob:RecommendationForApprovalOfAnnualReportByGeneralMeeting>
+  <sob:StatementByExecutiveAndSupervisoryBoards contextRef="ID_15">
+
+    Ledelsen har dags dato behandlet og godkendt årsrapporten for regnskabsåret 1. januar 2014 - 31. december 2014 for
+    Mapicture ApS.
+
+    Årsrapporten aflægges i overensstemmelse med årsregnskabsloven.
+
+    Det er min opfattelse, at årsregnskabet giver et retvisende billede af selskabets aktiver, passiver og finansielle
+    stilling pr. 31. december 2014 samt af resultatet af selskabets aktiviteter for regnskabsåret 1. januar 2014 - 31.
+    december 2014.
+
+    Ledelsesberetningen indeholder efter min opfattelse en retvisende redegørelse for de forhold, beretningen omhandler.
+
+    Årsrapporten indstilles til generalforsamlingens godkendelse.
+
+
+    København, den 13. februar 2015
+
+    Direktion
+
+
+    Samo Olsen
+
+
+    Direktør
+
+  </sob:StatementByExecutiveAndSupervisoryBoards>
+</xbrli:xbrl>

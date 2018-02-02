@@ -132,7 +132,7 @@ class RegnskabNodes {
     }
   }
 
-  public static List<String> NOEGLETAL_IDENTER = ['ProfitLoss','GrossProfitLoss','GrossResult']
+  public static List<String> NOEGLETAL_IDENTER = ['GrossResult','TaxExpenseOnOrdinaryActivities','ProfitLoss','GrossProfitLoss']
   public static List<String> BALANCE_IDENTER = ['Equity','Assets','Provisions']
 
   public static final List<String> IFRS_NAMESPACE_LIST = ["http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full",

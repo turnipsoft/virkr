@@ -47,6 +47,22 @@ class RegnskabXmlParserSpec extends Specification {
     ro.aaretsresultatTal.aaretsresultat.vaerdi == 10798462l
   }
 
+  void "test parse mapicture"() {
+    given:
+    String xml = TestUtil.load("/mapicture.xml")
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    Regnskab regnskabData = new Regnskab()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    Resultatopgoerelse ro = regnskabData.resultatopgoerelse
+
+    then:
+    ro.bruttoresultatTal.bruttofortjeneste.vaerdi == 713762l
+  }
+
   void "test parse rest"() {
     given:
     String xml = TestUtil.load("/balance-hoeker.xml")
