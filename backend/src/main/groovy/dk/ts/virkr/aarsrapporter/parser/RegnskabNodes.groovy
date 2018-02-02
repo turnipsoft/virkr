@@ -132,7 +132,7 @@ class RegnskabNodes {
     }
   }
 
-  public static List<String> NOEGLETAL_IDENTER = ['GrossResult','TaxExpenseOnOrdinaryActivities','ProfitLoss','GrossProfitLoss']
+  public static List<String> NOEGLETAL_IDENTER = ['TaxExpenseOnOrdinaryActivities','GrossResult', 'ProfitLoss','GrossProfitLoss']
   public static List<String> BALANCE_IDENTER = ['Equity','Assets','Provisions']
 
   public static final List<String> IFRS_NAMESPACE_LIST = ["http://xbrl.ifrs.org/taxonomy/2014-03-05/ifrs-full",
@@ -271,6 +271,10 @@ class RegnskabNodes {
     return hentContextRef(xmlDokument, ns.get(0), contextNodes, identificerendeElementer, nyeste)
   }
 
+  boolean hasNodeChild(Node n, String child) {
+    def res = n.children().find{ it.name() == child }
+    return res
+  }
   String hentContextRef(Node xmlDokument,
                         Namespace ns,
                         NodeList contextNodes,
@@ -301,7 +305,9 @@ class RegnskabNodes {
 
         String scenario = getNameWithNamespaceOf(contextRefNodeCandidate, 'scenario');
 
-        if (erFsaOgKonsolideret || (contextRefNodeCandidate && !contextRefNodeCandidate[scenario] && !contextRefNodeCandidateName.contains('_C_'))) {
+        boolean hasNodeChild = hasNodeChild(contextRefNodeCandidate, scenario);
+
+        if (erFsaOgKonsolideret || (contextRefNodeCandidate && !hasNodeChild && !contextRefNodeCandidateName.contains('_C_'))) {
           Node existing = contextRefNodeCandidates.find {
             String name = it.name()
             String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
