@@ -275,6 +275,15 @@ class RegnskabNodes {
     def res = n.children().find{ it.name() == child }
     return res
   }
+
+  NodeList getKeyFigureNodes(List<String> identifiedElements, Node xmlDocument, Namespace namespace) {
+    NodeList n
+    identifiedElements.each {
+      if (n) return;
+      n = xmlDokument[namespace.prefix+':'+it]
+    }
+  }
+
   String hentContextRef(Node xmlDokument,
                         Namespace ns,
                         NodeList contextNodes,

@@ -1,9 +1,7 @@
 package dk.ts.virkr.aarsrapporter.parser.berigelse
 
-import dk.ts.virkr.aarsrapporter.db.Regnskabsdata
 import dk.ts.virkr.aarsrapporter.model.AaretsresultatTal
 import dk.ts.virkr.aarsrapporter.model.Regnskab
-import dk.ts.virkr.aarsrapporter.model.RegnskabData
 
 /**
  * Created by sorenhartvig on 25/06/2017.
