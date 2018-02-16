@@ -120,6 +120,11 @@ class RegnskabXmlParser {
 
     aktiver.aktiver = getRegnskabstal(nl, ns, 'Assets')
 
+    aktiver.tilgodehavenderfraassocieredevirksomheder = getRegnskabstal(nl, ns, 'ShorttermReceivablesFromAssociates')
+    aktiver.produktionsanlaegogmaskiner = getRegnskabstal(nl, ns, 'PlantAndMachinery')
+    aktiver.materielleaktiverunderudfoerelseogforudbetalingerformaterielleanlaegsaktiver = getRegnskabstal(nl, ns, 'PropertyPlantAndEquipmentInProgressAndPrepaymentsForPropertyPlantAndEquipment')
+    aktiver.langfristedetilgodehavenderhosassocieredevirksomheder = getRegnskabstal(nl, ns, 'LongtermReceivablesFromAssociates')
+
     Passiver passiver = data.balance.passiver
     passiver.gaeldsforpligtelser = getRegnskabstal(nl, ns, 'LiabilitiesOtherThanProvisions','CurrentLiabilities' )
     passiver.egenkapital = getRegnskabstal(nl, ns, 'Equity' )
@@ -144,6 +149,11 @@ class RegnskabXmlParser {
     passiver.modtagneforudbetalingerfrakunder = getRegnskabstal(nl, ns, 'ShorttermPrepaymentsReceivedFromCustomers')
     passiver.deposita = getRegnskabstal(nl, ns, 'DepositsLongtermLiabilitiesOtherThanProvisions')
     passiver.igangvaerendearbejderforfremmedregning = getRegnskabstal(nl, ns, 'ShorttermContractWorkInProgressLiabilities')
+
+    passiver.andrereserver = getRegnskabstal(nl, ns, 'OtherReserves')
+    passiver.reserveforudviklingsomkostninger = getRegnskabstal(nl, ns, 'ReserveForDevelopmentExpenditure')
+    passiver.kreditinstitutter = getRegnskabstal(nl, ns, 'ShorttermDebtToOtherCreditInstitutions')
+
 
     // det aktuelle regnskab har også revisionsoplysninger
     if (nyeste) {

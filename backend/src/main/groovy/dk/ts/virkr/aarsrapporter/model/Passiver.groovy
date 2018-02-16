@@ -27,4 +27,8 @@ class Passiver extends ModelBase {
   Regnskabstal modtagneforudbetalingerfrakunder //ShorttermPrepaymentsReceivedFromCustomers
   Regnskabstal deposita
   Regnskabstal igangvaerendearbejderforfremmedregning // e:ShorttermContractWorkInProgressLiabilities
+
+  Regnskabstal andrereserver //OtherReserves
+  Regnskabstal reserveforudviklingsomkostninger //ReserveForDevelopmentExpenditure
+  Regnskabstal kreditinstitutter // ShorttermDebtToOtherCreditInstitutions
 }

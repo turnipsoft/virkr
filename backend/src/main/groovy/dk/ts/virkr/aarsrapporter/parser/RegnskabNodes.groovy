@@ -316,7 +316,7 @@ class RegnskabNodes {
 
         boolean hasNodeChild = hasNodeChild(contextRefNodeCandidate, scenario);
 
-        if (erFsaOgKonsolideret || (contextRefNodeCandidate && !hasNodeChild && !contextRefNodeCandidateName.contains('_C_'))) {
+        if (erFsaOgKonsolideret || (contextRefNodeCandidate && !hasNodeChild)) {
           Node existing = contextRefNodeCandidates.find {
             String name = it.name()
             String ens = name.contains(':')? name.substring(0, name.indexOf(':')+1) : ''
@@ -324,11 +324,17 @@ class RegnskabNodes {
             String e2 = getEndDate(contextRefNodeCandidate, ens)
             e1==e2
           }
-          // tilføjer kun hvis den ikke allerede eksisterer i forvejen
-          if (!existing) {
+          // tilføjer kun hvis den ikke allerede eksisterer i forvejen, men tilføj dog også hvis dens id ikke er _C_ og den
+          // eksisterende er _C_ hvilket betyder den eksisterede f.eks. er det konsoliderede tal
+          if (!existing || (existing.attribute('id').contains('_C_') && !contextRefNodeCandidate.attribute('id').contains('_C_'))) {
             contextRefNodeCandidates << contextRefNodeCandidate
           }
         }
+      }
+
+      // Konsoliderede regnskaber er lidt specielle med deres håndtering af consolidated og parent og man kan ikke se ud af context om den er parent eller hvad
+      if (contextRefNodeCandidates.size()>2) {
+        contextRefNodeCandidates = contextRefNodeCandidates.findAll{ !it.attribute('id').contains('_C_')}
       }
 
       String name = contextRefNodeCandidates[0].name()
@@ -345,7 +351,6 @@ class RegnskabNodes {
         }
       }
     }
-
 
     return null
   }

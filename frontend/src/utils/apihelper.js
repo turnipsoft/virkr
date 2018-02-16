@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 export default class APIHelper {
 
   static host() {
-    return 'http://virkr.dk'
+    return 'http://localhost:9092'
 }
 
   static url(path) {

@@ -37,4 +37,8 @@ class Aktiver extends ModelBase {
   Regnskabstal omsaetningsaktiver // CurrentAssets
   Regnskabstal aktiver // Assets
 
+  Regnskabstal tilgodehavenderfraassocieredevirksomheder // ShorttermReceivablesFromAssociates
+  Regnskabstal produktionsanlaegogmaskiner //PlantAndMachinery
+  Regnskabstal materielleaktiverunderudfoerelseogforudbetalingerformaterielleanlaegsaktiver // PropertyPlantAndEquipmentInProgressAndPrepaymentsForPropertyPlantAndEquipment
+  Regnskabstal langfristedetilgodehavenderhosassocieredevirksomheder // LongtermReceivablesFromAssociates
 }

@@ -140,10 +140,17 @@ export default class NoegletalTabel extends Component {
               {this._renderNoegletal("balance.aktiver.erhvervedeimmaterielleanlaegsaktiver","Erhvervede immaterielle anlægsaktiver",sz)}
               {this._renderNoegletal("balance.aktiver.materielleanlaegsaktiverunderudfoerelse","Materielle anlægsaktiver under udførelse",sz)}
               {this._renderNoegletal("balance.aktiver.immaterielleanlaegsaktiver","Immaterielle anlægsaktiver ialt",sz,"noegletal-label-bold")}
+
               {this._renderNoegletal("balance.aktiver.andreanlaegdriftoginventar","Andre anlæg, driftsmateriel, inventar",sz)}
               {this._renderNoegletal("balance.aktiver.grundeogbygninger","Grunde og bygninger",sz)}
+              {this._renderNoegletal("balance.aktiver.produktionsanlaegogmaskiner","Produktionsanlæg og maskiner",sz)}
+              {this._renderNoegletal("balance.aktiver.materielleaktiverunderudfoerelseogforudbetalingerformaterielleanlaegsaktiver","Materialle aktiver under udførelse",sz)}
+
+
               {this._renderNoegletal("balance.aktiver.materielleanlaegsaktiver","Materielle anlægsaktiver",sz,"noegletal-label-bold")}
               {this._renderNoegletal("balance.aktiver.langsigtedekapitalandeleitilknyttedevirksomheder","Kapitalandele",sz)}
+              {this._renderNoegletal("balance.aktiver.langfristedetilgodehavenderhosassocieredevirksomheder","Tilgodehavender hos associerede virksomheder",sz)}
+
               {this._renderNoegletal("balance.aktiver.andretilgodehavender","Andre tilgodehavender",sz)}
               {this._renderNoegletal("balance.aktiver.finansielleanlaegsaktiver","Finansielle anlægsaktiver ialt",sz, "noegletal-label-bold")}
 
@@ -156,6 +163,8 @@ export default class NoegletalTabel extends Component {
               {this._renderNoegletal("balance.aktiver.raavareroghjaelpematerialer","Råvarer og hjælpematerialer",sz)}
               {this._renderNoegletal("balance.aktiver.fremstilledevareroghandelsvarer","Fremstillede varer og handelsvarer",sz)}
               {this._renderNoegletal("balance.aktiver.varebeholdninger","Varebeholdninger ialt",sz,'noegletal-label-bold')}
+
+              {this._renderNoegletal("balance.aktiver.tilgodehavenderfraassocieredevirksomheder","Tilgodehavende fra associerede virksomheder",sz)}
               {this._renderNoegletal("balance.aktiver.tilgodehavenderfrasalogtjenesteydelser","Tilgodehavende fra salg og tjenesteydelser",sz)}
               {this._renderNoegletal("balance.aktiver.tilgodehaverhostilknyttedevirksomheder","Tilgodehavende fra tilknyttede virksomheder",sz)}
               {this._renderNoegletal("balance.aktiver.langfristedetilgodehavenderhosvirksomhedsdeltagereogledelse","Langfristede tilgodehavener fra virksomhed og ledelse",sz)}
@@ -193,7 +202,10 @@ export default class NoegletalTabel extends Component {
               {this.emptyRow()}
 
               {this._renderNoegletal("balance.passiver.virksomhedskapital","Virksomhedskapital",sz)}
+              {this._renderNoegletal("balance.passiver.andrereserver","Andre reserver",sz)}
+              {this._renderNoegletal("balance.passiver.reserveforudviklingsomkostninger","Reserve for udviklingsomkostninger",sz)}
               {this._renderNoegletal("balance.passiver.overfoertresultat","Overført resultat",sz)}
+
               {this._renderNoegletal("balance.passiver.udbytte","Foreslået udbytte",sz)}
 
               {this.emptyRow()}
@@ -218,6 +230,7 @@ export default class NoegletalTabel extends Component {
               {this._renderNoegletal("balance.passiver.igangvaerendearbejderforfremmedregning","Igangværende arbejde for fremmed regning",sz)}
               {this._renderNoegletal("balance.passiver.kortsigtedegaeldsforpligtelser","Gældsforpligtelser",sz)}
               {this._renderNoegletal("balance.passiver.gaeldsforpligtelsertilpengeinstitutter","Gældsforpligtelser til pengeinsitutter",sz)}
+              {this._renderNoegletal("balance.passiver.kreditinstitutter","Kreditinstitutter",sz)}
               {this._renderNoegletal("balance.passiver.leverandoereraftjenesteydelser","Leverandører af tjenester og ydelser",sz)}
               {this._renderNoegletal("balance.passiver.gaeldtiltilknyttedevirksomheder","Gæld til tilknyttede virksomheder",sz)}
               {this._renderNoegletal("balance.passiver.kortfristetskyldigskat","Kortfristet skyldig til skat",sz)}
