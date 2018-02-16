@@ -29,6 +29,8 @@ class Aktiver extends ModelBase {
   Regnskabstal langfristedetilgodehavenderhosvirksomhedsdeltagereogledelse //LongtermReceivablesFromOwnersAndManagement
   Regnskabstal kortfristedetilgodehavenderhosvirksomhedsdeltagereogledelse //ShorttermReceivablesFromOwnersAndManagement
   Regnskabstal tilgodehavenderfravirksomhedsdeltagereogledelse //ReceivablesFromOwnersAndManagementMember
+  Regnskabstal kortfristedetilgodehavenderhosnaertstaaendeparter //TradeAndOtherCurrentReceivablesDueFromRelatedParties
+  Regnskabstal igangvaerendearbejderforfremmedkontrakt // WorkInProgressForThirdPartiesAssets
 
   Regnskabstal tilgodehavenderialt // ShorttermReceivables
   Regnskabstal andrevaerdipapirerogkapitalandele // OtherShorttermInvestments
@@ -41,4 +43,6 @@ class Aktiver extends ModelBase {
   Regnskabstal produktionsanlaegogmaskiner //PlantAndMachinery
   Regnskabstal materielleaktiverunderudfoerelseogforudbetalingerformaterielleanlaegsaktiver // PropertyPlantAndEquipmentInProgressAndPrepaymentsForPropertyPlantAndEquipment
   Regnskabstal langfristedetilgodehavenderhosassocieredevirksomheder // LongtermReceivablesFromAssociates
+  Regnskabstal andreaktiver
+  Regnskabstal andreinvesteringer //OtherInvestmentsInSubsidiariesJointVenturesAndAssociates
 }

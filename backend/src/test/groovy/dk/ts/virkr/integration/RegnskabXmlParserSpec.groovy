@@ -1,5 +1,6 @@
 package dk.ts.virkr.integration
 
+import dk.ts.virkr.aarsrapporter.model.Aktiver
 import dk.ts.virkr.aarsrapporter.model.Balance
 import dk.ts.virkr.aarsrapporter.model.Passiver
 import dk.ts.virkr.aarsrapporter.model.Regnskab
@@ -30,6 +31,22 @@ class RegnskabXmlParserSpec extends Specification {
 
     then:
     ro.aaretsresultatTal.aaretsresultat.vaerdi == 28686000l
+  }
+
+  void "test parse nc-business.xml"() {
+    given:
+    String xml = TestUtil.load("/nc-business.xml")
+    RegnskabXmlParser regnskabXmlParser = new RegnskabXmlParser()
+    Regnskab regnskabData = new Regnskab()
+    RegnskabNodes regnskabNodes = new RegnskabNodes(xml)
+
+    when:
+    regnskabXmlParser.parseOgBerig(regnskabData, regnskabNodes)
+
+    Aktiver aktiver = regnskabData.balance.aktiver
+
+    then:
+    aktiver.anlaegsaktiver.vaerdi == 21680000l
   }
 
   void "test parse dsb.xml"() {

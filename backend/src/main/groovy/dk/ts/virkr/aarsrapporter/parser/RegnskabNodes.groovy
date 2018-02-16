@@ -333,7 +333,7 @@ class RegnskabNodes {
       }
 
       // Konsoliderede regnskaber er lidt specielle med deres håndtering af consolidated og parent og man kan ikke se ud af context om den er parent eller hvad
-      if (contextRefNodeCandidates.size()>2) {
+      if (contextRefNodeCandidates.size()==4) {
         contextRefNodeCandidates = contextRefNodeCandidates.findAll{ !it.attribute('id').contains('_C_')}
       }
 
