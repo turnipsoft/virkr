@@ -168,7 +168,12 @@
   .ejercard:hover {
      box-shadow: 3px 3px 2px var(--lightblue);
      cursor: pointer;
-   }
+  }
+
+  .deltagercard:hover {
+    box-shadow: 3px 3px 2px var(--lightblue);
+    cursor: pointer;
+  }
 
   .virksomhedcard:hover {
     box-shadow: 3px 3px 2px var(--lightblue);
@@ -208,6 +213,19 @@
 }
 
 .ejercard {
+  margin-bottom: 20px;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.badge-default {
+  background-color: var(--darkblue);
+  padding-top: 5px;
+}
+
+.deltagercard {
   margin-bottom: 20px;
 }
 

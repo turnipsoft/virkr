@@ -3,6 +3,7 @@ package dk.ts.virkr.cvr.integration.model.virksomhed
 import dk.ts.virkr.aarsrapporter.model.RegnskabData
 import dk.ts.virkr.aarsrapporter.model.Revision
 import dk.ts.virkr.aarsrapporter.util.Utils
+import dk.ts.virkr.services.model.DeltagerVirksomhed
 import dk.ts.virkr.services.model.Ejer
 
 /**
@@ -27,7 +28,7 @@ class Vrvirksomhed {
   List<DeltagerRelation> deltagerRelation
   List<Produktionsenhed> penheder
   List<Virksomhedsstatus> virksomhedsstatus
-
+  List<DeltagerVirksomhed> deltagere
   List<Livsforloeb> livsforloeb
 
   String getKapital() {
@@ -127,6 +128,18 @@ class Vrvirksomhed {
 
   List<Ejer> getHistoriskeEjere() {
     return getEjere(false)
+  }
+
+  static String ledelsroller = ['direktion','adm. direktør','direktør','bestyrelse']
+
+  boolean harDeltagerLedelsesRolle(DeltagerVirksomhed deltagerVirksomhed) {
+    return deltagerVirksomhed.rolleliste.find{ledelsroller.contains(it)}
+  }
+
+  List<DeltagerVirksomhed> getLedelse() {
+    List<DeltagerVirksomhed> deltagere = []
+    deltagere = this.deltagere.findAll{ harDeltagerLedelsesRolle(it)}
+    return deltagere
   }
 
   String getNyesteStatus() {

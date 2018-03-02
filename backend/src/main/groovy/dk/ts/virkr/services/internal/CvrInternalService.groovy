@@ -1,5 +1,6 @@
 package dk.ts.virkr.services.internal
 
+import dk.ts.virkr.aarsrapporter.util.Utils
 import dk.ts.virkr.cvr.integration.CvrClient
 import dk.ts.virkr.cvr.integration.model.deltager.VirksomhedSummariskRelation
 import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
@@ -268,6 +269,7 @@ class CvrInternalService {
     deltagerSoegeresultat.enhedsNummer = vrdeltagerperson.enhedsNummer
     deltagerSoegeresultat.enhedstype = vrdeltagerperson.enhedstype
     deltagerSoegeresultat.virksomheder = []
+    deltagerSoegeresultat.adresser = vrdeltagerperson.beliggenhedsadresse
     vrdeltagerperson.virksomhedSummariskRelation.each {vsr->
       // arbejder p.t. kun med aktuelle data, så der skal være et livsforløb hvor gyldigtil er null
       if (vsr.virksomhed.livsforloeb.find{ !it.periode.gyldigTil}) {
@@ -306,28 +308,8 @@ class CvrInternalService {
       deltagerVirksomhed.navn = virksomhedsnavn.navn
     }
 
-    // skal finde de roller hvor personen er aktiv
-    List<Organisation> aktiveOrganisationer = virksomhedSummariskRelation.organisationer.findAll {
-      // find funktion og check udløbsdatoen
-      Medlemsdata medlemsdata = it.medlemsData.find { m->
-        m.attributter.find { attribut->
-          attribut.type == 'FUNKTION' &&
-          attribut.vaerdier.find{ vaerdi->
-            vaerdi.periode.gyldigTil==null
-          }
-        }
-      }
-      // hvis den fandtes er personen aktiv i rollen
-      if (medlemsdata) {
-        return true
-      }
 
-      return false
-    }
-
-    List<String> roller = aktiveOrganisationer.collect {it->
-      return it.organisationsNavn.find { !it.periode.gyldigTil }?.navn
-    }
+    List<String> roller = hentRoller(virksomhedSummariskRelation.organisationer)
 
     // hvis der ingen roller er så kan vi lige så godt stoppe her.
     if (!roller) {
@@ -337,6 +319,7 @@ class CvrInternalService {
     roller = konverterRoller(roller)
 
     deltagerVirksomhed.roller = roller.join(", ")
+    deltagerVirksomhed.rolleliste = roller
 
     // ejerandele
     List<Medlemsdata> ejerdata = findAktuelleEjerMedlemsdata(virksomhedSummariskRelation.organisationer)
@@ -348,8 +331,34 @@ class CvrInternalService {
       deltagerVirksomhed.stemmeretiprocent = Ejer.interval(deltagerVirksomhed.stemmeret)
     }
 
-      return deltagerVirksomhed
+    return deltagerVirksomhed
 
+  }
+
+  private List<String> hentRoller(List<Organisation> organisationer) {
+    // skal finde de roller hvor personen er aktiv
+    List<Organisation> aktiveOrganisationer = organisationer.findAll {
+      // find funktion og check udløbsdatoen
+      Medlemsdata medlemsdata = it.medlemsData.find { m ->
+        m.attributter.find { attribut ->
+          attribut.type == 'FUNKTION' &&
+            attribut.vaerdier.find { vaerdi ->
+              vaerdi.periode.gyldigTil == null
+            }
+        }
+      }
+      // hvis den fandtes er personen aktiv i rollen
+      if (medlemsdata) {
+        return true
+      }
+
+      return false
+    }
+
+    List<String> roller = aktiveOrganisationer.collect { it ->
+      return it.organisationsNavn.find { !it.periode.gyldigTil }?.navn
+    }
+    roller
   }
 
   List<String> konverterRoller(List<String> roller) {

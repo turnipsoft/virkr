@@ -4,6 +4,7 @@ import NoegletalTabel from './regnskab/noegletaltabel';
 import VirksomhedsInfo from './virksomhedsinfo';
 import VirksomhedsDetaljer from './virksomhedsdetaljer';
 import Ejere from './ejere';
+import Deltagere from './deltagere';
 import Graf from './regnskab/graf';
 import SectionHeader from '../common/sectionheader';
 
@@ -23,6 +24,7 @@ export default class CvrVisning extends Component {
         <br/>
         {this._renderRegnskaber(regnskaber.regnskabsdata, cvrdata.alleRevisorer)}
         {this._renderEjere(cvrdata)}
+        {this._renderDeltagere(cvrdata)}
         {this._renderCvrData(cvrdata)}
         <br />
       </div>
@@ -39,6 +41,9 @@ export default class CvrVisning extends Component {
                                                              visEjerGraf={this.props.visEjerGraf} /> : null
   }
 
+  _renderDeltagere(cvrdata) {
+    return (cvrdata!==null && cvrdata.deltagerRelation!==null && cvrdata.deltagerRelation.length>=1 ? <Deltagere cvrdata={cvrdata} visDeltager={this.props.visDeltager} /> : null)
+  }
   _renderCvrData(cvrdata) {
     return (cvrdata !== null) ? <VirksomhedsDetaljer cvrdata={cvrdata} /> : null
   }

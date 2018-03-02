@@ -13,4 +13,5 @@ class DeltagerVirksomhed {
   String stemmeret
   String stemmeretiprocent
   String status
+  List<String> rolleliste
 }

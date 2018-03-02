@@ -176,6 +176,8 @@ export default class NoegletalTabel extends Component {
               {this._renderNoegletal("balance.aktiver.andretilgodehavenderomsaetningaktiver","Andre tilgodehavender",sz)}
               {this._renderNoegletal("balance.aktiver.igangvaerendearbejderforfremmedkontrakt","Igangværende arbejder for fremmed kontrakt",sz)}
 
+              {this._renderNoegletal("balance.aktiver.kravpaaindbetalingafregistreretkapital","Krav på indbetaling af registreret kapital",sz)}
+
               {this._renderNoegletal("balance.aktiver.periodeafgraensningsposter","Periodeafgrænsningsposter",sz)}
               {this._renderNoegletal("balance.aktiver.tilgodehavenderialt","Tilgodehavender ialt",sz,'noegletal-label-bold')}
               {this._renderNoegletal("balance.aktiver.andrevaerdipapirerogkapitalandele","Andre værdipapirer og kapitalandele",sz)}

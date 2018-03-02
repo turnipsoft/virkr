@@ -100,6 +100,8 @@ class RegnskabXmlParser {
     aktiver.andretilgodehavender = getRegnskabstal(nl, ns, 'OtherLongtermReceivables','OtherNoncurrentReceivables')
     aktiver.finansielleanlaegsaktiver = getRegnskabstal(nl, ns, 'LongtermInvestmentsAndReceivables', 'NoncurrentFinancialAssets')
     aktiver.anlaegsaktiver = getRegnskabstal(nl, ns, 'NoncurrentAssets')
+
+    aktiver.kravpaaindbetalingafregistreretkapital  = getRegnskabstal(nl, ns, 'ContributedCapitalInArrears')
     aktiver.erhvervedeimmaterielleanlaegsaktiver = getRegnskabstal(nl, ns, 'AcquiredIntangibleAssets')
     aktiver.immaterielleanlaegsaktiver = getRegnskabstal(nl, ns, 'IntangibleAssets')
     aktiver.materielleanlaegsaktiverunderudfoerelse = getRegnskabstal(nl, ns, 'PropertyPlantAndEquipmentInProgressAndPrepaymentsForPropertyPlantAndEquipment')

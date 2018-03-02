@@ -1,5 +1,7 @@
 package dk.ts.virkr.services.model
 
+import dk.ts.virkr.cvr.integration.model.virksomhed.Beliggenhedsadresse
+
 /**
  * Created by sorenhartvig on 06/10/2017.
  */
@@ -12,6 +14,7 @@ class DeltagerSoegeresultat {
   String enhedstype
   String enhedsNummer
 
+  List<Beliggenhedsadresse> adresser
   List<DeltagerVirksomhed> virksomheder
 
   String getVirksomhedsliste() {

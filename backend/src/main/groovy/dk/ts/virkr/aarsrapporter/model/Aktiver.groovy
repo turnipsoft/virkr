@@ -13,6 +13,7 @@ class Aktiver extends ModelBase {
   Regnskabstal finansielleanlaegsaktiver //LongtermInvestmentsAndReceivables
   Regnskabstal anlaegsaktiver //NoncurrentAssets
   Regnskabstal faerdiggjorteudviklingsprojekter
+  Regnskabstal kravpaaindbetalingafregistreretkapital // ContributedCapitalInArrears
   Regnskabstal erhvervedeimmaterielleanlaegsaktiver // AcquiredIntangibleAssets
   Regnskabstal immaterielleanlaegsaktiver // IntangibleAssets
   Regnskabstal materielleanlaegsaktiverunderudfoerelse // PropertyPlantAndEquipmentInProgressAndPrepaymentsForPropertyPlantAndEquipment

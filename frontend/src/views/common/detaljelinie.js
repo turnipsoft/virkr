@@ -12,11 +12,14 @@ export default class DetaljeLinie extends Component {
       val = <a href={this.props.href} target="_blank">{this.props.value}</a>
     } else if (this.props.link) {
       val = <span className="btn-link" onClick={ () => this.props.link(this.props.linkKey, true)}>{this.props.value}</span>
-    } else {
+    } else if (this.props.custom) {
+      val = this.props.custom;
+    }
+    else {
       val = this.props.value;
     }
 
-    if (this.props.value) {
+    if (this.props.value || this.props.custom) {
       return (
         <div className="row">
           <div className="col col-4">
