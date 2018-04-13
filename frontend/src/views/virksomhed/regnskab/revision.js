@@ -4,7 +4,9 @@ export default class Revision extends Component {
 
   render() {
 
-    const {revision, revisorer, regnskab} = this.props;
+    const {revision, revisorer, regnskab, rowIndex} = this.props;
+
+    const rowBaselineIndex = rowIndex * 10;
 
     return (<div className="revision">
       {this._renderRow(null, revision.assistancetype)}
@@ -20,11 +22,11 @@ export default class Revision extends Component {
       {this._renderTooltipRow2(revision.konklusionMedForbehold, revision.konklusionMedForbehold,6)}
 
       {(revision.konklusionMedForbehold!==null && revision.konklusionMedForbehold!==undefined ) && this._renderTooltipRow2('Grundlag for konklusion', revision.grundlagForKonklusion,5)}
-      {this._renderTooltipRow2('Fremhævelse af andre forhold', revision.supplerendeInformationOmAndreForhold, 1)}
-      {this._renderTooltipRow2('Fremhævelse af forhold i regnskabet', revision.supplerendeInformationOmAarsrapport, 2)}
-      {this._renderTooltipRow2('Fremhævelse af forhold vedrørende revisionen', revision.supplerendeInformationOmRevision, 3)}
-      {this._renderTooltipRow2('Væsentligt usikkerhed  vedr. fortsat drift', revision.vaesentligUsikkerhedVedrFortsatDrift, 4)}
-      {this._renderTooltipRow2('Fravalg af revision', revision.ingenRevision, 5)}
+      {this._renderTooltipRow2('Fremhævelse af andre forhold', revision.supplerendeInformationOmAndreForhold, rowBaselineIndex+1)}
+      {this._renderTooltipRow2('Fremhævelse af forhold i regnskabet', revision.supplerendeInformationOmAarsrapport, rowBaselineIndex+2)}
+      {this._renderTooltipRow2('Fremhævelse af forhold vedrørende revisionen', revision.supplerendeInformationOmRevision, rowBaselineIndex+3)}
+      {this._renderTooltipRow2('Væsentligt usikkerhed  vedr. fortsat drift', revision.vaesentligUsikkerhedVedrFortsatDrift, rowBaselineIndex+4)}
+      {this._renderTooltipRow2('Fravalg af revision', revision.ingenRevision, rowBaselineIndex+5)}
       {this._renderEmptyRow(7)}
       {this._renderUnderskrivere(revision)}
 
