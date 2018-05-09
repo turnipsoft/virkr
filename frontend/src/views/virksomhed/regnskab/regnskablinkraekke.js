@@ -24,7 +24,7 @@ export default class RegnskabLinkRaekke extends Component {
   _renderButtons(links) {
     return (
       <td className="noegletal-vaerdi" key={links.xbrl}>
-        {links.xbrl && <a href={links.xbrl} title="Hent regnskab i XBRL format" target="_blank" className="btn btn-primary btn-sm"><span className="fa fa-file-code-o"/></a>}
+        {links.xbrl && <a href={links.xbrl} title="Hent regnskab i XBRL format" target="_blank" className="btn btn-primary btn-sm"><span className="fa fa-file-code-o" download/></a>}
         &nbsp;
         {links.pdf && <a href={links.pdf} title="Hent regnskab i PDF format" target="_blank" className="btn btn-primary btn-sm"><span className="fa fa-file-pdf-o"/></a>}
       </td>
