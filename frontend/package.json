@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm install && webpack",
     "build:dev": "NODE_ENV=develop npm run build",
-    "build:production": "NODE_ENV=productionx   npm run build",
+    "build:production": "NODE_ENV=production npm run build",
     "start": "webpack-dev-server --hot --port 8080 --watch --open",
     "rimraf": "rimraf",
     "clean": "npm cache clean && npm run rimraf -- node_modules build"

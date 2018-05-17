@@ -3,8 +3,9 @@ import 'whatwg-fetch';
 export default class APIHelper {
 
   static host() {
-    return 'http://virkr.dk'
-}
+    return API_URL
+    //return 'http://virkr.dk'
+  }
 
   static url(path) {
     return this.host()+path;
