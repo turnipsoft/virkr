@@ -46,5 +46,14 @@ dependencies {
   compile 'com.google.guava:guava:23.6-jre'
 }
 
+
+processResources {
+  from ('../frontend/build/') {
+    into 'public'
+  }
+}
+
+compileGroovy.dependsOn(':frontend:build')
+
 task start {}
 start.dependsOn(bootRun)
