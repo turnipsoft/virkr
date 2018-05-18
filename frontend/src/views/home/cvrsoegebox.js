@@ -20,7 +20,9 @@ class CvrSoegebox extends Component {
     e.preventDefault();
     let { soegning } = this.state;
     soegning = soegning.replace("/","{SLASH}");
-    this.props.dispatch(soeg(soegning));
+    if (soegning) {
+      this.props.dispatch(soeg(soegning));
+    }
   }
 
   render() {

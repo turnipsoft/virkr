@@ -6,7 +6,7 @@ var webpack = require('webpack');
 // this config can be in webpack.config.js or other file with constants
 var API_URL = {
   production: JSON.stringify(''),
-  development: JSON.stringify('http://localhost:8080')
+  development: JSON.stringify('http://localhost:9092')
 }
 
 // check environment mode
