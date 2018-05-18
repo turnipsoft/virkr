@@ -16,13 +16,17 @@ export default class DeltagerInfo extends Component {
     const {
       adresselinie,
       bylinie,
-      postnr
+      postnr,
+      fritekst
     } = deltager;
 
     let detail = adresselinie ? adresselinie : '';
     detail += (postnr && postnr !== '0' && adresselinie) ? ', ' : '';
     detail += (postnr && postnr !== '0') ? bylinie : '';
 
+    if (!detail && fritekst ) {
+      detail = fritekst
+    }
     return (
       <div className="info-card margin-bottom">
         <SectionHeader iconClass="fa fa-user" label={navn} detail={detail} headerClass="vheader-orange"
