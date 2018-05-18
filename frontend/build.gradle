@@ -10,7 +10,7 @@ clean.dependsOn(npm_run_clean)
 
 task build {}
 build.dependsOn(npm_install)
-build.dependsOn(npm_run_build)
+build.dependsOn(npm_run_buildproduction)
 
 task start {}
 start.dependsOn(npm_start)

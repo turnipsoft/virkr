@@ -20,7 +20,7 @@ class OffentliggoerelserClient {
   }
 
   List<Offentliggoerelse> hentOffentliggoerelserForCvrNummer(String cvrNummer) {
-    String url = "${regnskaberEnpoint}?q=cvrNummer:$cvrNummer"
+    String url = "${regnskaberEnpoint}?q=cvrNummer:$cvrNummer&size=100"
 
     log.debug("Fetch regnskaber at URL: $url")
     String jsonResult = new URL(url).getText()
