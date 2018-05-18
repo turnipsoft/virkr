@@ -35,13 +35,28 @@ export default class DeltagerInfo extends Component {
   _renderDeltagerAdresser(deltager) {
     if (deltager.adresser && deltager.adresser.length!==1) {
       const detail = deltager.navn + "'s tidligere adresser"
-      const adresser = deltager.adresser.slice(0,-1).reverse()
+      const adresser = deltager.adresser.slice(0,-1)
+      const sorted = adresser.sort(function(a, b) {
+        if (a.periode.gyldigTil===null) {
+          if (b.periode.gyldigTil===null) {
+            return a.periode.gyldigFra>b.periode.gyldigFra?1:-1;
+          } else{
+            return 1;
+          }
+        }
+
+        if (b.periode.gyldigTil===null) {
+          return -1;
+        }
+
+        return (a.periode.gyldigTil>b.periode.gyldigTil?1:-1)
+      }).reverse();
       return (
         <div>
           <br/>
           <SectionHeader iconClass="fa fa-user" label="Tidligere adresser" detail={detail}
                          onClick={()=> this.setState({visHistoriskeAdresser: !this.state.visHistoriskeAdresser}) }/>
-          {this.state.visHistoriskeAdresser && this._renderAdresser(adresser)}
+          {this.state.visHistoriskeAdresser && this._renderAdresser(sorted)}
         </div>
       )
     }
