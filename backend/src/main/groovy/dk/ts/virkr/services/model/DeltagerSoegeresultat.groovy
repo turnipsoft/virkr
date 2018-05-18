@@ -13,6 +13,7 @@ class DeltagerSoegeresultat {
   String bynavn
   String enhedstype
   String enhedsNummer
+  String fritekst
 
   List<Beliggenhedsadresse> adresser
   List<DeltagerVirksomhed> virksomheder

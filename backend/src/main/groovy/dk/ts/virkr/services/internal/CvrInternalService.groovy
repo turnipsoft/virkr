@@ -265,7 +265,9 @@ class CvrInternalService {
       deltagerSoegeresultat.bylinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.byLinje
       deltagerSoegeresultat.postnr = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.postnummer
       deltagerSoegeresultat.bynavn = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bynavn
+      deltagerSoegeresultat.fritekst vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.fritekst
     }
+
     deltagerSoegeresultat.enhedsNummer = vrdeltagerperson.enhedsNummer
     deltagerSoegeresultat.enhedstype = vrdeltagerperson.enhedstype
     deltagerSoegeresultat.virksomheder = []
