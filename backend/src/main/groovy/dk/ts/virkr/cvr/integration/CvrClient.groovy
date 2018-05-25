@@ -142,7 +142,7 @@ class CvrClient {
 
     String include = 'Vrdeltagerperson.navne.navn,Vrdeltagerperson.enhedsNummer,Vrdeltagerperson.enhedstype,Vrdeltagerperson.deltagerpersonMetadata,Vrdeltagerperson.virksomhedSummariskRelation'
     String query = URLEncoder.encode(navnequery,'UTF-8').replace('+','%20')
-    String url = "$url?q=$query&_source_include=$include&_source_exclude=entities"
+    String url = "$deltagerurl?q=$query&_source_include=$include&_source_exclude=entities"
 
     String jsonResult = kaldCvr(url)
 

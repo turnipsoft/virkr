@@ -7,7 +7,7 @@ virkr:
     caching: true
     cachefactory: guavacache
   cvr:
-    url: http://distribution.virk.dk/cvr-permanent/_search
+    url: http://distribution.virk.dk/cvr-permanent/virksomhed/_search
     deltagerurl: http://distribution.virk.dk/cvr-permanent/deltager
     username: Søren_Hartvig_CVR_I_SKYEN
     password: PASSWD_TIL_SKYEN
