@@ -31,7 +31,7 @@ class CvrClient {
   static final Logger log = org.slf4j.LoggerFactory.getLogger(CvrClient.class)
 
   Vrvirksomhed hentVirksomhed(String cvrNummer) {
-    String url = "$url?q=cvrNummer:$cvrNummer"
+    String url = "$url?q=Vrvirksomhed.cvrNummer:$cvrNummer"
 
     String jsonResult = kaldCvr(url)
 
