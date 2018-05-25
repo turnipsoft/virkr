@@ -28,8 +28,12 @@ class Beliggenhedsadresse {
 
   String getVejadresselinie() {
     if (vejnavn) {
-      return vejnavn + (husnummerFra ? " " + husnummerFra : "") + (husnummerTil ? "-" + husnummerTil : "") +
-        (etage ? ", " + etage : "") + (sidedoer ? ". " + sidedoer : "")
+      return vejnavn + (husnummerFra ? " " + husnummerFra : "") +
+                       (husnummerTil ? "-" + husnummerTil : "") +
+                       (bogstavFra ? " "+bogstavFra :"")+
+                       (bogstavTil ? "-"+bogstavTil :"")+
+                       (etage ? ", " + etage : "") +
+                       (sidedoer ? ". " + sidedoer : "")
     }
 
     return null
