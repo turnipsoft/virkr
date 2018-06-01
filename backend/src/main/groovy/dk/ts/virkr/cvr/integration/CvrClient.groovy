@@ -104,7 +104,6 @@ class CvrClient {
   }
 
   String prepareNavneQuery(String navn) {
-    navn = navn.replace("{SLASH}","/")
     String navnequery=''
     if (navn.contains('%20')) {
       navn.split('%20').each {
@@ -121,6 +120,7 @@ class CvrClient {
   }
 
   List<Vrvirksomhed> soeg(String navn) {
+    navn = navn.replace("{SLASH}","7")
     String navnequery = prepareNavneQuery(navn)
 
     navnequery = "Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn:$navnequery"
@@ -137,6 +137,7 @@ class CvrClient {
   }
 
   List<Vrdeltagerperson> soegDeltagere(String navn) {
+    navn = navn.replace("{SLASH}","7")
     String navnequery = prepareNavneQuery(navn)
     navnequery = "Vrdeltagerperson.navne.navn:$navnequery"
 

@@ -266,6 +266,8 @@ class CvrInternalService {
       deltagerSoegeresultat.postnr = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.postnummer
       deltagerSoegeresultat.bynavn = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bynavn
       deltagerSoegeresultat.fritekst = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.fritekst
+      deltagerSoegeresultat.bogstavFra = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bogstavFra
+      deltagerSoegeresultat.bogstavTil = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bogstavTil
     }
 
     deltagerSoegeresultat.enhedsNummer = vrdeltagerperson.enhedsNummer

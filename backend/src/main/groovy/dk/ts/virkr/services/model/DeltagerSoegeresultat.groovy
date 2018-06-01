@@ -14,6 +14,8 @@ class DeltagerSoegeresultat {
   String enhedstype
   String enhedsNummer
   String fritekst
+  String bogstavFra
+  String bogstavTil
 
   List<Beliggenhedsadresse> adresser
   List<DeltagerVirksomhed> virksomheder

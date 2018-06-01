@@ -33,7 +33,7 @@ export default class VirksomhedsDetaljer extends Component {
       byLinje
     } = vdata.nyesteBeliggenhedsadresse;
 
-    const branche = vdata.nyesteHovedbranche.branchetekst + " (" + vdata.nyesteHovedbranche.branchekode + ")";
+    const branche = vdata.nyesteHovedbranche? vdata.nyesteHovedbranche.branchetekst + " (" + vdata.nyesteHovedbranche.branchekode + ")" : "Ukendt branche";
 
     let email = "";
     if (cvrdata.elektroniskPost && cvrdata.elektroniskPost.length>0) {

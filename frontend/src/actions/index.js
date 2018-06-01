@@ -17,10 +17,12 @@ function soegeresultat(soegetext, soegeresultat) {
   }
 }
 
-export function soeg(text) {
+export function soeg(text, navigate=true) {
   return dispatch => {
     dispatch(henterSoegeresultat(text));
-    dispatch(push(`/soegeresultat/${text}`));
+    if (navigate) {
+      dispatch(push(`/soegeresultat/${text}`));
+    }
     return api.soegVirkr(text)
       .then(data => dispatch(soegeresultat(text, data)))
   }
