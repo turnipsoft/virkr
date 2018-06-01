@@ -19,7 +19,7 @@ class CvrSoegebox extends Component {
   submitSoegning(e) {
     e.preventDefault();
     let { soegning } = this.state;
-    soegning = soegning.replace("/","{SLASH}");
+    soegning = soegning.replace("/","7");
     if (soegning) {
       this.props.dispatch(soeg(soegning));
     }
