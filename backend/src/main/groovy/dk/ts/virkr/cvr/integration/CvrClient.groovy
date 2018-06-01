@@ -28,10 +28,12 @@ class CvrClient {
   @Value('${virkr.cvr.password}')
   password
 
+  static final String SEARCH = '/_search'
+
   static final Logger log = org.slf4j.LoggerFactory.getLogger(CvrClient.class)
 
   Vrvirksomhed hentVirksomhed(String cvrNummer) {
-    String url = "$url?q=Vrvirksomhed.cvrNummer:$cvrNummer"
+    String url = "$url$SEARCH?q=Vrvirksomhed.cvrNummer:$cvrNummer"
 
     String jsonResult = kaldCvr(url)
 
@@ -86,7 +88,7 @@ class CvrClient {
 
   List<Vrvirksomhed> hentVirksomhedsDeltagere(String enhedsnummer) {
     String soegning = virksomhedsdeltagerSoegning.replace('${enhedsnummer}', enhedsnummer)
-    String jsonResult = kaldCvr(url, soegning)
+    String jsonResult = kaldCvr(url+SEARCH, soegning)
     return marshallVirksomheder(jsonResult)
   }
 
@@ -129,7 +131,7 @@ class CvrClient {
     String include = 'Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn,Vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse,Vrvirksomhed.cvrNummer'
     String query = "($navnequery OR cvrNummer:$navn) AND $statusquery"
     query = URLEncoder.encode(query,'UTF-8').replace('+','%20')
-    String url = "$url?q=$query&_source_include=$include&_source_exclude=entities"
+    String url = "$url$SEARCH?q=$query&_source_include=$include&_source_exclude=entities"
 
     String jsonResult = kaldCvr(url)
 
@@ -143,7 +145,7 @@ class CvrClient {
 
     String include = 'Vrdeltagerperson.navne.navn,Vrdeltagerperson.enhedsNummer,Vrdeltagerperson.enhedstype,Vrdeltagerperson.deltagerpersonMetadata,Vrdeltagerperson.virksomhedSummariskRelation'
     String query = URLEncoder.encode(navnequery,'UTF-8').replace('+','%20')
-    String url = "$deltagerurl?q=$query&_source_include=$include&_source_exclude=entities"
+    String url = "$deltagerurl$SEARCH?q=$query&_source_include=$include&_source_exclude=entities"
 
     String jsonResult = kaldCvr(url)
 

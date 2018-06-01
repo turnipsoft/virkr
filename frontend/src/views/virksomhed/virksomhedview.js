@@ -22,18 +22,7 @@ class VirksomhedView extends Component {
   }
 
   render() {
-    const { regnskaber, cvrdata, showSpinner, visDeltager, visVirksomhed, visEjerGraf } = this.props;
-
-    if (this.props.hasError) {
-      return(<div>
-        <PageHeader headerText='Virksomhedsinformationer' />
-        <div className="row">
-          <div className="col">
-            Fejl er opstået under fremfinding af virksomheden : {this.props.error}
-          </div>
-        </div>
-      </div>)
-    }
+    const { regnskaber, cvrdata, showSpinner, visDeltager, visVirksomhed, visEjerGraf, error } = this.props;
 
     return (
       <div>
@@ -44,6 +33,7 @@ class VirksomhedView extends Component {
                                 visDeltager={visDeltager}
                                 visVirksomhed={visVirksomhed}
                                 visEjerGraf={visEjerGraf} />}
+        {error && <div className="alert alert-danger alert-margin-top" role="alert">Der er opstået en fejl under hentning af virksomheden</div>}
       </div>
     )
   }

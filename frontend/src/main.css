@@ -186,6 +186,10 @@
 
 }
 
+.alert-margin-top {
+  margin-top: 20px
+}
+
 @media (orientation:portrait) {
   .hide-on-portrait {
     display: none;

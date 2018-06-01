@@ -11,6 +11,12 @@ const deltager = (state = {}, action) => {
         isFetching: false,
         deltager: action.deltager
       }
+    case 'DELTAGER_RESULT_ERROR':
+      return {
+        isFetching: false,
+        error: action.error,
+        enhedsnummer: action.enhedsnummer
+      }
     default:
       return state
   }

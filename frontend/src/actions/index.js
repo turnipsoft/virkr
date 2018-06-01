@@ -17,6 +17,14 @@ function soegeresultat(soegetext, soegeresultat) {
   }
 }
 
+function soegeresultatError(soegetext, error) {
+  return {
+    type: 'SEARCH_RESULT_ERROR',
+    soegetext,
+    error
+  }
+}
+
 export function soeg(text, navigate=true) {
   return dispatch => {
     dispatch(henterSoegeresultat(text));
@@ -25,6 +33,7 @@ export function soeg(text, navigate=true) {
     }
     return api.soegVirkr(text)
       .then(data => dispatch(soegeresultat(text, data)))
+      .catch(error => dispatch(soegeresultatError(text, error)))
   }
 }
 
@@ -44,6 +53,13 @@ function deltagerResultat(enhedsnummer, deltager) {
   }
 }
 
+function deltagerResultatError(enhedsnummer, error) {
+  return {
+    type: 'DELTAGER_RESULT_ERROR',
+    enhedsnummer, error
+  }
+}
+
 export function visDeltager(enhedsnummer, navigate) {
   return dispatch => {
     dispatch(henterDeltager(enhedsnummer))
@@ -54,6 +70,7 @@ export function visDeltager(enhedsnummer, navigate) {
     }
     return api.hentDeltager(enhedsnummer)
       .then(data => dispatch(deltagerResultat(enhedsnummer, data)))
+      .catch(error => dispatch(deltagerResultatError(enhedsnummer, error)))
   }
 }
 
@@ -125,6 +142,13 @@ function deltagerGrafResultat(enhedsnummer, deltagerGraf) {
   }
 }
 
+function deltagerGrafError(enhedsnummer, error) {
+  return {
+    type: 'DELTAGER_GRAF_ERROR',
+    enhedsnummer, error
+  }
+}
+
 export function visDeltagerGraf(enhedsnummer, navigate) {
   return dispatch => {
     dispatch(henterDeltagerGraf(enhedsnummer))
@@ -133,6 +157,7 @@ export function visDeltagerGraf(enhedsnummer, navigate) {
     }
     return api.hentDeltagerGraf(enhedsnummer)
       .then(data => dispatch(deltagerGrafResultat(enhedsnummer, data)))
+      .catch(error => dispatch(deltagerGrafError(enhedsnummer, error)))
   }
 }
 
@@ -150,6 +175,14 @@ function ejerGrafResultat(cvrnummer, ejerGraf, deltagerGraf) {
     cvrnummer,
     ejerGraf,
     deltagerGraf
+  }
+}
+
+function ejerGrafError(cvrnummer, error) {
+  return {
+    type: 'EJER_GRAF_ERROR',
+    cvrnummer,
+    error
   }
 }
 

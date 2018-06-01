@@ -16,7 +16,7 @@ class SoegeresultatView extends Component {
   }
 
   render() {
-    const {soegning, visDeltager, soegeresultat, visVirksomhed } = this.props;
+    const {soegning, visDeltager, soegeresultat, visVirksomhed, error } = this.props;
 
     return(
       <div>
@@ -26,6 +26,7 @@ class SoegeresultatView extends Component {
                                                     soegeresultat={soegeresultat}
                                                     visDeltager={visDeltager}
                                                     visVirksomhed={visVirksomhed} />}
+        {error && <div className="alert alert-danger alert-margin-top" role="alert">Der er opstået en fejl under søgning</div>}
       </div>
     );
   }
@@ -37,6 +38,7 @@ const mapStateToProps = (state, ownProps) => {
     soegning: state.soegning.soegetext,
     soegeresultat : state.soegning.soegeresultat,
     soegningParam: ownProps.match.params.soegning,
+    error: state.error
   }
 }
 

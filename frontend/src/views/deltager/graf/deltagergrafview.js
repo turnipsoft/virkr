@@ -23,7 +23,7 @@ class DeltagerGrafView extends Component {
 
   render() {
     console.log('DeltagerGrafView-render');
-    const { showSpinner, deltagerGraf, visVirksomhed, visDeltager } = this.props;
+    const { showSpinner, deltagerGraf, visVirksomhed, visDeltager, error } = this.props;
 
     const deltager = deltagerGraf?deltagerGraf.deltager:null;
 
@@ -34,6 +34,7 @@ class DeltagerGrafView extends Component {
         {deltagerGraf && <DeltagerGraf deltagerGraf={deltagerGraf}
                                        visVirksomhed={visVirksomhed}
                                        visDeltager={visDeltager} />}
+        {error && <div className="alert alert-danger alert-margin-top" role="alert">Der er opstået en fejl under hentning af deltagergrafen</div>}
       </div>
     );
   }
@@ -49,7 +50,8 @@ const mapStateToProps = (state, ownProps) => {
     showSpinner: deltagerGraf.isFetching,
     enhedsnummer: deltagerGraf.enhedsnummer,
     enhedsnummerParam: ownProps.match.params.enhedsnummer,
-    router: state.router
+    router: state.router,
+    error: deltagerGraf.error
   }
 }
 

@@ -24,7 +24,7 @@ class EjerGrafView extends Component {
   }
 
   render() {
-    const { showSpinner, ejerGraf, deltagerGraf, visVirksomhed, visDeltager } = this.props;
+    const { showSpinner, ejerGraf, deltagerGraf, visVirksomhed, visDeltager, error } = this.props;
 
     const virksomhed = ejerGraf?ejerGraf.virksomhed:null;
 
@@ -36,6 +36,7 @@ class EjerGrafView extends Component {
                                visVirksomhed={visVirksomhed}
                                visDeltager={visDeltager} />}
         {this._renderDeltagerGraf(deltagerGraf, visVirksomhed, visDeltager)}
+        {error && <div className="alert alert-danger alert-margin-top" role="alert">Der er opstået en fejl under hentning ejergrafen</div>}
       </div>
     );
   }
@@ -70,7 +71,8 @@ const mapStateToProps = (state, ownProps) => {
     deltagerGraf: ejerGraf.deltagerGraf,
     showSpinner: ejerGraf.isFetching,
     cvrnummer: ejerGraf.cvrnummer,
-    cvrnummerParam: ownProps.match.params.cvrnummer
+    cvrnummerParam: ownProps.match.params.cvrnummer,
+    error: ejerGraf.error
   }
 }
 

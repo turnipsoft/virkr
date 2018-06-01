@@ -11,6 +11,12 @@ const deltagerGraf = (state = {}, action) => {
         isFetching: false,
         deltagerGraf: action.deltagerGraf
       }
+    case 'DELTAGER_GRAF_ERROR':
+      return {
+        isFetching: false,
+        error: action.error,
+        enhedsnumnner: action.enhedsnummer
+      }
     default:
       return state
   }

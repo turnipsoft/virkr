@@ -23,13 +23,14 @@ class DeltagerView extends Component {
 
   render() {
     console.log('DeltagerView-Render');
-    const { showSpinner, deltager, visVirksomhed, visDeltagerGraf } = this.props;
+    const { showSpinner, deltager, visVirksomhed, visDeltagerGraf, error } = this.props;
 
     return(
       <div>
         <PageHeader iconClassName="fa fa-user" headerText="Deltager" deltager={deltager} context="deltager" />
         {showSpinner && <Spinner />}
         {deltager && <DeltagerVisning deltager={deltager} onVirksomhedClick={visVirksomhed} visDeltagerGraf={visDeltagerGraf} />}
+        {error && <div className="alert alert-danger alert-margin-top" role="alert">Der er opstået en fejl under hentning af deltageren</div>}
       </div>
     );
   }
@@ -43,7 +44,8 @@ const mapStateToProps = (state, ownProps) => {
     showSpinner: deltager.isFetching,
     enhedsnummerParam: ownProps.match.params.enhedsnummer,
     enhedsnummer: deltager.enhedsnummer,
-    deltager: deltager.deltager
+    deltager: deltager.deltager,
+    error: deltager.error
   }
 }
 
