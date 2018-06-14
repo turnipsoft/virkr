@@ -36,18 +36,23 @@ export default class VirksomhedsDetaljer extends Component {
     const branche = vdata.nyesteHovedbranche? vdata.nyesteHovedbranche.branchetekst + " (" + vdata.nyesteHovedbranche.branchekode + ")" : "Ukendt branche";
 
     let email = "";
-    if (cvrdata.elektroniskPost && cvrdata.elektroniskPost.length>0) {
-      email = cvrdata.elektroniskPost[0].kontaktoplysning;
+    if (cvrdata.nyesteEmail) {
+      email = cvrdata.nyesteEmail;
     }
 
     let www = "";
-    if (cvrdata.hjemmeside && cvrdata.hjemmeside.length>0) {
-      www = cvrdata.hjemmeside[0].kontaktoplysning;
+    if (cvrdata.nyesteHjemmeside) {
+      www = cvrdata.nyesteHjemmeside;
     }
 
     let telefon = "";
-    if (cvrdata.telefonNummer && cvrdata.telefonNummer.length>0) {
-      telefon = cvrdata.telefonNummer[0].kontaktoplysning;
+    if (cvrdata.nyesteTelefonNummer) {
+      telefon = cvrdata.nyesteTelefonNummer
+    }
+
+    let telefax = "";
+    if (cvrdata.nyesteTelefaxNummer) {
+      telefax = cvrdata.nyesteTelefaxNummer
     }
 
     const virksomhedsform = vdata.nyesteVirksomhedsform.virksomhedsformkode + " - "+ vdata.nyesteVirksomhedsform.langBeskrivelse;
@@ -90,6 +95,7 @@ export default class VirksomhedsDetaljer extends Component {
                   <DetaljeLinie text="CVR-Nummer" value={cvrdata.cvrNummer} />
                   <DetaljeLinie text="Virksomhedsform" value={virksomhedsform} />
                   <DetaljeLinie text="Telefon" value={telefon} />
+                  <DetaljeLinie text="Telefax" value={telefax} />
                   <DetaljeLinie text="Email" value={email} />
                   <DetaljeLinie text="Hjemmeside" value={www} />
                   <DetaljeLinie text="Branche" value={branche} />

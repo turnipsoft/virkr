@@ -158,4 +158,36 @@ class Vrvirksomhed {
       return Utils.findNyeste(this.livsforloeb)
     }
   }
+
+  String getNyesteTelefonNummer() {
+    return getKontaktoplString(this.telefonNummer)
+  }
+
+  private String getKontaktoplString(List<Kontakoplysning> kl) {
+    if (kl && kl.size()>0) {
+      StringWriter sw = new StringWriter()
+      kl.findAll {it.periode.gyldigTil == null}.each { kontaktoplysning->
+        if (sw.toString().size()>0) {
+          sw << ', '
+        }
+        sw << kontaktoplysning.kontaktoplysning
+      }
+
+      return sw.toString()
+    }
+
+    return null
+  }
+
+  String getNyesteEmail() {
+    return getKontaktoplString(this.elektroniskPost)
+  }
+
+  String getNyesteHjemmeside() {
+    return getKontaktoplString(this.hjemmeside)
+  }
+
+  String getNyesteTelefaxNummer() {
+    return getKontaktoplString(this.telefaxNummer)
+  }
 }
