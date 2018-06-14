@@ -8,16 +8,12 @@ const VirksomhedsInfo = (props) => {
   const navn = vdata.nyesteNavn.navn;
 
   const {
-    vejadresselinie,
-    byLinje
+    adresselinie
   } = vdata.nyesteBeliggenhedsadresse;
-
-  let detail = vejadresselinie?vejadresselinie:'';
-  detail += byLinje?', '+byLinje:'';
 
   return (
     <div className="info-card">
-      <SectionHeader iconClass="fa fa-building" label={navn} detail={detail} headerClass="vheader-orange" headerClassCircle="vheader-icon-circle-orange" labelClass="vheader-label-orange"/>
+      <SectionHeader iconClass="fa fa-building" label={navn} detail={adresselinie} headerClass="vheader-orange" headerClassCircle="vheader-icon-circle-orange" labelClass="vheader-label-orange"/>
     </div>
   );
 }

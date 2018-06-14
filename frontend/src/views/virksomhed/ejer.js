@@ -23,7 +23,7 @@ export default class Ejer extends React.Component {
   }
 
   _visEjer(ejer) {
-    if (ejer.ejertype==="PERSON") {
+    if (ejer.ejertype==='PERSON' || (ejer.forretningsnoegle!==null && ejer.forretningsnoegle.length>8)) {
       this.props.visDeltager(ejer.enhedsnummer, true);
     } else {
       this.props.visVirksomhed(ejer.forretningsnoegle, true);

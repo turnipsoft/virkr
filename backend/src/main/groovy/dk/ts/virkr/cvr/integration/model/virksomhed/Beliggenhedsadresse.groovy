@@ -47,7 +47,12 @@ class Beliggenhedsadresse {
 
   String getAdresselinie() {
     if (vejadresselinie && byLinje) {
-      return vejadresselinie+", "+byLinje
+      String adrlinie = ''
+      if (conavn) {
+        adrlinie += 'C/O '+conavn + ', '
+      }
+      adrlinie += vejadresselinie+', '+byLinje
+      return adrlinie
     } else if (fritekst) {
       return fritekst
     }

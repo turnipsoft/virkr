@@ -146,12 +146,9 @@ class Ejer {
     }
 
     double d = Double.parseDouble(andel)
-    if (d==0) {
-      return "0%"
-    }
 
     if (d<0.05) {
-      return "1-4,99%"
+      return "0-4,99%"
     }
 
     if (d<0.1) {
