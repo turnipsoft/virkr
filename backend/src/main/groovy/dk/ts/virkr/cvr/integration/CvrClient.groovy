@@ -149,7 +149,8 @@ class CvrClient {
   dk.ts.virkr.cvr.integration.model.deltager.elasticsearch.ElasticResult soegDeltagere(String navn, long page, long pagesize) {
     navn = navn.replace("{SLASH}","7")
     String navnequery = prepareNavneQuery(navn)
-    navnequery = "Vrdeltagerperson.navne.navn:$navnequery"
+    navnequery = "(Vrdeltagerperson.navne.navn:$navnequery"
+    navnequery += " AND Vrdeltagerperson.enhedstype:PERSON)"
 
     String include = 'Vrdeltagerperson.navne.navn,Vrdeltagerperson.enhedsNummer,Vrdeltagerperson.enhedstype,Vrdeltagerperson.deltagerpersonMetadata,Vrdeltagerperson.virksomhedSummariskRelation'
     String query = URLEncoder.encode(navnequery,'UTF-8').replace('+','%20')
