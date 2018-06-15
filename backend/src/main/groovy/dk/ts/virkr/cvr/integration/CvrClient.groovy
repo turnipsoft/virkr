@@ -128,6 +128,7 @@ class CvrClient {
   }
 
   ElasticResult soeg(String navn, long page, long pagesize) {
+    page = page-1
     navn = navn.replace("{SLASH}","7")
     String navnequery = prepareNavneQuery(navn)
 
@@ -147,6 +148,7 @@ class CvrClient {
   }
 
   dk.ts.virkr.cvr.integration.model.deltager.elasticsearch.ElasticResult soegDeltagere(String navn, long page, long pagesize) {
+    page=page-1
     navn = navn.replace("{SLASH}","7")
     String navnequery = prepareNavneQuery(navn)
     navnequery = "(Vrdeltagerperson.navne.navn:$navnequery"
