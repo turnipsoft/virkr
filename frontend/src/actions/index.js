@@ -25,13 +25,13 @@ function soegeresultatError(soegetext, error) {
   }
 }
 
-export function soeg(text, navigate=true) {
+export function soeg(text, navigate=true, page=1, pagesize=20) {
   return dispatch => {
     dispatch(henterSoegeresultat(text));
     if (navigate) {
       dispatch(push(`/soegeresultat/${text}`));
     }
-    return api.soegVirkr(text)
+    return api.soegVirkr(text, page, pagesize)
       .then(data => dispatch(soegeresultat(text, data)))
       .catch(error => dispatch(soegeresultatError(text, error)))
   }

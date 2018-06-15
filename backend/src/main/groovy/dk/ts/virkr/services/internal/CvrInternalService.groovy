@@ -1,14 +1,20 @@
 package dk.ts.virkr.services.internal
 
+import dk.ts.virkr.aarsrapporter.util.JsonMarshaller
 import dk.ts.virkr.aarsrapporter.util.Utils
 import dk.ts.virkr.cvr.integration.CvrClient
 import dk.ts.virkr.cvr.integration.model.deltager.VirksomhedSummariskRelation
 import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
+import dk.ts.virkr.cvr.integration.model.deltager.elasticsearch.ElasticResult
+import dk.ts.virkr.cvr.integration.model.virksomhed.Beliggenhedsadresse
 import dk.ts.virkr.cvr.integration.model.virksomhed.Medlemsdata
 import dk.ts.virkr.cvr.integration.model.virksomhed.Organisation
 import dk.ts.virkr.cvr.integration.model.virksomhed.Virksomhedsstatus
 import dk.ts.virkr.services.cache.CvrCacheFactory
+import dk.ts.virkr.services.model.DeltagerSoegeresultatWrapper
 import dk.ts.virkr.services.model.Ejer
+import dk.ts.virkr.services.model.VirksomhedSoegeresultat
+import dk.ts.virkr.services.model.VirksomhedSoegeresultatWrapper
 import dk.ts.virkr.services.model.graf.DeltagerGraf
 import dk.ts.virkr.services.model.graf.DeltagerRelation
 import dk.ts.virkr.services.model.graf.EjerAfVirksomhed
@@ -147,6 +153,7 @@ class CvrInternalService {
     return ejerAfVirksomhed
 
   }
+
   void berigDeltagersVirksomhed(String deltagerEnhedsnummer, Vrvirksomhed virksomhed, DeltagerGraf deltagerGraf,
                                 int level, List<String> virksomhedsGren) {
     EjerAfVirksomhed ejerAfVirksomhed = bygEjerAfVirksomhed(virksomhed, deltagerEnhedsnummer)
@@ -172,6 +179,40 @@ class CvrInternalService {
       }
       berigDeltagersVirksomhed(virksomhed.enhedsNummer, ejetVirksomhed, deltagerGraf, level+1, virksomhedsGren)
     }
+  }
+
+  /**
+   * Omdanner en deltager til en kortere deltagere søgeresultat form hvor man direkte se relevante oplysninger om deltageren
+   * @param vrdeltagerperson
+   * @return
+   */
+  DeltagerSoegeresultat tilDeltager(Vrdeltagerperson vrdeltagerperson) {
+    DeltagerSoegeresultat deltagerSoegeresultat = new DeltagerSoegeresultat()
+    deltagerSoegeresultat.navn = vrdeltagerperson.navne[0].navn
+    if (vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse) {
+      deltagerSoegeresultat.adresselinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.vejadresselinie
+      deltagerSoegeresultat.bylinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.byLinje
+      deltagerSoegeresultat.postnr = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.postnummer
+      deltagerSoegeresultat.bynavn = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bynavn
+      deltagerSoegeresultat.fritekst = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.fritekst
+      deltagerSoegeresultat.bogstavFra = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bogstavFra
+      deltagerSoegeresultat.bogstavTil = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bogstavTil
+    }
+
+    deltagerSoegeresultat.enhedsNummer = vrdeltagerperson.enhedsNummer
+    deltagerSoegeresultat.enhedstype = vrdeltagerperson.enhedstype
+    deltagerSoegeresultat.virksomheder = []
+    deltagerSoegeresultat.adresser = vrdeltagerperson.beliggenhedsadresse
+    vrdeltagerperson.virksomhedSummariskRelation.each {vsr->
+      // arbejder p.t. kun med aktuelle data, så der skal være et livsforløb hvor gyldigtil er null
+      if (vsr.virksomhed.livsforloeb.find{ !it.periode.gyldigTil}) {
+        DeltagerVirksomhed dv = lavDeltagerVirksomhed(vsr)
+        if (dv) {
+          deltagerSoegeresultat.virksomheder << dv
+        }
+      }
+    }
+    return deltagerSoegeresultat
   }
 
   /**
@@ -250,40 +291,6 @@ class CvrInternalService {
     double a2 = Double.valueOf(e)
     double resultat = a1*a2
     return String.valueOf(resultat)
-  }
-
-  /**
-   * Omdanner en deltager til en kortere deltagere søgeresultat form hvor man direkte se relevante oplysninger om deltageren
-   * @param vrdeltagerperson
-   * @return
-   */
-  DeltagerSoegeresultat tilDeltager(Vrdeltagerperson vrdeltagerperson) {
-    DeltagerSoegeresultat deltagerSoegeresultat = new DeltagerSoegeresultat()
-    deltagerSoegeresultat.navn = vrdeltagerperson.navne[0].navn
-    if (vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse) {
-      deltagerSoegeresultat.adresselinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.vejadresselinie
-      deltagerSoegeresultat.bylinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.byLinje
-      deltagerSoegeresultat.postnr = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.postnummer
-      deltagerSoegeresultat.bynavn = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bynavn
-      deltagerSoegeresultat.fritekst = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.fritekst
-      deltagerSoegeresultat.bogstavFra = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bogstavFra
-      deltagerSoegeresultat.bogstavTil = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bogstavTil
-    }
-
-    deltagerSoegeresultat.enhedsNummer = vrdeltagerperson.enhedsNummer
-    deltagerSoegeresultat.enhedstype = vrdeltagerperson.enhedstype
-    deltagerSoegeresultat.virksomheder = []
-    deltagerSoegeresultat.adresser = vrdeltagerperson.beliggenhedsadresse
-    vrdeltagerperson.virksomhedSummariskRelation.each {vsr->
-      // arbejder p.t. kun med aktuelle data, så der skal være et livsforløb hvor gyldigtil er null
-      if (vsr.virksomhed.livsforloeb.find{ !it.periode.gyldigTil}) {
-        DeltagerVirksomhed dv = lavDeltagerVirksomhed(vsr)
-        if (dv) {
-          deltagerSoegeresultat.virksomheder << dv
-        }
-      }
-    }
-    return deltagerSoegeresultat
   }
 
   /**
@@ -385,5 +392,62 @@ class CvrInternalService {
     }
 
     return null
+  }
+
+  DeltagerSoegeresultatWrapper soegDeltager(String soegning, long page, long pagesize) {
+
+    List<DeltagerSoegeresultat> resultat = []
+
+    ElasticResult elasticResult = cvrClient.soegDeltagere(soegning, page, pagesize)
+    elasticResult.hits.hits.each { hit->
+      if (hit._source.vrdeltagerperson) {
+        resultat << hit._source.vrdeltagerperson
+      }
+    }
+
+    DeltagerSoegeresultatWrapper deltagerSoegeresultatWrapper = new DeltagerSoegeresultatWrapper()
+    deltagerSoegeresultatWrapper.antalHits = elasticResult.hits.total
+    deltagerSoegeresultatWrapper.deltagere =  resultat.collect {it->
+      if (it.enhedstype == 'ANDEN_DELTAGER') {
+        return null
+      }
+      DeltagerSoegeresultat deltagerSoegeresultat = tilDeltager(it)
+      return deltagerSoegeresultat
+    } - null
+
+    return deltagerSoegeresultatWrapper
+
+  }
+
+  VirksomhedSoegeresultatWrapper soegVirksomhed(String soegning, long page, long pagesize) {
+    List<Vrvirksomhed> resultat = []
+
+    dk.ts.virkr.cvr.integration.model.virksomhed.elasticsearch.ElasticResult elasticResult =
+      cvrClient.soeg(soegning, page, pagesize)
+
+    elasticResult.hits.hits.each { hit ->
+      if (hit._source.vrvirksomhed) {
+        resultat << hit._source.vrvirksomhed
+      }
+    }
+
+    VirksomhedSoegeresultatWrapper virksomhedSoegeresultatWrapper = new VirksomhedSoegeresultatWrapper()
+    virksomhedSoegeresultatWrapper.virksomheder = resultat.collect {
+      VirksomhedSoegeresultat virksomhedSoegeresultat = new VirksomhedSoegeresultat()
+      virksomhedSoegeresultat.cvrnr = it.cvrNummer
+      virksomhedSoegeresultat.navn = it.virksomhedMetadata.nyesteNavn.navn
+      virksomhedSoegeresultat.enhedsNummer = it.enhedsNummer
+      if (it.virksomhedMetadata.nyesteBeliggenhedsadresse) {
+        Beliggenhedsadresse b = it.virksomhedMetadata.nyesteBeliggenhedsadresse
+        if (b.vejnavn && b.postnummer) {
+          virksomhedSoegeresultat.adresseTekst = b.adresselinie
+        }
+      }
+      return virksomhedSoegeresultat
+    }
+
+    virksomhedSoegeresultatWrapper.antalHits = elasticResult.hits.total
+
+    return virksomhedSoegeresultatWrapper
   }
 }

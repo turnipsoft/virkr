@@ -16,7 +16,7 @@ class SoegeresultatView extends Component {
   }
 
   render() {
-    const {soegning, visDeltager, soegeresultat, visVirksomhed, error } = this.props;
+    const {soegning, visDeltager, soegeresultat, visVirksomhed, error, soeg } = this.props;
 
     return(
       <div>
@@ -25,7 +25,8 @@ class SoegeresultatView extends Component {
         {this.props.soegeresultat && <Soegeresultat soegning={soegning}
                                                     soegeresultat={soegeresultat}
                                                     visDeltager={visDeltager}
-                                                    visVirksomhed={visVirksomhed} />}
+                                                    visVirksomhed={visVirksomhed}
+                                                    soeg={soeg} />}
         {error && <div className="alert alert-danger alert-margin-top" role="alert">Der er opstået en fejl under søgning</div>}
       </div>
     );

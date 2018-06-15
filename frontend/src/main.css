@@ -27,6 +27,12 @@
   margin-top: 8px
 }
 
+.navigation-text {
+  color: var(--orange);
+  font-size: 14px;
+  margin-top: 10px;
+}
+
 .red {
   color: var(--orange);
   font-size: 16px;
@@ -417,6 +423,10 @@ orange {
 .btn-primary {
   background-color: black;
   border-color: black;
+}
+
+a.page-link {
+  color: var(--darkblue)
 }
 
 .btn-primary:hover {

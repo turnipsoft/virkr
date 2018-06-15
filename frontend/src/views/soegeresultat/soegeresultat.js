@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import Card from './soegeresultat-card';
 import DeltagerCard from './soegeresultat-deltager-card';
-
+import Navigation from './navigation';
 
 export default class Soegeresultat extends Component {
 
   render() {
 
-    const { soegning } = this.props;
-    const { virksomheder, deltagere } = this.props.soegeresultat;
+    const { soegning, soeg } = this.props;
+    const { virksomhedSoegeresultat, deltagerSoegeresultat, meta } = this.props.soegeresultat;
+
+    const virksomheder = virksomhedSoegeresultat.virksomheder;
+    const deltagere = deltagerSoegeresultat.deltagere;
 
     if (virksomheder && virksomheder.length==0 && deltagere && deltagere.length==0) {
       return (
@@ -27,8 +30,10 @@ export default class Soegeresultat extends Component {
 
     return (
       <div className="top-margin">
-        {this._renderVirksomheder(this.props.soegeresultat.virksomheder)}
-        {this._renderPersoner(this.props.soegeresultat.deltagere)}
+        <Navigation links={meta.links} antalVirksomheder={meta.virksomhedHits} antalDeltagere={meta.deltagerHits} soeg={soeg} soegning={soegning} />
+        {this._renderVirksomheder(virksomheder)}
+        {this._renderPersoner(deltagere)}
+        <Navigation links={meta.links} antalVirksomheder={meta.virksomhedHits} antalDeltagere={meta.deltagerHits} soeg={soeg} soegning={soegning} />
       </div>
     );
   }

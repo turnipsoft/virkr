@@ -4,8 +4,14 @@ import dk.ts.virkr.aarsrapporter.util.JsonMarshaller
 import dk.ts.virkr.cvr.integration.model.deltager.Vrdeltagerperson
 import dk.ts.virkr.cvr.integration.model.deltager.VrdeltagerpersonWrapper
 import dk.ts.virkr.cvr.integration.model.deltager.elasticsearch.ElasticGetDeltagerResult
+import dk.ts.virkr.cvr.integration.model.virksomhed.Beliggenhedsadresse
 import dk.ts.virkr.cvr.integration.model.virksomhed.elasticsearch.ElasticResult
 import dk.ts.virkr.cvr.integration.model.virksomhed.Vrvirksomhed
+import dk.ts.virkr.services.model.DeltagerSoegeresultat
+import dk.ts.virkr.services.model.DeltagerSoegeresultatWrapper
+import dk.ts.virkr.services.model.DeltagerVirksomhed
+import dk.ts.virkr.services.model.VirksomhedSoegeresultat
+import dk.ts.virkr.services.model.VirksomhedSoegeresultatWrapper
 import org.slf4j.Logger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
@@ -121,7 +127,7 @@ class CvrClient {
     return navnequery
   }
 
-  List<Vrvirksomhed> soeg(String navn) {
+  ElasticResult soeg(String navn, long page, long pagesize) {
     navn = navn.replace("{SLASH}","7")
     String navnequery = prepareNavneQuery(navn)
 
@@ -131,36 +137,31 @@ class CvrClient {
     String include = 'Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn,Vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse,Vrvirksomhed.cvrNummer'
     String query = "($navnequery OR cvrNummer:$navn) AND $statusquery"
     query = URLEncoder.encode(query,'UTF-8').replace('+','%20')
-    String url = "$url$SEARCH?q=$query&_source_include=$include&_source_exclude=entities"
+    String url = "$url$SEARCH?q=$query&_source_include=$include&_source_exclude=entities&size=$pagesize&from=$page"
 
     String jsonResult = kaldCvr(url)
 
-    return marshallVirksomheder(jsonResult)
+    JsonMarshaller marshaller = new JsonMarshaller(true)
+    ElasticResult elasticResult = marshaller.toObject(jsonResult, ElasticResult.class)
+    return elasticResult
   }
 
-  List<Vrdeltagerperson> soegDeltagere(String navn) {
+  dk.ts.virkr.cvr.integration.model.deltager.elasticsearch.ElasticResult soegDeltagere(String navn, long page, long pagesize) {
     navn = navn.replace("{SLASH}","7")
     String navnequery = prepareNavneQuery(navn)
     navnequery = "Vrdeltagerperson.navne.navn:$navnequery"
 
     String include = 'Vrdeltagerperson.navne.navn,Vrdeltagerperson.enhedsNummer,Vrdeltagerperson.enhedstype,Vrdeltagerperson.deltagerpersonMetadata,Vrdeltagerperson.virksomhedSummariskRelation'
     String query = URLEncoder.encode(navnequery,'UTF-8').replace('+','%20')
-    String url = "$deltagerurl$SEARCH?q=$query&_source_include=$include&_source_exclude=entities"
+    String url = "$deltagerurl$SEARCH?q=$query&_source_include=$include&_source_exclude=entities&size=$pagesize&from=$page"
 
     String jsonResult = kaldCvr(url)
 
-    List<Vrdeltagerperson> resultat = []
     JsonMarshaller marshaller = new JsonMarshaller(true)
     dk.ts.virkr.cvr.integration.model.deltager.elasticsearch.ElasticResult elasticResult =
       marshaller.toObject(jsonResult, dk.ts.virkr.cvr.integration.model.deltager.elasticsearch.ElasticResult.class)
 
-    elasticResult.hits.hits.each { hit->
-      if (hit._source.vrdeltagerperson) {
-        resultat << hit._source.vrdeltagerperson
-      }
-    }
-
-    return resultat
+    return elasticResult
   }
 
   private String kaldCvr(String url, String body=null) {

@@ -34,8 +34,9 @@ export default class APIHelper {
     return this._call(this.url('/cvr/search/' + soegning))
   }
 
-  static soegVirkr(soegning) {
-    return this._call(this.url('/cvr/searchVirkr/' + soegning))
+  static soegVirkr(soegning, page=1, pagesize=20) {
+    const url = '/cvr/searchVirkr/'+soegning+'?page='+page+'&pagesize='+pagesize;
+    return this._call(this.url(url));
   }
 
   static hentDeltager(enhedsnummer) {
