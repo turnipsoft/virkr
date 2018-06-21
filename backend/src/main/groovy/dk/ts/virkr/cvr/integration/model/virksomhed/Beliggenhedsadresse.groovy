@@ -54,6 +54,8 @@ class Beliggenhedsadresse {
         }
         adrlinie += this.conavn + ', '
       }
+
+      adrlinie += vejadresselinie + ', '+byLinje
       return adrlinie
     } else if (fritekst) {
       return fritekst
