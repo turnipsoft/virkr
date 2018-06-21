@@ -30,7 +30,8 @@ export default class VirksomhedsDetaljer extends Component {
 
     const {
       vejadresselinie,
-      byLinje
+      byLinje,
+      conavn
     } = vdata.nyesteBeliggenhedsadresse;
 
     const branche = vdata.nyesteHovedbranche? vdata.nyesteHovedbranche.branchetekst + " (" + vdata.nyesteHovedbranche.branchekode + ")" : "Ukendt branche";
@@ -65,6 +66,18 @@ export default class VirksomhedsDetaljer extends Component {
     const q = vejadresselinie+", "+byLinje
     const mapsurl =  "https://www.google.com/maps/embed/v1/place?q="+q+"&key="+apikey;
 
+    let vejlinie = '';
+
+    if (conavn!==null) {
+      if (!conavn.toLowerCase().startsWith('c/o')) {
+        vejlinie = 'C/O ';
+      }
+
+      vejlinie += conavn + ', ';
+    }
+
+    vejlinie += vejadresselinie;
+
     return (
       <div>
         <SectionHeader label="Stamdata" detail="Stamdata om virksomheden" iconClass="fa fa-industry white"
@@ -83,7 +96,7 @@ export default class VirksomhedsDetaljer extends Component {
                   </div>
                   <div className="row">
                     <div className="col col-12">
-                      {vejadresselinie}
+                      {vejlinie}
                     </div>
                   </div>
                   <div className="row">
@@ -113,8 +126,8 @@ export default class VirksomhedsDetaljer extends Component {
                 <div className="col col-12 map">
                   <span>
                     <iframe height="100%" width="100%"
-                      frameBorder="0" style={{border:1}}
-                      src={mapsurl} allowFullScreen>
+                            frameBorder="0" style={{border:1}}
+                            src={mapsurl} allowFullScreen>
                     </iframe>
                   </span>
                 </div>

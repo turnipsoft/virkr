@@ -16,6 +16,7 @@ class DeltagerSoegeresultat {
   String fritekst
   String bogstavFra
   String bogstavTil
+  String conavn
 
   List<Beliggenhedsadresse> adresser
   List<DeltagerVirksomhed> virksomheder
@@ -32,9 +33,19 @@ class DeltagerSoegeresultat {
 
   String getAdresseTekst() {
     if (adresselinie && postnr) {
-      return adresselinie + ', '+postnr +' '+bynavn
+      String adr = ''
+
+      if (conavn) {
+        if (!conavn.toLowerCase().startsWith('c/o')) {
+          adr = 'C/O '
+        }
+
+        adr += conavn + ', '
+      }
+      adr += adresselinie + ', '+postnr +' '+bynavn
+      return adr
     }
 
-    return ''
+    return null
   }
 }

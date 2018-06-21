@@ -193,10 +193,11 @@ class CvrInternalService {
       deltagerSoegeresultat.adresselinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.vejadresselinie
       deltagerSoegeresultat.bylinie = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.byLinje
       deltagerSoegeresultat.postnr = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.postnummer
-      deltagerSoegeresultat.bynavn = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bynavn
+      deltagerSoegeresultat.bynavn = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.postdistrikt
       deltagerSoegeresultat.fritekst = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.fritekst
       deltagerSoegeresultat.bogstavFra = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bogstavFra
       deltagerSoegeresultat.bogstavTil = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.bogstavTil
+      deltagerSoegeresultat.conavn = vrdeltagerperson.deltagerpersonMetadata.nyesteBeliggenhedsadresse.conavn
     }
 
     deltagerSoegeresultat.enhedsNummer = vrdeltagerperson.enhedsNummer
