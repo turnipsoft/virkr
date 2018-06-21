@@ -14,7 +14,7 @@ export default class Navigation extends Component {
 
     const { antalDeltagere, antalVirksomheder, soeg, soegning } = this.props
     const maxAntal = antalDeltagere > antalVirksomheder ? antalDeltagere : antalVirksomheder;
-    const antalSider = Math.floor( maxAntal / pagesize );
+    const antalSider = Math.floor( maxAntal / pagesize ) + 1;
     const previous  = current>1? current-1: current;
     const next = current>maxAntal? current: current+1;
 

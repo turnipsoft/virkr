@@ -105,7 +105,8 @@ class CvrService {
 
   Links createLinks(HttpServletRequest request, String soegning, long page, long pagesize, long hits) {
 
-    long maxPage = hits / pagesize
+    long maxPage = Math.floor(hits / pagesize) + 1
+
     if (page>=maxPage) {
       page = maxPage
     }
