@@ -39,7 +39,7 @@ export default class DeltagerInfo extends Component {
   _renderDeltagerAdresser(deltager) {
     if (deltager.adresser && deltager.adresser.length!==1) {
       const detail = deltager.navn + "'s tidligere adresser"
-      const adresser = deltager.adresser.slice(0,-1)
+      const adresser = deltager.adresser.filter((adr) => adr.periode.gyldigTil!==null);
       const sorted = adresser.sort(function(a, b) {
         if (a.periode.gyldigTil===null) {
           if (b.periode.gyldigTil===null) {
