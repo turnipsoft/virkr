@@ -136,7 +136,7 @@ class CvrClient {
 
     String statusquery = '(Vrvirksomhed.virksomhedMetadata.sammensatStatus:(NORMAL OR Normal OR Aktiv OR UNDERFRIVILLIGLIKVIDATION OR UNDERTVANGSOPLOESNING))'
     String include = 'Vrvirksomhed.virksomhedMetadata.nyesteNavn.navn,Vrvirksomhed.virksomhedMetadata.nyesteBeliggenhedsadresse,Vrvirksomhed.cvrNummer'
-    String query = "($navnequery OR cvrNummer:$navn) AND $statusquery"
+    String query = "($navnequery OR Vrvirksomhed.cvrNummer:$navn) AND $statusquery"
     query = URLEncoder.encode(query,'UTF-8').replace('+','%20')
     String url = "$url$SEARCH?q=$query&_source_include=$include&_source_exclude=entities&size=$pagesize&from=$page"
 
