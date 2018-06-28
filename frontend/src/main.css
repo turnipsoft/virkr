@@ -6,6 +6,11 @@
   --purple: #97578F;
 }
 
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: var(--lightblue);
+}
+
 .top-margin {
   margin-top: 2%;
 }

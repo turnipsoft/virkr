@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import NoegletalRaekke from './noegletalraekke';
 import RegnskabLinkRaekke from './regnskablinkraekke';
-import RevisionsRaekke from './revisionsraekke';
+import RevisionSection from './revisionsection';
 import NoegletalGraf from './noegletalgraf';
 
 export default class NoegletalTabel extends Component {
@@ -77,6 +77,22 @@ export default class NoegletalTabel extends Component {
 
     return (
       <div className="aarsregnskab">
+
+        <div className="card noegletal-tabel-card">
+          <div className="card-block table-responsive">
+            <h4><span className={rClass} onClick={()=> this.setState({revisionVis : !this.state.revisionVis})} /> Revision </h4>
+
+            {this.state.revisionVis && <table className="table table-hover noegletal-tabel table-striped">
+              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz}
+                               viserModal={this._viserModal} />
+              <tbody>
+              {this.state.revisionVis && <RevisionSection regnskaber={regnskaber} sz={sz} revisorer={revisorer} />}
+              </tbody>
+
+            </table>}
+          </div>
+        </div>
+
         <div className="card noegletal-tabel-card">
           <div className="card-block table-responsive">
             <h4> <span className={roClass} onClick={()=> this.setState({resultatopgoerelseVis : !this.state.resultatopgoerelseVis})} /> Resultatopgørelse </h4>
@@ -254,24 +270,6 @@ export default class NoegletalTabel extends Component {
             </table>}
           </div>
         </div>
-
-        <br />
-
-        <div className="card noegletal-tabel-card">
-          <div className="card-block table-responsive">
-            <h4><span className={rClass} onClick={()=> this.setState({revisionVis : !this.state.revisionVis})} /> Revision </h4>
-
-            {this.state.revisionVis && <table className="table table-hover noegletal-tabel">
-              <NoegletalRaekke header={true} label="År" felt="aar" regnskaber={regnskaber} inkluderRegnksabsklasse sz={sz}
-                               viserModal={this._viserModal} />
-              <tbody>
-              {this.state.revisionVis && <RevisionsRaekke regnskaber={regnskaber} sz={sz} revisorer={revisorer} />}
-              </tbody>
-
-            </table>}
-          </div>
-        </div>
-
 
       </div>
     )
