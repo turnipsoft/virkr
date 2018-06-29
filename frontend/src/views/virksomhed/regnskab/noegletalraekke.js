@@ -140,7 +140,7 @@ export default class NoegletalRaekke extends Component {
         }
 
         return <td width={szp} className={cname} key={col} >
-          {komma(vaerdi.vaerdi.vaerdi)}
+          <a title={vaerdi.vaerdi.xbrlFeltnavn}>{komma(vaerdi.vaerdi.vaerdi)}</a>
           </td>
       })
     );
