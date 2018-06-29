@@ -538,3 +538,15 @@ body {
   max-height: 30%;
   overflow: auto;
 }
+
+.dictionary-table {
+  font-size: .75em;
+}
+
+.dtd-left {
+  text-align: left !important;
+}
+
+.dictionarylink {
+  padding-top: 5px;
+}

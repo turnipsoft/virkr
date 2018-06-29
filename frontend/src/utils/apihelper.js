@@ -10,6 +10,10 @@ export default class APIHelper {
     return this.host()+path;
   }
 
+  static hentDictionary() {
+    return this._call(this.url('/dictionary'))
+  }
+
   static hentNoegletal(cvrnummer) {
     return this._call(this.url('/regnskab/' + cvrnummer))
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PageHeader = ({ headerText, iconClassName, cvrdata, deltager, context }) => {
+const PageHeader = ({ headerText, iconClassName, cvrdata, deltager, context, detailText }) => {
 
   let externalLink = '';
   let externalLinkText = '';
@@ -43,9 +43,14 @@ const PageHeader = ({ headerText, iconClassName, cvrdata, deltager, context }) =
                 | &nbsp;
                 <a href={tabLink} target="_blank">{tabText}</a>
               </div>}
+              {detailText && <div className="header-details">
+                {detailText}
+              </div>}
             </div>
-            <div className="col-1">
+            <div className="col-1 align-middle text-right dictionarylink">
+              <a href="/#/dictionary" title="Klik for åbne XBRL opslagsværk" target="_blank"><span className="fa fa-book align-middle text-right"/></a>
             </div>
+
           </div>
 
         </div>

@@ -6,6 +6,7 @@ import DeltagerView from '../views/deltager/deltagerview';
 import VirksomhedView from '../views/virksomhed/virksomhedview';
 import DeltagerGrafView from  '../views/deltager/graf/deltagergrafview';
 import EjerGrafView from '../views/virksomhed/ejergraf/ejergrafview';
+import DictionaryView from '../views/dictionary/dictionaryview';
 
 const Main = () => (
   <div>
@@ -16,6 +17,7 @@ const Main = () => (
       <Route path='/soegeresultat/:soegning' component={SoegeresultatView} />
       <Route path='/deltager/:enhedsnummer' component={DeltagerView} />
       <Route path='/virksomhed/:cvrnummer' component={VirksomhedView} />
+      <Route path='/dictionary/' component={DictionaryView} />
     </Switch>
   </div>
 );

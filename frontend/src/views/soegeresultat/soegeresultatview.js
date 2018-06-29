@@ -20,7 +20,7 @@ class SoegeresultatView extends Component {
 
     return(
       <div>
-        <PageHeader iconClassName="fa fa-search" headerText="Søgeresultat" />
+        <PageHeader iconClassName="fa fa-search" headerText="Søgeresultat" detailText="&nbsp;" />
         {this.props.showSpinner && <Spinner />}
         {this.props.soegeresultat && <Soegeresultat soegning={soegning}
                                                     soegeresultat={soegeresultat}
