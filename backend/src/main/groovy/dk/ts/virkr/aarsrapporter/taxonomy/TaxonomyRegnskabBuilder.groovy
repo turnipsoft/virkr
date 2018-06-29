@@ -89,7 +89,7 @@ class TaxonomyRegnskabBuilder {
         }
       }
 
-      entity.value = new Regnskabstal(l, decimal)
+      entity.value = new Regnskabstal(l, decimal,'dummy','dummy','dummy')
       println(entity)
     } else {
       entity.stringValue = n.text()
