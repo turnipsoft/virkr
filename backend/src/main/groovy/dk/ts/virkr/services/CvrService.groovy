@@ -15,6 +15,7 @@ import dk.ts.virkr.services.internal.CvrInternalService
 import dk.ts.virkr.services.model.DeltagerSoegeresultat
 import dk.ts.virkr.services.model.VirkrSoegeresultat
 import dk.ts.virkr.services.model.VirksomhedSoegeresultat
+import dk.ts.virkr.services.model.metrics.Metric
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpRequest
 import org.springframework.web.bind.annotation.CrossOrigin
@@ -43,16 +44,26 @@ class CvrService {
   @Autowired
   CvrInternalService cvrInternalService
 
+  @Autowired
+  MetricsService metricsService
+
   @RequestMapping(value = "/{cvrnummer}", method = RequestMethod.GET)
   Vrvirksomhed regnskab(@PathVariable String cvrnummer) {
-    Vrvirksomhed vrvirksomhed =  cvrClient.hentVirksomhed(cvrnummer)
-    return vrvirksomhed
+    try {
+      Vrvirksomhed vrvirksomhed =  cvrClient.hentVirksomhed(cvrnummer)
+      metricsService.increment(Metric.VIRKSOMHED)
+      return vrvirksomhed
+    } catch (Exception e) {
+      metricsService.increment(Metric.FEJLVIRKSOMHED)
+      throw e
+    }
   }
 
   @RequestMapping(value ="/deltager/{enhedsnummer}", method = RequestMethod.GET)
   DeltagerSoegeresultat hentDeltager(@PathVariable enhedsnummer) {
     Vrdeltagerperson vrdeltagerperson = cvrClient.hentDeltager(enhedsnummer)
     DeltagerSoegeresultat deltagerSoegeresultat = cvrInternalService.tilDeltager(vrdeltagerperson)
+    metricsService.increment(Metric.PERSON)
     return deltagerSoegeresultat
   }
 
@@ -100,6 +111,7 @@ class CvrService {
     virkrSoegeresultat.meta.virksomhedHits = virksomhedSoegeresultatWrapper.antalHits
     virkrSoegeresultat.meta.links = deltagerSoegeresultatWrapper.antalHits > virksomhedSoegeresultatWrapper.antalHits ?
       deltagerSoegeresultatWrapper.links : virksomhedSoegeresultatWrapper.links
+    metricsService.increment(Metric.SOEGNING)
     return virkrSoegeresultat
   }
 

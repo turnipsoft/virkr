@@ -21,3 +21,7 @@ spring:
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
+
+management:
+  security:
+    enabled: false

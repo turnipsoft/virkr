@@ -30,6 +30,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+
   compile "org.springframework.boot:spring-boot-starter-web"
   compile "org.springframework.boot:spring-boot-starter-data-jpa"
   compile "org.hibernate:hibernate-java8:5.1.0.Final"
@@ -40,6 +41,8 @@ dependencies {
 
   compile "org.codehaus.groovy:groovy-all"
   compile "org.springframework.boot:spring-boot-starter-actuator"
+  compile 'io.micrometer:micrometer-registry-prometheus:latest.release'
+  compile 'io.micrometer:micrometer-spring-legacy:latest.release'
 
   testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
 
